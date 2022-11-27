@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Sk8troid UpperBodyMask
+  m_Mask: 00000000010000000100000000000000000000000100000001000000010000000100000000000000000000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: 3bcb894e-1ed4-4c3d-be69-5bcd4940eb65
+    m_Weight: 0
+  - m_Path: 3bcb894e-1ed4-4c3d-be69-5bcd4940eb65.001
+    m_Weight: 0
+  - m_Path: Body
+    m_Weight: 1
+  - m_Path: Camera
+    m_Weight: 0
+  - m_Path: Head
+    m_Weight: 1
+  - m_Path: LArm
+    m_Weight: 1
+  - m_Path: Light
+    m_Weight: 0
+  - m_Path: metarig
+    m_Weight: 0
+  - m_Path: metarig/spine
+    m_Weight: 0
+  - m_Path: metarig/spine/pelvis.L
+    m_Weight: 1
+  - m_Path: metarig/spine/pelvis.L/pelvis.L_end
+    m_Weight: 1
+  - m_Path: metarig/spine/pelvis.R
+    m_Weight: 1
+  - m_Path: metarig/spine/pelvis.R/pelvis.R_end
+    m_Weight: 1
+  - m_Path: metarig/spine/spine.001
+    m_Weight: 0
+  - m_Path: metarig/spine/spine.001/spine.003
+    m_Weight: 0
+  - m_Path: metarig/spine/spine.001/spine.003/shoulder.L
+    m_Weight: 1
+  - m_Path: metarig/spine/spine.001/spine.003/shoulder.L/upper_arm.L
+    m_Weight: 1
+  - m_Path: metarig/spine/spine.001/spine.003/shoulder.L/upper_arm.L/upper_arm.L.001
+    m_Weight: 1
+  - m_Path: metarig/spine/spine.001/spine.003/shoulder.L/upper_arm.L/upper_arm.L.001/forearm.L
+    m_Weight: 1
+  - m_Path: metarig/spine/spine.001/spine.003/shoulder.L/upper_arm.L/upper_arm.L.001/forearm.L/hand.L
+    m_Weight: 1
+  - m_Path: metarig/spine/spine.001/spine.003/shoulder.L/upper_arm.L/upper_arm.L.001/forearm.L/hand.L/hand.L.001
+    m_Weight: 1
+  - m_Path: metarig/spine/spine.001/spine.003/shoulder.L/upper_arm.L/upper_arm.L.001/forearm.L/hand.L/hand.L.001/hand.L.001_end
+    m_Weight: 1
+  - m_Path: metarig/spine/spine.001/spine.003/shoulder.R
+    m_Weight: 1
+  - m_Path: metarig/spine/spine.001/spine.003/shoulder.R/upper_arm.R
+    m_Weight: 1
+  - m_Path: metarig/spine/spine.001/spine.003/shoulder.R/upper_arm.R/upper_arm.R.001
+    m_Weight: 1
+  - m_Path: metarig/spine/spine.001/spine.003/shoulder.R/upper_arm.R/upper_arm.R.001/forearm.R
+    m_Weight: 1
+  - m_Path: metarig/spine/spine.001/spine.003/shoulder.R/upper_arm.R/upper_arm.R.001/forearm.R/hand.R
+    m_Weight: 1
+  - m_Path: metarig/spine/spine.001/spine.003/shoulder.R/upper_arm.R/upper_arm.R.001/forearm.R/hand.R/hand.R.001
+    m_Weight: 1
+  - m_Path: metarig/spine/spine.001/spine.003/shoulder.R/upper_arm.R/upper_arm.R.001/forearm.R/hand.R/hand.R.001/hand.R.001_end
+    m_Weight: 1
+  - m_Path: metarig/spine/spine.001/spine.003/spine.004
+    m_Weight: 1
+  - m_Path: metarig/spine/spine.001/spine.003/spine.004/spine.005
+    m_Weight: 1
+  - m_Path: metarig/spine/spine.001/spine.003/spine.004/spine.005/spine.005_end
+    m_Weight: 1
+  - m_Path: metarig/spine/thigh.L.001
+    m_Weight: 0
+  - m_Path: metarig/spine/thigh.L.001/shin.L
+    m_Weight: 0
+  - m_Path: metarig/spine/thigh.L.001/shin.L/foot.L
+    m_Weight: 0
+  - m_Path: metarig/spine/thigh.L.001/shin.L/foot.L/toe.L
+    m_Weight: 0
+  - m_Path: metarig/spine/thigh.L.001/shin.L/foot.L/toe.L/toe.L_end
+    m_Weight: 0
+  - m_Path: metarig/spine/thigh.R.001
+    m_Weight: 0
+  - m_Path: metarig/spine/thigh.R.001/shin.R
+    m_Weight: 0
+  - m_Path: metarig/spine/thigh.R.001/shin.R/foot.R
+    m_Weight: 0
+  - m_Path: metarig/spine/thigh.R.001/shin.R/foot.R/toe.R
+    m_Weight: 0
+  - m_Path: metarig/spine/thigh.R.001/shin.R/foot.R/toe.R/toe.R_end
+    m_Weight: 0
+  - m_Path: Pants
+    m_Weight: 0
+  - m_Path: RArm
+    m_Weight: 0
+  - m_Path: Shoes
+    m_Weight: 0
