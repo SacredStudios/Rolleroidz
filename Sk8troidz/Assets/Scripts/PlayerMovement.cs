@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Animations;
 
 public class PlayerMovement : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
     {
-        
+        targetRot = transform.eulerAngles.z;
     }
     Vector3 input;
     Vector3 cam_Forward;
@@ -19,27 +19,42 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float speedMultiplier;
     [SerializeField] float currSpeed;
     [SerializeField] float sensitivity = 1f;
+    float desiredRotation;
     Vector3 lastPos = Vector3.zero;
     Vector3 newRotation;
     float cineMachinePitch;
     float cineMachineYaw;
     float targetRot;
     public GameObject CinemachineTarget;
-   
-   private void FixedUpdate()
+
+    [SerializeField] Animator animator;
+
+    private void FixedUpdate()
     {
+
+      
         Move();
-     
+      
+      
+
+
+
+
     }
     private void Update()
     {
-        Jump();  
+       // RotateWCamera();
+        Jump();
+       
     }
     private void LateUpdate()
     {
-        Vector3 newRotation = new Vector3(transform.eulerAngles.x, playerCam.gameObject.transform.eulerAngles.y, transform.eulerAngles.z);
-        transform.rotation = Quaternion.Euler(newRotation);
-        CameraRotation(); 
+
+        RotateWCamera();
+        CameraRotation();
+
+
+
     }
     void Move()
     {
@@ -51,12 +66,27 @@ public class PlayerMovement : MonoBehaviour
         {
 
             rb.AddRelativeForce(input * speedMultiplier * Time.deltaTime);
+           
         }
+        if (currSpeed < 0.1)
+        {
+            animator.SetFloat("animSpeedCap", 0f);
+        }
+        else
+        {
+            animator.SetFloat("animSpeedCap", 1f);
+        }
+        
     }
     void Jump()
     {
         //TODO Add jumping
 
+    }
+    void RotateWCamera()
+    {
+        Vector3 newRotation = new Vector3(transform.eulerAngles.x, playerCam.gameObject.transform.eulerAngles.y, transform.eulerAngles.z);
+        transform.rotation = Quaternion.Euler(newRotation);
     }
     void CameraRotation()
     {
