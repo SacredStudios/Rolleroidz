@@ -26,20 +26,15 @@ public class PlayerMovement : MonoBehaviour
     float cineMachineYaw;
     float targetRot;
     public GameObject CinemachineTarget;
-
+    [SerializeField] GameObject body;
+    [SerializeField] float rayCastLength;
+    [SerializeField] int jumpStrength;
+    [SerializeField] bool canJump = true;
     [SerializeField] Animator animator;
 
     private void FixedUpdate()
-    {
-
-      
+    {  
         Move();
-      
-      
-
-
-
-
     }
     private void Update()
     {
@@ -80,8 +75,30 @@ public class PlayerMovement : MonoBehaviour
     }
     void Jump()
     {
-        //TODO Add jumping
+        if(Input.GetButtonDown("Jump") && canJump)
+        {
+            if (Physics.Raycast(body.transform.position, Vector3.down, rayCastLength))
+            {
+                rb.AddForce(Vector3.up * jumpStrength);
+                animator.SetFloat("IsJumping", 1f);
+                canJump = false;
+                Invoke("JumpEnabled", 0.3f);
+            }
+        }
 
+    }
+    void OnCollisionStay(Collision collision)
+    {
+        if (Physics.Raycast(body.transform.position, Vector3.down, rayCastLength))
+        {
+            animator.SetFloat("IsJumping", 0f);
+        }
+        
+    }
+    
+    void JumpEnabled()
+    {
+        canJump = true;
     }
     void RotateWCamera()
     {
@@ -108,4 +125,5 @@ public class PlayerMovement : MonoBehaviour
         if (angle > 360f) angle -= 360f;
         return Mathf.Clamp(angle, min, max);
     }
+   
 }
