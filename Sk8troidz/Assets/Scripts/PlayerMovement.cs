@@ -38,17 +38,17 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
-       // RotateWCamera();
         Jump();
-       
+        
+
+
     }
     private void LateUpdate()
     {
 
         RotateWCamera();
         CameraRotation();
-
-
+       
 
     }
     void Move()
@@ -75,27 +75,38 @@ public class PlayerMovement : MonoBehaviour
     }
     void Jump()
     {
+     
         if(Input.GetButtonDown("Jump") && canJump)
         {
             if (Physics.Raycast(body.transform.position, Vector3.down, rayCastLength))
             {
                 rb.AddForce(Vector3.up * jumpStrength);
                 animator.SetFloat("IsJumping", 1f);
+               // Debug.Log("JUMPING");
                 canJump = false;
                 Invoke("JumpEnabled", 0.3f);
             }
         }
 
     }
-    void OnCollisionStay(Collision collision)
+    void OnCollisionEnter(Collision collision)
     {
         if (Physics.Raycast(body.transform.position, Vector3.down, rayCastLength))
         {
             animator.SetFloat("IsJumping", 0f);
+            rb.drag = 4;
         }
         
     }
-    
+    void OnCollisionExit(Collision collision)
+    {
+       
+            //animator.SetFloat("IsJumping", 1f);
+        rb.drag = 1;
+        
+
+    }
+
     void JumpEnabled()
     {
         canJump = true;
@@ -115,7 +126,7 @@ public class PlayerMovement : MonoBehaviour
 
         cineMachineYaw = ClampAngle(cineMachineYaw, float.MinValue, float.MaxValue);
         cineMachinePitch = ClampAngle(cineMachinePitch, -30, 70);
-
+        animator.SetFloat("Bend", cineMachinePitch);
         CinemachineTarget.transform.rotation = Quaternion.Euler(cineMachinePitch, cineMachineYaw, 0.0f);
 
     }
