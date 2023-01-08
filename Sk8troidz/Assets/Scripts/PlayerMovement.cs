@@ -127,6 +127,7 @@ public class PlayerMovement : MonoBehaviour
         cineMachineYaw = ClampAngle(cineMachineYaw, float.MinValue, float.MaxValue);
         cineMachinePitch = ClampAngle(cineMachinePitch, -30, 70);
         animator.SetFloat("Bend", cineMachinePitch);
+        Debug.Log(animator.GetFloat("Bend"));
         CinemachineTarget.transform.rotation = Quaternion.Euler(cineMachinePitch, cineMachineYaw, 0.0f);
 
     }
