@@ -32,6 +32,19 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] bool canJump = true;
     [SerializeField] Animator animator;
 
+    private Crosshair m_Crosshair;
+    private Crosshair Crosshair //Do this instead of running GetComponent every frame
+    {
+        get
+        {
+            if (m_Crosshair == null)
+            {
+                m_Crosshair = GetComponentInChildren<Crosshair>();
+            }
+            return m_Crosshair;
+        }
+    }
+
     private void FixedUpdate()
     {  
         Move();
@@ -39,7 +52,8 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         Jump();
-        
+        Crosshair.LookHeight(Input.GetAxis("Mouse X")*sensitivity);
+
 
 
     }
@@ -82,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 rb.AddForce(Vector3.up * jumpStrength);
                 animator.SetFloat("IsJumping", 1f);
-               // Debug.Log("JUMPING");
+            
                 canJump = false;
                 Invoke("JumpEnabled", 0.3f);
             }
@@ -115,6 +129,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 newRotation = new Vector3(transform.eulerAngles.x, playerCam.gameObject.transform.eulerAngles.y, transform.eulerAngles.z);
         transform.rotation = Quaternion.Euler(newRotation);
+       
     }
     void CameraRotation()
     {
@@ -127,7 +142,7 @@ public class PlayerMovement : MonoBehaviour
         cineMachineYaw = ClampAngle(cineMachineYaw, float.MinValue, float.MaxValue);
         cineMachinePitch = ClampAngle(cineMachinePitch, -30, 70);
         animator.SetFloat("Bend", cineMachinePitch);
-        Debug.Log(animator.GetFloat("Bend"));
+   
         CinemachineTarget.transform.rotation = Quaternion.Euler(cineMachinePitch, cineMachineYaw, 0.0f);
 
     }
