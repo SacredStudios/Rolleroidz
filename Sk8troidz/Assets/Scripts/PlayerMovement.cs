@@ -5,11 +5,7 @@ using UnityEngine.Animations;
 
 public class PlayerMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        targetRot = transform.eulerAngles.z;
-    }
+   
     Vector3 input;
     Vector3 cam_Forward;
     Vector3 diff;
@@ -32,8 +28,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] bool canJump = true;
     [SerializeField] Animator animator;
 
-    private Crosshair m_Crosshair;
-    private Crosshair Crosshair //Do this instead of running GetComponent every frame
+    /*private Crosshair m_Crosshair; //Do this instead of running GetComponent every frame
+    private Crosshair Crosshair 
     {
         get
         {
@@ -44,7 +40,11 @@ public class PlayerMovement : MonoBehaviour
             return m_Crosshair;
         }
     }
-
+    */
+    void Start()
+    {
+        targetRot = transform.eulerAngles.z;
+    }
     private void FixedUpdate()
     {  
         Move();
@@ -52,18 +52,11 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         Jump();
-        Crosshair.LookHeight(Input.GetAxis("Mouse X")*sensitivity);
-
-
-
     }
     private void LateUpdate()
     {
-
         RotateWCamera();
         CameraRotation();
-       
-
     }
     void Move()
     {
@@ -73,9 +66,7 @@ public class PlayerMovement : MonoBehaviour
         lastPos = transform.position;
         if (currSpeed < maxSpeed)
         {
-
-            rb.AddRelativeForce(input * speedMultiplier * Time.deltaTime);
-           
+            rb.AddRelativeForce(input * speedMultiplier * Time.deltaTime);   
         }
         if (currSpeed < 0.1)
         {
@@ -96,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 rb.AddForce(Vector3.up * jumpStrength);
                 animator.SetFloat("IsJumping", 1f);
-            
+       
                 canJump = false;
                 Invoke("JumpEnabled", 0.3f);
             }
@@ -105,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
-        if (Physics.Raycast(body.transform.position, Vector3.down, rayCastLength))
+        if (Physics.Raycast(body.transform.position, Vector3.down, rayCastLength)) //IsJumping
         {
             animator.SetFloat("IsJumping", 0f);
             rb.drag = 4;
@@ -114,11 +105,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void OnCollisionExit(Collision collision)
     {
-       
-            //animator.SetFloat("IsJumping", 1f);
-        rb.drag = 1;
-        
-
+        rb.drag = 1; //Drag is different when jumping
     }
 
     void JumpEnabled()

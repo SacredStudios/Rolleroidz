@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class FreeCam : MonoBehaviour
 {
-    // Start is called before the first frame update
+
     [SerializeField] GameObject player;
     [SerializeField] Vector3 offset;
     [SerializeField] float sensitivity = 0.05f;
     [SerializeField] Vector2 yBoundaries;
     [SerializeField] Vector2 xBoundaries;
     public float testRot;
-    // Update is called once per frame
+   
     [SerializeField] Camera cam;
     void Update()
     {
@@ -29,12 +29,10 @@ public class FreeCam : MonoBehaviour
         transform.LookAt(v, Vector3.up);
         Debug.Log(transform.localEulerAngles);
 
-        if (Mathf.Abs((transform.eulerAngles.x)) > 80) transform.localEulerAngles = new Vector3(80, transform.localEulerAngles.y, transform.localEulerAngles.z);
+        if (Mathf.Abs((transform.eulerAngles.x)) > 80)
+        {
+            transform.localEulerAngles = new Vector3(80, transform.localEulerAngles.y, transform.localEulerAngles.z);
+        }
     }
-    private void Start()
-    {
-
-       
-
-    }
+   
 }
