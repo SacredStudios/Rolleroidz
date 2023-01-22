@@ -4,15 +4,13 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "new_weapon", menuName = "Scripts/RangedWeapon", order = 1)]
 public class RangedWeapon : Weapon
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject instance;
+    Transform spawn_pos;
 
-    // Update is called once per frame
-    void Update()
+    GameObject prefab_instance;
+
+    public override void Shoot(GameObject parent)
     {
-        
+       
     }
 }

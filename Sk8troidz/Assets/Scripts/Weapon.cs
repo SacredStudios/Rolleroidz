@@ -19,7 +19,7 @@ public class Weapon : ScriptableObject
     
 
     // Update is called once per frame
-   public virtual void Activate(GameObject parent) { }
+   public virtual void Shoot(GameObject parent) { }
 
-    public virtual void Deactivate(GameObject parent) { }
+    //public virtual void Deactivate(GameObject parent) { }
 }

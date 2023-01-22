@@ -14,7 +14,7 @@ public class Shooting : MonoBehaviour
 
     void Update()
     {
-        Shoot();
+      //  Shoot();
     }
     void Start()
     {
