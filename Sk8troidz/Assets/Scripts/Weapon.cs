@@ -16,7 +16,7 @@ public class Weapon : ScriptableObject
     public GameObject particle_trail1;
     public GameObject particle_trail2;
     public GameObject impact_effect;
-    
+    public GameObject body;
 
     // Update is called once per frame
    public virtual void Shoot(GameObject parent) { }

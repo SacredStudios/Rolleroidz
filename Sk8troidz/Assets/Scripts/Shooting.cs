@@ -11,7 +11,7 @@ public class Shooting : MonoBehaviour
     public GameObject particle_trail1;
     public GameObject particle_trail2;
     public GameObject impact_effect;
-
+    //THIS SCRIPT SHOULD NOT BE USED IN FINAL PRODUCT
     void Update()
     {
       //  Shoot();
