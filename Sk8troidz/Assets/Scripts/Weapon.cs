@@ -11,10 +11,10 @@ public class Weapon : ScriptableObject
     public int max_ammo;
     public float knockback;
     public float range;
+    public GameObject instance;
     //Add var for sound
 
-    public GameObject particle_trail1;
-    public GameObject particle_trail2;
+    
     public GameObject impact_effect;
     public GameObject body;
 
