@@ -9,7 +9,7 @@ public class Weapon_Slot : MonoBehaviour
     [SerializeField] GameObject spine; //rename to spine
     [SerializeField] GameObject weapon_loc;
     [SerializeField] GameObject particle_pos;
-
+    [SerializeField] GameObject explosion_pos;
 
     private void Update()
     {
@@ -23,6 +23,7 @@ public class Weapon_Slot : MonoBehaviour
     {
         weapon.spine = spine;
         weapon.particle_pos = this.particle_pos;
+        weapon.explosion_pos = this.explosion_pos;
         curr_gun = Instantiate(weapon.instance, weapon_loc.transform);
 
     }

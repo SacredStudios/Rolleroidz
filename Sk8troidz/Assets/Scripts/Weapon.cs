@@ -6,11 +6,12 @@ public class Weapon : ScriptableObject
 {
     public string weapon_name;
     public string weapon_description;
-    public float weapon_Speed;
+    public float weapon_delay;
     public int damage;
     public int max_ammo;
     public float knockback;
     public GameObject particle_pos;
+    public GameObject explosion_pos;
 
     public GameObject instance;
     //Add var for sound
