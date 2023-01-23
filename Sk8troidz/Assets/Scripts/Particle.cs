@@ -5,14 +5,15 @@ using UnityEngine;
 public class Particle : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
-    { //make invoke death script here
-        
+    [SerializeField] float lifespan;
+    void OnEnable()
+    {
+        Invoke("Destroy_Object", lifespan);
     }
 
     // Update is called once per frame
-    void Update()
+    void Destroy_Object()
     {
-        
+        Destroy(this.gameObject);   
     }
 }
