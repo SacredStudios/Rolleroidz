@@ -43,7 +43,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 1
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 2
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -4882,7 +4882,6 @@ GameObject:
   - component: {fileID: 484392930733997865}
   - component: {fileID: 484392930733997867}
   - component: {fileID: 484392930733997864}
-  - component: {fileID: 2194837655145405240}
   m_Layer: 0
   m_Name: Laser
   m_TagString: Untagged
@@ -4916,7 +4915,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 1
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 2
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -9744,16 +9743,3 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &2194837655145405240
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 484392930733997870}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95d572a008b7cd440a003a0e8ffa876e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lifespan: 0.1

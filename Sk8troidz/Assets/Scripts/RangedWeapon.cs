@@ -7,13 +7,12 @@ public class RangedWeapon : Weapon
     public GameObject particle_trail;
     public GameObject particle_explosion;
     public float range;
-    bool can_shoot;
 
    // MAKE GAME LIKE NSMBDS MULTIPLAYER
 
-    public override void Shoot(GameObject parent)
+    public override void Shoot(GameObject parent, GameObject spine, GameObject particle_pos, GameObject explosion_pos)
     {
-        Debug.DrawRay(parent.transform.position, spine.transform.forward * range, Color.green);
+        Debug.DrawRay(parent.transform.position, spine.transform.forward * range, Color.green); //chage this to capsulecast
         Ray ray = new Ray(parent.transform.position, spine.transform.forward * range);
         RaycastHit hit = new RaycastHit();
         Instantiate(particle_trail, particle_pos.transform.position, particle_pos.transform.rotation, particle_pos.transform);

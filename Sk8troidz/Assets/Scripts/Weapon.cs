@@ -10,18 +10,17 @@ public class Weapon : ScriptableObject
     public int damage;
     public int max_ammo;
     public float knockback;
-    public GameObject particle_pos;
-    public GameObject explosion_pos;
+   
 
     public GameObject instance;
     //Add var for sound
 
     
     public GameObject impact_effect;
-    public GameObject spine;
+
 
     // Update is called once per frame
-   public virtual void Shoot(GameObject parent) { }
+   public virtual void Shoot(GameObject parent, GameObject spine, GameObject particle_pos, GameObject explosion_pos) { }
 
    
 }

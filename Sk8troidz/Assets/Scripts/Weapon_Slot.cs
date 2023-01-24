@@ -10,21 +10,27 @@ public class Weapon_Slot : MonoBehaviour
     [SerializeField] GameObject weapon_loc;
     [SerializeField] GameObject particle_pos;
     [SerializeField] GameObject explosion_pos;
+    float shoot_delay;
 
     private void Update()
     {
-        if (Input.GetButton("Fire1"))
+        if (shoot_delay < weapon.weapon_delay)
         {
-            
-            weapon.Shoot(curr_gun);
+            shoot_delay += Time.deltaTime;
+        }
+        if (Input.GetButton("Fire1") && shoot_delay >= weapon.weapon_delay)
+        {
+            shoot_delay = 0;
+            Shoot_Weapon();                             
         }
     }
-    private void Awake()
-    {
-        weapon.spine = spine;
-        weapon.particle_pos = this.particle_pos;
-        weapon.explosion_pos = this.explosion_pos;
-        curr_gun = Instantiate(weapon.instance, weapon_loc.transform);
 
+    void Shoot_Weapon()
+    {
+        weapon.Shoot(curr_gun, spine, particle_pos, explosion_pos);
+    }
+    private void Awake()
+    {                       
+        curr_gun = Instantiate(weapon.instance, weapon_loc.transform);
     }
 }
