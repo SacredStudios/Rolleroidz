@@ -6,6 +6,7 @@ public class RangedWeapon : Weapon
 {
     public GameObject particle_trail;
     public GameObject particle_explosion;
+    public GameObject impact_explosion;
     public float range;
 
    // MAKE GAME LIKE NSMBDS MULTIPLAYER
@@ -20,7 +21,8 @@ public class RangedWeapon : Weapon
         if (Physics.Raycast(ray, out hit)) //Target Acquired
         {
             Debug.Log(hit.collider.name);
-            Debug.Log(hit.point);
+            Instantiate(impact_explosion, hit.point, Quaternion.identity);
+            // Debug.Log(hit.point);
         }
         else
         {

@@ -22,4 +22,5 @@ MonoBehaviour:
   impact_effect: {fileID: 0}
   particle_trail: {fileID: 484392930733997870, guid: e83730576bd6d491294d149809c4fa60, type: 3}
   particle_explosion: {fileID: 4970991890375960164, guid: f77041932ccee0549a0e18b6636ec870, type: 3}
+  impact_explosion: {fileID: 4970991890375960164, guid: a197e14b4ef3446f28ef44378fb7753e, type: 3}
   range: 100

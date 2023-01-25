@@ -6,15 +6,21 @@ using UnityEngine.UI;
 public class FPS_Counter : MonoBehaviour
 {
     [SerializeField] Text fps_text;
-    // Start is called before the first frame update
+    [SerializeField] bool repeat = true;
+
     void Start()
     {
-        
+        StartCoroutine(FPS());
     }
 
-    // Update is called once per frame
-    void Update()
+
+    IEnumerator FPS()
     {
-        fps_text.text =((int)(1.0f / Time.deltaTime)).ToString();
+        while (repeat)
+        {
+            yield return new WaitForSeconds(0.25f);
+            fps_text.text = ((int)(1.0f / Time.deltaTime)).ToString();
+        }
+       
     }
 }
