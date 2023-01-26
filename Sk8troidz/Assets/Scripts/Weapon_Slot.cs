@@ -14,7 +14,7 @@ public class Weapon_Slot : MonoBehaviour
 
     private void Update()
     {
-        
+    
         if (shoot_delay < weapon.weapon_delay)
         {
             shoot_delay += Time.deltaTime;

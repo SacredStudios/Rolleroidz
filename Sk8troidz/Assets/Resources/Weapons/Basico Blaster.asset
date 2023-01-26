@@ -18,6 +18,7 @@ MonoBehaviour:
   damage: 0
   max_ammo: 0
   knockback: 0
+  offset: {x: 100, y: 0, z: 0}
   instance: {fileID: 752707165243343423, guid: f3d2d992a57d1434384b3db5d5fba565, type: 3}
   impact_effect: {fileID: 0}
   particle_trail: {fileID: 484392930733997870, guid: e83730576bd6d491294d149809c4fa60, type: 3}
