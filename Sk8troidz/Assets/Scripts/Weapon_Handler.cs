@@ -13,6 +13,7 @@ public class Weapon_Handler : MonoBehaviour
     [SerializeField] Animator animator;
     float shoot_delay;
     float time_last_shot;
+    bool weapon_up;
  
 
     private void Update()
@@ -27,25 +28,28 @@ public class Weapon_Handler : MonoBehaviour
             shoot_delay = 0;
             Shoot_Weapon();                             
         }
-        if (time_last_shot > 5)
+        if (time_last_shot > 1f && weapon_up)
         {
-            //putweapondown anim
-            animator.SetLayerWeight(2, 0);
+            weapon_up = false;
+            StartCoroutine(Weapon_Down());
+            
         }
     }
 
     void Shoot_Weapon()
     {
         time_last_shot = 0;
+        animator.Play("Gun Layer.Shoot", 2, 0);
         weapon.Shoot(curr_gun, particle_pos, explosion_pos);
-        if (animator.GetLayerWeight(2) == 0)
+        if (animator.GetLayerWeight(2) <= 0.5)
         {
 
+            weapon_up = true;
+            StartCoroutine(Weapon_Up());
             
-            StartCoroutine(Shoot_Anim());
         }
     }
-    IEnumerator Shoot_Anim()
+    IEnumerator Weapon_Up()
     {
         float i = 0;
         while(i<=1)
@@ -55,7 +59,19 @@ public class Weapon_Handler : MonoBehaviour
             animator.SetLayerWeight(2, i);
             
         }
-        
+        yield return null;
+    }
+    IEnumerator Weapon_Down()
+    {
+        float i = 1;
+        while (i >= 0)
+        {
+            yield return new WaitForSeconds(0.02f);
+            i -= 0.1f;
+            animator.SetLayerWeight(2, i);
+
+        }
+        yield return null;
     }
     private void Awake()
     {
