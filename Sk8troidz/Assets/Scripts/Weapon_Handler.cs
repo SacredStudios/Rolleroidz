@@ -40,13 +40,17 @@ public class Weapon_Handler : MonoBehaviour
     {
         time_last_shot = 0;
         animator.Play("Gun Layer.Shoot", 2, 0);
-        weapon.Shoot(curr_gun, particle_pos, explosion_pos);
+       
         if (animator.GetLayerWeight(2) <= 0.5)
         {
 
             weapon_up = true;
             StartCoroutine(Weapon_Up());
             
+        }
+        else
+        {
+            weapon.Shoot(curr_gun, particle_pos, explosion_pos);
         }
     }
     IEnumerator Weapon_Up()
@@ -59,6 +63,7 @@ public class Weapon_Handler : MonoBehaviour
             animator.SetLayerWeight(2, i);
             
         }
+        weapon.Shoot(curr_gun, particle_pos, explosion_pos);
         yield return null;
     }
     IEnumerator Weapon_Down()
