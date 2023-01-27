@@ -99,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
         if (Physics.Raycast(body.transform.position, Vector3.down, rayCastLength)) //IsJumping
         {
             animator.SetFloat("IsJumping", 0f);
-            rb.drag = 4;
+            rb.drag = 5;
         }
         
     }

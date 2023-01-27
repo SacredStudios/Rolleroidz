@@ -20,7 +20,7 @@ public class Weapon : ScriptableObject
     public GameObject impact_effect;
 
 
-   public virtual void Shoot(GameObject parent, GameObject spine, GameObject particle_pos, GameObject explosion_pos) { }
+   public virtual void Shoot(GameObject parent, GameObject particle_pos, GameObject explosion_pos) { }
 
    
 }

@@ -6,7 +6,7 @@ public class Weapon_Slot : MonoBehaviour
 {
     public Weapon weapon;
     public GameObject curr_gun;
-    [SerializeField] GameObject spine; //rename to spine
+   
     [SerializeField] GameObject weapon_loc;
     [SerializeField] GameObject particle_pos;
     [SerializeField] GameObject explosion_pos;
@@ -28,7 +28,7 @@ public class Weapon_Slot : MonoBehaviour
 
     void Shoot_Weapon()
     {
-        weapon.Shoot(curr_gun, spine, particle_pos, explosion_pos);
+        weapon.Shoot(curr_gun, particle_pos, explosion_pos);
     }
     private void Awake()
     {                       
