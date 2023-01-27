@@ -18,6 +18,7 @@ public class RangedWeapon : Weapon
         RaycastHit hit = new RaycastHit();
         Instantiate(particle_trail, particle_pos.transform.position, particle_pos.transform.rotation, particle_pos.transform);
         Instantiate(particle_explosion, explosion_pos.transform.position, particle_pos.transform.rotation, explosion_pos.transform);
+        
         if (Physics.Raycast(ray, out hit)) //Target Acquired
         {
            // Debug.Log(hit.collider.name);

@@ -13,6 +13,7 @@ public class Weapon : ScriptableObject
     public Vector3 offset;
    
 
+
     public GameObject instance;
     //Add var for sound
 

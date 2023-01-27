@@ -15736,6 +15736,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!95 &1591496658 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4471843123587727704, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
+  m_PrefabInstance: {fileID: 1804691763}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1804691763
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15743,6 +15748,54 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2335691605116615001, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6426038362428819653, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1591496658}
+    - target: {fileID: 6426038362739416649, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 6426038362739416649, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.003
+      objectReference: {fileID: 0}
+    - target: {fileID: 6426038363419075019, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6426038363471481739, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0019
+      objectReference: {fileID: 0}
+    - target: {fileID: 6426038363471481739, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.0179
+      objectReference: {fileID: 0}
+    - target: {fileID: 6426038363471481739, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.6427632
+      objectReference: {fileID: 0}
+    - target: {fileID: 6426038363471481739, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7660153
+      objectReference: {fileID: 0}
+    - target: {fileID: 6426038363471481739, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.006684931
+      objectReference: {fileID: 0}
+    - target: {fileID: 6426038363471481739, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.0056093233
+      objectReference: {fileID: 0}
+    - target: {fileID: 6426038363471481739, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 6426038364015529101, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
       propertyPath: m_Name
       value: Sk8troidAssets
