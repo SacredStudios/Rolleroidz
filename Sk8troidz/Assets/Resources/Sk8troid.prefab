@@ -2447,6 +2447,7 @@ GameObject:
   - component: {fileID: 1358525819}
   - component: {fileID: 926857765}
   - component: {fileID: 1698313641}
+  - component: {fileID: 3837474209931795742}
   m_Layer: 0
   m_Name: Sk8troid
   m_TagString: Untagged
@@ -2594,10 +2595,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 11400000, guid: a10540edf22de604cbb69b358fad0e5d, type: 2}
   curr_gun: {fileID: 0}
-  spine: {fileID: 409037633093651383}
   weapon_loc: {fileID: 45706408}
   particle_pos: {fileID: 1768225130}
   explosion_pos: {fileID: 1425659014}
+  animator: {fileID: 0}
 --- !u!114 &1698313641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2617,6 +2618,18 @@ MonoBehaviour:
   particle_trail1: {fileID: 0}
   particle_trail2: {fileID: 0}
   impact_effect: {fileID: 0}
+--- !u!114 &3837474209931795742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7774228532153837007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 928757a2606d7a742adfd4988abe27a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7948865424512808881
 GameObject:
   m_ObjectHideFlags: 0
@@ -3094,6 +3107,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Laser
       objectReference: {fileID: 0}
+    - target: {fileID: 484392930733997870, guid: e83730576bd6d491294d149809c4fa60, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e83730576bd6d491294d149809c4fa60, type: 3}
 --- !u!4 &1778684716 stripped
@@ -3111,6 +3128,10 @@ PrefabInstance:
     - target: {fileID: 4970991890375960164, guid: f77041932ccee0549a0e18b6636ec870, type: 3}
       propertyPath: m_Name
       value: Explosion
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970991890375960164, guid: f77041932ccee0549a0e18b6636ec870, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7134025135325843841, guid: f77041932ccee0549a0e18b6636ec870, type: 3}
       propertyPath: m_RootOrder

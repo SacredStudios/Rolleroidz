@@ -23,6 +23,10 @@ public class RangedWeapon : Weapon
         {
            // Debug.Log(hit.collider.name);
             Instantiate(impact_explosion, hit.point, Quaternion.identity);
+            if(hit.collider.tag == "Player")
+            {
+                Debug.Log(hit.collider.name);
+            }
           
         }
        

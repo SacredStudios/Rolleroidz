@@ -20,8 +20,7 @@ MonoBehaviour:
   knockback: 0
   offset: {x: 100, y: 0, z: 0}
   instance: {fileID: 752707165243343423, guid: f3d2d992a57d1434384b3db5d5fba565, type: 3}
-  impact_effect: {fileID: 0}
   particle_trail: {fileID: 484392930733997870, guid: e83730576bd6d491294d149809c4fa60, type: 3}
-  particle_explosion: {fileID: 4970991890375960164, guid: f77041932ccee0549a0e18b6636ec870, type: 3}
-  impact_explosion: {fileID: 4970991890375960164, guid: a197e14b4ef3446f28ef44378fb7753e, type: 3}
+  particle_explosion: {fileID: 367450934941629301, guid: ff835b73a4762094990f9ce060b80dc8, type: 3}
+  impact_explosion: {fileID: 2189970838978847630, guid: 503568be5a661af4ba27514877dbb701, type: 3}
   range: 100

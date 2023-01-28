@@ -18,7 +18,6 @@ public class Weapon : ScriptableObject
     //Add var for sound
 
     
-    public GameObject impact_effect;
 
 
    public virtual void Shoot(GameObject parent, GameObject particle_pos, GameObject explosion_pos) { }
