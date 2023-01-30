@@ -25,7 +25,8 @@ public class RangedWeapon : Weapon
             Instantiate(impact_explosion, hit.point, Quaternion.identity);
             if(hit.collider.tag == "Player")
             {
-                Debug.Log(hit.collider.name);
+               // Debug.Log(hit.collider.name);
+                hit.collider.GetComponent<Player_Health>().Remove_Health(damage);
             }
           
         }
