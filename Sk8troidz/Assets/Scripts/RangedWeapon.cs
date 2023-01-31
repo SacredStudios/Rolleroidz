@@ -27,6 +27,7 @@ public class RangedWeapon : Weapon
             {
                // Debug.Log(hit.collider.name);
                 hit.collider.GetComponent<Player_Health>().Remove_Health(damage);
+                
             }
           
         }

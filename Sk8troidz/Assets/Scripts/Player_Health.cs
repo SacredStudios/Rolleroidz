@@ -6,11 +6,13 @@ public class Player_Health : MonoBehaviour
 
 {
     [SerializeField] int max_health;
-    public int current_health;
+    [SerializeField] int current_health;
+    [SerializeField] GameObject death_effect;
+    [SerializeField] GameObject parent;
  
     void Start()
     {
-        current_health = max_health; 
+        current_health = max_health;    
     }
 
   
@@ -22,6 +24,7 @@ public class Player_Health : MonoBehaviour
             Death();
         }
     }
+
     public void Add_Health(int amount)
     {
         current_health += amount;
@@ -30,9 +33,17 @@ public class Player_Health : MonoBehaviour
             current_health = max_health;
         }
     }
+
+
     void Death()
     {
-        Destroy(this.gameObject);
-        //Add death anim. I was thinking maybe everything explodes and a head by itself spawns with the eye pupil rotating around- Past Jessie
+        Respawn rs = GetComponentInParent<Respawn>();
+        rs.Death();
+
+     }
+
+    private void OnEnable()
+    {
+        current_health = 100;
     }
 }

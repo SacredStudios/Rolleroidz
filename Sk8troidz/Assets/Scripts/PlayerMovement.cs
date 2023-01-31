@@ -27,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] int jumpStrength;
     [SerializeField] bool canJump = true;
     [SerializeField] Animator animator;
+    //ADD PLAYER LEANING ANIMATION
 
     /*private Crosshair m_Crosshair; //Do this instead of running GetComponent every frame
     private Crosshair Crosshair 
