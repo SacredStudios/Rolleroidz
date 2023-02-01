@@ -184,9 +184,29 @@ PrefabInstance:
       propertyPath: playerCam
       value: 
       objectReference: {fileID: 7855048691978222172}
+    - target: {fileID: 1513577829, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: jumpStrength
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 1940958028, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.16666666
+      objectReference: {fileID: 0}
+    - target: {fileID: 1940958028, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.42999995
+      objectReference: {fileID: 0}
+    - target: {fileID: 1940958028, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.74
+      objectReference: {fileID: 0}
     - target: {fileID: 1940958029, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: m_Lens.FieldOfView
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 314255565951997404, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: m_Mass
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1339196910368310925, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: m_Height

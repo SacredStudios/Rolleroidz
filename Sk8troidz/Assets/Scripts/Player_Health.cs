@@ -19,7 +19,7 @@ public class Player_Health : MonoBehaviour
     public void Remove_Health(int amount)
     {
         current_health -= amount;
-        if(current_health < 0)
+        if(current_health <= 0)
         {
             Death();
         }
