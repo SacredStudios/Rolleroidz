@@ -18,7 +18,7 @@ public class Respawn : MonoBehaviour
         death_anim_clone.SetActive(true);
         GameObject death_head_clone = Instantiate(death_head, player.transform.position, Quaternion.identity);
         death_head_clone.SetActive(true);
-        death_head.GetComponent<Rigidbody>().AddForce(0,100,0);
+       
         Invoke("Player_Active",  respawn_time);
 }
     void Player_Active()
