@@ -5,8 +5,8 @@ using UnityEngine;
 public class Player_Health : MonoBehaviour
 
 {
-    [SerializeField] int max_health;
-    [SerializeField] int current_health;
+    [SerializeField] float max_health;
+    [SerializeField] float current_health;
     [SerializeField] GameObject death_effect;
     [SerializeField] GameObject parent;
  
@@ -16,7 +16,7 @@ public class Player_Health : MonoBehaviour
     }
 
   
-    public void Remove_Health(int amount)
+    public void Remove_Health(float amount)
     {
         current_health -= amount;
         if(current_health <= 0)
@@ -25,7 +25,7 @@ public class Player_Health : MonoBehaviour
         }
     }
 
-    public void Add_Health(int amount)
+    public void Add_Health(float amount)
     {
         current_health += amount;
         if (current_health > max_health)

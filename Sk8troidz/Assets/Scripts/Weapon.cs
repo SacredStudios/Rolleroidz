@@ -7,7 +7,7 @@ public class Weapon : ScriptableObject
     public string weapon_name;
     public string weapon_description;
     public float weapon_delay;
-    public int damage;
+    public float damage;
     public int max_ammo;
     public float knockback;
     public Vector3 offset;
