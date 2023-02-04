@@ -837,6 +837,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6426038364223549317, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
+      propertyPath: shoes
+      value: 
+      objectReference: {fileID: 1413637439}
+    - target: {fileID: 6426038364223549317, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
+      propertyPath: rayCastLength
+      value: 3.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6426038364223549317, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
       propertyPath: speedMultiplier
       value: 3500
       objectReference: {fileID: 0}
@@ -1283,6 +1291,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1af33c21fa3ed724c87aab587f8b1a73, type: 3}
+--- !u!1 &1413637439 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7813078382686190621, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
+  m_PrefabInstance: {fileID: 700658725}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1421096285 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7813078382686190621, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
@@ -1712,12 +1725,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1421096285}
     - target: {fileID: 6426038364223549317, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
+      propertyPath: shoes
+      value: 
+      objectReference: {fileID: 1421096285}
+    - target: {fileID: 6426038364223549317, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
       propertyPath: rayCastLength
-      value: 0.1
+      value: 2.35
       objectReference: {fileID: 0}
     - target: {fileID: 6426038364223549317, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
       propertyPath: speedMultiplier
-      value: 3500
+      value: 7000
       objectReference: {fileID: 0}
     - target: {fileID: 7768111738114067086, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
       propertyPath: m_LocalScale.x

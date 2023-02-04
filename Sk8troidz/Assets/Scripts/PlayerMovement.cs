@@ -104,10 +104,7 @@ public class PlayerMovement : MonoBehaviour
         }
         
     }
-    void OnCollisionExit(Collision collision)
-    {
-        rb.drag = 1; //Drag is different when jumping
-    }
+    
 
     void JumpEnabled()
     {
