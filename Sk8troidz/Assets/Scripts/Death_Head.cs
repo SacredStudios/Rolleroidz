@@ -9,7 +9,7 @@ public class Death_Head : MonoBehaviour
     void OnEnable()
     {
         rb.AddForce(launch_force);
-        rb.AddTorque(0, 90, 90);
+        rb.AddTorque(0, 120, 90);
     }
 
     // Update is called once per frame
