@@ -10,11 +10,13 @@ public class Death_Head : MonoBehaviour
     {
         rb.AddForce(launch_force);
         rb.AddTorque(0, 120, 90);
+        Invoke("Destroy_Me", 2.5f);
+
+    }
+    void Destroy_Me()
+    {
+        Destroy(this.gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
 }

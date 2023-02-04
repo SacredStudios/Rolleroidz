@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     float cineMachineYaw;
     float targetRot;
     public GameObject CinemachineTarget;
-    [SerializeField] GameObject body;
+    [SerializeField] GameObject shoes;
     [SerializeField] float rayCastLength;
     [SerializeField] int jumpStrength;
     [SerializeField] bool canJump = true;
@@ -84,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
      
         if(Input.GetButtonDown("Jump") && canJump)
         {
-            if (Physics.Raycast(body.transform.position, Vector3.down, rayCastLength))
+            if (Physics.Raycast(shoes.transform.position, Vector3.down, rayCastLength))
             {
                 rb.AddForce(Vector3.up * jumpStrength);
                 animator.SetFloat("IsJumping", 1f);
@@ -97,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
-        if (Physics.Raycast(body.transform.position, Vector3.down, rayCastLength)) //IsJumping
+        if (Physics.Raycast(shoes.transform.position, Vector3.down, rayCastLength)) //IsJumping
         {
             animator.SetFloat("IsJumping", 0f);
             rb.drag = 5;

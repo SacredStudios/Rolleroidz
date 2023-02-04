@@ -640,6 +640,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 3.9343
       objectReference: {fileID: 0}
+    - target: {fileID: 868399102, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
+      propertyPath: launch_force.y
+      value: 400
+      objectReference: {fileID: 0}
     - target: {fileID: 965302090, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
       propertyPath: death_head
       value: 
@@ -1279,6 +1283,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1af33c21fa3ed724c87aab587f8b1a73, type: 3}
+--- !u!1 &1421096285 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7813078382686190621, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
+  m_PrefabInstance: {fileID: 1804691763}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1444291351
 GameObject:
   m_ObjectHideFlags: 0
@@ -1510,6 +1519,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 3.9343
       objectReference: {fileID: 0}
+    - target: {fileID: 868399102, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
+      propertyPath: launch_force.y
+      value: 400
+      objectReference: {fileID: 0}
     - target: {fileID: 965302090, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
       propertyPath: death_head
       value: 
@@ -1693,6 +1706,14 @@ PrefabInstance:
     - target: {fileID: 6426038364015529102, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6426038364223549317, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
+      propertyPath: body
+      value: 
+      objectReference: {fileID: 1421096285}
+    - target: {fileID: 6426038364223549317, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
+      propertyPath: rayCastLength
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6426038364223549317, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
       propertyPath: speedMultiplier
