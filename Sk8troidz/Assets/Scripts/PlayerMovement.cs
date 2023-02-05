@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject CinemachineTarget;
     [SerializeField] GameObject shoes;
     [SerializeField] float rayCastLength;
+    [SerializeField] float extra_gravity;
     [SerializeField] int jumpStrength;
     [SerializeField] bool canJump = true;
     [SerializeField] Animator animator;
@@ -49,10 +50,21 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {  
         Move();
+        if (!Physics.Raycast(shoes.transform.position, Vector3.down, rayCastLength))
+        {
+
+            rb.AddForce(0, -extra_gravity, 0);
+            extra_gravity += 0.6f;
+        }
+        else
+        {
+            extra_gravity = 0;
+        }
     }
     private void Update()
     {
         Jump();
+        
     }
     private void LateUpdate()
     {
@@ -87,6 +99,7 @@ public class PlayerMovement : MonoBehaviour
             if (Physics.Raycast(shoes.transform.position, Vector3.down, rayCastLength))
             {
                 rb.AddForce(Vector3.up * jumpStrength);
+                
                 animator.SetFloat("IsJumping", 1f);
        
                 canJump = false;
@@ -100,7 +113,7 @@ public class PlayerMovement : MonoBehaviour
         if (Physics.Raycast(shoes.transform.position, Vector3.down, rayCastLength)) //IsJumping
         {
             animator.SetFloat("IsJumping", 0f);
-            rb.drag = 5;
+        
         }
         
     }

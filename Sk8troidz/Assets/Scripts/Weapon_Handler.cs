@@ -71,7 +71,7 @@ public class Weapon_Handler : MonoBehaviour
         float i = 1;
         while (i >= 0)
         {
-            yield return new WaitForSeconds(0.02f);
+            yield return new WaitForSeconds(0.03f);
             i -= 0.1f;
             animator.SetLayerWeight(2, i);
 
