@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject shoes;
     [SerializeField] float rayCastLength;
     [SerializeField] float extra_gravity;
+    [SerializeField] float max_gravity;
     [SerializeField] int jumpStrength;
     [SerializeField] bool canJump = true;
     [SerializeField] Animator animator;
@@ -52,10 +53,13 @@ public class PlayerMovement : MonoBehaviour
         Move();
         if (!Physics.Raycast(shoes.transform.position, Vector3.down, rayCastLength))
         {
-
             rb.AddForce(0, -extra_gravity, 0);
-            extra_gravity += 0.6f;
+            if (extra_gravity < max_gravity)
+            {
+                extra_gravity += 1.5f;
+            }
         }
+       
         else
         {
             extra_gravity = 0;
