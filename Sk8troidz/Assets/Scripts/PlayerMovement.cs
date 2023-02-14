@@ -22,9 +22,10 @@ public class PlayerMovement : MonoBehaviour
     float cineMachineYaw;
     float targetRot;
     public GameObject CinemachineTarget;
-    [SerializeField] GameObject shoes;
+    [SerializeField] Collider body_collider;
     [SerializeField] float rayCastLength;
     [SerializeField] float extra_gravity;
+    [SerializeField] float gravity_multiplier;
     [SerializeField] float max_gravity;
     [SerializeField] int jumpStrength;
     [SerializeField] bool canJump = true;
@@ -51,19 +52,24 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {  
         Move();
-        if (!Physics.Raycast(shoes.transform.position, Vector3.down, rayCastLength))
-        {
-            rb.AddForce(0, -extra_gravity, 0);
-            if (extra_gravity < max_gravity)
-            {
-                extra_gravity += 1.5f;
-            }
-        }
-       
-        else
+        if (Physics.Raycast(body_collider.transform.position, Vector3.down, rayCastLength))
         {
             extra_gravity = 0;
+            canJump = true;
+            animator.SetFloat("IsJumping", 0f);
         }
+        else
+        {
+            canJump = false;
+            animator.SetFloat("IsJumping", 1f);
+        }
+       
+        if (extra_gravity < max_gravity)
+        {
+            extra_gravity += gravity_multiplier;
+        }
+        rb.AddForce(0, -extra_gravity, 0);
+       
     }
     private void Update()
     {
@@ -72,6 +78,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void LateUpdate()
     {
+        
         RotateWCamera();
         CameraRotation();
     }
@@ -99,22 +106,18 @@ public class PlayerMovement : MonoBehaviour
     {
      
         if(Input.GetButtonDown("Jump") && canJump)
-        {
-            if (Physics.Raycast(shoes.transform.position, Vector3.down, rayCastLength))
-            {
+        {           
                 rb.AddForce(Vector3.up * jumpStrength);
                 
-                animator.SetFloat("IsJumping", 1f);
+                
        
-                canJump = false;
-                Invoke("JumpEnabled", 0.3f);
-            }
+                canJump = false;      
         }
 
     }
     void OnCollisionEnter(Collision collision)
     {
-        if (Physics.Raycast(shoes.transform.position, Vector3.down, rayCastLength)) //IsJumping
+        if (Physics.Raycast(body_collider.transform.position, Vector3.down, rayCastLength)) //IsJumping
         {
             animator.SetFloat("IsJumping", 0f);
         
@@ -123,10 +126,7 @@ public class PlayerMovement : MonoBehaviour
     }
     
 
-    void JumpEnabled()
-    {
-        canJump = true;
-    }
+   
     void RotateWCamera()
     {
         Vector3 newRotation = new Vector3(transform.eulerAngles.x, playerCam.gameObject.transform.eulerAngles.y, transform.eulerAngles.z);

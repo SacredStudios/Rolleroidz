@@ -1106,6 +1106,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: -35.451, y: 0, z: 0}
+--- !u!136 &472664863 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 5456136953385268333, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
+  m_PrefabInstance: {fileID: 700658725}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &602664680 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 5456136953385268333, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
+  m_PrefabInstance: {fileID: 1804691763}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &604767604
 GameObject:
   m_ObjectHideFlags: 0
@@ -1443,12 +1453,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1413637439}
     - target: {fileID: 6426038364223549317, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
+      propertyPath: body_collider
+      value: 
+      objectReference: {fileID: 472664863}
+    - target: {fileID: 6426038364223549317, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
       propertyPath: rayCastLength
       value: 3.1
       objectReference: {fileID: 0}
     - target: {fileID: 6426038364223549317, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
       propertyPath: speedMultiplier
       value: 3500
+      objectReference: {fileID: 0}
+    - target: {fileID: 6426038364223549317, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
+      propertyPath: gravity_multiplier
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7768111738114067086, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
       propertyPath: m_LocalScale.x
@@ -2607,11 +2625,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6426038364223549317, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
       propertyPath: max_gravity
-      value: 200
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6426038364223549317, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
       propertyPath: jumpStrength
-      value: 1600
+      value: 3100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6426038364223549317, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
+      propertyPath: body_collider
+      value: 
+      objectReference: {fileID: 602664680}
+    - target: {fileID: 6426038364223549317, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
+      propertyPath: rayCastLength
+      value: 2.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6426038364223549317, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
+      propertyPath: gravity_multiplier
+      value: 1.15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
