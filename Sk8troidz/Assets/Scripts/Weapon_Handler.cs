@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Weapon_Handler : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class Weapon_Handler : MonoBehaviour
     float shoot_delay;
     float time_last_shot;
     bool weapon_up;
+    [SerializeField] Slider cooldown;
  
 
     private void Update()
@@ -23,8 +25,9 @@ public class Weapon_Handler : MonoBehaviour
         {
             shoot_delay += Time.deltaTime;
         }
-        if (Input.GetButton("Fire1") && shoot_delay >= weapon.weapon_delay)
+        if (Input.GetButton("Fire1") && shoot_delay >= weapon.weapon_delay && weapon.attack_cost<=cooldown.value)
         {
+            cooldown.value -= weapon.attack_cost;
             shoot_delay = 0;
             Shoot_Weapon();                             
         }

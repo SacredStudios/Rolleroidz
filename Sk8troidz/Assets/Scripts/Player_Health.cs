@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player_Health : MonoBehaviour
 
@@ -9,6 +10,7 @@ public class Player_Health : MonoBehaviour
     [SerializeField] float current_health;
     [SerializeField] GameObject death_effect;
     [SerializeField] GameObject parent;
+    [SerializeField] Slider health_bar;
  
     void Start()
     {
@@ -19,6 +21,7 @@ public class Player_Health : MonoBehaviour
     public void Remove_Health(float amount)
     {
         current_health -= amount;
+        health_bar.value = current_health;
         if(current_health <= 0)
         {
             Death();
@@ -28,6 +31,7 @@ public class Player_Health : MonoBehaviour
     public void Add_Health(float amount)
     {
         current_health += amount;
+        health_bar.value = current_health;
         if (current_health > max_health)
         {
             current_health = max_health;
@@ -45,5 +49,6 @@ public class Player_Health : MonoBehaviour
     private void OnEnable()
     {
         current_health = 100;
+        health_bar.value = current_health;
     }
 }
