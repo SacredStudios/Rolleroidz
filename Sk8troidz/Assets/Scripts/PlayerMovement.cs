@@ -27,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float extra_gravity;
     [SerializeField] float gravity_multiplier;
     [SerializeField] float max_gravity;
+    [SerializeField] float min_gravity;
     [SerializeField] int jumpStrength;
     [SerializeField] bool canJump = true;
     [SerializeField] Animator animator;
@@ -54,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
         Move();
         if (Physics.Raycast(body_collider.transform.position, Vector3.down, rayCastLength))
         {
-            extra_gravity = 0;
+            extra_gravity = min_gravity;
             canJump = true;
             animator.SetFloat("IsJumping", 0f);
         }

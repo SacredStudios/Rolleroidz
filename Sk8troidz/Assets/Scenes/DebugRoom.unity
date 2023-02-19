@@ -3673,8 +3673,12 @@ PrefabInstance:
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6426038364223549317, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
+      propertyPath: min_gravity
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6426038364223549317, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
       propertyPath: jumpStrength
-      value: 3100
+      value: 3500
       objectReference: {fileID: 0}
     - target: {fileID: 6426038364223549317, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
       propertyPath: body_collider
