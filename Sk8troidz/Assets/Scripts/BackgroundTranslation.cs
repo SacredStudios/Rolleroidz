@@ -17,8 +17,5 @@ public class BackgroundTranslation : MonoBehaviour
             transform.position = starting_loc;
         }
     }
-    private void Start()
-    {
-        Debug.Log(this.transform.position); 
-    }
+   
 }
