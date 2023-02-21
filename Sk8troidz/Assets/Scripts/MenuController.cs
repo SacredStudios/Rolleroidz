@@ -38,7 +38,7 @@ public class MenuController : MonoBehaviour
 
             yield return new WaitForSeconds(0.01f);
         }
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         StartCoroutine(Transition_Up());
 
     }
@@ -51,7 +51,7 @@ public class MenuController : MonoBehaviour
 
             yield return new WaitForSeconds(0.01f);
         }
-        yield return new WaitForSeconds(2f);
+        
 
 
 
