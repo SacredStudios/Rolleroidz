@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Ground
   - Player_Head
+  - Bullet
+  - Point
   layers:
   - Default
   - TransparentFX
