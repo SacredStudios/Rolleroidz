@@ -2,9 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class MenuController : MonoBehaviour
+
+public class MenuController : MonoBehaviourPunCallbacks
 {
+    public GameObject player_prefab;
+    Vector3 position;
     [SerializeField] GameObject transition;
     [SerializeField] Vector3 velocity;
     [SerializeField] Vector3 target_pos;
@@ -19,11 +24,23 @@ public class MenuController : MonoBehaviour
     {
         StartBtn.GetComponent<Button>().enabled = false;
         StartCoroutine(Transition_Down());
-     
+
         Invoke("HideStartMenu", 1f);
-        
+
     }
-  void HideStartMenu()
+    private void Awake()
+    {
+        PhotonNetwork.ConnectUsingSettings();
+        PhotonNetwork.NickName = "testy";
+        //DontDestroyOnLoad(this.gameObject);
+
+    }
+    public override void OnConnectedToMaster()
+    {
+        PhotonNetwork.JoinLobby(TypedLobby.Default);
+        Debug.Log("Connected");
+    }
+    void HideStartMenu()
     {
         StartMenu.SetActive(false);
         Menu_Skatroid.SetActive(true);
@@ -51,9 +68,21 @@ public class MenuController : MonoBehaviour
 
             yield return new WaitForSeconds(0.01f);
         }
-        
-
-
 
     }
+    public void AddRandomGame()
+    {
+        RoomOptions roomOptions = new RoomOptions();
+        roomOptions.MaxPlayers = 5;
+        //PhotonNetwork.JoinRandomOrCreateRoom(null, roomOptions.MaxPlayers, MatchmakingMode.FillRoom, TypedLobby.Default);
+        PhotonNetwork.JoinOrCreateRoom("test", roomOptions, TypedLobby.Default);
+        roomOptions.EmptyRoomTtl = 0;
+    }
+
+    public override void OnJoinedRoom()
+    {
+        PhotonNetwork.LoadLevel("DebugRoom");
+
+    }
+    
 }
