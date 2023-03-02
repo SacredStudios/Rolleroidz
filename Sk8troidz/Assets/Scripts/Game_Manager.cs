@@ -19,6 +19,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     [SerializeField] PhotonTeamsManager tm;
     [SerializeField] Text Team1List;
     [SerializeField] Text Team2List;
+    [SerializeField] PhotonView pv;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -36,10 +37,10 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     }
     void AddToLobby()
     {
-        
-        
+
+
         PhotonNetwork.LocalPlayer.JoinTeam((byte)Random.Range(1, 3));
-        StartCoroutine(SwitchTeam());
+        StartCoroutine(SwitchTeam(PhotonNetwork.LocalPlayer));
     }
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
@@ -51,24 +52,29 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         base.OnPlayerEnteredRoom(newPlayer);
         PropChange();
     }
-    IEnumerator SwitchTeam()
+    IEnumerator SwitchTeam(Player player)
     {
+       
         int curr1 = tm.GetTeamMembersCount(1);
 
         int curr2 = tm.GetTeamMembersCount(2);
-        Debug.Log(curr1 + "+" + curr2);
-        yield return new WaitUntil(() => PhotonNetwork.LocalPlayer.GetPhotonTeam()!=null);
+        Debug.Log(curr1 + "+" + curr2 + "test");
+        foreach (Player player_temp in PhotonNetwork.PlayerList)
+        {
+            yield return new WaitUntil(() => player_temp.GetPhotonTeam() != null);
+        }
         if (tm.GetTeamMembersCount(1) < tm.GetTeamMembersCount(2))
         {
-            PhotonNetwork.LocalPlayer.SwitchTeam(1);
+            player.SwitchTeam(1);
         }
         else if (tm.GetTeamMembersCount(1) > tm.GetTeamMembersCount(2))
         {
-            PhotonNetwork.LocalPlayer.SwitchTeam(2);
+            player.SwitchTeam(2);
         }
         
         
     }
+    
 
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
     {
@@ -87,13 +93,18 @@ public class Game_Manager : MonoBehaviourPunCallbacks
             {
                 Team1List.text += player.NickName + "\n";
             }
-            else
+            else if(player.GetPhotonTeam().Code == 2)
             {
                 Team2List.text += player.NickName + "\n";
+            }
+            else
+            {
+                StartCoroutine(SwitchTeam(player));
             }
         }
     }
 
+    
     [PunRPC] public void SpawnPlayerTeam1()
     {
         Debug.Log("adding player (1)");
