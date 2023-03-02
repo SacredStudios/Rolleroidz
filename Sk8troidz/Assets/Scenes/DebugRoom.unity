@@ -2738,6 +2738,8 @@ MonoBehaviour:
   lobby: {fileID: 1243988733}
   lobby_cam: {fileID: 1243988733}
   tm: {fileID: 2026277107}
+  Team1List: {fileID: 1121449269}
+  Team2List: {fileID: 1314942589}
 --- !u!114 &2026277107
 MonoBehaviour:
   m_ObjectHideFlags: 0
