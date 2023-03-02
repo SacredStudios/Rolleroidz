@@ -2450,6 +2450,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf246c6fec7d745a392351a3613efb96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player_prefab: {fileID: 0}
   transition: {fileID: 161643326}
   velocity: {x: 0, y: 50, z: 0}
   target_pos: {x: 272, y: 120, z: 0}
@@ -3054,6 +3055,10 @@ PrefabInstance:
     - target: {fileID: 2220700032433790781, guid: a6476ea02cc0c40daa369662ce82aaf1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6607174708616762173, guid: a6476ea02cc0c40daa369662ce82aaf1, type: 3}
+      propertyPath: sceneViewId
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6476ea02cc0c40daa369662ce82aaf1, type: 3}
