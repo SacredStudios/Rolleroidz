@@ -63,7 +63,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         {
             yield return new WaitUntil(() => player_temp.GetPhotonTeam() != null);
         }
-        if (tm.GetTeamMembersCount(1) < tm.GetTeamMembersCount(2))
+        if (tm.GetTeamMembersCount(1) < tm.GetTeamMembersCount(2)) //get team count from master client
         {
             player.SwitchTeam(1);
         }
