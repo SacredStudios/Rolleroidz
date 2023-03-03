@@ -20,6 +20,8 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     [SerializeField] Text Team1List;
     [SerializeField] Text Team2List;
     [SerializeField] PhotonView pv;
+    [SerializeField] int temp1 = 9999;
+    [SerializeField] int temp2 = 9999;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -54,30 +56,36 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     }
     IEnumerator SwitchTeam(Player player)
     {
-       
-        int curr1 = tm.GetTeamMembersCount(1);
 
-        int curr2 = tm.GetTeamMembersCount(2);
-        Debug.Log(curr1 + "+" + curr2 + "test");
+        
         foreach (Player player_temp in PhotonNetwork.PlayerList)
         {
             yield return new WaitUntil(() => player_temp.GetPhotonTeam() != null);
         }
-        if (tm.GetTeamMembersCount(1) < tm.GetTeamMembersCount(2)) //get team count from master client
+        yield return new WaitUntil(() => temp1 != 9999 && temp2 != 9999);
+        if (temp1 < temp2) //get team count from master client
         {
             player.SwitchTeam(1);
         }
-        else if (tm.GetTeamMembersCount(1) > tm.GetTeamMembersCount(2))
+        else if (temp1 > temp2)
         {
             player.SwitchTeam(2);
         }
         
         
     }
-    
+    [PunRPC] public void GetTeams(int x, int y)
+    {
+        temp1 = x;
+        temp2 = y;
+    }
 
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
     {
+        if(PhotonNetwork.IsMasterClient)
+        {
+            pv.RPC("GetTeams", RpcTarget.All, tm.GetTeamMembersCount(1), tm.GetTeamMembersCount(2));
+        }
         PropChange();
         
         base.OnPlayerPropertiesUpdate(targetPlayer, changedProps);

@@ -45,6 +45,7 @@ MonoBehaviour:
   - JoinTeam1List
   - JoinTeam2List
   - JoinTeamList
+  - GetTeams
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
