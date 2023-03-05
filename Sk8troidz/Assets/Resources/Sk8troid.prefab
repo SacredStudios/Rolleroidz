@@ -2465,6 +2465,7 @@ MonoBehaviour:
   jumpStrength: 1600
   canJump: 1
   animator: {fileID: 7431768936319595448}
+  pv: {fileID: 2722618974921175925}
 --- !u!114 &1358525819
 MonoBehaviour:
   m_ObjectHideFlags: 0

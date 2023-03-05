@@ -18,6 +18,7 @@ public class MenuController : MonoBehaviourPunCallbacks
     [SerializeField] GameObject StartBtn;
     [SerializeField] GameObject Menu_Skatroid;
     [SerializeField] GameObject StartMenu;
+    [SerializeField] int max_players;
 
 
     public void ShowMainMenu()
@@ -73,7 +74,7 @@ public class MenuController : MonoBehaviourPunCallbacks
     public void AddRandomGame()
     {
         RoomOptions roomOptions = new RoomOptions();
-        roomOptions.MaxPlayers = 5;
+        roomOptions.MaxPlayers = (byte)max_players;
         //PhotonNetwork.JoinRandomOrCreateRoom(null, roomOptions.MaxPlayers, MatchmakingMode.FillRoom, TypedLobby.Default);
         PhotonNetwork.JoinOrCreateRoom("test", roomOptions, TypedLobby.Default);
         roomOptions.EmptyRoomTtl = 0;

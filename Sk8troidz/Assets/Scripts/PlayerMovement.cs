@@ -2,15 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviourPunCallbacks
 {
-   
+
     Vector3 input;
     Vector3 cam_Forward;
     Vector3 diff;
     [SerializeField] float maxSpeed;
     [SerializeField] Camera playerCam;
+    [SerializeField] GameObject playerCam_gameObject;
+    [SerializeField] GameObject player_ui;
+    [SerializeField] GameObject vcam;
     [SerializeField] Rigidbody rb;
     [SerializeField] float speedMultiplier;
     [SerializeField] float currSpeed;
@@ -31,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] int jumpStrength;
     [SerializeField] bool canJump = true;
     [SerializeField] Animator animator;
+    [SerializeField] PhotonView pv;
     //ADD PLAYER LEANING ANIMATION
 
     /*private Crosshair m_Crosshair; //Do this instead of running GetComponent every frame
@@ -49,10 +55,24 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         targetRot = transform.eulerAngles.z;
+        if(!pv.IsMine)
+        {
+            playerCam_gameObject.SetActive(false);
+            player_ui.SetActive(false);
+            vcam.SetActive(false);
+        }
     }
     private void FixedUpdate()
-    {  
-        Move();
+    {  if (pv.IsMine)
+        {
+            Move();
+            Gravity();
+        }
+        
+       
+    }
+    void Gravity()
+    {
         if (Physics.Raycast(body_collider.transform.position, Vector3.down, rayCastLength))
         {
             extra_gravity = min_gravity;
@@ -64,24 +84,26 @@ public class PlayerMovement : MonoBehaviour
             canJump = false;
             animator.SetFloat("IsJumping", 1f);
         }
-       
+
         if (extra_gravity < max_gravity)
         {
             extra_gravity += gravity_multiplier;
         }
         rb.AddForce(0, -extra_gravity, 0);
-       
     }
     private void Update()
     {
+        if (pv.IsMine)
         Jump();
         
     }
     private void LateUpdate()
     {
-        
-        RotateWCamera();
-        CameraRotation();
+        if (pv.IsMine)
+        { 
+          RotateWCamera();
+          CameraRotation();
+        }
     }
     void Move()
     {

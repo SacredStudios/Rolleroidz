@@ -2733,10 +2733,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player_prefab: {fileID: 6426038364015529101, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
-  min_room_size: 0
-  team1size: 0
-  team2size: 0
-  lobby: {fileID: 1243988733}
+  min_room_size: 2
+  lobby: {fileID: 2106420982}
   lobby_cam: {fileID: 1243988733}
   tm: {fileID: 2026277107}
   Team1List: {fileID: 1121449269}

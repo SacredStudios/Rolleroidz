@@ -1,18 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
+using Photon.Pun.UtilityScripts;
 
-public class PointCollisions : MonoBehaviour
+
+public class PointCollisions : MonoBehaviourPunCallbacks
 {
     [SerializeField] PointTally pt;
-  
+    [SerializeField] PhotonView pv;
 
     void OnCollisionEnter(Collision collider)
     {
-        if (collider.gameObject.tag == "Point")
+        if (collider.gameObject.tag == "Point" && pv.IsMine)
         {
             Destroy(collider.gameObject);
-            pt.ChangePoints(1);
+            PhotonNetwork.LocalPlayer.AddScore(1);
             Debug.Log(pt.points);
         }
     }
