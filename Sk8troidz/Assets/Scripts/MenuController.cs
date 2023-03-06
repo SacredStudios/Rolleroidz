@@ -32,7 +32,7 @@ public class MenuController : MonoBehaviourPunCallbacks
     private void Awake()
     {
         PhotonNetwork.ConnectUsingSettings();
-        PhotonNetwork.NickName = "testy";
+        PhotonNetwork.NickName = "NewPlayer";
         //DontDestroyOnLoad(this.gameObject);
 
     }
@@ -70,6 +70,24 @@ public class MenuController : MonoBehaviourPunCallbacks
             yield return new WaitForSeconds(0.01f);
         }
 
+    }
+    public void ChangeUsername(string s)
+    {
+        int white_spaces = 0;// = s.Length(char.IsWhiteSpace)
+        for(int i = 0; i < s.Length; i++)
+        {
+
+            if (char.IsWhiteSpace(s[i]))
+                white_spaces++;
+        }
+        if (s.Length-white_spaces >= 1)
+        {
+            PhotonNetwork.NickName = s;
+        }
+        else
+        {
+            PhotonNetwork.NickName = "space_spam"; //Easter egg
+        }
     }
     public void AddRandomGame()
     {

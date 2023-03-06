@@ -1561,8 +1561,8 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
-    m_LineSpacing: 1
-  m_Text: Red___Team
+    m_LineSpacing: 3.5
+  m_Text: 
 --- !u!222 &1121449270
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1901,7 +1901,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6792453, g: 0.22748311, b: 0.6010442, a: 1}
+  m_Color: {r: 0.4811321, g: 0.16113387, b: 0.42548025, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1920,8 +1920,8 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
-    m_LineSpacing: 1
-  m_Text: Pink__Team
+    m_LineSpacing: 3.5
+  m_Text: 
 --- !u!222 &1314942590
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2733,7 +2733,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player_prefab: {fileID: 6426038364015529101, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
-  min_room_size: 2
+  min_room_size: 4
   lobby: {fileID: 2106420982}
   lobby_cam: {fileID: 1243988733}
   tm: {fileID: 2026277107}
@@ -2756,9 +2756,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   listFoldIsOpen: 1
   teamsList:
-  - Name: Blue
-    Code: 1
   - Name: Red
+    Code: 1
+  - Name: Pink
     Code: 2
 --- !u!114 &2026277108
 MonoBehaviour:
