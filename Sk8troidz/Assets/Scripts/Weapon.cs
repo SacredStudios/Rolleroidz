@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class Weapon : ScriptableObject
 {
@@ -11,6 +12,7 @@ public class Weapon : ScriptableObject
     public int attack_cost;
     public float knockback;
     public Vector3 offset;
+    public PhotonView pv;
    
 
 
