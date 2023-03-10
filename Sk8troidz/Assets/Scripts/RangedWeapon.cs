@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 [CreateAssetMenu(fileName = "new_weapon", menuName = "Scripts/RangedWeapon", order = 1)]
 public class RangedWeapon : Weapon
 {
@@ -16,7 +17,7 @@ public class RangedWeapon : Weapon
       //  Debug.DrawRay(parent.transform.position, particle_pos.transform.up * range, Color.green); //chage this to capsulecast
         Ray ray = new Ray(parent.transform.position, particle_pos.transform.up * range); ;
         RaycastHit hit = new RaycastHit();
-        Instantiate(particle_trail, particle_pos.transform.position, particle_pos.transform.rotation);
+        PhotonNetwork.Instantiate(particle_trail.name, particle_pos.transform.position, particle_pos.transform.rotation);
         Instantiate(particle_explosion, explosion_pos.transform.position, particle_pos.transform.rotation);
         
         if (Physics.Raycast(ray, out hit)) //Target Acquired

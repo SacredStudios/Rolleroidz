@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class Weapon_Handler : MonoBehaviour
+public class Weapon_Handler : MonoBehaviourPunCallbacks
 {
     public Weapon weapon;
     public GameObject curr_gun;
@@ -16,6 +18,7 @@ public class Weapon_Handler : MonoBehaviour
     float time_last_shot;
     bool weapon_up;
     [SerializeField] Slider cooldown;
+    [SerializeField] PhotonView pv;
  
 
     private void Update()
@@ -25,7 +28,7 @@ public class Weapon_Handler : MonoBehaviour
         {
             shoot_delay += Time.deltaTime;
         }
-        if (Input.GetButton("Fire1") && shoot_delay >= weapon.weapon_delay && weapon.attack_cost<=cooldown.value)
+        if (Input.GetButton("Fire1") && shoot_delay >= weapon.weapon_delay && weapon.attack_cost<=cooldown.value && pv.IsMine)
         {
             cooldown.value -= weapon.attack_cost;
             shoot_delay = 0;
@@ -85,5 +88,6 @@ public class Weapon_Handler : MonoBehaviour
     {
        
         curr_gun = Instantiate(weapon.instance, weapon_loc.transform);
+        weapon.pv = this.pv;
     }
 }

@@ -157,8 +157,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1087325278}
   m_LocalRotation: {x: -0.00000005960463, y: -4.396263e-15, z: 1.0676624e-14, w: 1}
-  m_LocalPosition: {x: 0.000000028157, y: 0.005, z: 0.1}
-  m_LocalScale: {x: 0.90968746, y: 1, z: 0.925}
+  m_LocalPosition: {x: -0.0000000039969, y: 0.005, z: -1.16}
+  m_LocalScale: {x: 0.8954736, y: 1, z: 0.6821875}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 713493645505444449}
@@ -1399,8 +1399,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2947149633279955249}
   m_LocalRotation: {x: 0.70710677, y: 6.3007312e-15, z: -2.1316275e-14, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: -0.0021, z: 0.00393}
-  m_LocalScale: {x: 0.00063069805, y: 0.027233202, z: 0.0005918399}
+  m_LocalPosition: {x: 1.6558e-11, y: -0.0021, z: 0.0039253}
+  m_LocalScale: {x: 0.00070316525, y: 0.030362297, z: 0.0006598423}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1014701249}
@@ -2451,6 +2451,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 0.3
   playerCam: {fileID: 0}
+  playerCam_gameObject: {fileID: 0}
+  player_ui: {fileID: 0}
+  vcam: {fileID: 0}
   rb: {fileID: 314255565951997404}
   speedMultiplier: 7000
   currSpeed: 0
@@ -2500,6 +2503,7 @@ MonoBehaviour:
   explosion_pos: {fileID: 1425659014}
   animator: {fileID: 7431768936319595448}
   cooldown: {fileID: 0}
+  pv: {fileID: 2722618974921175925}
 --- !u!114 &3837474209931795742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2615,7 +2619,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7948865424512808881}
   m_LocalRotation: {x: 0.9005096, y: 3.3036013e-14, z: 8.8817825e-15, w: 0.43483618}
-  m_LocalPosition: {x: 0, y: -0.00578, z: 0.00325}
+  m_LocalPosition: {x: -0, y: -0.00618, z: 0.00293}
   m_LocalScale: {x: 0.00033276307, y: 0.0088118715, z: -0.00018114522}
   m_ConstrainProportionsScale: 0
   m_Children: []
