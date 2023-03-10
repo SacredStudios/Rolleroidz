@@ -140,6 +140,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         Debug.Log("adding player");
         position = transform.position;
         GameObject new_player = PhotonNetwork.Instantiate(player_prefab.name, position, Quaternion.identity, 0);
+        
         lobby_cam.SetActive(false);
         lobby.SetActive(false);
     }

@@ -6,21 +6,26 @@ using Photon.Pun;
 public class LookAtCamera : MonoBehaviour
 {
     [SerializeField] GameObject canvas;
+    [SerializeField] GameObject Player_Assets;
     [SerializeField] PhotonView pv;
     [SerializeField] GameObject Player_Name;
-    [SerializeField] Camera cam;
-    [SerializeField] GameObject Health_Bar;
+    public static Camera cam;
+    
 
     void Start()
     {
         if(pv.IsMine)
         {
             Player_Name.GetComponent<Text>().text = PhotonNetwork.NickName;
-            cam = GetComponentInParent<Camera>();
+            canvas.SetActive(false);
+            cam = Player_Assets.GetComponentInChildren<Camera>();
+          
         }
         else
         {
             Player_Name.GetComponent<Text>().text = pv.Owner.NickName;
+            
+            
         }
     }
 
@@ -29,7 +34,7 @@ public class LookAtCamera : MonoBehaviour
     {
        if (cam != null)
         {
-            transform.LookAt(transform.position + cam.transform.rotation * Vector3.forward, cam.transform.rotation * Vector3.up);
+            canvas.transform.LookAt(transform.position + cam.transform.rotation * Vector3.forward, cam.transform.rotation * Vector3.up);
            // Player_Name.transform.LookAt(Player_Name.transform.position + cam.transform.rotation * Vector3.forward, cam.transform.rotation * Vector3.up);
         } 
     }
