@@ -27,7 +27,7 @@ public class RangedWeapon : Weapon
             if(hit.collider.tag == "Player")
             {
                 // Debug.Log(hit.collider.name);
-                if (PhotonNetwork.IsMasterClient)
+                if (pv.IsMine)
                 {
                     hit.collider.GetComponent<Player_Health>().Remove_Health(damage);
                 }
@@ -35,7 +35,7 @@ public class RangedWeapon : Weapon
             }
             else if (hit.collider.tag == "Player_Head")
             {
-                if (PhotonNetwork.IsMasterClient)
+                if (pv.IsMine)
                 {
                     hit.collider.GetComponentInParent<Player_Health>().Remove_Health(damage * 1.5f);
                     Debug.Log("HeadShot");
