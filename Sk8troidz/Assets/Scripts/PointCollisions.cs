@@ -18,10 +18,11 @@ public class PointCollisions : MonoBehaviourPunCallbacks
             
             PhotonNetwork.LocalPlayer.AddScore(1);
             Debug.Log(pt.points);
+            if (pv.IsMine)
+            {
+                PhotonNetwork.Destroy(collider.gameObject);
+            }
         }
-        if (pv.IsMine)
-        {
-            PhotonNetwork.Destroy(collider.gameObject);
-        }
+        
     }
 }
