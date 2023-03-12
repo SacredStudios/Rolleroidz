@@ -2048,6 +2048,7 @@ MonoBehaviour:
   death_head: {fileID: 868399096}
   point: {fileID: 1308115054}
   pt: {fileID: 2089930433}
+  pv: {fileID: -8997455347769814163}
 --- !u!114 &2089930433
 MonoBehaviour:
   m_ObjectHideFlags: 0
