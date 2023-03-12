@@ -19,15 +19,15 @@ public class PointCollisions : MonoBehaviourPunCallbacks
             PhotonNetwork.LocalPlayer.AddScore(1);
             Debug.Log(PhotonNetwork.LocalPlayer.GetScore());
            
-                pv.RPC("DestroyGameObject", RpcTarget.All);
+                pv.RPC("DestroyGameObject", RpcTarget.All,collider.gameObject);
          
         }
         
     }
-    [PunRPC] public void DestroyGameObject()
+    [PunRPC] public void DestroyGameObject(GameObject point)
     {
       
-     Destroy(this.gameObject);
+     Destroy(point);
      
     }
 }
