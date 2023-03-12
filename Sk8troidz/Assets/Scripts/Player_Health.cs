@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using Photon.Pun;
 public class Player_Health : MonoBehaviour
 
 {
@@ -12,6 +12,7 @@ public class Player_Health : MonoBehaviour
     [SerializeField] GameObject parent;
     [SerializeField] Slider health_bar;
     [SerializeField] Slider health_bar_other;
+    [SerializeField] PhotonView pv;
 
     void Start()
     {
@@ -21,24 +22,30 @@ public class Player_Health : MonoBehaviour
   
     public void Remove_Health(float amount)
     {
-        current_health -= amount;
+        pv.RPC("ChangeHealth", RpcTarget.All, -1 * amount);
+
+    }
+    [PunRPC] void ChangeHealth(float amount)
+    {
+        current_health += amount;
         health_bar.value = current_health;
         health_bar_other.value = current_health;
         if (current_health <= 0)
         {
             Death();
         }
+        else if (current_health > max_health)
+        {
+            current_health = max_health;
+        }
+
     }
 
     public void Add_Health(float amount)
     {
-        current_health += amount;
-        health_bar.value = current_health;
-        health_bar_other.value = current_health;
-        if (current_health > max_health)
-        {
-            current_health = max_health;
-        }
+        pv.RPC("ChangeHealth", RpcTarget.All, amount);
+        
+
     }
 
 

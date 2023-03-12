@@ -26,15 +26,20 @@ public class RangedWeapon : Weapon
             Instantiate(impact_explosion, hit.point, Quaternion.identity);
             if(hit.collider.tag == "Player")
             {
-               // Debug.Log(hit.collider.name);
- 
-                hit.collider.GetComponent<Player_Health>().Remove_Health(damage);
+                // Debug.Log(hit.collider.name);
+                if (PhotonNetwork.IsMasterClient)
+                {
+                    hit.collider.GetComponent<Player_Health>().Remove_Health(damage);
+                }
                 
             }
             else if (hit.collider.tag == "Player_Head")
             {
-                hit.collider.GetComponentInParent<Player_Health>().Remove_Health(damage*1.5f);
-                Debug.Log("HeadShot");
+                if (PhotonNetwork.IsMasterClient)
+                {
+                    hit.collider.GetComponentInParent<Player_Health>().Remove_Health(damage * 1.5f);
+                    Debug.Log("HeadShot");
+                }
             }
           
         }
