@@ -10,6 +10,7 @@ public class Health_Cooldown : MonoBehaviour
     [SerializeField] float increment;
     [SerializeField] bool game_ongoing;
     [SerializeField] float max_value;
+    [SerializeField] Player_Health ph;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,10 +24,9 @@ public class Health_Cooldown : MonoBehaviour
         {
             if (slider.value > 0)
             {
-                slider.value += increment;
-                slider_other.value = slider.value;
+                ph.Add_Health(increment);
             }
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.5f);
         }
     }
 }

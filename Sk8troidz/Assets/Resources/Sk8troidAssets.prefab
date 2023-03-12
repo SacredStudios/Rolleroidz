@@ -1273,6 +1273,7 @@ MonoBehaviour:
   increment: 1
   game_ongoing: 1
   max_value: 100
+  ph: {fileID: 7812810418213220350}
 --- !u!1 &1737457467
 GameObject:
   m_ObjectHideFlags: 0
@@ -1871,7 +1872,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8388194933928109487}
   - component: {fileID: 8341497289750416907}
-  - component: {fileID: 3529030516458016867}
   m_Layer: 0
   m_Name: Health_Bar
   m_TagString: Untagged
@@ -1952,23 +1952,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &3529030516458016867
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4762510105208470993}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f074deb0d8bc420597e8db5af1485f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slider: {fileID: 8341497289750416907}
-  slider_other: {fileID: 0}
-  increment: 1
-  game_ongoing: 1
-  max_value: 100
 --- !u!1 &4955547952647153752
 GameObject:
   m_ObjectHideFlags: 0
@@ -2642,6 +2625,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1940958027, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
   m_PrefabInstance: {fileID: 6426038362781840096}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7812810418213220350 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3837474209931795742, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+  m_PrefabInstance: {fileID: 6426038362781840096}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3660938799943817007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 928757a2606d7a742adfd4988abe27a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8999722921355035029 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2722618974921175925, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
