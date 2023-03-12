@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Photon.Pun;
+using Photon.Realtime;
+using Photon.Pun.UtilityScripts;
 public class Respawn : MonoBehaviour
 {
     [SerializeField] GameObject player;
@@ -19,14 +21,14 @@ public class Respawn : MonoBehaviour
         GameObject death_anim_clone = Instantiate(death_anim, player.transform.position, Quaternion.identity);
         death_anim_clone.SetActive(true);
         
-            GameObject point_clone = Instantiate(point, death_anim_clone.transform.position, Quaternion.identity);
+            GameObject point_clone = PhotonNetwork.Instantiate(point.name, death_anim_clone.transform.position, Quaternion.identity);
             point_clone.SetActive(true);
-            pt.ChangePoints(-1);
+            PhotonNetwork.LocalPlayer.AddScore(-1);
 
         for (int i = 0; i < pt.points/2; i ++) {
-            GameObject point_clone2 = Instantiate(point, death_anim_clone.transform.position, Quaternion.identity);
+            GameObject point_clone2 = PhotonNetwork.Instantiate(point.name, death_anim_clone.transform.position, Quaternion.identity);
             point_clone2.SetActive(true);
-            pt.ChangePoints(-1);
+            PhotonNetwork.LocalPlayer.AddScore(-1);
         }
         
 
