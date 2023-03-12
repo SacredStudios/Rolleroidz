@@ -20,9 +20,16 @@ public class PointCollisions : MonoBehaviourPunCallbacks
             Debug.Log(pt.points);
             if (pv.IsMine)
             {
-                PhotonNetwork.Destroy(collider.gameObject);
+                pv.RPC("DestoryGameObject", RpcTarget.All);
             }
         }
         
+    }
+    [PunRPC] public void DestroyGameObject()
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.Destroy(this.gameObject);
+        }
     }
 }
