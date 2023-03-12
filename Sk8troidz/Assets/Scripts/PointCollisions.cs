@@ -26,8 +26,10 @@ public class PointCollisions : MonoBehaviourPunCallbacks
     }
     [PunRPC] public void DestroyGameObject(GameObject point)
     {
-      
-     Destroy(point);
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.Destroy(point);
+        }
      
     }
 }
