@@ -1269,6 +1269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 1618717873}
+  slider_other: {fileID: 8341497289750416907}
   increment: 1
   game_ongoing: 1
   max_value: 100
@@ -1964,6 +1965,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 8341497289750416907}
+  slider_other: {fileID: 0}
   increment: 1
   game_ongoing: 1
   max_value: 100
@@ -2378,6 +2380,10 @@ PrefabInstance:
       propertyPath: health_bar
       value: 
       objectReference: {fileID: 1618717873}
+    - target: {fileID: 3837474209931795742, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: health_bar_other
+      value: 
+      objectReference: {fileID: 8341497289750416907}
     - target: {fileID: 5251713677849759866, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: m_TagString
       value: Player_Head

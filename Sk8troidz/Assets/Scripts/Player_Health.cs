@@ -11,7 +11,8 @@ public class Player_Health : MonoBehaviour
     [SerializeField] GameObject death_effect;
     [SerializeField] GameObject parent;
     [SerializeField] Slider health_bar;
- 
+    [SerializeField] Slider health_bar_other;
+
     void Start()
     {
         current_health = max_health;    
@@ -22,7 +23,8 @@ public class Player_Health : MonoBehaviour
     {
         current_health -= amount;
         health_bar.value = current_health;
-        if(current_health <= 0)
+        health_bar_other.value = current_health;
+        if (current_health <= 0)
         {
             Death();
         }
@@ -32,6 +34,7 @@ public class Player_Health : MonoBehaviour
     {
         current_health += amount;
         health_bar.value = current_health;
+        health_bar_other.value = current_health;
         if (current_health > max_health)
         {
             current_health = max_health;
@@ -50,5 +53,6 @@ public class Player_Health : MonoBehaviour
     {
         current_health = 100;
         health_bar.value = current_health;
+        health_bar_other.value = current_health;
     }
 }

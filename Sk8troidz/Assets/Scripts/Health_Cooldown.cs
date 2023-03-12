@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Health_Cooldown : MonoBehaviour
 {
     [SerializeField] Slider slider;
+    [SerializeField] Slider slider_other;
     [SerializeField] float increment;
     [SerializeField] bool game_ongoing;
     [SerializeField] float max_value;
@@ -23,6 +24,7 @@ public class Health_Cooldown : MonoBehaviour
             if (slider.value > 0)
             {
                 slider.value += increment;
+                slider_other.value = slider.value;
             }
             yield return new WaitForSeconds(0.1f);
         }
