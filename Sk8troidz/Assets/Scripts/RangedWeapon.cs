@@ -27,19 +27,16 @@ public class RangedWeapon : Weapon
             if(hit.collider.tag == "Player")
             {
                 // Debug.Log(hit.collider.name);
-                if (pv.IsMine)
-                {
+              
                     hit.collider.GetComponent<Player_Health>().Remove_Health(damage);
-                }
+            
                 
             }
             else if (hit.collider.tag == "Player_Head")
             {
-                if (pv.IsMine)
-                {
                     hit.collider.GetComponentInParent<Player_Health>().Remove_Health(damage * 1.5f);
                     Debug.Log("HeadShot");
-                }
+             
             }
           
         }
