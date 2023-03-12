@@ -13,11 +13,15 @@ public class PointCollisions : MonoBehaviourPunCallbacks
 
     void OnCollisionEnter(Collision collider)
     {
-        if (collider.gameObject.tag == "Point" && pv.IsMine)
+        if (collider.gameObject.tag == "Point")
         {
-            PhotonNetwork.Destroy(collider.gameObject);
+            
             PhotonNetwork.LocalPlayer.AddScore(1);
             Debug.Log(pt.points);
+        }
+        if (pv.IsMine)
+        {
+            PhotonNetwork.Destroy(collider.gameObject);
         }
     }
 }
