@@ -2187,33 +2187,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: makethisaspraycan
       objectReference: {fileID: 0}
-    - target: {fileID: 5812255397824587399, guid: db03c3afb90494e0f99eee91135a83e3, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5812255397824587448, guid: db03c3afb90494e0f99eee91135a83e3, type: 3}
-      propertyPath: m_Mass
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5812255397824587448, guid: db03c3afb90494e0f99eee91135a83e3, type: 3}
-      propertyPath: m_Constraints
-      value: 80
-      objectReference: {fileID: 0}
     - target: {fileID: 5812255397824587451, guid: db03c3afb90494e0f99eee91135a83e3, type: 3}
       propertyPath: m_RootOrder
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5812255397824587451, guid: db03c3afb90494e0f99eee91135a83e3, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5812255397824587451, guid: db03c3afb90494e0f99eee91135a83e3, type: 3}
-      propertyPath: m_LocalScale.y
-      value: -0.0809381
-      objectReference: {fileID: 0}
-    - target: {fileID: 5812255397824587451, guid: db03c3afb90494e0f99eee91135a83e3, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5812255397824587451, guid: db03c3afb90494e0f99eee91135a83e3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2255,17 +2231,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5812255397824587451, guid: db03c3afb90494e0f99eee91135a83e3, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db03c3afb90494e0f99eee91135a83e3, type: 3}
---- !u!54 &1308115025 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 5812255397824587448, guid: db03c3afb90494e0f99eee91135a83e3, type: 3}
-  m_PrefabInstance: {fileID: 5812255396677953257}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1308115026 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5812255397824587451, guid: db03c3afb90494e0f99eee91135a83e3, type: 3}
@@ -2276,61 +2243,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5812255397824587399, guid: db03c3afb90494e0f99eee91135a83e3, type: 3}
   m_PrefabInstance: {fileID: 5812255396677953257}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &644426083
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1308115054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdafbe75321f84c04b93dad3c033fd83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 1308115025}
-  max: 20
-  min: -20
-  y_val: 30
---- !u!114 &3029322172578487276
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1308115054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
-  m_UseLocal: 1
---- !u!114 &8630326483662597709
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1308115054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents:
-  - {fileID: 3029322172578487276}
-  sceneViewId: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!1001 &6426038362781840096
 PrefabInstance:
   m_ObjectHideFlags: 0
