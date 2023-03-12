@@ -20,7 +20,7 @@ public class PointCollisions : MonoBehaviourPunCallbacks
             Debug.Log(pt.points);
             if (pv.IsMine)
             {
-                pv.RPC("DestoryGameObject", RpcTarget.All);
+                pv.RPC("DestroyGameObject", RpcTarget.All);
             }
         }
         
