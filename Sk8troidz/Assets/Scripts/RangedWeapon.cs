@@ -22,8 +22,8 @@ public class RangedWeapon : Weapon
         
         if (Physics.Raycast(ray, out hit)) //Target Acquired
         {
-           // Debug.Log(hit.collider.name);
-            Instantiate(impact_explosion, hit.point, Quaternion.identity);
+            // Debug.Log(hit.collider.name);
+            PhotonNetwork.Instantiate(impact_explosion.name, hit.point, Quaternion.identity);
             if(hit.collider.tag == "Player")
             {
                 // Debug.Log(hit.collider.name);
