@@ -2678,9 +2678,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 986d119ddc0c94c6289f07a528bcf81b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: {fileID: 0}
-  game_ongoing: 0
-  pv: {fileID: 0}
+  score: {fileID: 3740017744543000571}
+  game_ongoing: 1
+  pv: {fileID: 8999722921355035029}
 --- !u!114 &4008135090205734450 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7976471394023720146, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
