@@ -24,7 +24,7 @@ public class Respawn : MonoBehaviour
             Debug.Log(pv.Owner.NickName + " died!");
             GameObject point_clone = PhotonNetwork.Instantiate(point.name, death_anim_clone.transform.position, Quaternion.identity);
             point_clone.SetActive(true);
-            player.GetPhotonView().Owner.AddScore(-1);
+           // player.GetPhotonView().Owner.AddScore(-1);
             int n = player.GetPhotonView().Owner.GetScore();
 
             for (int i = 0; i < n / 2; i++)
@@ -32,13 +32,19 @@ public class Respawn : MonoBehaviour
 
                 GameObject point_clone2 = PhotonNetwork.Instantiate(point.name, death_anim_clone.transform.position, Quaternion.identity);
                 point_clone2.SetActive(true);
-                player.GetPhotonView().Owner.AddScore(-1);
+                //player.GetPhotonView().Owner.AddScore(-1);
             }
 
             if (pv.Owner.GetScore() < 0)
             {
+
                 pv.Owner.SetScore(0);
             }
+            else if (pv.Owner.GetScore()%2 != 0)
+            {
+                pv.Owner.AddScore(1);
+            }
+            pv.Owner.SetScore(pv.Owner.GetScore() / 2);
         }
 
         GameObject death_head_clone = Instantiate(death_head, player.transform.position, Quaternion.identity);
