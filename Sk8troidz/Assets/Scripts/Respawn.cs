@@ -25,8 +25,8 @@ public class Respawn : MonoBehaviour
              point_clone.SetActive(true);
              PhotonNetwork.LocalPlayer.AddScore(-1);
         }
-
-        for (int i = 0; i < pt.points/2; i ++) {
+        int n = PhotonNetwork.LocalPlayer.GetScore();
+        for (int i = 0; i < n/2; i ++) {
             if (pv.IsMine)
             {
                 GameObject point_clone2 = PhotonNetwork.Instantiate(point.name, death_anim_clone.transform.position, Quaternion.identity);
