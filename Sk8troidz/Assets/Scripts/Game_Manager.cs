@@ -144,42 +144,8 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         lobby_cam.SetActive(false);
         lobby.SetActive(false);
     }
-    [PunRPC]
-    public void SpawnPlayerTeam2(Player newPlayer)
-    {
-        Debug.Log("adding player (2)");
-        position = transform.position;
-        PhotonNetwork.Instantiate(player_prefab.name, position, Quaternion.identity, 0);
-        lobby.SetActive(false);
-        lobby_cam.SetActive(false);
-    }
-
+  
     
-
-    
-        
-        
-
-    
-
-    
-    
-    public void StartGame()
-    {
-        foreach(Player player in PhotonNetwork.PlayerList)
-        {
-            if (1==1)
-            {
-              //  pv.RPC("SpawnPlayerTeam1", RpcTarget.All);
-                //team1size++;
-            }
-            else
-            {
-              //  pv.RPC("SpawnPlayerTeam2", RpcTarget.All);
-                //team2size++;
-            }
-        }
-    }
 }
 
 

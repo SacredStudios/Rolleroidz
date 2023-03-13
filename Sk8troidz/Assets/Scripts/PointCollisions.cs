@@ -8,7 +8,7 @@ using Photon.Pun.UtilityScripts;
 
 public class PointCollisions : MonoBehaviourPunCallbacks
 {
-    [SerializeField] PointTally pt;
+
     [SerializeField] PhotonView pv;
 
     void OnCollisionEnter(Collision collider)

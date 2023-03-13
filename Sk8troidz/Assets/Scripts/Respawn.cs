@@ -11,7 +11,6 @@ public class Respawn : MonoBehaviour
     [SerializeField] GameObject death_anim;
     [SerializeField] GameObject death_head;
     [SerializeField] GameObject point;
-    [SerializeField] PointTally pt;
     [SerializeField] PhotonView pv;
     public void Death()
     {
@@ -26,15 +25,19 @@ public class Respawn : MonoBehaviour
              PhotonNetwork.LocalPlayer.AddScore(-1);
         }
         int n = PhotonNetwork.LocalPlayer.GetScore();
-        for (int i = 0; i < n/2; i ++) {
-            if (pv.IsMine)
-            {
+        if (pv.IsMine)
+        {
+            for (int i = 0; i < n/2; i ++) {
+          
                 GameObject point_clone2 = PhotonNetwork.Instantiate(point.name, death_anim_clone.transform.position, Quaternion.identity);
                 point_clone2.SetActive(true);
                 PhotonNetwork.LocalPlayer.AddScore(-1);
             }
         }
-        
+        if (PhotonNetwork.LocalPlayer.GetScore() < 0)
+        {
+            PhotonNetwork.LocalPlayer.SetScore(0);
+        }
 
         GameObject death_head_clone = Instantiate(death_head, player.transform.position, Quaternion.identity);
         death_head_clone.SetActive(true);

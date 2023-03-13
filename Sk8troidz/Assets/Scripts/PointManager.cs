@@ -1,18 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class PointManager : MonoBehaviour
+using Photon.Pun;
+using Photon.Realtime;
+using UnityEngine.UI;
+using Photon.Pun.UtilityScripts;
+public class PointManager : MonoBehaviourPunCallbacks
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] Text score;
+    public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        score.text = "" + PhotonNetwork.LocalPlayer.GetScore();
     }
 }
