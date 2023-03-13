@@ -27,29 +27,31 @@ public class LookAtCamera : MonoBehaviourPunCallbacks
         else
         {
             player_name.text = pv.Owner.NickName;
-            
-            
+            if (pv.Owner.GetPhotonTeam().Code == 1)
+            {
+                score.color = new Color(155, 0, 0);
+                player_name.color = new Color(255, 0, 0);
+            }
+            if (pv.Owner.GetPhotonTeam().Code == 2)
+            {
+                score.color = new Color(155, 175, 175);
+                player_name.color = new Color(255, 175, 175);
+            }
+
         }
     }
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
     {
-        score.text = "" + PhotonNetwork.LocalPlayer.GetScore();
-        if (PhotonNetwork.LocalPlayer.GetPhotonTeam().Code == 1)
-        {
-            score.color = new Color(155, 0, 0);
-            player_name.color = new Color(255, 0, 0);
-        }
-        if (PhotonNetwork.LocalPlayer.GetPhotonTeam().Code == 2)
-        {
-            score.color = new Color(155, 175, 175);
-            player_name.color = new Color(255, 175, 175);
-        }
+
+        score.text = "" + pv.Owner.GetScore();
+
     }
     // Update is called once per frame
     void LateUpdate()
     {
        if (cam != null)
         {
+            
             canvas.transform.LookAt(transform.position + cam.transform.rotation * Vector3.forward, cam.transform.rotation * Vector3.up);
            // Player_Name.transform.LookAt(Player_Name.transform.position + cam.transform.rotation * Vector3.forward, cam.transform.rotation * Vector3.up);
         } 

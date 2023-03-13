@@ -25,6 +25,7 @@ public class Health_Cooldown : MonoBehaviour
             if (slider.value > 0)
             {
                 ph.Add_Health(increment);
+
             }
             yield return new WaitForSeconds(0.5f);
         }

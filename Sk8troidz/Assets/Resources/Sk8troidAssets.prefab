@@ -2019,7 +2019,6 @@ GameObject:
   - component: {fileID: 965302090}
   - component: {fileID: -8997455347769814163}
   - component: {fileID: 6327042211240671700}
-  - component: {fileID: 7775738389875456083}
   m_Layer: 0
   m_Name: Sk8troidAssets
   m_TagString: Untagged
@@ -2105,20 +2104,6 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
---- !u!114 &7775738389875456083
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6426038364015529101}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f554f99e4b6f642d4a735bf891ce8299, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  score: {fileID: 0}
-  nickname: {fileID: 0}
 --- !u!1 &7890289184542816910
 GameObject:
   m_ObjectHideFlags: 0
@@ -2681,6 +2666,21 @@ MonoBehaviour:
     LayerIndex: 1
   - SynchronizeType: 1
     LayerIndex: 2
+--- !u!114 &3149273144948488275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3660938799943817007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 986d119ddc0c94c6289f07a528bcf81b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: {fileID: 0}
+  game_ongoing: 0
+  pv: {fileID: 0}
 --- !u!114 &4008135090205734450 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7976471394023720146, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
