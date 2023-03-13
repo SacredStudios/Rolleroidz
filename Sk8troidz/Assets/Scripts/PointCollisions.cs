@@ -19,7 +19,7 @@ public class PointCollisions : MonoBehaviourPunCallbacks
             PhotonNetwork.LocalPlayer.AddScore(1);
             Debug.Log(PhotonNetwork.LocalPlayer.GetScore());
             int id = collider.gameObject.GetComponent<PhotonView>().ViewID;
-            pv.RPC("DestroyGameObject", RpcTarget.MasterClient,id);
+            pv.RPC("DestroyGameObject", RpcTarget.All,id);
          
         }
         
@@ -27,7 +27,8 @@ public class PointCollisions : MonoBehaviourPunCallbacks
     [PunRPC] public void DestroyGameObject(int id)
     {
        
-            PhotonNetwork.Destroy(PhotonView.Find(id).gameObject);
+        Destroy(PhotonView.Find(id).gameObject);
+        Debug.Log("destrited");
     
      
     }
