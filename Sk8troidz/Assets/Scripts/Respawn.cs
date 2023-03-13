@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 using Photon.Pun.UtilityScripts;
@@ -12,6 +13,7 @@ public class Respawn : MonoBehaviour
     [SerializeField] GameObject death_head;
     [SerializeField] GameObject point;
     [SerializeField] PhotonView pv;
+    [SerializeField] Text score;
     public void Death()
     {
 
@@ -59,6 +61,7 @@ public class Respawn : MonoBehaviour
         {
             pv.Owner.SetScore(0);
         }
+        score.text = "" + pv.Owner.GetScore();
     }
 
 }
