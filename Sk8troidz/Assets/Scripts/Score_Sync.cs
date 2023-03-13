@@ -14,10 +14,10 @@ public class Score_Sync : MonoBehaviour
 
     private void Update()
     {
-        if (!score.text.Equals("" + PhotonNetwork.LocalPlayer.GetScore()))
+        if (!score.text.Equals("" + pv.Owner.GetScore()))
         {
            // pv.Owner.AddScore(0);
-            score.text = "" + PhotonNetwork.LocalPlayer.GetScore();
+            score.text = "" + pv.Owner.GetScore();
         }
     }
    
