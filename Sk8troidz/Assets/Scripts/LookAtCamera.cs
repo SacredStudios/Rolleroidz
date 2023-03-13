@@ -40,12 +40,7 @@ public class LookAtCamera : MonoBehaviourPunCallbacks
 
         }
     }
-    public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
-    {
-
-        score.text = "" + pv.Owner.GetScore();
-
-    }
+    
     // Update is called once per frame
     void LateUpdate()
     {

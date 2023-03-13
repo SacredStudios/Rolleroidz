@@ -10,6 +10,7 @@ public class PointCollisions : MonoBehaviourPunCallbacks
 {
 
     [SerializeField] PhotonView pv;
+   
 
     void OnCollisionEnter(Collision collider)
     {

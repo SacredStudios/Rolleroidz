@@ -2019,6 +2019,8 @@ GameObject:
   - component: {fileID: 965302090}
   - component: {fileID: -8997455347769814163}
   - component: {fileID: 6327042211240671700}
+  - component: {fileID: 2224273993477213101}
+  - component: {fileID: 2921875789750546953}
   m_Layer: 0
   m_Name: Sk8troidAssets
   m_TagString: Untagged
@@ -2065,6 +2067,7 @@ MonoBehaviour:
   death_head: {fileID: 868399096}
   point: {fileID: 1308115054}
   pv: {fileID: -8997455347769814163}
+  score: {fileID: 0}
 --- !u!114 &-8997455347769814163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2104,6 +2107,35 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &2224273993477213101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6426038364015529101}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 986d119ddc0c94c6289f07a528bcf81b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: {fileID: 0}
+  game_ongoing: 0
+  pv: {fileID: 0}
+--- !u!114 &2921875789750546953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6426038364015529101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a92eafb6e3fe4390b50c3eefbcc0504, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Score: 0
+  score: {fileID: 3740017744543000571}
 --- !u!1 &7890289184542816910
 GameObject:
   m_ObjectHideFlags: 0

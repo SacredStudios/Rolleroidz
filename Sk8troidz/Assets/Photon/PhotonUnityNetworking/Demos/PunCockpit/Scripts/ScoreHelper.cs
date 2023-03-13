@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using UnityEngine;
+using UnityEngine.UI;
 using Photon.Pun.UtilityScripts;
 
 
@@ -14,7 +15,7 @@ namespace Photon.Pun.Demo.Cockpit
     public class ScoreHelper : MonoBehaviour
     {
         public int Score;
-
+        [SerializeField] Text score;
         int _currentScore;
 
 
@@ -33,6 +34,7 @@ namespace Photon.Pun.Demo.Cockpit
             {
                 _currentScore = Score;
                 PhotonNetwork.LocalPlayer.SetScore(Score);
+                score.text = "" + PhotonNetwork.LocalPlayer.GetScore();
             }
 
         }

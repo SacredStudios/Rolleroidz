@@ -10,18 +10,17 @@ public class Score_Sync : MonoBehaviour
     [SerializeField] Text score;
     [SerializeField] bool game_ongoing;
     [SerializeField] PhotonView pv;
-    void Start()
-    {
-        StartCoroutine(SyncScore());
-    }
+    
 
-    IEnumerator SyncScore()
+    private void Update()
     {
-        while (game_ongoing)
+        if (!score.text.Equals("" + PhotonNetwork.LocalPlayer.GetScore()))
         {
+            pv.Owner.AddScore(0);
             score.text = "" + pv.Owner.GetScore();
-
-            yield return new WaitForSeconds(1f);
         }
     }
+   
+
+         
 }
