@@ -15,10 +15,10 @@ public class PointCollisions : MonoBehaviourPunCallbacks
     {
         if (collider.gameObject.tag == "Point")
         {
-            if (pv.IsMine)
-            {
-                PhotonNetwork.LocalPlayer.AddScore(1);
-            }
+           // if (pv.IsMine)
+           // {
+                collider.gameObject.GetPhotonView().Owner.AddScore(1);
+           // }
             Debug.Log(PhotonNetwork.LocalPlayer.GetScore());
             int id = collider.gameObject.GetComponent<PhotonView>().ViewID;
             pv.RPC("DestroyGameObject", RpcTarget.All,id);
