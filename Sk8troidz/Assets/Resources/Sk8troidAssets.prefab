@@ -2635,6 +2635,21 @@ MonoBehaviour:
   pv: {fileID: -8997455347769814163}
   player_name: {fileID: 5247628439255982016}
   score: {fileID: 3740017744543000571}
+--- !u!114 &3149273144948488275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3660938799943817007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 986d119ddc0c94c6289f07a528bcf81b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: {fileID: 3740017744543000571}
+  game_ongoing: 1
+  pv: {fileID: 8999722921355035029}
 --- !u!114 &5007903472875531354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2666,21 +2681,6 @@ MonoBehaviour:
     LayerIndex: 1
   - SynchronizeType: 1
     LayerIndex: 2
---- !u!114 &3149273144948488275
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3660938799943817007}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 986d119ddc0c94c6289f07a528bcf81b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  score: {fileID: 3740017744543000571}
-  game_ongoing: 1
-  pv: {fileID: 8999722921355035029}
 --- !u!114 &4008135090205734450 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7976471394023720146, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
