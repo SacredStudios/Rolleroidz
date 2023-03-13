@@ -16,8 +16,8 @@ public class Score_Sync : MonoBehaviour
     {
         if (!score.text.Equals("" + PhotonNetwork.LocalPlayer.GetScore()))
         {
-            pv.Owner.AddScore(0);
-            score.text = "" + pv.Owner.GetScore();
+           // pv.Owner.AddScore(0);
+            score.text = "" + PhotonNetwork.LocalPlayer.GetScore();
         }
     }
    
