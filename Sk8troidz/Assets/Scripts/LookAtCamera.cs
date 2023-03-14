@@ -29,13 +29,13 @@ public class LookAtCamera : MonoBehaviourPunCallbacks
             player_name.text = pv.Owner.NickName;
             if (pv.Owner.GetPhotonTeam().Code == 1)
             {
-                score.color = new Color(155, 0, 0);
+                score.color = new Color(120, 0, 0);
                 player_name.color = new Color(255, 0, 0);
             }
             if (pv.Owner.GetPhotonTeam().Code == 2)
             {
-                score.color = new Color(155, 175, 175);
-                player_name.color = new Color(255, 175, 175);
+                score.color = new Color(120, 50, 100);
+                player_name.color = new Color(255, 50, 100);
             }
 
         }
