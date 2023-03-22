@@ -2445,6 +2445,10 @@ PrefabInstance:
       propertyPath: playerCam_gameObject
       value: 
       objectReference: {fileID: 2439011514110663955}
+    - target: {fileID: 560487717920372133, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1965424083503852722, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: m_Layer
       value: 0

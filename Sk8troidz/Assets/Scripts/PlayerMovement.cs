@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     float cineMachineYaw;
     float targetRot;
     public GameObject CinemachineTarget;
-    [SerializeField] Collider body_collider;
+    [SerializeField] GameObject jump_pos;
     [SerializeField] float rayCastLength;
     [SerializeField] float extra_gravity;
     [SerializeField] float gravity_multiplier;
@@ -73,7 +73,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     }
     void Gravity()
     {
-        if (Physics.Raycast(body_collider.transform.position, Vector3.down, rayCastLength))
+        if (Physics.Raycast(jump_pos.transform.position, Vector3.down, rayCastLength))
         {
             extra_gravity = min_gravity;
             canJump = true;
@@ -140,7 +140,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     }
     void OnCollisionEnter(Collision collision)
     {
-        if (Physics.Raycast(body_collider.transform.position, Vector3.down, rayCastLength)) //IsJumping
+        if (Physics.Raycast(jump_pos.transform.position, Vector3.down, rayCastLength)) //IsJumping
         {
             animator.SetFloat("IsJumping", 0f);
         
