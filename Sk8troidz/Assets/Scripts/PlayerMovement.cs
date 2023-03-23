@@ -27,6 +27,8 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     float cineMachineYaw;
     float targetRot;
     public GameObject CinemachineTarget;
+
+
     [SerializeField] GameObject jump_pos;
     [SerializeField] float rayCastLength;
     [SerializeField] float extra_gravity;

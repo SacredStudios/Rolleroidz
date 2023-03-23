@@ -2435,7 +2435,7 @@ PrefabInstance:
       objectReference: {fileID: 5456136953385268333}
     - target: {fileID: 1513577829, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: rayCastLength
-      value: 2.1
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 1513577829, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: gravity_multiplier
@@ -2445,6 +2445,18 @@ PrefabInstance:
       propertyPath: playerCam_gameObject
       value: 
       objectReference: {fileID: 2439011514110663955}
+    - target: {fileID: 1940958028, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.16666666
+      objectReference: {fileID: 0}
+    - target: {fileID: 1940958028, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.42999995
+      objectReference: {fileID: 0}
+    - target: {fileID: 1940958028, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.74
+      objectReference: {fileID: 0}
     - target: {fileID: 560487717920372133, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: m_RootOrder
       value: 10

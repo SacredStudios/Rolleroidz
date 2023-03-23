@@ -317,7 +317,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1940958027}
   m_LocalRotation: {x: -0.023240652, y: -0.97541434, z: 0.12683815, w: -0.1787145}
-  m_LocalPosition: {x: 0.16666666, y: 0.42999995, z: -4.74}
+  m_LocalPosition: {x: 0, y: 0.43, z: -3.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2492,7 +2492,7 @@ MonoBehaviour:
   sensitivity: 5
   CinemachineTarget: {fileID: 4685990425064210026}
   jump_pos: {fileID: 7475684423371508897}
-  rayCastLength: 2.3
+  rayCastLength: 0.3
   extra_gravity: 0
   gravity_multiplier: 0
   max_gravity: 200

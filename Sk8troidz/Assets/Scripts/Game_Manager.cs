@@ -13,6 +13,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     
     [SerializeField] int min_room_size;
     [SerializeField] GameObject lobby;
+    [SerializeField] GameObject point_manager;
     [SerializeField] GameObject lobby_cam;
     [SerializeField] PhotonTeamsManager tm;
     [SerializeField] Text Team1List;
@@ -133,6 +134,10 @@ public class Game_Manager : MonoBehaviourPunCallbacks
 
     public void SpawnPlayers()
     {
+        if(PhotonNetwork.IsMasterClient)
+        {
+            point_manager.SetActive(true);
+        }
         pv.RPC("SpawnPlayer", RpcTarget.All);
     }
     [PunRPC] public void SpawnPlayer()
