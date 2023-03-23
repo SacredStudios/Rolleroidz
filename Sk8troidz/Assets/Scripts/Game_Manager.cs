@@ -134,11 +134,12 @@ public class Game_Manager : MonoBehaviourPunCallbacks
 
     public void SpawnPlayers()
     {
-        point_manager.SetActive(true);
+        
         pv.RPC("SpawnPlayer", RpcTarget.All);
     }
     [PunRPC] public void SpawnPlayer()
     {
+        point_manager.SetActive(true);
         Debug.Log("adding player");
         position = transform.position;
         GameObject new_player = PhotonNetwork.Instantiate(player_prefab.name, position, Quaternion.identity, 0);
