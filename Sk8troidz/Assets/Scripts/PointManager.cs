@@ -13,12 +13,12 @@ public class PointManager : MonoBehaviourPunCallbacks
     int score2 = 0;
     void OnEnable()
     {
-        game_ongoing = true;
-        StartCoroutine(PointChecker());
+      //  game_ongoing = true;
+       // StartCoroutine(PointChecker());
     }
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
     {
-        StartCoroutine(PointChecker());
+       // StartCoroutine(PointChecker());
     }
         IEnumerator PointChecker()
     {

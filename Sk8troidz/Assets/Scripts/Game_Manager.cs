@@ -13,7 +13,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     
     [SerializeField] int min_room_size;
     [SerializeField] GameObject lobby;
-    [SerializeField] GameObject point_manager;
+  
     [SerializeField] GameObject lobby_cam;
     [SerializeField] PhotonTeamsManager tm;
     [SerializeField] Text Team1List;
@@ -21,7 +21,12 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     [SerializeField] PhotonView pv;
     [SerializeField] int temp1 = 9999; //check to see if teamsize has been received from MasterClient
     [SerializeField] int temp2 = 9999;
-    bool game_started = false;
+    bool game_ongoing = false;
+    [SerializeField] int team1count;
+    [SerializeField] int team2count;
+
+
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -44,10 +49,10 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     {
         base.OnPlayerEnteredRoom(newPlayer);
         PropChange();
-        if (PhotonNetwork.CountOfPlayers >= min_room_size && game_started == false && PhotonNetwork.IsMasterClient)
+        if (PhotonNetwork.CountOfPlayers >= min_room_size && game_ongoing == false && PhotonNetwork.IsMasterClient)
         {
             Debug.Log("StartingGame");
-            game_started = true;
+            game_ongoing = true;
            
             
         }
@@ -85,7 +90,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
             
   
             Debug.Log("StartingGame");
-            game_started = true;
+            game_ongoing = true;
             Invoke("SpawnPlayers", 5f);
         
     }
@@ -97,11 +102,27 @@ public class Game_Manager : MonoBehaviourPunCallbacks
 
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
     {
-        if(PhotonNetwork.IsMasterClient)
+       if(PhotonNetwork.IsMasterClient)
         {
             pv.RPC("GetTeams", RpcTarget.All, tm.GetTeamMembersCount(1), tm.GetTeamMembersCount(2));
-            
-            
+            if (game_ongoing)
+            {
+                team1count = 0;
+                team2count = 0;
+                foreach (Player player in PhotonNetwork.PlayerList)
+                {
+                    if (player.GetPhotonTeam().Code == 1)
+                    {
+                        team1count += player.GetScore();
+                    }
+                    else
+                    {
+                        team2count += player.GetScore();
+                    }
+
+                }
+                Debug.Log(team1count + "+" + team2count);
+            }
         }
         PropChange();
         
@@ -139,7 +160,6 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     }
     [PunRPC] public void SpawnPlayer()
     {
-        point_manager.SetActive(true);
         Debug.Log("adding player");
         position = transform.position;
         GameObject new_player = PhotonNetwork.Instantiate(player_prefab.name, position, Quaternion.identity, 0);
