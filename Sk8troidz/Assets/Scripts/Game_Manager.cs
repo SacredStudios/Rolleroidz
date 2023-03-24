@@ -105,8 +105,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
        if(PhotonNetwork.IsMasterClient)
         {
             pv.RPC("GetTeams", RpcTarget.All, tm.GetTeamMembersCount(1), tm.GetTeamMembersCount(2));
-            if (game_ongoing)
-            {
+           
                 team1count = 0;
                 team2count = 0;
                 foreach (Player player in PhotonNetwork.PlayerList)
@@ -120,7 +119,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
                         team2count += player.GetScore();
                     }
 
-                }
+                
                 Debug.Log(team1count + "+" + team2count);
             }
         }
