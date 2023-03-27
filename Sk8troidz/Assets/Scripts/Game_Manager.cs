@@ -24,10 +24,11 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     bool game_ongoing = false;
     [SerializeField] int team1count;
     [SerializeField] int team2count;
+    [SerializeField] int win_score = 15;
 
 
 
-    // Start is called before the first frame update
+
     private void Awake()
     {
         PhotonNetwork.AutomaticallySyncScene = false;
@@ -40,8 +41,6 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         {
             StartCoroutine(CheckForPlayers());
         }
-        
-
 
     }
     
@@ -104,8 +103,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     {
        if(PhotonNetwork.IsMasterClient)
         {
-            pv.RPC("GetTeams", RpcTarget.All, tm.GetTeamMembersCount(1), tm.GetTeamMembersCount(2));
-           
+                pv.RPC("GetTeams", RpcTarget.All, tm.GetTeamMembersCount(1), tm.GetTeamMembersCount(2));
                 team1count = 0;
                 team2count = 0;
                 foreach (Player player in PhotonNetwork.PlayerList)
@@ -118,10 +116,11 @@ public class Game_Manager : MonoBehaviourPunCallbacks
                     {
                         team2count += player.GetScore();
                     }
-
-                
-                Debug.Log(team1count + "+" + team2count);
-            }
+                }
+                if (team1count >= win_score)
+                {
+                Debug.Log("Game Over!");
+                }
         }
         PropChange();
         
@@ -132,7 +131,6 @@ public class Game_Manager : MonoBehaviourPunCallbacks
 
     void PropChange()
     {
-        Debug.Log("propchange");
         Team1List.text = "";
         Team2List.text = "";
         foreach (Player player in PhotonNetwork.PlayerList)
