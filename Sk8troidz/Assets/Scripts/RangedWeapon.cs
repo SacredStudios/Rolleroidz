@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Photon.Pun.UtilityScripts;
 [CreateAssetMenu(fileName = "new_weapon", menuName = "Scripts/RangedWeapon", order = 1)]
 public class RangedWeapon : Weapon
 {
@@ -24,7 +25,7 @@ public class RangedWeapon : Weapon
         {
             // Debug.Log(hit.collider.name);
             PhotonNetwork.Instantiate(impact_explosion.name, hit.point, Quaternion.identity);
-            if(hit.collider.tag == "Player")
+            if(hit.collider.tag == "Player" && hit.collider.gameObject.GetComponent<PhotonView>())
             {
                 // Debug.Log(hit.collider.name);
               
