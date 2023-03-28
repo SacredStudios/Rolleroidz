@@ -10,6 +10,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
 {
     public GameObject player_prefab;
     Vector3 position;
+    [SerializeField] GameObject respawn_points;
     
     [SerializeField] int min_room_size;
     [SerializeField] GameObject lobby;
@@ -160,7 +161,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         Debug.Log("adding player");
         position = transform.position;
         GameObject new_player = PhotonNetwork.Instantiate(player_prefab.name, position, Quaternion.identity, 0);
-        
+        new_player.GetComponent<Respawn>().respawn_points = respawn_points.GetComponent<RespawnPoints>().respawn_points;
         lobby_cam.SetActive(false);
         lobby.SetActive(false);
     }
