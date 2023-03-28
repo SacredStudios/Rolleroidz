@@ -39,6 +39,10 @@ public class RangedWeapon : Weapon
                     Debug.Log("HeadShot");
 
                 }
+            else
+            {
+                Debug.Log(hit.collider.GetComponent<PhotonView>().Owner.GetPhotonTeam() + " + " + PhotonNetwork.LocalPlayer.GetPhotonTeam());
+            }
             
           
         }
