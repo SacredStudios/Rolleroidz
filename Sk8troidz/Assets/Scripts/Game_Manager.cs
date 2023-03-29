@@ -26,6 +26,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     [SerializeField] int team1count;
     [SerializeField] int team2count;
     [SerializeField] int win_score = 15;
+    [SerializeField] GameObject new_player;
 
 
 
@@ -49,13 +50,6 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     {
         base.OnPlayerEnteredRoom(newPlayer);
         PropChange();
-        if (PhotonNetwork.CountOfPlayers >= min_room_size && game_ongoing == false && PhotonNetwork.IsMasterClient)
-        {
-            Debug.Log("StartingGame");
-            game_ongoing = true;
-           
-            
-        }
     }
     public override void OnPlayerLeftRoom(Player newPlayer)
     {
@@ -87,11 +81,9 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         {
             yield return new WaitUntil(() => player_temp.GetPhotonTeam() != null);
         }
-            
-  
-            Debug.Log("StartingGame");
-            game_ongoing = true;
-            Invoke("SpawnPlayers", 5f);
+        Debug.Log("StartingGame");
+        game_ongoing = true;
+        Invoke("SpawnPlayers", 5f);
         
     }
     [PunRPC] public void GetTeams(int x, int y)
@@ -120,7 +112,11 @@ public class Game_Manager : MonoBehaviourPunCallbacks
                 }
                 if (team1count >= win_score)
                 {
-                Debug.Log("Game Over!");
+                  pv.RPC("GameOver", RpcTarget.All, 1);
+                }
+                else if (team2count >= win_score)
+                {
+                  pv.RPC("GameOver", RpcTarget.All, 2);
                 }
         }
         PropChange();
@@ -129,7 +125,29 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     }
 
     
-
+    [PunRPC]
+    public void GameOver(int winningteam)
+    {
+        new_player.GetComponent<PlayerMovement>().enabled = false;
+        new_player.GetComponent<Weapon_Handler>().enabled = false;
+        if(PhotonNetwork.LocalPlayer.GetPhotonTeam().Code == winningteam)
+        {
+            Invoke("WinScreen", 5f);
+        }
+        else
+        {
+            Invoke("LoseScreen", 5f);
+        }
+        
+    }
+    void WinScreen()
+    {
+        Debug.Log("You Win");
+    }
+    void LoseScreen()
+    {
+        Debug.Log("You Lose");
+    }
     void PropChange()
     {
         Team1List.text = "";
@@ -152,15 +170,13 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     }
 
     public void SpawnPlayers()
-    {
-        
+    {    
         pv.RPC("SpawnPlayer", RpcTarget.All);
     }
     [PunRPC] public void SpawnPlayer()
     {
-        Debug.Log("adding player");
         position = transform.position;
-        GameObject new_player = PhotonNetwork.Instantiate(player_prefab.name, position, Quaternion.identity, 0);
+        new_player = PhotonNetwork.Instantiate(player_prefab.name, position, Quaternion.identity, 0);
         new_player.GetComponent<Respawn>().respawn_points = respawn_points.GetComponent<RespawnPoints>().respawn_points;
         lobby_cam.SetActive(false);
         lobby.SetActive(false);
