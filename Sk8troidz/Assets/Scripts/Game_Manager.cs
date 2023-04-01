@@ -129,8 +129,15 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     public void GameOver(int winningteam)
     {
         Debug.Log(new_player.name);
-        new_player.GetComponentInChildren<PlayerMovement>().enabled = false;
-        new_player.GetComponentInChildren<Weapon_Handler>().enabled = false;
+        if (new_player.GetComponentInChildren<PlayerMovement>() != null)
+        {
+            new_player.GetComponentInChildren<PlayerMovement>().enabled = false;
+            new_player.GetComponentInChildren<Weapon_Handler>().enabled = false;
+        }
+        else
+        {
+            Destroy(new_player);
+        }
         if(PhotonNetwork.LocalPlayer.GetPhotonTeam().Code == winningteam)
         {
             Invoke("WinScreen", 5f);
