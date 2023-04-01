@@ -2248,7 +2248,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Score: 0
-  score: {fileID: 3740017744543000571}
+  score_mine: {fileID: 7647086874312537764}
+  score_others: {fileID: 3740017744543000571}
 --- !u!1 &7890289184542816910
 GameObject:
   m_ObjectHideFlags: 0
