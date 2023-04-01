@@ -2233,6 +2233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: {fileID: 0}
+  score_mine: {fileID: 0}
   game_ongoing: 0
   pv: {fileID: 0}
 --- !u!114 &2921875789750546953
@@ -2818,6 +2819,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: {fileID: 3740017744543000571}
+  score_mine: {fileID: 7647086874312537764}
   game_ongoing: 1
   pv: {fileID: 8999722921355035029}
 --- !u!114 &5007903472875531354

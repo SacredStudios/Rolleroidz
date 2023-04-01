@@ -35,8 +35,8 @@ namespace Photon.Pun.Demo.Cockpit
             {
                 _currentScore = Score;
                 PhotonNetwork.LocalPlayer.SetScore(Score);
-                score_mine.text = "" + PhotonNetwork.LocalPlayer.GetScore();
-                score_others.text = "" + PhotonNetwork.LocalPlayer.GetScore();
+               // score_mine.text = "" + PhotonNetwork.LocalPlayer.GetScore();
+               // score_others.text = "" + PhotonNetwork.LocalPlayer.GetScore();
             }
 
         }

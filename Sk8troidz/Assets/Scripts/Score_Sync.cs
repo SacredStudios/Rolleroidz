@@ -8,6 +8,7 @@ using Photon.Pun.UtilityScripts;
 public class Score_Sync : MonoBehaviour
 {
     [SerializeField] Text score;
+    [SerializeField] Text score_mine;
     [SerializeField] bool game_ongoing;
     [SerializeField] PhotonView pv;
     
@@ -18,6 +19,7 @@ public class Score_Sync : MonoBehaviour
         {
            // pv.Owner.AddScore(0);
             score.text = "" + pv.Owner.GetScore();
+            score_mine.text = "" + pv.Owner.GetScore();
         }
     }
    
