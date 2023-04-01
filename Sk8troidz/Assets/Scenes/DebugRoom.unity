@@ -141,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &50001111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3171,7 +3171,8 @@ MonoBehaviour:
   temp2: 9999
   team1count: 0
   team2count: 0
-  win_score: 15
+  win_score: 1
+  new_player: {fileID: 0}
 --- !u!114 &2026277107
 MonoBehaviour:
   m_ObjectHideFlags: 0
