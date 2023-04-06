@@ -27,6 +27,8 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     [SerializeField] int team2count;
     [SerializeField] int win_score = 15;
     [SerializeField] GameObject new_player;
+    [SerializeField] GameObject weapon_selector;
+    public Weapon my_weapon;
 
 
 
@@ -37,6 +39,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     }
     private void Start()
     {
+        my_weapon = Weapon_Selector.curr_weapon;
         PhotonNetwork.LocalPlayer.JoinTeam((byte)Random.Range(1, 3));
         StartCoroutine(SwitchTeam(PhotonNetwork.LocalPlayer));
         if(PhotonNetwork.IsMasterClient)
@@ -184,10 +187,15 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     [PunRPC] public void SpawnPlayer()
     {
         position = transform.position;
-        new_player = PhotonNetwork.Instantiate(player_prefab.name, position, Quaternion.identity, 0);
-        new_player.GetComponent<Respawn>().respawn_points = respawn_points.GetComponent<RespawnPoints>().respawn_points;
         lobby_cam.SetActive(false);
         lobby.SetActive(false);
+        new_player = PhotonNetwork.Instantiate(player_prefab.name, position, Quaternion.identity, 0);
+        new_player.GetComponent<Respawn>().respawn_points = respawn_points.GetComponent<RespawnPoints>().respawn_points;
+        
+        Debug.Log(my_weapon);
+        new_player.GetComponentInChildren<Weapon_Handler>().weapon = my_weapon;
+       
+        
     }
   
     

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c2b305abf6b06f94db6cb13c15b13191, type: 3}
-  m_Name: Basico Blaster
+  m_Name: Basico Blaster 1
   m_EditorClassIdentifier: 
   weapon_name: Basico Blaster
   weapon_description: Basic Blaster
