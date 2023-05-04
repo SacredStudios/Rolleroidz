@@ -26,7 +26,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     [SerializeField] int team1count;
     [SerializeField] int team2count;
     [SerializeField] int win_score = 15;
-    public GameObject new_player;
+    [SerializeField] GameObject new_player;
     [SerializeField] GameObject weapon_selector;
     public Weapon my_weapon;
     GameObject weapon_list;
@@ -184,7 +184,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
 
     public void SpawnPlayers()
     {    
-        pv.RPC("SpawnPlayer", RpcTarget.All, weapon_list.GetComponent<Weapon_List>().weapon.name);
+        pv.RPC("SpawnPlayer", RpcTarget.All, my_weapon.name);
     }
     [PunRPC]
     public void SpawnPlayer(string name)
@@ -195,12 +195,21 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         lobby.SetActive(false);
         new_player = PhotonNetwork.Instantiate(player_prefab.name, position, Quaternion.identity, 0);
         new_player.GetComponent<Respawn>().respawn_points = respawn_points.GetComponent<RespawnPoints>().respawn_points;
-   
-        new_player.GetComponentInChildren<Weapon_Handler>().weapon = my_weapon;
-
-   
+        pv.RPC("SetWeapon", RpcTarget.All, name);
+        
      
         
+    }
+    [PunRPC] public void SetWeapon(string name)
+    {
+        foreach (Weapon w in weapon_list.GetComponent<Weapon_List>().all_weapon_list)
+
+            if (w.name.Equals(name))
+            {
+                new_player.GetComponentInChildren<Weapon_Handler>().weapon = w;
+                Debug.Log("foundweapon");
+                break;
+            }
     }
 
     }
