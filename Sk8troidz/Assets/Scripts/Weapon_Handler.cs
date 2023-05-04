@@ -104,7 +104,7 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
     [PunRPC]
     public void SyncWeapon()
     {
-        curr_gun = PhotonNetwork.Instantiate(weapon.instance.name, weapon_loc.transform.position, Quaternion.identity);
+        //curr_gun = Instantiate(weapon.instance.name, weapon_loc.transform.position, Quaternion.identity);
     }
 
 }
