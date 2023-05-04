@@ -7,7 +7,7 @@ public class Weapon_List : MonoBehaviour
     public List<Weapon> my_weapon_list;
     public List<Weapon> all_weapon_list;
     [SerializeField] Weapon_Selector ws;
-    Weapon weapon;
+    public Weapon weapon; //the current weapon
 
     public void AddWeapon(Weapon weapon)
     {
@@ -15,6 +15,7 @@ public class Weapon_List : MonoBehaviour
     }
     private void Start()
     {
+        DontDestroyOnLoad(this.gameObject);
         weapon = GetCurrentWeapon();
         weapon = all_weapon_list[Random.Range(0,2)]; //be sure to comment this out
         ws.ChangeWeapon(weapon);

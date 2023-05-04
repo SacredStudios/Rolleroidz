@@ -29,13 +29,15 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     [SerializeField] GameObject new_player;
     [SerializeField] GameObject weapon_selector;
     public Weapon my_weapon;
-
+    GameObject weapon_list;
 
 
 
     private void Awake()
     {
         PhotonNetwork.AutomaticallySyncScene = false;
+        weapon_list = GameObject.Find("WeaponList"); //I know gameobject.find is bad. Do you have any better ideas?
+
     }
     private void Start()
     {
@@ -193,7 +195,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         new_player.GetComponent<Respawn>().respawn_points = respawn_points.GetComponent<RespawnPoints>().respawn_points;
         
         Debug.Log(my_weapon);
-        new_player.GetComponentInChildren<Weapon_Handler>().weapon = my_weapon;
+        new_player.GetComponentInChildren<Weapon_Handler>().weapon = weapon_list.GetComponent<Weapon_List>().weapon;
        
         
     }
