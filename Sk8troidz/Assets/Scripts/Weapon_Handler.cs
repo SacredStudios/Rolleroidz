@@ -88,10 +88,13 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
     {
         //curr_gun = PhotonNetwork.Instantiate(weapon.instance.name, new Vector3(0, 0, 0), Quaternion.identity);
             //pun call to instantiate weapon (like coins)
-            if(!pv.IsMine)
+           
             pv.RPC("SyncWeapon", RpcTarget.All);
- 
+        if (weapon != null)
+        {
+
             curr_gun = Instantiate(weapon.instance, weapon_loc.transform);
+        }
 
       
         curr_gun.transform.parent = weapon_loc.transform;
