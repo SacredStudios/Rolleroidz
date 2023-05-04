@@ -200,7 +200,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
             
             if (w.name.Equals(name))
             {
-                i = 3
+                i = 3;
                 new_player.GetComponentInChildren<Weapon_Handler>().weapon = w;
                 Debug.Log("foundweapon");
             }
@@ -213,6 +213,6 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     }
 
     }
-}
+
 
 
