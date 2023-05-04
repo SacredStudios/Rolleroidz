@@ -189,20 +189,28 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     [PunRPC]
     public void SpawnPlayer(string name)
     {
-        Debug.Log("test");
+        print("test");
         position = transform.position;
         lobby_cam.SetActive(false);
         lobby.SetActive(false);
-        /*new_player = PhotonNetwork.Instantiate(player_prefab.name, position, Quaternion.identity, 0);
+        new_player = PhotonNetwork.Instantiate(player_prefab.name, position, Quaternion.identity, 0);
         new_player.GetComponent<Respawn>().respawn_points = respawn_points.GetComponent<RespawnPoints>().respawn_points;
+        int i = 0;
         foreach (Weapon w in weapon_list.GetComponent<Weapon_List>().all_weapon_list)
+            
             if (w.name.Equals(name))
             {
+                i = 3
                 new_player.GetComponentInChildren<Weapon_Handler>().weapon = w;
                 Debug.Log("foundweapon");
             }
+        if (i != 3)
+        {
+            Debug.Log("Weapon Not Found");
+            Destroy(new_player);
+        }
         
-    }*/
+    }
 
     }
 }
