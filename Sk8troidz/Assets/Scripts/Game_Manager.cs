@@ -184,7 +184,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
 
     public void SpawnPlayers()
     {    
-        pv.RPC("SpawnPlayer", RpcTarget.OthersBuffered, my_weapon.name);
+        pv.RPC("SpawnPlayer", RpcTarget.All, my_weapon.name);
     }
     [PunRPC]
     public void SpawnPlayer(string name)
@@ -195,7 +195,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         lobby.SetActive(false);
         new_player = PhotonNetwork.Instantiate(player_prefab.name, position, Quaternion.identity, 0);
         new_player.GetComponent<Respawn>().respawn_points = respawn_points.GetComponent<RespawnPoints>().respawn_points;
-        pv.RPC("SetWeapon", RpcTarget.All, name);
+        pv.RPC("SetWeapon", RpcTarget.OthersBuffered, name);
         
      
         
