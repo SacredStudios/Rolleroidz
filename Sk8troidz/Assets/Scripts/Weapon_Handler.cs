@@ -86,7 +86,6 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
     }
     private void Start()
     {
-        Destroy(curr_gun);
         curr_gun = Instantiate(weapon.instance, weapon_loc.transform);
         Debug.Log(weapon.name + " + " +weapon.instance.name);
         weapon.pv = this.pv;
