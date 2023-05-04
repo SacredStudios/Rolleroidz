@@ -108,10 +108,12 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
     {
         GameObject weapon_list = GameObject.Find("WeaponList");
         GameObject new_loc = GameObject.Find(loc);
+        Debug.Log(new_loc.name);
         foreach (Weapon w in weapon_list.GetComponent<Weapon_List>().all_weapon_list)
         {
             if (w.instance.name == name)
             {
+                Debug.Log("found it");
                 curr_gun = Instantiate(w.instance, new_loc.transform);
             }
         }
