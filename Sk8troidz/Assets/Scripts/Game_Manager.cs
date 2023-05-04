@@ -186,7 +186,8 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     {    
         pv.RPC("SpawnPlayer", RpcTarget.All, weapon_list.GetComponent<Weapon_List>().weapon.name);
     }
-    [PunRPC] public void SpawnPlayer(string name)
+    [PunRPC]
+    public void SpawnPlayer(string name)
     {
         Debug.Log("test");
         position = transform.position;
@@ -202,8 +203,8 @@ public class Game_Manager : MonoBehaviourPunCallbacks
             }
         
     }*/
-  
-    
+
+    }
 }
 
 
