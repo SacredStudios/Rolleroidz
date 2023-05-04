@@ -184,9 +184,9 @@ public class Game_Manager : MonoBehaviourPunCallbacks
 
     public void SpawnPlayers()
     {    
-        pv.RPC("SpawnPlayer", RpcTarget.All);
+        pv.RPC("SpawnPlayer", RpcTarget.All, weapon_list.GetComponent<Weapon_List>().weapon.name);
     }
-    [PunRPC] public void SpawnPlayer()
+    [PunRPC] public void SpawnPlayer(string name)
     {
         position = transform.position;
         lobby_cam.SetActive(false);
@@ -195,8 +195,11 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         new_player.GetComponent<Respawn>().respawn_points = respawn_points.GetComponent<RespawnPoints>().respawn_points;
         
         Debug.Log(my_weapon);
-        new_player.GetComponentInChildren<Weapon_Handler>().weapon = weapon_list.GetComponent<Weapon_List>().weapon;
-       
+        foreach (Weapon w in weapon_list.GetComponent<Weapon_List>().all_weapon_list)
+            if (w.name.Equals(name))
+            {
+                new_player.GetComponentInChildren<Weapon_Handler>().weapon = w;
+            }
         
     }
   
