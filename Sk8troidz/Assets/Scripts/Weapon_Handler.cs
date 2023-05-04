@@ -86,7 +86,8 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
     }
     private void Start()
     {
-        curr_gun = PhotonNetwork.Instantiate(weapon.instance.name, new Vector3(0, 0, 0), Quaternion.identity);
+        //curr_gun = PhotonNetwork.Instantiate(weapon.instance.name, new Vector3(0, 0, 0), Quaternion.identity);
+        curr_gun = Instantiate(weapon.instance, weapon_loc.transform);
         curr_gun.transform.parent = weapon_loc.transform;
         Debug.Log(weapon.name + " + " +weapon.instance.name);
         weapon.pv = this.pv;
