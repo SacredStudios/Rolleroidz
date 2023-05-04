@@ -184,7 +184,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
 
     public void SpawnPlayers()
     {    
-        pv.RPC("SpawnPlayer", RpcTarget.All, my_weapon.name);
+        pv.RPC("SpawnPlayer", RpcTarget.AllViaServer, my_weapon.name);
     }
     [PunRPC]
     public void SpawnPlayer(string name)
