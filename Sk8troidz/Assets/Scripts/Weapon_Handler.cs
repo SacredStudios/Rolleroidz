@@ -111,7 +111,7 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
         Debug.Log(loc.name);
         foreach (Weapon w in weapon_list.GetComponent<Weapon_List>().all_weapon_list)
         {
-            Debug.Log("w.name");
+            Debug.Log("w.name"); //Photon Hashtable might be more efficient. Yes Photon has a custom version of Hashtable. This was not a typo.
             if (w.name == currname)
             {
                 Debug.Log("found it");
