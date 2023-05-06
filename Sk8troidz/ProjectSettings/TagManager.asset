@@ -8,6 +8,7 @@ TagManager:
   - Player_Head
   - Bullet
   - Point
+  - Weapon
   layers:
   - Default
   - TransparentFX
