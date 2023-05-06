@@ -196,7 +196,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         new_player = PhotonNetwork.Instantiate(player_prefab.name, position, Quaternion.identity, 0);
         new_player.GetComponent<Respawn>().respawn_points = respawn_points.GetComponent<RespawnPoints>().respawn_points;
         new_player.GetComponentInChildren<Weapon_Handler>().weapon = my_weapon;
-        //pv.RPC("SetWeapon", RpcTarget.OthersBuffered, name, new_player);
+
         
      
         
