@@ -93,7 +93,7 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
         if (weapon != null)
         {
             curr_gun = Instantiate(weapon.instance, weapon_loc.transform);
-            pv.RPC("SyncWeapon", RpcTarget.Others, weapon.name, pv.ViewID);
+            pv.RPC("SetWeapon", RpcTarget.Others, weapon.name, pv.ViewID);
         }
         
 
@@ -102,7 +102,7 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
         Debug.Log(weapon.name + " + " +weapon.instance.name);
         weapon.pv = this.pv;
     }
-    [PunRPC] void SyncWeapon(string name, int viewID)
+    [PunRPC] void SetWeapon(string name, int viewID)
     {
       //  GameObject weapon_list = GameObject.Find("WeaponList");
         //GameObject player = PhotonView.Find(viewID).gameObject;
