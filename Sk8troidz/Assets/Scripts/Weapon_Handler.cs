@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
-using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class Weapon_Handler : MonoBehaviourPunCallbacks
 {
@@ -88,62 +87,37 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
     private void Start()
     {
         //curr_gun = PhotonNetwork.Instantiate(weapon.instance.name, new Vector3(0, 0, 0), Quaternion.identity);
-            //pun call to instantiate weapon (like coins)     
-            if (pv.IsMine)
-            {
-                GameObject weapon_list = GameObject.Find("WeaponList");
-            //  GameObject new_loc = GameObject.Find(loc);
-            int i = 0;
-                foreach (Weapon w in weapon_list.GetComponent<Weapon_List>().all_weapon_list)
-                {
-                    if (w.name == weapon.name)
-                    {
-                        Debug.Log("found it");
-                        curr_gun = Instantiate(w.instance, weapon_loc.transform);
-                    Hashtable hash = new Hashtable();
-                    hash.Add("itemIndex", i);
-                    PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
-                    break;
-                }
-                i++;
-                }
-               
-            }
-       if(weapon == null)
+            //pun call to instantiate weapon (like coins)
+           
+            
+        if (weapon != null)
         {
-            Debug.Log("ERRROR NO WEAPON FOUND");
+            curr_gun = Instantiate(weapon.instance, weapon_loc.transform);
+            weapon_loc.name = weapon_loc.name + PhotonNetwork.LocalPlayer.ActorNumber;
+            pv.RPC("SyncWeapon", RpcTarget.OthersBuffered, weapon.name, weapon_loc.name);
         }
+        
+
+      
+        curr_gun.transform.parent = weapon_loc.transform;
+        Debug.Log(weapon.name + " + " +weapon.instance.name);
         weapon.pv = this.pv;
     }
-
-    public override void OnPlayerPropertiesUpdate(Player targetPlayer, Hashtable changedProps)
-    {
-        if(!pv.IsMine && targetPlayer == pv.Owner)
-        {
-            EquipWeapon((int)changedProps["itemIndex"]);
-        }
-    }
-    void EquipWeapon(int index)
-    {
-        GameObject weapon_list = GameObject.Find("WeaponList");
-        weapon = weapon_list.GetComponent<Weapon_List>().all_weapon_list[index];
-    }
-   
     [PunRPC]
-    public void SyncWeapon(string name, int num)
+    public void SyncWeapon(string name, string loc)
     {
         GameObject weapon_list = GameObject.Find("WeaponList");
-      //  GameObject new_loc = GameObject.Find(loc);
+        GameObject new_loc = GameObject.Find(loc);
+        Debug.Log(new_loc.name);
         foreach (Weapon w in weapon_list.GetComponent<Weapon_List>().all_weapon_list)
         {
             if (w.instance.name == name)
             {
                 Debug.Log("found it");
-                curr_gun = Instantiate(w.instance);
+                curr_gun = Instantiate(w.instance, new_loc.transform);
             }
         }
         
     }
 
-   
 }
