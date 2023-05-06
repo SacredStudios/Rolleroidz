@@ -94,7 +94,7 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
         {
             curr_gun = Instantiate(weapon.instance, weapon_loc.transform);
             weapon_loc.name = weapon_loc.name + PhotonNetwork.LocalPlayer.ActorNumber;
-            pv.RPC("SyncWeapon", RpcTarget.OthersBuffered, weapon.name, weapon_loc.name);
+            pv.RPC("SyncWeapon", RpcTarget.All);//, weapon.name, weapon_loc.name);
         }
         
 
@@ -103,20 +103,21 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
         Debug.Log(weapon.name + " + " +weapon.instance.name);
         weapon.pv = this.pv;
     }
-    [PunRPC]
-    public void SyncWeapon(string name, string loc)
+    [PunRPC] void SyncWeapon()//string name, string loc)
     {
-        GameObject weapon_list = GameObject.Find("WeaponList");
+        Debug.Log("Syncing");
+       /* GameObject weapon_list = GameObject.Find("WeaponList");
         GameObject new_loc = GameObject.Find(loc);
         Debug.Log(new_loc.name);
         foreach (Weapon w in weapon_list.GetComponent<Weapon_List>().all_weapon_list)
         {
+            Debug.Log("isthisrunning");
             if (w.name == weapon.name)
             {
                 Debug.Log("found it");
                 curr_gun = Instantiate(w.instance, new_loc.transform);
             }
-        }
+        } */
         
     }
 
