@@ -104,8 +104,8 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
     }
     [PunRPC] void SetWeapon(string name, int viewID)
     {
-      //  GameObject weapon_list = GameObject.Find("WeaponList");
-        //GameObject player = PhotonView.Find(viewID).gameObject;
+        GameObject weapon_list = GameObject.Find("WeaponList");
+        GameObject player = PhotonView.Find(viewID).gameObject;
         /*Debug.Log(player.name);
         GameObject loc = player.GetComponent<Weapon_Handler>().weapon_loc;
         Debug.Log(loc.name);
