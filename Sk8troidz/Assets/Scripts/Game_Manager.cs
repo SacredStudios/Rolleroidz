@@ -141,7 +141,8 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         }
         else
         {
-            new_player.GetComponent<Respawn>().enabled = false;
+            new_player.GetComponentInChildren<Camera>().transform.parent = null;
+            Destroy(new_player);
         }
         if(PhotonNetwork.LocalPlayer.GetPhotonTeam().Code == winningteam)
         {
