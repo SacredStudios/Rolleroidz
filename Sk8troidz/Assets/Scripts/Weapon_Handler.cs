@@ -102,7 +102,7 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
         Debug.Log(weapon.name + " + " +weapon.instance.name);
         weapon.pv = this.pv;
     }
-    [PunRPC] void SetWeapon(string name, int viewID)
+    [PunRPC] void SetWeapon(string currname, int viewID)
     {
         GameObject weapon_list = GameObject.Find("WeaponList");
         GameObject player = PhotonView.Find(viewID).gameObject;
@@ -111,8 +111,8 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
         Debug.Log(loc.name);
         foreach (Weapon w in weapon_list.GetComponent<Weapon_List>().all_weapon_list)
         {
-            Debug.Log("isthisrunning");
-            if (w.name == weapon.name)
+            Debug.Log("w.name");
+            if (w.name == currname)
             {
                 Debug.Log("found it");
                 curr_gun = Instantiate(w.instance, loc.transform);
