@@ -116,6 +116,7 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
             {
                 Debug.Log("found it");
                 curr_gun = Instantiate(w.instance, loc.transform);
+                weapon = w;
             }
         }
         
