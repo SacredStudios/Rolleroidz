@@ -106,7 +106,7 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
     {
         GameObject weapon_list = GameObject.Find("WeaponList");
         GameObject player = PhotonView.Find(viewID).gameObject;
-        Debug.Log(player.name);
+        /*Debug.Log(player.name);
         GameObject loc = player.GetComponent<Weapon_Handler>().weapon_loc;
         Debug.Log(loc.name);
         foreach (Weapon w in weapon_list.GetComponent<Weapon_List>().all_weapon_list)
@@ -117,7 +117,7 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
                 Debug.Log("found it");
                 curr_gun = Instantiate(w.instance, loc.transform);
             }
-        }
+        }*/
         
     }
 
