@@ -28,6 +28,9 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     [SerializeField] int win_score = 15;
     [SerializeField] GameObject new_player;
     [SerializeField] GameObject weapon_selector;
+
+    [SerializeField] GameObject gameover_screen;
+    [SerializeField] Text gameover_text;
     public Weapon my_weapon;
     GameObject weapon_list;
 
@@ -156,11 +159,19 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     }
     void WinScreen()
     {
+        gameover_screen.SetActive(true);
+        gameover_text.text =" You Win!";
         Debug.Log("You Win");
     }
     void LoseScreen()
     {
+        gameover_screen.SetActive(true);
+        gameover_text.text = " You Lose!";
         Debug.Log("You Lose");
+    }
+    public void BackToStart()
+    {
+        PhotonNetwork.LoadLevel("StartingScene");
     }
     void PropChange()
     {

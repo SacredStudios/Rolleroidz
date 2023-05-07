@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon_name: Bunga Blaster
   weapon_description: Bunga Blaster
-  weapon_delay: 0.6
-  damage: 40
-  attack_cost: 50
+  weapon_delay: 0.3
+  damage: 20
+  attack_cost: 25
   knockback: 0
   offset: {x: 100, y: 0, z: 0}
   pv: {fileID: 0}
