@@ -144,7 +144,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
             new_player.GetComponentInChildren<Camera>().transform.parent = null;
             Destroy(new_player);
         }
-        if(PhotonNetwork.LocalPlayer.GetPhotonTeam().Code == winningteam)
+        if(PhotonNetwork.LocalPlayer.GetPhotonTeam().Code == winningteam && pv.IsMine)
         {
             Invoke("WinScreen", 5f);
         }
