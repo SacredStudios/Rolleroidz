@@ -148,7 +148,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
             Destroy(new_player);
         }
         Debug.Log(winningteam + " + " +PhotonNetwork.LocalPlayer.GetPhotonTeam().Code);
-        if(PhotonNetwork.LocalPlayer.GetPhotonTeam().Code == winningteam && pv.IsMine)
+        if(PhotonNetwork.LocalPlayer.GetPhotonTeam().Code == winningteam)
         {
             Invoke("WinScreen", 1f);
         }
