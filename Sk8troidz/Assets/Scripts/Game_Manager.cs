@@ -149,13 +149,14 @@ public class Game_Manager : MonoBehaviourPunCallbacks
             new_player.GetComponentInChildren<Camera>().transform.parent = null;
             Destroy(new_player);
         }
+        Debug.Log(winningteam);
         if(PhotonNetwork.LocalPlayer.GetPhotonTeam().Code == winningteam && pv.IsMine)
         {
-            Invoke("WinScreen", 5f);
+            Invoke("WinScreen", 1f);
         }
         else
         {
-            Invoke("LoseScreen", 5f);
+            Invoke("LoseScreen", 1f);
         }
         
     }
@@ -173,6 +174,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     }
     public void BackToStart()
     {
+        PhotonNetwork.Disconnect();
         PhotonNetwork.OfflineMode = true;
         PhotonNetwork.OfflineMode = false;
         PhotonNetwork.LoadLevel("StartingScene");
