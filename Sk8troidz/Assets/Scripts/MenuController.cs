@@ -90,16 +90,24 @@ public class MenuController : MonoBehaviourPunCallbacks
     }
     public void AddRandomGame()
     {
-        RoomOptions roomOptions = new RoomOptions();
-        roomOptions.MaxPlayers = (byte)max_players;
-        Debug.Log(roomOptions.MaxPlayers);
+   
         if(!PhotonNetwork.IsConnected)
         {
             PhotonNetwork.ConnectUsingSettings();
         }
         //PhotonNetwork.JoinRandomOrCreateRoom(null, roomOptions.MaxPlayers, MatchmakingMode.FillRoom, TypedLobby.Default);
-        PhotonNetwork.JoinOrCreateRoom("test", roomOptions, TypedLobby.Default);
+        StartCoroutine(LeaveTeam());
+        
+    }
+    IEnumerator LeaveTeam()
+    {
+        PhotonNetwork.LocalPlayer.LeaveCurrentTeam();
+        yield return new WaitUntil(() => PhotonNetwork.LocalPlayer.GetPhotonTeam() == null);
+        RoomOptions roomOptions = new RoomOptions();
+        roomOptions.MaxPlayers = (byte)max_players;
+        PhotonNetwork.JoinRandomOrCreateRoom(null, (byte)max_players, MatchmakingMode.FillRoom, TypedLobby.Default);
         roomOptions.EmptyRoomTtl = 0;
+
     }
 
     public override void OnJoinedRoom()
