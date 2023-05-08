@@ -103,11 +103,17 @@ public class MenuController : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.LocalPlayer.LeaveCurrentTeam();
         yield return new WaitUntil(() => PhotonNetwork.LocalPlayer.GetPhotonTeam() == null);
+       
+        PhotonNetwork.JoinRandomRoom();
+        
+
+    }
+    public override void OnJoinRandomFailed(short returnCode, string message)
+    {
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.MaxPlayers = (byte)max_players;
-        PhotonNetwork.JoinRandomOrCreateRoom(null, (byte)max_players, MatchmakingMode.FillRoom, TypedLobby.Default);
         roomOptions.EmptyRoomTtl = 0;
-
+        PhotonNetwork.CreateRoom(null, roomOptions);
     }
 
     public override void OnJoinedRoom()
