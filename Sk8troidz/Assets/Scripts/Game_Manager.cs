@@ -121,7 +121,6 @@ public class Game_Manager : MonoBehaviourPunCallbacks
                 }
                 if (team1count >= win_score)
                 {
-                Debug.Log("team1 wins");
                   pv.RPC("GameOver", RpcTarget.All, 1);
                 }
                 else if (team2count >= win_score)
@@ -138,7 +137,6 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     [PunRPC]
     public void GameOver(int winningteam)
     {
-        Debug.Log(new_player.name);
         if (new_player.GetComponentInChildren<PlayerMovement>() != null)
         {
             new_player.GetComponentInChildren<PlayerMovement>().enabled = false;
@@ -149,7 +147,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
             new_player.GetComponentInChildren<Camera>().transform.parent = null;
             Destroy(new_player);
         }
-        Debug.Log(winningteam);
+        Debug.Log(winningteam + " + " +PhotonNetwork.LocalPlayer.GetPhotonTeam().Code);
         if(PhotonNetwork.LocalPlayer.GetPhotonTeam().Code == winningteam && pv.IsMine)
         {
             Invoke("WinScreen", 1f);
@@ -175,8 +173,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     public void BackToStart()
     {
         PhotonNetwork.Disconnect();
-        PhotonNetwork.OfflineMode = true;
-        PhotonNetwork.OfflineMode = false;
+   
         PhotonNetwork.LoadLevel("StartingScene");
     }
     void PropChange()
