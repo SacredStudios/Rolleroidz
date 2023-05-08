@@ -172,8 +172,13 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     }
     public void BackToStart()
     {
-        PhotonNetwork.Disconnect();
-   
+        PhotonNetwork.LeaveRoom();
+        
+    }
+    public override void OnLeftRoom()
+    {
+        PhotonNetwork.OfflineMode = true;
+        PhotonNetwork.OfflineMode = false;
         PhotonNetwork.LoadLevel("StartingScene");
     }
     void PropChange()

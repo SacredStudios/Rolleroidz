@@ -24,8 +24,8 @@ public class MenuController : MonoBehaviourPunCallbacks
     public void ShowMainMenu()
     {
         StartBtn.GetComponent<Button>().enabled = false;
-        StartCoroutine(Transition_Down());
-
+       // StartCoroutine(ConnectToServer());
+        StartCoroutine(Transition_Down());   
         Invoke("HideStartMenu", 1f);
 
     }
@@ -45,6 +45,15 @@ public class MenuController : MonoBehaviourPunCallbacks
     {
         StartMenu.SetActive(false);
         Menu_Skatroid.SetActive(true);
+    }
+    IEnumerator ConnectToServer()
+    {
+        while(PhotonNetwork.Server != ServerConnection.MasterServer || PhotonNetwork.NetworkClientState != ClientState.ConnectedToMasterServer)
+        {
+            yield return null;
+            Debug.Log("hi");
+        }
+        Debug.Log("connectedtomaster");
     }
 
     IEnumerator Transition_Down()
@@ -85,10 +94,7 @@ public class MenuController : MonoBehaviourPunCallbacks
         {
             PhotonNetwork.NickName = s;
         }
-        else
-        {
-            PhotonNetwork.NickName = "space_spam"; //Easter egg
-        }
+        
     }
     public void AddRandomGame()
     {
