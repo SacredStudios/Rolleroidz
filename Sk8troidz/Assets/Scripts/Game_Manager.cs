@@ -182,8 +182,8 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     public override void OnLeftRoom()
     {
         PhotonNetwork.LocalPlayer.LeaveCurrentTeam();
-        PhotonNetwork.OfflineMode = true;
-        PhotonNetwork.OfflineMode = false;
+
+        Debug.Log(PhotonNetwork.LocalPlayer.GetPhotonTeam());
         PhotonNetwork.LoadLevel("StartingScene");
     }
     void PropChange()
