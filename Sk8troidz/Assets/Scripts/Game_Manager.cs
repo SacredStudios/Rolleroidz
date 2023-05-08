@@ -40,6 +40,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     private void Awake()
     {
         PhotonNetwork.AutomaticallySyncScene = false;
+       
         weapon_list = GameObject.Find("WeaponList"); //I know gameobject.find is bad. Do you have any better ideas?
 
     }
@@ -57,6 +58,10 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
+        foreach (Player player in PhotonNetwork.PlayerList)
+        {
+            player.SetScore(0);
+        }
         base.OnPlayerEnteredRoom(newPlayer);
         PropChange();
     }
@@ -209,6 +214,10 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     [PunRPC]
     public void SpawnPlayer()
     {
+        if(PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.CurrentRoom.IsOpen = false;
+        }
         print(my_weapon);
         position = transform.position;
         lobby_cam.SetActive(false);

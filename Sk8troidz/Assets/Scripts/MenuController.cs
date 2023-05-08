@@ -46,15 +46,6 @@ public class MenuController : MonoBehaviourPunCallbacks
         StartMenu.SetActive(false);
         Menu_Skatroid.SetActive(true);
     }
-    IEnumerator ConnectToServer()
-    {
-        while(PhotonNetwork.Server != ServerConnection.MasterServer || PhotonNetwork.NetworkClientState != ClientState.ConnectedToMasterServer)
-        {
-            yield return null;
-            Debug.Log("hi");
-        }
-        Debug.Log("connectedtomaster");
-    }
 
     IEnumerator Transition_Down()
     {
