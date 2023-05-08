@@ -46,7 +46,9 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     private void Start()
     {
         my_weapon = Weapon_Selector.curr_weapon;
+       
         PhotonNetwork.LocalPlayer.JoinTeam((byte)Random.Range(1, 3));
+        
         StartCoroutine(SwitchTeam(PhotonNetwork.LocalPlayer));
         if(PhotonNetwork.IsMasterClient)
         {
@@ -86,6 +88,11 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         }
         
         
+    }
+    IEnumerator LeaveTeam()
+    {
+        yield return new WaitUntil(() => PhotonNetwork.LocalPlayer.GetPhotonTeam() == null);
+        PhotonNetwork.LoadLevel("StartingScene");
     }
     IEnumerator CheckForPlayers() //Checks if teams have been assigned correctly before starting game
     {
@@ -184,7 +191,9 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         
 
         Debug.Log(PhotonNetwork.LocalPlayer.GetPhotonTeam());
-        PhotonNetwork.LoadLevel("StartingScene");
+        PhotonNetwork.LocalPlayer.LeaveCurrentTeam();
+        StartCoroutine(LeaveTeam());
+        
     }
     void PropChange()
     {
