@@ -92,7 +92,8 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     IEnumerator LeaveTeam()
     {
         yield return new WaitUntil(() => PhotonNetwork.LocalPlayer.GetPhotonTeam() == null);
-        PhotonNetwork.LoadLevel("StartingScene");
+        PhotonNetwork.LeaveRoom();
+
     }
     IEnumerator CheckForPlayers() //Checks if teams have been assigned correctly before starting game
     {
@@ -183,7 +184,9 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     }
     public void BackToStart()
     {
-        PhotonNetwork.LeaveRoom();
+        PhotonNetwork.LocalPlayer.LeaveCurrentTeam();
+        StartCoroutine(LeaveTeam());
+        
         
     }
     public override void OnLeftRoom()
@@ -191,8 +194,9 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         
 
         Debug.Log(PhotonNetwork.LocalPlayer.GetPhotonTeam());
-        PhotonNetwork.LocalPlayer.LeaveCurrentTeam();
-        StartCoroutine(LeaveTeam());
+        
+        PhotonNetwork.LoadLevel("StartingScene");
+        
         
     }
     void PropChange()
