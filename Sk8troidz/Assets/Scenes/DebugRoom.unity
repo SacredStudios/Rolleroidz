@@ -3920,6 +3920,8 @@ MonoBehaviour:
     Code: 1
   - Name: Pink
     Code: 2
+  - Name: NullTeam
+    Code: 9
 --- !u!114 &2026277108
 MonoBehaviour:
   m_ObjectHideFlags: 0

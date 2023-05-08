@@ -40,7 +40,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     private void Awake()
     {
         PhotonNetwork.AutomaticallySyncScene = false;
-       
+        PhotonNetwork.LocalPlayer.SwitchTeam(9);
         weapon_list = GameObject.Find("WeaponList"); //I know gameobject.find is bad. Do you have any better ideas?
 
     }
@@ -74,7 +74,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     { 
         foreach (Player player_temp in PhotonNetwork.PlayerList)
         {
-            yield return new WaitUntil(() => player_temp.GetPhotonTeam() != null);
+            yield return new WaitUntil(() => player_temp.GetPhotonTeam() != null && player_temp.GetPhotonTeam().Code != 9);
         }
         yield return new WaitUntil(() => temp1 != 9999 && temp2 != 9999);
         if (temp1 < temp2) //get team count from master client
