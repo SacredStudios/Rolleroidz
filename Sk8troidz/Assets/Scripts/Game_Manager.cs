@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using Photon.Pun;
 using Photon.Realtime;
 using Photon.Pun.UtilityScripts;
@@ -172,7 +173,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     }
     public void BackToStart()
     {
-        PhotonNetwork.LoadLevel("StartingScene");
+        SceneManager.LoadScene("StartingScene");
     }
     void PropChange()
     {

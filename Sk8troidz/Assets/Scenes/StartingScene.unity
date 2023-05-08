@@ -2410,7 +2410,7 @@ MonoBehaviour:
   StartBtn: {fileID: 1155535450}
   Menu_Skatroid: {fileID: 1965599449}
   StartMenu: {fileID: 2090156493}
-  max_players: 0
+  max_players: 6
 --- !u!1 &1376333649
 GameObject:
   m_ObjectHideFlags: 0

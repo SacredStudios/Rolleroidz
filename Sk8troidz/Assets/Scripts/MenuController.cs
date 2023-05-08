@@ -93,6 +93,7 @@ public class MenuController : MonoBehaviourPunCallbacks
     {
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.MaxPlayers = (byte)max_players;
+        Debug.Log(roomOptions.MaxPlayers);
         //PhotonNetwork.JoinRandomOrCreateRoom(null, roomOptions.MaxPlayers, MatchmakingMode.FillRoom, TypedLobby.Default);
         PhotonNetwork.JoinOrCreateRoom("test", roomOptions, TypedLobby.Default);
         roomOptions.EmptyRoomTtl = 0;
