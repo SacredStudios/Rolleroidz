@@ -173,7 +173,9 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     }
     public void BackToStart()
     {
-        SceneManager.LoadScene("StartingScene");
+        PhotonNetwork.OfflineMode = true;
+        PhotonNetwork.OfflineMode = false;
+        PhotonNetwork.LoadLevel("StartingScene");
     }
     void PropChange()
     {

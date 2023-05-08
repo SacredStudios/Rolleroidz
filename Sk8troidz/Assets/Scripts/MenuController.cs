@@ -73,6 +73,7 @@ public class MenuController : MonoBehaviourPunCallbacks
     }
     public void ChangeUsername(string s)
     {
+        PhotonNetwork.ConnectUsingSettings();
         int white_spaces = 0;// = s.Length(char.IsWhiteSpace)
         for(int i = 0; i < s.Length; i++)
         {
