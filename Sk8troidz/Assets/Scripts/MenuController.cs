@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
-
+using Photon.Pun.UtilityScripts;
 
 public class MenuController : MonoBehaviourPunCallbacks
 {
@@ -33,6 +33,7 @@ public class MenuController : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.ConnectUsingSettings();
         PhotonNetwork.NickName = "NewPlayer";
+        PhotonNetwork.LocalPlayer.LeaveCurrentTeam();
         //DontDestroyOnLoad(this.gameObject);
 
     }
