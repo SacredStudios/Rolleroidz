@@ -73,7 +73,7 @@ public class MenuController : MonoBehaviourPunCallbacks
     }
     public void ChangeUsername(string s)
     {
-        PhotonNetwork.ConnectUsingSettings();
+        
         int white_spaces = 0;// = s.Length(char.IsWhiteSpace)
         for(int i = 0; i < s.Length; i++)
         {
@@ -95,6 +95,10 @@ public class MenuController : MonoBehaviourPunCallbacks
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.MaxPlayers = (byte)max_players;
         Debug.Log(roomOptions.MaxPlayers);
+        if(!PhotonNetwork.IsConnected)
+        {
+            PhotonNetwork.ConnectUsingSettings();
+        }
         //PhotonNetwork.JoinRandomOrCreateRoom(null, roomOptions.MaxPlayers, MatchmakingMode.FillRoom, TypedLobby.Default);
         PhotonNetwork.JoinOrCreateRoom("test", roomOptions, TypedLobby.Default);
         roomOptions.EmptyRoomTtl = 0;
