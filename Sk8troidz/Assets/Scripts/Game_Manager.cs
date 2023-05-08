@@ -120,6 +120,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
                 }
                 if (team1count >= win_score)
                 {
+                Debug.Log("team1 wins");
                   pv.RPC("GameOver", RpcTarget.All, 1);
                 }
                 else if (team2count >= win_score)
