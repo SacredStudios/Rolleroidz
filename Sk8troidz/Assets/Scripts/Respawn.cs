@@ -15,11 +15,10 @@ public class Respawn : MonoBehaviour
     public List<Vector3> respawn_points;
     public void Death()
     {
-
-        player.SetActive(false);
-
         GameObject death_anim_clone = Instantiate(death_anim, player.transform.position, Quaternion.identity);
         death_anim_clone.SetActive(true);
+        player.transform.position = GetFarthestPoint(player.transform.position);
+        player.SetActive(false);
         if (pv.IsMine)
         {
             Debug.Log(pv.Owner.NickName + " died!");
@@ -53,7 +52,7 @@ public class Respawn : MonoBehaviour
     }
     void Player_Active()
     {
-        player.transform.position = GetFarthestPoint(player.transform.position);
+        
         player.SetActive(true);
         if (pv.Owner.GetScore() < 0)
         {
