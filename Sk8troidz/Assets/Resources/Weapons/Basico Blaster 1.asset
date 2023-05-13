@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2b305abf6b06f94db6cb13c15b13191, type: 3}
   m_Name: Basico Blaster 1
   m_EditorClassIdentifier: 
+  icon: {fileID: 2800000, guid: 153c8e15f7f6c452ca50f6795813ed39, type: 3}
   weapon_name: Basico Blaster
   weapon_description: Basic Blaster
   weapon_delay: 0.15

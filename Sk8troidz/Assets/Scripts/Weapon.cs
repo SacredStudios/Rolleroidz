@@ -3,10 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.UI;
 
 
 public class Weapon : ScriptableObject
 {
+    public Texture icon;
     public string weapon_name;
     public string weapon_description;
     public float weapon_delay;

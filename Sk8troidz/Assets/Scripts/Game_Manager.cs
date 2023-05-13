@@ -45,7 +45,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     }
     private void Start()
     {
-        my_weapon = Weapon_Selector.curr_weapon;
+        my_weapon = weapon_list.GetComponent<Weapon_List>().curr_weapon;
        
         PhotonNetwork.LocalPlayer.JoinTeam((byte)Random.Range(1, 3));
         

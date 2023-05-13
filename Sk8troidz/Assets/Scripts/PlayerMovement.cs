@@ -39,6 +39,8 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     [SerializeField] bool canJump = true;
     [SerializeField] Animator animator;
     [SerializeField] PhotonView pv;
+    Vector3 last_velocity;
+    [SerializeField] float acc_multiplier;
     //ADD PLAYER LEANING ANIMATION
 
     /*private Crosshair m_Crosshair; //Do this instead of running GetComponent every frame
@@ -75,16 +77,22 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     }
     void Gravity()
     {
+        float acceleration = ((Mathf.Abs(rb.velocity.x - last_velocity.x) + Mathf.Abs(rb.velocity.y - last_velocity.y) +
+            Mathf.Abs(rb.velocity.z - last_velocity.z)) * acc_multiplier) / Time.deltaTime;
+        last_velocity = rb.velocity;
+       // Debug.Log(acceleration);
         if (Physics.Raycast(jump_pos.transform.position, Vector3.down, rayCastLength))
         {
             extra_gravity = min_gravity;
             canJump = true;
             animator.SetFloat("IsJumping", 0f);
+            animator.speed = 1f+acceleration;
         }
         else
         {
             canJump = false;
             animator.SetFloat("IsJumping", 1f);
+            animator.speed = 1f;
         }
 
         if (extra_gravity < max_gravity)
