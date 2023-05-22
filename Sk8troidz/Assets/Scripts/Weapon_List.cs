@@ -22,7 +22,6 @@ public class Weapon_List : MonoBehaviour
     Weapon GetCurrentWeapon() //will be used on startup to get player's last used weapon
     {
         //will finish this with PlayerPrefs
-        Debug.Log(curr_weapon + " is my weapon");
         return curr_weapon;
         
 
@@ -31,6 +30,6 @@ public class Weapon_List : MonoBehaviour
     public void ChangeWeapon(Weapon weapon)
     {
         curr_weapon = weapon;
-        Debug.Log(curr_weapon + " is my weapon");
+        Debug.Log(curr_weapon.weapon_description);
     }
 }

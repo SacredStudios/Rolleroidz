@@ -49,10 +49,8 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
        
         if (animator.GetLayerWeight(2) <= 0.5)
         {
-
             weapon_up = true;
-            StartCoroutine(Weapon_Up());
-            
+            StartCoroutine(Weapon_Up());           
         }
         else
         {
@@ -85,19 +83,13 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
         yield return null;
     }
     private void Start()
-    {
-        //curr_gun = PhotonNetwork.Instantiate(weapon.instance.name, new Vector3(0, 0, 0), Quaternion.identity);
-            //pun call to instantiate weapon (like coins)
-           
-            
+    {                     
         if (weapon != null)
         {
             curr_gun = Instantiate(weapon.instance, weapon_loc.transform);
             pv.RPC("SetWeapon", RpcTarget.Others, weapon.name, pv.ViewID);
         }
-        
 
-      
         curr_gun.transform.parent = weapon_loc.transform;
         Debug.Log(weapon.name + " + " +weapon.instance.name);
         weapon.pv = this.pv;
@@ -114,7 +106,6 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
             Debug.Log("w.name"); //Photon Hashtable might be more efficient. Yes Photon has a custom version of Hashtable. This was not a typo.
             if (w.name == currname)
             {
-                Debug.Log("found it");
                 curr_gun = Instantiate(w.instance, loc.transform);
                 weapon = w;
             }
