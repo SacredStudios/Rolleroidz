@@ -2505,13 +2505,18 @@ PrefabInstance:
     - target: {fileID: 8963599831222826740, guid: ff0fae8713e625d45827f6bf707d1a0d, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 9db2415a4af784441bd3fa5e9df6b93c, type: 2}
+      objectReference: {fileID: 2100000, guid: c4943d7eff325466ab28c23ec041f5dd, type: 2}
     - target: {fileID: 9219760572836378970, guid: ff0fae8713e625d45827f6bf707d1a0d, type: 3}
       propertyPath: m_Name
       value: Hat
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff0fae8713e625d45827f6bf707d1a0d, type: 3}
+--- !u!1 &5308996493470461834 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9219760572836378970, guid: ff0fae8713e625d45827f6bf707d1a0d, type: 3}
+  m_PrefabInstance: {fileID: 3917695488480614096}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5812255396677953257
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2936,6 +2941,24 @@ MonoBehaviour:
   pv: {fileID: -8997455347769814163}
   player_name: {fileID: 5247628439255982016}
   score: {fileID: 3740017744543000571}
+--- !u!114 &3057022809242229270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3660938799943817007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3f27889f73de4194ae1742f78f7e846, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  top_obj: {fileID: 5308996493470461834}
+  shirt_obj: {fileID: 3953815889385541142}
+  pants_obj: {fileID: 5493931878650465432}
+  shoes_obj: {fileID: 7813078382686190621}
+  sleeveL_obj: {fileID: 6889046788245605954}
+  sleeveR_obj: {fileID: 6045473779468529235}
 --- !u!114 &3149273144948488275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2983,6 +3006,11 @@ MonoBehaviour:
     LayerIndex: 1
   - SynchronizeType: 1
     LayerIndex: 2
+--- !u!1 &3953815889385541142 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8066819130096499958, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+  m_PrefabInstance: {fileID: 6426038362781840096}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &4008135090205734450 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7976471394023720146, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
@@ -3004,9 +3032,24 @@ CapsuleCollider:
   m_CorrespondingSourceObject: {fileID: 1339196910368310925, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
   m_PrefabInstance: {fileID: 6426038362781840096}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5493931878650465432 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1518700673590574712, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+  m_PrefabInstance: {fileID: 6426038362781840096}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6045473779468529235 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 776881412799995059, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+  m_PrefabInstance: {fileID: 6426038362781840096}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6426038363560892843 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1940958027, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+  m_PrefabInstance: {fileID: 6426038362781840096}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6889046788245605954 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 483873446397754530, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
   m_PrefabInstance: {fileID: 6426038362781840096}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &7812810418213220350 stripped
@@ -3020,6 +3063,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 928757a2606d7a742adfd4988abe27a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &7813078382686190621 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3837206232279535357, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+  m_PrefabInstance: {fileID: 6426038362781840096}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8999722921355035029 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2722618974921175925, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}

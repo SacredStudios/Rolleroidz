@@ -78,9 +78,8 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     void Gravity()
     {
         float acceleration = ((Mathf.Abs(rb.velocity.x - last_velocity.x) + Mathf.Abs(rb.velocity.y - last_velocity.y) +
-            Mathf.Abs(rb.velocity.z - last_velocity.z)) * acc_multiplier) / Time.deltaTime;
+        Mathf.Abs(rb.velocity.z - last_velocity.z)) * acc_multiplier) / Time.deltaTime;
         last_velocity = rb.velocity;
-       // Debug.Log(acceleration);
         if (Physics.Raycast(jump_pos.transform.position, Vector3.down, rayCastLength))
         {
             extra_gravity = min_gravity;
@@ -104,8 +103,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     private void Update()
     {
         if (pv.IsMine)
-        Jump();
-        
+        Jump();    
     }
     private void LateUpdate()
     {
@@ -136,17 +134,12 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
         
     }
     void Jump()
-    {
-     
+    { 
         if(Input.GetButtonDown("Jump") && canJump)
         {           
-                rb.AddForce(Vector3.up * jumpStrength);
-                
-                
-       
+                rb.AddForce(Vector3.up * jumpStrength);                               
                 canJump = false;      
         }
-
     }
     void OnCollisionEnter(Collision collision)
     {

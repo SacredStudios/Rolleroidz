@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 968b92512329c49e69668d54c013357b, type: 3}
+  m_Name: Bare
+  m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  mesh: {fileID: 2959467708922500008, guid: 796b11592dd83bb4191676ca8fbefadc, type: 3}
+  material: {fileID: 2100000, guid: 64a5c30ad17c7094f90006b9267e4346, type: 2}
+  type: 1
+  sleeveL_mesh: {fileID: -1767455476162773717, guid: 796b11592dd83bb4191676ca8fbefadc, type: 3}
+  sleeveL_mat: {fileID: 2100000, guid: 64a5c30ad17c7094f90006b9267e4346, type: 2}
+  sleeveR_mesh: {fileID: 1913026353010570263, guid: 91664886e3d757e4ea32b948e922b1bc, type: 3}
+  sleeveR_mat: {fileID: 2100000, guid: 64a5c30ad17c7094f90006b9267e4346, type: 2}

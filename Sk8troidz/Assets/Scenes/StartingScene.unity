@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3159,6 +3159,78 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1476574900}
   m_CullTransparentMesh: 1
+--- !u!1 &1477777240
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1477777242}
+  - component: {fileID: 1477777241}
+  m_Layer: 0
+  m_Name: ClothesList
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1477777241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1477777240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e735a6fac02e242cf8df172e0420d0f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  my_tops:
+  - {fileID: 11400000, guid: 8c999011c4a674b4180b541e6b359cfe, type: 2}
+  - {fileID: 11400000, guid: f0289f008929c485199be088f787d69d, type: 2}
+  my_shirts:
+  - {fileID: 11400000, guid: 31c3ad2886721482c85660c0529738c6, type: 2}
+  - {fileID: 11400000, guid: aab37f7d51a884d73971ceb219607946, type: 2}
+  my_pants:
+  - {fileID: 11400000, guid: 1d908dadd75bf403c896757b2b8a484e, type: 2}
+  my_shoes:
+  - {fileID: 11400000, guid: e090208561c364b17851fe2ab27e4723, type: 2}
+  all_tops:
+  - {fileID: 11400000, guid: f0289f008929c485199be088f787d69d, type: 2}
+  - {fileID: 11400000, guid: 8c999011c4a674b4180b541e6b359cfe, type: 2}
+  all_shirts:
+  - {fileID: 11400000, guid: 31c3ad2886721482c85660c0529738c6, type: 2}
+  - {fileID: 11400000, guid: aab37f7d51a884d73971ceb219607946, type: 2}
+  all_pants:
+  - {fileID: 11400000, guid: 1d908dadd75bf403c896757b2b8a484e, type: 2}
+  all_shoes:
+  - {fileID: 11400000, guid: e090208561c364b17851fe2ab27e4723, type: 2}
+  curr_top: {fileID: 0}
+  curr_shirt: {fileID: 0}
+  curr_pants: {fileID: 0}
+  curr_shoes: {fileID: 0}
+  def_top: {fileID: 11400000, guid: f0289f008929c485199be088f787d69d, type: 2}
+  def_shirt: {fileID: 11400000, guid: 31c3ad2886721482c85660c0529738c6, type: 2}
+  def_pants: {fileID: 11400000, guid: 1d908dadd75bf403c896757b2b8a484e, type: 2}
+  def_shoes: {fileID: 11400000, guid: e090208561c364b17851fe2ab27e4723, type: 2}
+--- !u!4 &1477777242
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1477777240}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.8791294, y: -3.3101497, z: -0.17515066}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1514558452
 GameObject:
   m_ObjectHideFlags: 0
