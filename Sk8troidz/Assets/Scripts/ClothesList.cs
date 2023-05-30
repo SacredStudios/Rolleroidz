@@ -22,18 +22,15 @@ public class ClothesList : MonoBehaviour
 
     [SerializeField] Clothing def_top;
     [SerializeField] Clothing def_shirt;
-    [SerializeField] Clothing def_pants;
-    [SerializeField] Clothing def_shoes;
+    public Clothing def_pants;
+    public Clothing def_shoes;
 
 
     // Start is called before the first frame update
     void Start()
     {
         DontDestroyOnLoad(this.gameObject);
-        ChangeClothes(def_top);
-        ChangeClothes(def_shirt);
-        ChangeClothes(def_pants);
-        ChangeClothes(def_shoes);
+        
 
     }
 

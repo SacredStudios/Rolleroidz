@@ -2959,6 +2959,7 @@ MonoBehaviour:
   shoes_obj: {fileID: 7813078382686190621}
   sleeveL_obj: {fileID: 6889046788245605954}
   sleeveR_obj: {fileID: 6045473779468529235}
+  pv: {fileID: 8999722921355035029}
 --- !u!114 &3149273144948488275
 MonoBehaviour:
   m_ObjectHideFlags: 0

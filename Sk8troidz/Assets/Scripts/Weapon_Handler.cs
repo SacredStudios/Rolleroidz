@@ -91,7 +91,7 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
         }
 
         curr_gun.transform.parent = weapon_loc.transform;
-        Debug.Log(weapon.name + " + " +weapon.instance.name);
+        //Debug.Log(weapon.name + " + " +weapon.instance.name);
         weapon.pv = this.pv;
     }
     [PunRPC] void SetWeapon(string currname, int viewID)
@@ -103,7 +103,7 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
         Debug.Log(loc.name);
         foreach (Weapon w in weapon_list.GetComponent<Weapon_List>().all_weapon_list)
         {
-            Debug.Log("w.name"); //Photon Hashtable might be more efficient. Yes Photon has a custom version of Hashtable. This was not a typo.
+            //Photon Hashtable might be more efficient. Yes Photon has a custom version of Hashtable. This was not a typo.
             if (w.name == currname)
             {
                 curr_gun = Instantiate(w.instance, loc.transform);
