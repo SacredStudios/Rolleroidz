@@ -10,6 +10,7 @@ public class Weapon_Screen : MonoBehaviour
     public int j;
     void Start()
     {
+       
         GameObject weapon_list = GameObject.Find("WeaponList");
         foreach (Weapon w in weapon_list.GetComponent<Weapon_List>().my_weapon_list)
         {

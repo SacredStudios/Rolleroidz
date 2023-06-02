@@ -84,7 +84,7 @@ public class ClothesManager : MonoBehaviourPunCallbacks
                 sleeveR.GetComponent<SkinnedMeshRenderer>().sharedMesh = c.sleeveR_mesh;
                 sleeveR.GetComponent<Renderer>().material = c.sleeveR_mat;
             }
-        }
+        } //MAKE setpants/setshoes here
     }
 
 }

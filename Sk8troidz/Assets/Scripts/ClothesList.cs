@@ -24,18 +24,21 @@ public class ClothesList : MonoBehaviour
     [SerializeField] Clothing def_shirt;
     public Clothing def_pants;
     public Clothing def_shoes;
+    [SerializeField] GameObject sk8troid_menu;
 
 
     // Start is called before the first frame update
     void Start()
     {
         DontDestroyOnLoad(this.gameObject);
+        sk8troid_menu = GameObject.Find("Sk8troid(MENUVERSION)");
         
 
     }
 
     public void ChangeClothes(Clothing clothes)
     {
+        sk8troid_menu.GetComponent<Clothes_Dummy>().ChangeClothes(clothes);
         Debug.Log(clothes.name);
         switch (clothes.type)
         {
