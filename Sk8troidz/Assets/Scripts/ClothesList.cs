@@ -20,7 +20,7 @@ public class ClothesList : MonoBehaviour
     public Clothing curr_pants;
     public Clothing curr_shoes;
 
-    [SerializeField] Clothing def_top;
+    [SerializeField] Clothing def_top; //you can delete this when you make playerprefs
     [SerializeField] Clothing def_shirt;
     public Clothing def_pants;
     public Clothing def_shoes;
@@ -36,6 +36,7 @@ public class ClothesList : MonoBehaviour
 
     public void ChangeClothes(Clothing clothes)
     {
+        Debug.Log(clothes.name);
         switch (clothes.type)
         {
             case Clothing.Type.Top:

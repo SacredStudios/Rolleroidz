@@ -15,7 +15,7 @@ public class Weapon_List : MonoBehaviour
     private void Start()
     {
         DontDestroyOnLoad(this.gameObject);
-        curr_weapon = GetCurrentWeapon();
+        curr_weapon = my_weapon_list[0];
         //curr_weapon = all_weapon_list[Random.Range(0,2)]; //be sure to comment this out
         ChangeWeapon(curr_weapon);
     }
