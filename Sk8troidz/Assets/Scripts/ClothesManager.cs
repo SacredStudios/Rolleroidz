@@ -37,6 +37,7 @@ public class ClothesManager : MonoBehaviourPunCallbacks
             top_obj.GetComponent<Renderer>().material = cl.curr_top.material;
             shirt_obj.GetComponent<Renderer>().material = cl.curr_shirt.material;
             pants_obj.GetComponent<Renderer>().material = cl.curr_pants.material;
+            Debug.Log(cl.curr_pants.material);
             sleeveL_obj.GetComponent<Renderer>().material = cl.curr_shirt.sleeveL_mat;
             sleeveR_obj.GetComponent<Renderer>().material = cl.curr_shirt.sleeveR_mat;
 
@@ -84,7 +85,24 @@ public class ClothesManager : MonoBehaviourPunCallbacks
                 sleeveR.GetComponent<SkinnedMeshRenderer>().sharedMesh = c.sleeveR_mesh;
                 sleeveR.GetComponent<Renderer>().material = c.sleeveR_mat;
             }
-        } //MAKE setpants/setshoes here
+        }
+    }
+    [PunRPC]
+    void SetPants(string currname, int viewID)
+    {
+        GameObject clothes_list = GameObject.Find("ClothesList");
+        GameObject player = PhotonView.Find(viewID).gameObject;
+        GameObject pants = player.GetComponent<ClothesManager>().shirt_obj;
+
+        foreach (Clothing c in clothes_list.GetComponent<ClothesList>().all_shirts)
+        {//Photon Hashtable might be more efficient. Yes Photon has a custom version of Hashtable. This was not a typo.
+            if (c.name == currname)
+            {
+                Debug.Log(c.name);
+                pants.GetComponent<SkinnedMeshRenderer>().sharedMesh = c.mesh;
+                pants.GetComponent<Renderer>().material = c.material;
+            }
+        } //MAKE setshoes here
     }
 
 }
