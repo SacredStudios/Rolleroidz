@@ -34,6 +34,7 @@ public class MenuController : MonoBehaviourPunCallbacks
         PhotonNetwork.ConnectUsingSettings();
         PhotonNetwork.NickName = "NewPlayer";
         PhotonNetwork.LocalPlayer.LeaveCurrentTeam();
+        start_pos = transition.transform.position;
         //DontDestroyOnLoad(this.gameObject);
 
     }
@@ -50,7 +51,7 @@ public class MenuController : MonoBehaviourPunCallbacks
 
     IEnumerator Transition_Down()
     {
-        transition.transform.position = start_pos;
+        
         while (transition.transform.position.y > target_pos.y)
         {
             transition.transform.position -= velocity;
@@ -58,18 +59,20 @@ public class MenuController : MonoBehaviourPunCallbacks
             yield return new WaitForSeconds(0.01f);
         }
         yield return new WaitForSeconds(1f);
+        transition.transform.position = new Vector3(transition.transform.position.x, target_pos.y, transition.transform.position.z);
         StartCoroutine(Transition_Up());
 
     }
     IEnumerator Transition_Up()
     {
-        transition.transform.position = target_pos;
+        
         while (transition.transform.position.y < start_pos.y)
         {
             transition.transform.position += velocity;
-
+            Debug.Log("goin up");
             yield return new WaitForSeconds(0.01f);
         }
+        transition.transform.position = start_pos;
 
     }
     public void ChangeUsername(string s)
