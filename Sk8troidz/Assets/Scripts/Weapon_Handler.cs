@@ -87,6 +87,7 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
         if (weapon != null)
         {
             curr_gun = Instantiate(weapon.instance, weapon_loc.transform);
+            curr_gun.transform.position += weapon.offset;
             pv.RPC("SetWeapon", RpcTarget.Others, weapon.name, pv.ViewID);
         }
 
@@ -107,6 +108,7 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
             if (w.name == currname)
             {
                 curr_gun = Instantiate(w.instance, loc.transform);
+                curr_gun.transform.position += weapon.offset;
                 weapon = w;
             }
         }

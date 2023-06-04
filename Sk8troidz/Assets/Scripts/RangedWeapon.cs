@@ -16,29 +16,32 @@ public class RangedWeapon : Weapon
     public override void Shoot(GameObject parent, GameObject particle_pos, GameObject explosion_pos)
     {
       //  Debug.DrawRay(parent.transform.position, particle_pos.transform.up * range, Color.green); //chage this to capsulecast
-        Ray ray = new Ray(parent.transform.position, particle_pos.transform.up * range); ;
+        Ray ray = new Ray(parent.transform.position, particle_pos.transform.up);
         RaycastHit hit = new RaycastHit();
         PhotonNetwork.Instantiate(particle_trail.name, particle_pos.transform.position, particle_pos.transform.rotation);
         Instantiate(particle_explosion, explosion_pos.transform.position, particle_pos.transform.rotation);
         
         if (Physics.Raycast(ray, out hit)) //Target Acquired
         {
-          //  Debug.Log(hit.collider.GetComponent<PhotonView>().Owner.GetPhotonTeam() + " + " + PhotonNetwork.LocalPlayer.GetPhotonTeam());
-            PhotonNetwork.Instantiate(impact_explosion.name, hit.point, Quaternion.identity);
-               //"if()" is a good name of a book
+            if (hit.distance <= range)
+            {
+                //  Debug.Log(hit.collider.GetComponent<PhotonView>().Owner.GetPhotonTeam() + " + " + PhotonNetwork.LocalPlayer.GetPhotonTeam());
+                PhotonNetwork.Instantiate(impact_explosion.name, hit.point, Quaternion.identity);
+                //"if()" is a good name of a book
                 if (hit.collider.tag == "Player" && hit.collider.GetComponent<PhotonView>().Owner.GetPhotonTeam() != PhotonNetwork.LocalPlayer.GetPhotonTeam())
                 {
 
                     hit.collider.GetComponent<Player_Health>().Remove_Health(damage);
-                   // Debug.Log(hit.collider.gameObject.GetComponent<PhotonView>().Owner.GetPhotonTeam() + "+" + pv.Owner.GetPhotonTeam());
+                    // Debug.Log(hit.collider.gameObject.GetComponent<PhotonView>().Owner.GetPhotonTeam() + "+" + pv.Owner.GetPhotonTeam());
 
                 }
                 else if (hit.collider.tag == "Player_Head" && hit.collider.GetComponentInParent<PhotonView>().Owner.GetPhotonTeam() != PhotonNetwork.LocalPlayer.GetPhotonTeam())
                 {//team collisions seem to not work yet
-                hit.collider.GetComponentInParent<Player_Health>().Remove_Health(damage * 1.5f);
+                    hit.collider.GetComponentInParent<Player_Health>().Remove_Health(damage * 1.5f);
                     //Debug.Log("HeadShot");
 
                 }
+            }
             
           
         }

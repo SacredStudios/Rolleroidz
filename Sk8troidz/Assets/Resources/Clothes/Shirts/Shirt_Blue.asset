@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 968b92512329c49e69668d54c013357b, type: 3}
   m_Name: Shirt_Blue
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
+  icon: {fileID: 2800000, guid: 0ca2b005066369e48b8e6072148f30eb, type: 3}
   mesh: {fileID: 4300000, guid: bc311935d3a3f2044af43c92fcc45918, type: 2}
   material: {fileID: 2100000, guid: 8ba907449bae37c45a0444c90fc02362, type: 2}
   type: 1

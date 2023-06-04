@@ -32,7 +32,10 @@ public class ClothesList : MonoBehaviour
     {
         DontDestroyOnLoad(this.gameObject);
         sk8troid_menu = GameObject.Find("Sk8troid(MENUVERSION)");
-        
+        ChangeClothes(def_top);
+        ChangeClothes(def_shirt);
+        ChangeClothes(def_pants);
+        ChangeClothes(def_shoes);
 
     }
 

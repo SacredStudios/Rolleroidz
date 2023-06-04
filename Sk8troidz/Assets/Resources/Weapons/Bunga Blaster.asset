@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2b305abf6b06f94db6cb13c15b13191, type: 3}
   m_Name: Bunga Blaster
   m_EditorClassIdentifier: 
-  icon: {fileID: 2800000, guid: 862c5ca31844d4a6d9aa804af982ce65, type: 3}
+  icon: {fileID: 2800000, guid: 4e19ca059e871114b8622e660d899408, type: 3}
   weapon_name: Bunga Blaster
   weapon_description: Bunga Blaster
-  weapon_delay: 0.3
-  damage: 20
-  attack_cost: 25
+  weapon_delay: 0.5
+  damage: 30
+  attack_cost: 41
   knockback: 0
-  offset: {x: 100, y: 0, z: 0}
+  offset: {x: 0, y: -0.2, z: 0.1}
   pv: {fileID: 0}
   instance: {fileID: 752707165243343423, guid: 8a570b296fd5b4073a4df7583f56a0e8, type: 3}
   particle_trail: {fileID: 484392930733997870, guid: e83730576bd6d491294d149809c4fa60, type: 3}

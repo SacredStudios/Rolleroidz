@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 968b92512329c49e69668d54c013357b, type: 3}
   m_Name: Hat_Red
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
+  icon: {fileID: 2800000, guid: e714f55ab94ea804a80ab34ab6b95e43, type: 3}
   mesh: {fileID: 4300000, guid: c920c2ce58f92864cb1169f0fd58ee62, type: 2}
   material: {fileID: 2100000, guid: 9db2415a4af784441bd3fa5e9df6b93c, type: 2}
   type: 0
