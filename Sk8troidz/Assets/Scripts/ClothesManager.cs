@@ -31,18 +31,21 @@ public class ClothesManager : MonoBehaviourPunCallbacks
             top_obj.GetComponent<MeshFilter>().mesh = cl.curr_top.mesh;
             shirt_obj.GetComponent<SkinnedMeshRenderer>().sharedMesh = cl.curr_shirt.mesh;
             pants_obj.GetComponent<SkinnedMeshRenderer>().sharedMesh = cl.curr_pants.mesh;
+            shoes_obj.GetComponent<SkinnedMeshRenderer>().sharedMesh = cl.curr_shoes.mesh;
             sleeveL_obj.GetComponent<SkinnedMeshRenderer>().sharedMesh = cl.curr_shirt.sleeveL_mesh;
             sleeveR_obj.GetComponent<SkinnedMeshRenderer>().sharedMesh = cl.curr_shirt.sleeveR_mesh;
 
             top_obj.GetComponent<Renderer>().material = cl.curr_top.material;
             shirt_obj.GetComponent<Renderer>().material = cl.curr_shirt.material;
             pants_obj.GetComponent<Renderer>().material = cl.curr_pants.material;
-            Debug.Log(cl.curr_pants.material);
+            shoes_obj.GetComponent<Renderer>().material = cl.curr_shoes.material;
             sleeveL_obj.GetComponent<Renderer>().material = cl.curr_shirt.sleeveL_mat;
             sleeveR_obj.GetComponent<Renderer>().material = cl.curr_shirt.sleeveR_mat;
 
             pv.RPC("SetTop", RpcTarget.Others, cl.curr_top.name, pv.ViewID);
             pv.RPC("SetShirt", RpcTarget.Others, cl.curr_shirt.name, pv.ViewID);
+            pv.RPC("SetPants", RpcTarget.Others, cl.curr_pants.name, pv.ViewID);
+            pv.RPC("SetShoes", RpcTarget.Others, cl.curr_shoes.name, pv.ViewID);
             //change to other
             //shoes_obj.GetComponent<SkinnedMeshRenderer>().sharedMesh = cl.curr_shoes.mesh;
         }
@@ -92,15 +95,32 @@ public class ClothesManager : MonoBehaviourPunCallbacks
     {
         GameObject clothes_list = GameObject.Find("ClothesList");
         GameObject player = PhotonView.Find(viewID).gameObject;
-        GameObject pants = player.GetComponent<ClothesManager>().shirt_obj;
+        GameObject pants = player.GetComponent<ClothesManager>().pants_obj;
 
-        foreach (Clothing c in clothes_list.GetComponent<ClothesList>().all_shirts)
+        foreach (Clothing c in clothes_list.GetComponent<ClothesList>().all_pants)
         {//Photon Hashtable might be more efficient. Yes Photon has a custom version of Hashtable. This was not a typo.
             if (c.name == currname)
             {
                 Debug.Log(c.name);
                 pants.GetComponent<SkinnedMeshRenderer>().sharedMesh = c.mesh;
                 pants.GetComponent<Renderer>().material = c.material;
+            }
+        } //MAKE setshoes here
+    }
+    [PunRPC]
+    void SetShoes(string currname, int viewID)
+    {
+        GameObject clothes_list = GameObject.Find("ClothesList");
+        GameObject player = PhotonView.Find(viewID).gameObject;
+        GameObject shoes = player.GetComponent<ClothesManager>().shoes_obj;
+
+        foreach (Clothing c in clothes_list.GetComponent<ClothesList>().all_shoes)
+        {//Photon Hashtable might be more efficient. Yes Photon has a custom version of Hashtable. This was not a typo.
+            if (c.name == currname)
+            {
+                Debug.Log(c.name);
+                shoes.GetComponent<SkinnedMeshRenderer>().sharedMesh = c.mesh;
+                shoes.GetComponent<Renderer>().material = c.material;
             }
         } //MAKE setshoes here
     }

@@ -35,7 +35,8 @@ public class Clothes_Dummy : MonoBehaviour
                 pants_obj.GetComponent<Renderer>().material = clothes.material;
                 break;
             case Clothing.Type.Shoes:
-                //add later
+                shoes_obj.GetComponent<SkinnedMeshRenderer>().sharedMesh = clothes.mesh;
+                shoes_obj.GetComponent<Renderer>().material = clothes.material;
                 break;
         }
     }

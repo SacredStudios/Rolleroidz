@@ -6071,6 +6071,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fe1be62d395e6f04c9710cf80b276586, type: 2}
   my_shoes:
   - {fileID: 11400000, guid: e090208561c364b17851fe2ab27e4723, type: 2}
+  - {fileID: 11400000, guid: 8b9d10bbd904c1f4abc359abf796f819, type: 2}
   all_tops:
   - {fileID: 11400000, guid: f0289f008929c485199be088f787d69d, type: 2}
   - {fileID: 11400000, guid: 8c999011c4a674b4180b541e6b359cfe, type: 2}
@@ -6083,6 +6084,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fe1be62d395e6f04c9710cf80b276586, type: 2}
   all_shoes:
   - {fileID: 11400000, guid: e090208561c364b17851fe2ab27e4723, type: 2}
+  - {fileID: 11400000, guid: 8b9d10bbd904c1f4abc359abf796f819, type: 2}
   curr_top: {fileID: 0}
   curr_shirt: {fileID: 0}
   curr_pants: {fileID: 0}
