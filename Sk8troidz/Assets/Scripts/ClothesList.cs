@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ClothesList : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class ClothesList : MonoBehaviour
     [SerializeField] Clothing def_shirt;
     public Clothing def_pants;
     public Clothing def_shoes;
-    [SerializeField] GameObject sk8troid_menu;
+    public GameObject sk8troid_menu;
 
 
     // Start is called before the first frame update
