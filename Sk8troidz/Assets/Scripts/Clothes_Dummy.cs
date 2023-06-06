@@ -24,7 +24,7 @@ public class Clothes_Dummy : MonoBehaviour
     private void Start()
     {
         GameObject ClothesList = GameObject.Find("ClothesList");
-        GameObject WeaponList = GameObject.Find("ClothesList");
+        GameObject WeaponList = GameObject.Find("WeaponList");
         ClothesList cl = ClothesList.GetComponent<ClothesList>();
         Weapon_List wl = WeaponList.GetComponent<Weapon_List>();
         cl.ChangeClothes(cl.curr_top);
