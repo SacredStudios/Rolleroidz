@@ -17,7 +17,12 @@ public class Clothes_Dummy : MonoBehaviour
     private void Awake()
     {
         GameObject ClothesList = GameObject.Find("ClothesList");
-        ClothesList.GetComponent<ClothesList>().sk8troid_menu = this.gameObject;
+        ClothesList cl = ClothesList.GetComponent<ClothesList>();
+        cl.sk8troid_menu = this.gameObject;
+        cl.ChangeClothes(cl.curr_top);
+        cl.ChangeClothes(cl.curr_shirt);
+        cl.ChangeClothes(cl.curr_pants);
+        cl.ChangeClothes(cl.curr_shoes);
     }
     public void ChangeClothes(Clothing clothes)
     {
