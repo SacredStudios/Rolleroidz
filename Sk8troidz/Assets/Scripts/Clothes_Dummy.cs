@@ -20,7 +20,7 @@ public class Clothes_Dummy : MonoBehaviour
         ClothesList = GameObject.Find("ClothesList");
         WeaponList = GameObject.Find("WeaponList");
         ClothesList cl = ClothesList.GetComponent<ClothesList>();
-        Weapon_List wl = ClothesList.GetComponent<Weapon_List>();
+        Weapon_List wl = WeaponList.GetComponent<Weapon_List>();
         cl.sk8troid_menu = this.gameObject;
         wl.sk8troid_menu = this.gameObject;
     }
