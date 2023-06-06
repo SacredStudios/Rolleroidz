@@ -1889,7 +1889,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2439011514110663955}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.16666666, y: -0.96000004, z: -0.48999995}
+  m_LocalPosition: {x: 0.16666666, y: 0.45333323, z: -0.48999995}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2697,6 +2697,18 @@ PrefabInstance:
       propertyPath: playerCam_gameObject
       value: 
       objectReference: {fileID: 2439011514110663955}
+    - target: {fileID: 1940958028, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.8433332
+      objectReference: {fileID: 0}
+    - target: {fileID: 2111927025, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: ShoulderOffset.y
+      value: -0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 2111927025, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: VerticalArmLength
+      value: 1.91
+      objectReference: {fileID: 0}
     - target: {fileID: 332139699736098662, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: m_Camera
       value: 
