@@ -12,19 +12,21 @@ public class Clothes_Dummy : MonoBehaviour
     [SerializeField] GameObject sleeveR_obj;
     [SerializeField] GameObject weapon_loc;
     [SerializeField] GameObject curr_weapon;
-
+    GameObject ClothesList;
+    GameObject WeaponList;
     //This is for the sk8troid on the menu, so it changes clothes after each change
     private void Awake()
     {
-        GameObject ClothesList = GameObject.Find("ClothesList");
+        ClothesList = GameObject.Find("ClothesList");
+        WeaponList = GameObject.Find("WeaponList");
         ClothesList cl = ClothesList.GetComponent<ClothesList>();
+        Weapon_List wl = ClothesList.GetComponent<Weapon_List>();
         cl.sk8troid_menu = this.gameObject;
-        
+        wl.sk8troid_menu = this.gameObject;
     }
     private void Start()
     {
-        GameObject ClothesList = GameObject.Find("ClothesList");
-        GameObject WeaponList = GameObject.Find("WeaponList");
+        
         ClothesList cl = ClothesList.GetComponent<ClothesList>();
         Weapon_List wl = WeaponList.GetComponent<Weapon_List>();
         cl.ChangeClothes(cl.curr_top);

@@ -7,7 +7,7 @@ public class Weapon_List : MonoBehaviour
     public List<Weapon> my_weapon_list;
     public List<Weapon> all_weapon_list;
     public Weapon curr_weapon; //the current weapon
-    [SerializeField] GameObject sk8troid_menu;
+    public GameObject sk8troid_menu;
 
     public void AddWeapon(Weapon weapon)
     {
@@ -33,6 +33,6 @@ public class Weapon_List : MonoBehaviour
     {
         curr_weapon = weapon;
         sk8troid_menu.GetComponent<Clothes_Dummy>().ChangeWeapon(weapon);
-        Debug.Log(curr_weapon.weapon_description);
+        Debug.Log(curr_weapon.name);
     }
 }
