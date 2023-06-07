@@ -10,6 +10,7 @@ public class Weapon : ScriptableObject
 {
     public Texture icon;
     public string weapon_name;
+    [TextArea(15,20)]
     public string weapon_description;
     public float weapon_delay;
     public float damage;
@@ -17,7 +18,7 @@ public class Weapon : ScriptableObject
     public float knockback;
     public Vector3 offset;
     public PhotonView pv;
-   
+    public float range;
 
 
     public GameObject instance;
