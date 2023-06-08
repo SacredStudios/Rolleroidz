@@ -918,7 +918,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5420565183326711477, guid: a6476ea02cc0c40daa369662ce82aaf1, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5935816816605236775, guid: a6476ea02cc0c40daa369662ce82aaf1, type: 3}
       propertyPath: m_IsActive
@@ -952,6 +952,14 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6805414654109590103, guid: a6476ea02cc0c40daa369662ce82aaf1, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -278085929633702562, guid: b205c48fdbd3fb5448c4a2fee387f3d3, type: 3}
+    - target: {fileID: 6805414654109590103, guid: a6476ea02cc0c40daa369662ce82aaf1, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 74c1200721411a74085f4d7b6a9e561d, type: 2}
     - target: {fileID: 6907254382145501102, guid: a6476ea02cc0c40daa369662ce82aaf1, type: 3}
       propertyPath: m_AnchorMax.x
       value: 1
@@ -1139,7 +1147,7 @@ RectTransform:
   m_GameObject: {fileID: 161643326}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.548186, y: 1.548186, z: 1.032124}
+  m_LocalScale: {x: 1.6850456, y: 1.6850456, z: 1.1233639}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 472307991}
@@ -1147,7 +1155,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 19.468431, y: 578}
+  m_AnchoredPosition: {x: 19.468431, y: 624}
   m_SizeDelta: {x: 800, y: 450}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &161643328
@@ -7614,6 +7622,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fe1be62d395e6f04c9710cf80b276586, type: 2}
   my_shoes:
   - {fileID: 11400000, guid: e090208561c364b17851fe2ab27e4723, type: 2}
+  - {fileID: 11400000, guid: 0bb5e3d553a1c4746a763a21c93435a8, type: 2}
   - {fileID: 11400000, guid: 8b9d10bbd904c1f4abc359abf796f819, type: 2}
   all_tops:
   - {fileID: 11400000, guid: f0289f008929c485199be088f787d69d, type: 2}
@@ -7627,6 +7636,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fe1be62d395e6f04c9710cf80b276586, type: 2}
   all_shoes:
   - {fileID: 11400000, guid: e090208561c364b17851fe2ab27e4723, type: 2}
+  - {fileID: 11400000, guid: 0bb5e3d553a1c4746a763a21c93435a8, type: 2}
   - {fileID: 11400000, guid: 8b9d10bbd904c1f4abc359abf796f819, type: 2}
   curr_top: {fileID: 0}
   curr_shirt: {fileID: 0}
