@@ -27,22 +27,22 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AmbientCol: 0
+    - _AmbientCol: 0.474
     - _Clipped: 0
     - _ColBright: 0
     - _ColIntense: 1
     - _Lumin: 0
     - _MaxLight: 1
-    - _MinLight: 0
+    - _MinLight: 0.61
     - _Offset: 0
     - _OtlWidth: 1
     - _Segmented: 1
     - _ShnIntense: 0
     - _ShnOverlap: 0
     - _ShnRange: 0.15
-    - _ShnSmooth: 0
-    - _Steps: 3
-    - _StpSmooth: 0
+    - _ShnSmooth: 1
+    - _Steps: 1
+    - _StpSmooth: 0.503
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _OtlColor: {r: 0, g: 0, b: 0, a: 1}
