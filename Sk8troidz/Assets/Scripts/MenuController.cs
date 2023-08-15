@@ -69,7 +69,6 @@ public class MenuController : MonoBehaviourPunCallbacks
         while (transition.transform.position.y < start_pos.y)
         {
             transition.transform.position += velocity;
-            Debug.Log("goin up");
             yield return new WaitForSeconds(0.01f);
         }
         transition.transform.position = start_pos;

@@ -6,22 +6,31 @@ public class Trick_System : MonoBehaviour
 {
     [SerializeField] GameObject btn;
     public int counter;
+    public bool trick_mode_activated = false;
+    [SerializeField] GameObject parent;
     public void Start_Trick_System()
     {
         counter = 0;
+        trick_mode_activated = true;
         StartCoroutine(Trick(3));
+    }
+   
+    public void AddToCounter(GameObject btn)
+    {
+        counter++;
+        Destroy(btn);
     }
     IEnumerator Trick(int n)
     {
-        GameObject.Instantiate(btn, this.gameObject.transform);
         Vector3 position = new Vector3(0f, 0f, 0f);
-        for(int i = 1; i < n; i+=2)
+        for(int i = 0; i < n; i++)
         {
             position.x += 25f;
-            GameObject.Instantiate(btn, position, Quaternion.identity, this.gameObject.transform);
-            GameObject.Instantiate(btn, -1*position, Quaternion.identity, this.gameObject.transform);
+            GameObject btn_clone = Instantiate(btn, position, Quaternion.identity, parent.transform);
+            btn_clone.SetActive(true);
         }
-        yield return new WaitUntil(() => counter >= n);
+        yield return new WaitUntil(() => counter >= n || trick_mode_activated == false);
+        Debug.Log("hi");
    
     }
 }

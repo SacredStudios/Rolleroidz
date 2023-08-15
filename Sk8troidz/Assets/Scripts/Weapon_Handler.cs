@@ -20,6 +20,7 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
     [SerializeField] Slider cooldown;
     [SerializeField] PhotonView pv;
  
+    public bool isOverTrickBtn; //checks if mouse is hovering over a trick btn
 
     private void Update()
     {
@@ -30,7 +31,7 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
             {
                 shoot_delay += Time.deltaTime;
             }
-            if (Input.GetButton("Fire1") && shoot_delay >= weapon.weapon_delay && weapon.attack_cost <= cooldown.value && pv.IsMine)
+            if (Input.GetButton("Fire1") && shoot_delay >= weapon.weapon_delay && weapon.attack_cost <= cooldown.value && pv.IsMine && !isOverTrickBtn)
             {
                 cooldown.value -= weapon.attack_cost;
                 shoot_delay = 0;
@@ -117,5 +118,6 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
         }
         
     }
+    
 
 }

@@ -41,21 +41,12 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     [SerializeField] PhotonView pv;
     Vector3 last_velocity;
     [SerializeField] float acc_multiplier;
+    [SerializeField] float time_airborne;
+    [SerializeField] GameObject trick;
+    [SerializeField]  bool trick_mode_activated = false;
     //ADD PLAYER LEANING ANIMATION
 
-    /*private Crosshair m_Crosshair; //Do this instead of running GetComponent every frame
-    private Crosshair Crosshair 
-    {
-        get
-        {
-            if (m_Crosshair == null)
-            {
-                m_Crosshair = GetComponentInChildren<Crosshair>();
-            }
-            return m_Crosshair;
-        }
-    }
-    */
+  
     void Start()
     {
         targetRot = transform.eulerAngles.z;
@@ -82,13 +73,22 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
         last_velocity = rb.velocity;
         if (Physics.Raycast(jump_pos.transform.position, Vector3.down, rayCastLength))
         {
+            trick_mode_activated = false;
+            time_airborne = 0f;
             extra_gravity = min_gravity;
             canJump = true;
             animator.SetFloat("IsJumping", 0f);
-            animator.speed = 1f+acceleration;
+            animator.speed = 1f + acceleration;
         }
         else
         {
+            time_airborne += Time.deltaTime;
+            if(time_airborne > 2f && !trick_mode_activated)
+            {
+                Trick_System ts = trick.GetComponent<Trick_System>();
+                ts.Start_Trick_System();
+                trick_mode_activated = true;
+            }
             canJump = false;
             animator.SetFloat("IsJumping", 1f);
             animator.speed = 1f;
@@ -137,8 +137,9 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     { 
         if(Input.GetButtonDown("Jump") && canJump)
         {           
-                rb.AddForce(Vector3.up * jumpStrength);                               
-                canJump = false;      
+            rb.AddForce(Vector3.up * jumpStrength);                               
+            canJump = false;
+            trick_mode_activated = true;
         }
     }
     void OnCollisionEnter(Collision collision)
