@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     [SerializeField] float acc_multiplier;
     [SerializeField] float time_airborne;
     [SerializeField] GameObject trick;
-    [SerializeField]  bool trick_mode_activated = false;
+    [SerializeField] public static bool trick_mode_activated = false;
     //ADD PLAYER LEANING ANIMATION
 
   

@@ -1698,7 +1698,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7330687543525701367}
   - component: {fileID: 3928861488535298053}
-  - component: {fileID: 7009616422691384035}
   m_Layer: 0
   m_Name: Trick_System
   m_TagString: Untagged
@@ -1741,21 +1740,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   btn: {fileID: 8507229456281188486}
   counter: 0
-  trick_mode_activated: 0
   parent: {fileID: 1106976187424180103}
---- !u!114 &7009616422691384035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1106976187424180103}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1027b97c3344f064882760d44941ba4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   Weapon_Handler: {fileID: 3660938799943817007}
+  pv: {fileID: -8997455347769814163}
 --- !u!1 &1672231784690166583
 GameObject:
   m_ObjectHideFlags: 0
@@ -3032,6 +3019,10 @@ PrefabInstance:
       propertyPath: player_ui
       value: 
       objectReference: {fileID: 1737457467}
+    - target: {fileID: 1513577829, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: jumpStrength
+      value: 90000
+      objectReference: {fileID: 0}
     - target: {fileID: 1513577829, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: rayCastLength
       value: 0.4
