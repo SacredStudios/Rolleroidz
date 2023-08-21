@@ -8,6 +8,7 @@ using Photon.Realtime;
 public class Weapon_Handler : MonoBehaviourPunCallbacks
 {
     public Weapon weapon;
+    public Weapon temp_weapon;
     public GameObject curr_gun;
    
     [SerializeField] GameObject weapon_loc;
@@ -93,6 +94,7 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
             curr_gun = Instantiate(weapon.instance, weapon_loc.transform);
             curr_gun.transform.position += weapon.offset;
             pv.RPC("SetWeapon", RpcTarget.Others, weapon.name, pv.ViewID);
+            temp_weapon = weapon;
         }
 
         curr_gun.transform.parent = weapon_loc.transform;

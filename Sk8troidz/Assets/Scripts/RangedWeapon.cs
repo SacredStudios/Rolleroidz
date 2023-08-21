@@ -32,6 +32,7 @@ public class RangedWeapon : Weapon
                 {
 
                     hit.collider.GetComponent<Player_Health>().Remove_Health(damage);
+                    Super_Bar.ChangeAmount(damage);
                     // Debug.Log(hit.collider.gameObject.GetComponent<PhotonView>().Owner.GetPhotonTeam() + "+" + pv.Owner.GetPhotonTeam());
 
                 }

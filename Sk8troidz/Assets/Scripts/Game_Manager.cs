@@ -153,6 +153,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         {
             new_player.GetComponentInChildren<PlayerMovement>().enabled = false;
             new_player.GetComponentInChildren<Weapon_Handler>().enabled = false;
+           // new_player.
         }
         else
         {

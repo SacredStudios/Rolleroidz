@@ -3,47 +3,84 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Photon.Pun;
-using Photon.Realtime;
-using Photon.Pun.UtilityScripts;
+
 public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] GameObject btn;
     public int counter;
     [SerializeField] GameObject parent;
-    [SerializeField] GameObject Weapon_Handler;
+    [SerializeField] GameObject player;
+    [SerializeField] float amount;
+    [SerializeField] float delay; //delay after each successful trick
     private Weapon_Handler wh;
-    [SerializeField] PhotonView pv;
+    [SerializeField] Animator animator;
+
+
     void Start()
     {
 
-        wh = Weapon_Handler.GetComponent<Weapon_Handler>();
+        wh = player.GetComponent<Weapon_Handler>();
+
     }
+    
     public void Start_Trick_System()
     {
         counter = 0;
         PlayerMovement.trick_mode_activated = true;
-        StartCoroutine(Trick(3));
+        StartCoroutine(Trick(4));
     }
 
     public void AddToCounter(GameObject btn)
     {
+        Debug.Log("isthisrunning");
+        animator.SetLayerWeight(2, 0);
+        animator.SetBool("trickModeActivated", true);
+        wh.weapon = null;
         counter++;
         Destroy(btn);
     }
     IEnumerator Trick(int n)
     {
-        Vector3 position = new Vector3(0f, 0f, 0f);
-        for(int i = 0; i < n; i++)
+        Vector3 position = new Vector3(Screen.width/2, Screen.height / 2, 0f);
+        for(int i = 0; i < n/2; i++)
         {
-            position.x += 25f;
+            position.y = Screen.height / 2 + Random.Range(-50, 50);
+            GameObject btn_clone = Instantiate(btn, position, Quaternion.identity, parent.transform);
+            btn_clone.SetActive(true);
+            position.x += 90f;
+        }
+        position = new Vector3(Screen.width / 2, Screen.height / 2, 0f);
+        for (int i = 0; i < n / 2-1; i++)
+        {
+            position.y = Screen.height / 2 + Random.Range(-50, 50);
+            position.x -= 90f;
             GameObject btn_clone = Instantiate(btn, position, Quaternion.identity, parent.transform);
             btn_clone.SetActive(true);
         }
-        yield return new WaitUntil(() => counter >= n || PlayerMovement.trick_mode_activated == false);
-        if(counter >= n)
+        yield return new WaitUntil(() => counter >= n-1 || PlayerMovement.trick_mode_activated == false);
+       // player.GetComponent<Animator>().enabled = false;
+        
+        
+        yield break;
+        if (counter >= n-1)
         {
-            pv.Owner.AddScore(1);
+            counter = 0;
+            Super_Bar.ChangeAmount(amount);
+            yield return new WaitForSeconds(delay);
+            if (n > 8)
+            {
+                n = 8;
+            }
+                yield return Trick(n + 2);
         }
+        else if (counter>= 1)
+        {
+            animator.SetBool("trickModeActivated", false);
+            Ragdoll rd = player.GetComponent<Ragdoll>();
+            rd.ActivateRagdolls();
+        }
+        
+
    
     }
     public void OnPointerEnter(PointerEventData eventData)
