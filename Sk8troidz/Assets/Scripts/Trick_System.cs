@@ -41,6 +41,7 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     }
     IEnumerator Trick(int n)
     {
+        counter = 0;
         Vector3 position = new Vector3(Screen.width/2, Screen.height / 2, 0f);
         for(int i = 0; i < n/2; i++)
         {
@@ -58,13 +59,14 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             btn_clone.SetActive(true);
         }
         yield return new WaitUntil(() => counter >= n-1 || PlayerMovement.trick_mode_activated == false);
-       // player.GetComponent<Animator>().enabled = false;
-        
-        
-        yield break;
+        // player.GetComponent<Animator>().enabled = false;
+
+
+        animator.SetBool("trickModeActivated", false);
+ 
         if (counter >= n-1)
         {
-            counter = 0;
+            
             Super_Bar.ChangeAmount(amount);
             yield return new WaitForSeconds(delay);
             if (n > 8)
@@ -75,13 +77,13 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         }
         else if (counter>= 1)
         {
-            animator.SetBool("trickModeActivated", false);
+
             Ragdoll rd = player.GetComponent<Ragdoll>();
             rd.ActivateRagdolls();
         }
-        
+        counter = 0;
 
-   
+
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
