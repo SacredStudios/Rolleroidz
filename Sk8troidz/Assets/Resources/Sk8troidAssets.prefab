@@ -2532,7 +2532,7 @@ PrefabInstance:
       objectReference: {fileID: 1737457467}
     - target: {fileID: 1513577829, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: jumpStrength
-      value: 3000
+      value: 30000
       objectReference: {fileID: 0}
     - target: {fileID: 1513577829, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: playerCam_gameObject

@@ -22,7 +22,7 @@ public class Ragdoll : MonoBehaviour
         GetComponent<Weapon_Handler>().weapon = null;
         is_Ragdoll = true;
         rb.velocity = new Vector3(0, 0, 0);
-        Invoke("DeactivateRagdolls", 1f);
+        Invoke("DeactivateRagdolls", 3f);
         foreach (Collider collider in colliders)
         {
             collider.enabled = true;
