@@ -10,15 +10,19 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     public int counter;
     [SerializeField] GameObject parent;
     [SerializeField] GameObject player;
+    [SerializeField] GameObject super_bar;
     [SerializeField] float amount;
     [SerializeField] float delay; //delay after each successful trick
     private Weapon_Handler wh;
     [SerializeField] Animator animator;
+    
+    Super_Bar sb;
 
     void Start()
     {
 
         wh = player.GetComponent<Weapon_Handler>();
+        sb = player.GetComponent<Super_Bar>();
 
     }
     
@@ -66,7 +70,7 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         if (counter >= n-1)
         {
             
-            Super_Bar.ChangeAmount(amount);
+            sb.ChangeAmount(amount);
             yield return new WaitForSeconds(delay);
             if (n > 8)
             {

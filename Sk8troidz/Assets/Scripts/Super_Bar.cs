@@ -2,21 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class Super_Bar : MonoBehaviour
+using Photon.Pun;
+public class Super_Bar : MonoBehaviourPunCallbacks
 {
-    static Slider slider;
-    public static void ChangeAmount(float new_amount)
+    [SerializeField] Slider slider;
+    [SerializeField] PhotonView pv;
+    [SerializeField] GameObject player;
+    public void ChangeAmount(float new_amount)
     {
         Debug.Log("changing amount" + new_amount);
-        slider.value += new_amount;
+        pv.RPC("ChangeSuperBar", RpcTarget.All);       
     }
-    private void Start()
+    [PunRPC] void ChangeSuperBar()
     {
-        slider = this.gameObject.GetComponent<Slider>();
+        slider.value += 15;
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
 }
