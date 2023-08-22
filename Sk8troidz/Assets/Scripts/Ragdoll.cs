@@ -28,7 +28,7 @@ public class Ragdoll : MonoBehaviourPunCallbacks
         GetComponent<Weapon_Handler>().weapon = null;
         is_Ragdoll = true;
         rb.velocity = new Vector3(0, 0, 0);
-        Invoke("DeactivateRagdolls", 3f);
+     //   Invoke("DeactivateRagdolls", 3f);
        
     }
     [PunRPC] void SyncRagdoll(int id)
