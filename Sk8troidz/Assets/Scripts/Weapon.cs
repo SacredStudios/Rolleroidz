@@ -20,6 +20,8 @@ public class Weapon : ScriptableObject
     public PhotonView pv;
     public float range;
 
+    public GameObject player;
+
 
     public GameObject instance;
     //Add var for sound

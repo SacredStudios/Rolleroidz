@@ -100,6 +100,7 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
         curr_gun.transform.parent = weapon_loc.transform;
         //Debug.Log(weapon.name + " + " +weapon.instance.name);
         weapon.pv = this.pv;
+        weapon.player = this.gameObject;
     }
     [PunRPC] void SetWeapon(string currname, int viewID)
     {
