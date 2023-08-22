@@ -2508,7 +2508,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 150819664, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 926857765, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: cooldown
@@ -2598,6 +2598,10 @@ PrefabInstance:
       propertyPath: pv
       value: 
       objectReference: {fileID: -8997455347769814163}
+    - target: {fileID: 5289297984290239771, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: m_SynchronizeParameters.Array.data[3].SynchronizeType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6964899311109554037, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: m_RootOrder
       value: 5
