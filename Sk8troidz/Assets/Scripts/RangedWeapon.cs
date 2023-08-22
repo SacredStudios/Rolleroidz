@@ -26,7 +26,7 @@ public class RangedWeapon : Weapon
         {
             if (hit.distance <= range)
             {
-                Debug.Log(hit.collider);
+                Debug.Log(hit.collider.tag);
                 //  Debug.Log(hit.collider.GetComponent<PhotonView>().Owner.GetPhotonTeam() + " + " + PhotonNetwork.LocalPlayer.GetPhotonTeam());
                 PhotonNetwork.Instantiate(impact_explosion.name, hit.point, Quaternion.identity);
                 //"if()" is a good name of a book
