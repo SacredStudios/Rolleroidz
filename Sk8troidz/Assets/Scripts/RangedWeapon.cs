@@ -16,7 +16,7 @@ public class RangedWeapon : Weapon
     public override void Shoot(GameObject parent, GameObject particle_pos, GameObject explosion_pos)
     {
         //  Debug.DrawRay(parent.transform.position, particle_pos.transform.up * range, Color.green); //chage this to capsulecast
-        Debug.Log(player.name);
+        
         Ray ray = new Ray(parent.transform.position, particle_pos.transform.up);
         RaycastHit hit = new RaycastHit();
         PhotonNetwork.Instantiate(particle_trail.name, particle_pos.transform.position, particle_pos.transform.rotation);
@@ -26,6 +26,7 @@ public class RangedWeapon : Weapon
         {
             if (hit.distance <= range)
             {
+                Debug.Log(hit.collider);
                 //  Debug.Log(hit.collider.GetComponent<PhotonView>().Owner.GetPhotonTeam() + " + " + PhotonNetwork.LocalPlayer.GetPhotonTeam());
                 PhotonNetwork.Instantiate(impact_explosion.name, hit.point, Quaternion.identity);
                 //"if()" is a good name of a book
