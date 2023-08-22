@@ -2510,6 +2510,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 150819664, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 672b4a1140900e64bb11308f34eff410, type: 2}
     - target: {fileID: 926857765, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: cooldown
       value: 

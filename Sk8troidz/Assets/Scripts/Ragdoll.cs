@@ -28,7 +28,7 @@ public class Ragdoll : MonoBehaviourPunCallbacks
         GetComponent<Weapon_Handler>().weapon = null;
         is_Ragdoll = true;
         rb.velocity = new Vector3(0, 0, 0);
-       // Invoke("DeactivateRagdolls", 3f);
+        Invoke("DeactivateRagdolls", 3f);
        
     }
     [PunRPC] void SyncRagdoll(int id)
@@ -42,6 +42,17 @@ public class Ragdoll : MonoBehaviourPunCallbacks
         }
 
     }
+    [PunRPC]
+    void DeSyncRagdoll(int id) //for whenever ragdoll is disabled. I know poor choice of words.
+    {
+        GameObject player = PhotonView.Find(id).gameObject;
+        player.GetComponent<Animator>().enabled = true;
+        foreach (Collider collider in player.GetComponent<Ragdoll>().colliders)
+        {
+            collider.enabled = false;
+        }
+
+    }
     public void DeactivateRagdolls()
     {
         GetComponent<Animator>().enabled = true;
@@ -51,9 +62,7 @@ public class Ragdoll : MonoBehaviourPunCallbacks
             pm.rb.AddForce(Vector3.up * pm.jumpStrength);
         }
         is_Ragdoll = false;
-        foreach (Collider collider in colliders)
-        {
-            collider.enabled = false;
-        }
+        int id = gameObject.GetComponent<PhotonView>().ViewID;
+        pv.RPC("DeSyncRagdoll", RpcTarget.All, id);       
     }
 }
