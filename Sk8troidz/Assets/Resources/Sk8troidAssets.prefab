@@ -2582,6 +2582,14 @@ PrefabInstance:
       propertyPath: pv
       value: 
       objectReference: {fileID: 8999722921355035029}
+    - target: {fileID: 3483628530654198152, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: colliders.Array.size
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 3483628530654198152, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: colliders.Array.data[10]
+      value: 
+      objectReference: {fileID: 8792122585693599034}
     - target: {fileID: 3837474209931795742, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: health_bar
       value: 
@@ -2655,6 +2663,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &3098252897958743923 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8345991720814722451, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+  m_PrefabInstance: {fileID: 6426038362781840096}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &8792122585693599034
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3098252897958743923}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.004332462
+  m_Center: {x: -2.1707853e-16, y: 0.004999992, z: -0.0021499472}
 --- !u!1 &3660938799943817007 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7774228532153837007, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
