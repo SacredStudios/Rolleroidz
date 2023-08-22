@@ -7,7 +7,7 @@ public class Super_Bar : MonoBehaviour
     static Slider slider;
     public static void ChangeAmount(float new_amount)
     {
-        Debug.Log("changing amount");
+        Debug.Log("changing amount" + new_amount);
         slider.value += new_amount;
     }
     private void Start()
