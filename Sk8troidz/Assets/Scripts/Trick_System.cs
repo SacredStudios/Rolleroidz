@@ -15,7 +15,6 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     private Weapon_Handler wh;
     [SerializeField] Animator animator;
 
-
     void Start()
     {
 
