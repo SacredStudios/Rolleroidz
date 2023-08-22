@@ -2532,7 +2532,7 @@ PrefabInstance:
       objectReference: {fileID: 1737457467}
     - target: {fileID: 1513577829, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: jumpStrength
-      value: 3000
+      value: 30000
       objectReference: {fileID: 0}
     - target: {fileID: 1513577829, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: playerCam_gameObject
@@ -2578,6 +2578,10 @@ PrefabInstance:
       propertyPath: score_mine
       value: 
       objectReference: {fileID: 7647086874312537764}
+    - target: {fileID: 3483628530654198152, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: pv
+      value: 
+      objectReference: {fileID: 8999722921355035029}
     - target: {fileID: 3837474209931795742, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: health_bar
       value: 
@@ -2686,6 +2690,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 928757a2606d7a742adfd4988abe27a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8999722921355035029 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2722618974921175925, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+  m_PrefabInstance: {fileID: 6426038362781840096}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3660938799943817007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &8307623883342306720
