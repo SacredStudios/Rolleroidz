@@ -45,7 +45,7 @@ public class RangedWeapon : Weapon
                 }
                 else if (hit.collider.tag == "Player_Head" && hit.collider.GetComponentInParent<PhotonView>().Owner.GetPhotonTeam() != PhotonNetwork.LocalPlayer.GetPhotonTeam())
                 {//team collisions seem to not work yet
-                    if (hit.collider.GetComponent<Player_Health>() != null)
+                    if (hit.collider.GetComponentInParent<Player_Health>() != null)
                     {
                         hit.collider.GetComponentInParent<Player_Health>().Remove_Health(damage * 1.5f);
                     }
