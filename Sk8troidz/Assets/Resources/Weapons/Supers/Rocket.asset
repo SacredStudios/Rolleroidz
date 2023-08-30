@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b3d9e947e0a4e82af16f321ef9020b, type: 3}
+  m_Name: Rocket
+  m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  weapon_name: Rocket
+  weapon_description: 
+  weapon_delay: 0
+  damage: 50
+  attack_cost: 0
+  knockback: 0
+  offset: {x: 0, y: 0, z: 0}
+  pv: {fileID: 2549648353724071202, guid: bc85b8da94fe94b2788df6de6e073dd8, type: 3}
+  range: 0
+  player: {fileID: 0}
+  super: {fileID: 0}
+  instance: {fileID: 0}
+  radius: 20
+  power: 10000
+  speed: 100
+  explosion: {fileID: 367450934941629301, guid: ff835b73a4762094990f9ce060b80dc8, type: 3}
+  rb: {fileID: -2623670491627502234, guid: bc85b8da94fe94b2788df6de6e073dd8, type: 3}
+  rocket: {fileID: 3845934355934101911, guid: bc85b8da94fe94b2788df6de6e073dd8, type: 3}

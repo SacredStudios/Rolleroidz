@@ -25,6 +25,14 @@ public class Player_Health : MonoBehaviour
         pv.RPC("ChangeHealth", RpcTarget.All, -1 * amount);
 
     }
+    public void Add_Explosion(float power, float radius, float x, float y, float z)
+    {
+        pv.RPC("Explode", RpcTarget.All, power, radius, x ,y ,z);
+    }
+    [PunRPC] void Explode(float power, float radius, float x, float y, float z)
+    {
+        GetComponent<Rigidbody>().AddExplosionForce(power, new Vector3(x,y,z), radius, 1.12f);
+    }
     [PunRPC] void ChangeHealth(float amount)
     {
         current_health += amount;
@@ -40,6 +48,7 @@ public class Player_Health : MonoBehaviour
         }
 
     }
+
 
     public void Add_Health(float amount)
     {

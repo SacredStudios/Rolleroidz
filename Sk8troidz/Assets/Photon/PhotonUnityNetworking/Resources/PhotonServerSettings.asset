@@ -58,6 +58,7 @@ MonoBehaviour:
   - SyncRagdoll
   - DeSyncRagdoll
   - ChangeSuperBar
+  - Explode
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

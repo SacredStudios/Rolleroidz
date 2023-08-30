@@ -10,6 +10,7 @@ public class Ragdoll : MonoBehaviourPunCallbacks
     public static bool is_Ragdoll;
     [SerializeField] Rigidbody rb;
     [SerializeField] PhotonView pv;
+    [SerializeField] float timeout;
     private void Start()
     {
         pm = GetComponent<PlayerMovement>();
@@ -28,7 +29,7 @@ public class Ragdoll : MonoBehaviourPunCallbacks
         GetComponent<Weapon_Handler>().weapon = null;
         is_Ragdoll = true;
         rb.velocity = new Vector3(0, 0, 0);
-        Invoke("DeactivateRagdolls", 15f);
+        Invoke("DeactivateRagdolls", timeout);
        
     }
     [PunRPC] void SyncRagdoll(int id)
@@ -43,7 +44,7 @@ public class Ragdoll : MonoBehaviourPunCallbacks
 
     }
     [PunRPC]
-    void DeSyncRagdoll(int id) //for whenever ragdoll is disabled. I know poor choice of words.
+    void DeSyncRagdoll(int id) //for whenever ragdoll is disabled. I know, poor choice of words.
     {
         GameObject player = PhotonView.Find(id).gameObject;
         player.GetComponent<Animator>().enabled = true;

@@ -21,7 +21,7 @@ public class Weapon : ScriptableObject
     public float range;
 
     public GameObject player;
-
+    public Weapon super;
 
     public GameObject instance;
     //Add var for sound
@@ -30,6 +30,8 @@ public class Weapon : ScriptableObject
 
 
    public virtual void Shoot(GameObject parent, GameObject particle_pos, GameObject explosion_pos) { }
+
+   
 
    
 }

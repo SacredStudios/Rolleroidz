@@ -20,8 +20,10 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
     bool weapon_up;
     [SerializeField] Slider cooldown;
     [SerializeField] PhotonView pv;
+
  
     public bool isOverTrickBtn; //checks if mouse is hovering over a trick btn
+    Super_Bar sb;
 
     private void Update()
     {
@@ -59,7 +61,13 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
         }
         else
         {
+            if (sb.slider.value >= 100)
+            {
+                weapon = weapon.super;
+            }
             weapon.Shoot(curr_gun, particle_pos, explosion_pos);
+            weapon = temp_weapon;
+            sb.slider.value = 0;
         }
     }
     IEnumerator Weapon_Up()
@@ -72,7 +80,13 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
             animator.SetLayerWeight(2, i);
             
         }
+        if (sb.slider.value >= 100)
+        {
+            weapon = weapon.super;
+        }
         weapon.Shoot(curr_gun, particle_pos, explosion_pos);
+        weapon = temp_weapon;
+        sb.slider.value = 0;
         yield return null;
     }
     IEnumerator Weapon_Down()
@@ -88,13 +102,14 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
         yield return null;
     }
     private void Start()
-    {                     
+    {
         if (weapon != null)
         {
             curr_gun = Instantiate(weapon.instance, weapon_loc.transform);
             curr_gun.transform.position += weapon.offset;
             pv.RPC("SetWeapon", RpcTarget.Others, weapon.name, pv.ViewID);
             temp_weapon = weapon;
+            sb = GetComponent<Super_Bar>();
         }
 
         curr_gun.transform.parent = weapon_loc.transform;
