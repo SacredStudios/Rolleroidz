@@ -7,6 +7,7 @@ public class Explosion : MonoBehaviour
 {
 
     public GameObject explosion;
+    public GameObject smoke;
     public float damage;
     public float power;
     public float radius;
@@ -32,6 +33,8 @@ public class Explosion : MonoBehaviour
             
         GameObject explosion_clone = PhotonNetwork.Instantiate(explosion.name, this.transform.position, this.transform.rotation);
         explosion_clone.transform.localScale += new Vector3(10, 10, 10);
+        GameObject smoke_clone = PhotonNetwork.Instantiate(smoke.name, this.transform.position, this.transform.rotation);
+        smoke_clone.transform.localScale += new Vector3(10, 10, 10);
         Destroy(this.gameObject);
     }
 

@@ -67,7 +67,7 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
             }
             weapon.Shoot(curr_gun, particle_pos, explosion_pos);
             weapon = temp_weapon;
-            sb.slider.value = 0;
+            sb.ChangeAmount(-100);
         }
     }
     IEnumerator Weapon_Up()
@@ -86,7 +86,7 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
         }
         weapon.Shoot(curr_gun, particle_pos, explosion_pos);
         weapon = temp_weapon;
-        sb.slider.value = 0;
+        sb.ChangeAmount(-100);
         yield return null;
     }
     IEnumerator Weapon_Down()

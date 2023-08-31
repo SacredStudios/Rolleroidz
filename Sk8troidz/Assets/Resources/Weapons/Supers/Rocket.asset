@@ -29,5 +29,6 @@ MonoBehaviour:
   power: 10000
   speed: 100
   explosion: {fileID: 367450934941629301, guid: ff835b73a4762094990f9ce060b80dc8, type: 3}
+  smoke: {fileID: 1019805676534266626, guid: 406470fd74cda3e4195816f2f3824cb7, type: 3}
   rb: {fileID: -2623670491627502234, guid: bc85b8da94fe94b2788df6de6e073dd8, type: 3}
   rocket: {fileID: 3845934355934101911, guid: bc85b8da94fe94b2788df6de6e073dd8, type: 3}

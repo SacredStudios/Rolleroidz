@@ -25,7 +25,6 @@ public class Weapon_List : MonoBehaviour
     {
         DontDestroyOnLoad(this.gameObject);
         sk8troid_menu = GameObject.Find("Sk8troid(MENUVERSION)");
-        damage_slider = GameObject.Find("Damage_Slider");
 
         curr_weapon = my_weapon_list[0];
         //curr_weapon = all_weapon_list[Random.Range(0,2)]; //be sure to comment this out
