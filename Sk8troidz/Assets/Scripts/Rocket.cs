@@ -14,10 +14,7 @@ public class Rocket : Weapon
     [SerializeField] Rigidbody rb;
     [SerializeField] GameObject rocket;
 
-    private void FixedUpdate()
-    {
-        rb.AddRelativeForce(Vector3.up * speed);
-    }
+    
     public override void Shoot(GameObject parent, GameObject particle_pos, GameObject explosion_pos)
     {
         Debug.Log("shot");
