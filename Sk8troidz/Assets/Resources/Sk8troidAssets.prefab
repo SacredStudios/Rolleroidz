@@ -1646,7 +1646,7 @@ MonoBehaviour:
   player: {fileID: 3660938799943817007}
   super_bar: {fileID: 9167302537265322271}
   amount: 150
-  delay: 0.5
+  delay: 0.35
   animator: {fileID: 4471843123587727704}
 --- !u!1 &1640545039468459746
 GameObject:
@@ -7335,8 +7335,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1737457467}
     - target: {fileID: 1513577829, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: max_gravity
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1513577829, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: jumpStrength
-      value: 30000
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1513577829, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: speedMultiplier
+      value: 7000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1513577829, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: gravity_multiplier
+      value: 1.15
       objectReference: {fileID: 0}
     - target: {fileID: 1513577829, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: playerCam_gameObject
@@ -7348,7 +7360,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 314255565951997404, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: m_CollisionDetection
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 332139699736098662, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: m_Camera

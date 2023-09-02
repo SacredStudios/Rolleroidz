@@ -86,7 +86,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
         else
         {
             time_airborne += Time.deltaTime;
-            if(time_airborne > 2f && !trick_mode_activated)
+            if(time_airborne > 1.5f && !trick_mode_activated)
             {
                 Trick_System ts = trick.GetComponent<Trick_System>();
                 ts.Start_Trick_System();

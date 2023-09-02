@@ -237,12 +237,15 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         lobby_cam.SetActive(false);
         lobby.SetActive(false);
         new_player = PhotonNetwork.Instantiate(player_prefab.name, position, Quaternion.identity, 0);
-        new_player.GetComponent<Respawn>().respawn_points = respawn_points.GetComponent<RespawnPoints>().respawn_points;
+        List<Vector3> points = respawn_points.GetComponent<RespawnPoints>().respawn_points; //respawn locations
+        new_player.GetComponent<Respawn>().respawn_points = points; 
         new_player.GetComponentInChildren<Weapon_Handler>().weapon = my_weapon;
+        new_player.transform.position = points[Random.Range(0, points.Count)];
 
-        
-     
-        
+
+
+
+
     }
    
 
