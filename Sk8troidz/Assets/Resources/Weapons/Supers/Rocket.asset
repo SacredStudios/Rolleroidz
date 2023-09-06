@@ -15,13 +15,16 @@ MonoBehaviour:
   icon: {fileID: 0}
   weapon_name: Rocket
   weapon_description: 
-  weapon_delay: 0
+  weapon_delay: 0.5
   damage: 50
   attack_cost: 0
   knockback: 0
   offset: {x: 0, y: 0, z: 0}
   pv: {fileID: 2549648353724071202, guid: bc85b8da94fe94b2788df6de6e073dd8, type: 3}
   range: 0
+  max_ammo: 5
+  ammo: 5
+  isSuper: 1
   player: {fileID: 0}
   super: {fileID: 0}
   instance: {fileID: 0}

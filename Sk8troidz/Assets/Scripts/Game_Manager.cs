@@ -46,7 +46,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     private void Start()
     {
         my_weapon = weapon_list.GetComponent<Weapon_List>().curr_weapon;
-       
+        pv.Owner.SetScore(0);
         PhotonNetwork.LocalPlayer.JoinTeam((byte)Random.Range(1, 3));
         
         StartCoroutine(SwitchTeam(PhotonNetwork.LocalPlayer));
@@ -240,7 +240,9 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         List<Vector3> points = respawn_points.GetComponent<RespawnPoints>().respawn_points; //respawn locations
         new_player.GetComponent<Respawn>().respawn_points = points; 
         new_player.GetComponentInChildren<Weapon_Handler>().weapon = my_weapon;
+        Debug.Log(points.Count);
         new_player.transform.position = points[Random.Range(0, points.Count)];
+        Debug.Log(new_player.transform.position);
 
 
 

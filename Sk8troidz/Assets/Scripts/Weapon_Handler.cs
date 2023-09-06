@@ -25,6 +25,7 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
     public bool isOverTrickBtn; //checks if mouse is hovering over a trick btn
     Super_Bar sb;
 
+
     private void Update()
     {
         time_last_shot += Time.deltaTime;
@@ -66,9 +67,24 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
                 weapon = weapon.super;
             }
             weapon.Shoot(curr_gun, particle_pos, explosion_pos);
-            weapon = temp_weapon;
-            sb.ChangeAmount(-100);
+            if (weapon.isSuper)
+            {
+                
+                weapon.ammo -= 1;
+                if (weapon.ammo <= 0)
+                {
+                    RemoveSuper();
+
+                }
+            }
+
         }
+    }
+    public void RemoveSuper()
+    {
+        sb.ChangeAmount(-100);
+        weapon.ammo = weapon.max_ammo;
+        weapon = temp_weapon;
     }
     IEnumerator Weapon_Up()
     {
@@ -77,16 +93,21 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
         {
             yield return new WaitForSeconds(0.01f);
             i += 0.2f;
-            animator.SetLayerWeight(2, i);
-            
+            animator.SetLayerWeight(2, i);           
         }
         if (sb.slider.value >= 100)
         {
             weapon = weapon.super;
         }
         weapon.Shoot(curr_gun, particle_pos, explosion_pos);
-        weapon = temp_weapon;
-        sb.ChangeAmount(-100);
+        if (weapon.isSuper)
+        {
+            weapon.ammo -= 1;
+            if (weapon.ammo <= 0)
+            {
+                RemoveSuper();
+            }
+        }
         yield return null;
     }
     IEnumerator Weapon_Down()
@@ -110,6 +131,7 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
             pv.RPC("SetWeapon", RpcTarget.Others, weapon.name, pv.ViewID);
             temp_weapon = weapon;
             sb = GetComponent<Super_Bar>();
+            weapon.super.ammo = weapon.super.max_ammo;
         }
 
         curr_gun.transform.parent = weapon_loc.transform;

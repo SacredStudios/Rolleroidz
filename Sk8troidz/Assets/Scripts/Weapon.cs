@@ -19,6 +19,9 @@ public class Weapon : ScriptableObject
     public Vector3 offset;
     public PhotonView pv;
     public float range;
+    public int max_ammo;
+    public int ammo;
+    public bool isSuper;
 
     public GameObject player;
     public Weapon super;

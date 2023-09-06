@@ -24,7 +24,7 @@ MonoBehaviour:
   pv: {fileID: 0}
   range: 200
   player: {fileID: 0}
-  super: {fileID: 3845934355934101911, guid: bc85b8da94fe94b2788df6de6e073dd8, type: 3}
+  super: {fileID: 11400000, guid: 54a5d182a223340ef8b0766b3b4cfb7e, type: 2}
   instance: {fileID: 752707165243343423, guid: 8a570b296fd5b4073a4df7583f56a0e8, type: 3}
   particle_trail: {fileID: 484392930733997870, guid: e83730576bd6d491294d149809c4fa60, type: 3}
   particle_explosion: {fileID: 367450934941629301, guid: ff835b73a4762094990f9ce060b80dc8, type: 3}
