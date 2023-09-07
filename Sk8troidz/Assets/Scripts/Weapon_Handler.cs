@@ -82,9 +82,9 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
     }
     public void RemoveSuper()
     {
-        sb.ChangeAmount(-100);
-        weapon.ammo = weapon.max_ammo;
+        sb.ChangeAmount(-100);       
         weapon = temp_weapon;
+        weapon.super.ammo = weapon.super.max_ammo;
     }
     IEnumerator Weapon_Up()
     {
