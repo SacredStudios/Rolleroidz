@@ -31,11 +31,11 @@ public class Explosion : MonoBehaviour
                 }
             }
             
-        GameObject explosion_clone = PhotonNetwork.Instantiate(explosion.name, this.transform.position, this.transform.rotation);
+        GameObject explosion_clone = Instantiate(explosion, this.transform.position, this.transform.rotation);
         explosion_clone.transform.localScale += new Vector3(10, 10, 10);
-        GameObject smoke_clone = PhotonNetwork.Instantiate(smoke.name, this.transform.position, this.transform.rotation);
+        GameObject smoke_clone = Instantiate(smoke, this.transform.position, this.transform.rotation);
         smoke_clone.transform.localScale += new Vector3(10, 10, 10);
-        Destroy(this.gameObject);
+        PhotonNetwork.Destroy(this.gameObject);
     }
 
 }
