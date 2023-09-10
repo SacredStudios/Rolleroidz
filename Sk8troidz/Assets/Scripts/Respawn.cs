@@ -19,10 +19,11 @@ public class Respawn : MonoBehaviour
         death_anim_clone.SetActive(true);
         player.transform.position = GetFarthestPoint(player.transform.position);
         //Debug.Log(player.transform.position);
-        player.GetComponent<Weapon_Handler>().RemoveSuper();
+        
         player.SetActive(false);
         if (pv.IsMine)
         {
+            player.GetComponent<Weapon_Handler>().RemoveSuper();
             Debug.Log(pv.Owner.NickName + " died!");
             GameObject point_clone = PhotonNetwork.Instantiate(point.name, death_anim_clone.transform.position, Quaternion.identity);
             point_clone.SetActive(true);
