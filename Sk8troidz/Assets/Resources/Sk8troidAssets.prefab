@@ -1959,7 +1959,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.2
-  far clip plane: 500
+  far clip plane: 1000
   field of view: 90
   orthographic: 0
   orthographic size: 10
@@ -7436,6 +7436,14 @@ PrefabInstance:
       propertyPath: playerCam_gameObject
       value: 
       objectReference: {fileID: 2439011514110663955}
+    - target: {fileID: 1940958029, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: m_Lens.FarClipPlane
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2111927025, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: DampingIntoCollision
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 314255565951997404, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: m_Interpolate
       value: 0
