@@ -7,7 +7,7 @@ public class Player_Health : MonoBehaviour
 
 {
     [SerializeField] float max_health;
-    [SerializeField] float current_health;
+    public float current_health;
     [SerializeField] GameObject death_effect;
     [SerializeField] GameObject parent;
     [SerializeField] Slider health_bar;

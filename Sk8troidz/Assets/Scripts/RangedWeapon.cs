@@ -32,9 +32,17 @@ public class RangedWeapon : Weapon
                 //"if()" is a good name of a book
                 if (hit.collider.tag == "Player" && hit.collider.GetComponent<PhotonView>().Owner.GetPhotonTeam() != PhotonNetwork.LocalPlayer.GetPhotonTeam())
                 {
-                    if (hit.collider.GetComponent<Player_Health>() != null)
+                    Player_Health ph = hit.collider.GetComponent<Player_Health>();
+                    if (ph != null)
                     {
-                         hit.collider.GetComponent<Player_Health>().Remove_Health(damage);
+                        if (ph.current_health - damage <= 0)
+                        {
+                            parent.GetComponentInParent<Super_Bar>().ChangeAmount(25);
+                            Debug.Log("it works");
+
+                        }
+                            ph.Remove_Health(damage);
+                         
                     }
                     else
                     {
@@ -45,10 +53,17 @@ public class RangedWeapon : Weapon
 
                 }
                 else if (hit.collider.tag == "Player_Head" && hit.collider.GetComponentInParent<PhotonView>().Owner.GetPhotonTeam() != PhotonNetwork.LocalPlayer.GetPhotonTeam())
-                {//team collisions seem to not work yet
-                    if (hit.collider.GetComponentInParent<Player_Health>() != null)
+                {
+                    Player_Health ph = hit.collider.GetComponentInParent<Player_Health>();
+                    if ( ph != null)
                     {
-                        hit.collider.GetComponentInParent<Player_Health>().Remove_Health(damage * 1.5f);
+                        if (ph.current_health - damage <= 0)
+                        {
+                            Debug.Log("it works");
+                            parent.GetComponentInParent<Super_Bar>().ChangeAmount(25);
+
+                        }
+                        ph.Remove_Health(damage * 1.5f);
                     }
                     else
                     {
