@@ -76,7 +76,7 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             {
                 n = 8;
             }
-                yield return Trick(n + 2);
+                yield return Trick(n);
         }
         else if (counter>= 1)
         {

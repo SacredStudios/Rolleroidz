@@ -7337,6 +7337,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 13400000, guid: 672b4a1140900e64bb11308f34eff410, type: 2}
+    - target: {fileID: 150819664, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 926857765, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: cooldown
       value: 
@@ -7404,14 +7408,14 @@ PrefabInstance:
     - target: {fileID: 1339196910368310925, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 13400000, guid: 13ed2b923aa3e6544b476268da35d6e4, type: 2}
+      objectReference: {fileID: 13400000, guid: 672b4a1140900e64bb11308f34eff410, type: 2}
     - target: {fileID: 2423700415769794534, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2423700415769794534, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2612011907870994634, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: pv
@@ -7445,6 +7449,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3740017744543000571, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 580d0a614f64c9c4c93d447403f34dcd, type: 3}
     - target: {fileID: 3819810321257165681, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: m_TagString
       value: Untagged
@@ -7461,10 +7469,18 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4762510105208470993, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4859126739336465849, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: pv
       value: 
       objectReference: {fileID: -8997455347769814163}
+    - target: {fileID: 5247628439255982016, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 580d0a614f64c9c4c93d447403f34dcd, type: 3}
     - target: {fileID: 5289297984290239771, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: m_SynchronizeParameters.Array.data[3].SynchronizeType
       value: 1
@@ -7521,6 +7537,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sk8troid
       objectReference: {fileID: 0}
+    - target: {fileID: 7785669862610543119, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 2.2799997
+      objectReference: {fileID: 0}
     - target: {fileID: 8162643446251379154, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: m_TagString
       value: Player
@@ -7532,6 +7552,10 @@ PrefabInstance:
     - target: {fileID: 8746781872802432217, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: m_Mass
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8985915606620189562, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.55
       objectReference: {fileID: 0}
     - target: {fileID: 9064714171868709948, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: m_TagString

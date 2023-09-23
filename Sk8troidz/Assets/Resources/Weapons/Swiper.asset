@@ -15,7 +15,7 @@ MonoBehaviour:
   icon: {fileID: 0}
   weapon_name: The Swiper
   weapon_description: It's like a sniper, but even better. Don't ask how...
-  weapon_delay: 0.5
+  weapon_delay: 2
   damage: 100
   attack_cost: 100
   knockback: 100000

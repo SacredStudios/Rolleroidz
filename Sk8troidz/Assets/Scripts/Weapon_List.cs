@@ -47,7 +47,7 @@ public class Weapon_List : MonoBehaviour
         description.GetComponent<Text>().text = weapon.weapon_description;
         damage_slider.GetComponent<Slider>().value = weapon.damage;
         range_slider.GetComponent<Slider>().value = weapon.range;
-        speed_slider.GetComponent<Slider>().value = (1/weapon.weapon_delay);
+        speed_slider.GetComponent<Slider>().value = Mathf.Round((1 / weapon.weapon_delay)*10.0f)*0.1f; ; //this displays value to 10th decimal point
         attackcost_slider.GetComponent<Slider>().value = weapon.attack_cost;
     }
 }
