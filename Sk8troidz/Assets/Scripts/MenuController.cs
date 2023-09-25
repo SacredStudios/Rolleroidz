@@ -19,13 +19,16 @@ public class MenuController : MonoBehaviourPunCallbacks
     [SerializeField] GameObject Menu_Skatroid;
     [SerializeField] GameObject StartMenu;
     [SerializeField] int max_players;
+    [SerializeField] Animation transition_start;
+    [SerializeField] Animation transition_end;
+
 
 
     public void ShowMainMenu()
     {
         StartBtn.GetComponent<Button>().enabled = false;
        // StartCoroutine(ConnectToServer());
-        StartCoroutine(Transition_Down());   
+        Transition();   
         Invoke("HideStartMenu", 1f);
 
     }
@@ -49,31 +52,14 @@ public class MenuController : MonoBehaviourPunCallbacks
         Menu_Skatroid.SetActive(true);
     }
 
-    IEnumerator Transition_Down()
+    void Transition()
     {
-        
-        while (transition.transform.position.y > target_pos.y)
-        {
-            transition.transform.position -= velocity;
+        transition.SetActive(true);
+       //just use Animator dammit
 
-            yield return new WaitForSeconds(0.01f);
-        }
-        yield return new WaitForSeconds(1f);
-        transition.transform.position = new Vector3(transition.transform.position.x, target_pos.y, transition.transform.position.z);
-        StartCoroutine(Transition_Up());
 
     }
-    IEnumerator Transition_Up()
-    {
-        
-        while (transition.transform.position.y < start_pos.y)
-        {
-            transition.transform.position += velocity;
-            yield return new WaitForSeconds(0.01f);
-        }
-        transition.transform.position = start_pos;
-
-    }
+    
     public void ChangeUsername(string s)
     {
         
