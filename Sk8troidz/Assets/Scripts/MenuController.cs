@@ -55,9 +55,11 @@ public class MenuController : MonoBehaviourPunCallbacks
     void Transition()
     {
         transition.SetActive(true);
-       //just use Animator dammit
 
-
+    }
+    public void SetInactive()
+    {
+        transition.SetActive(false);
     }
     
     public void ChangeUsername(string s)
@@ -106,6 +108,7 @@ public class MenuController : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
+        transition.SetActive(true);
         PhotonNetwork.LoadLevel("DebugRoom");
 
     }
