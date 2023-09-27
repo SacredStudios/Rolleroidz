@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     Vector3 input;
     Vector3 cam_Forward;
     Vector3 diff;
-    [SerializeField] float maxSpeed;
+    public float maxSpeed;
     [SerializeField] Camera playerCam;
     [SerializeField] GameObject playerCam_gameObject;
     [SerializeField] GameObject player_ui;
@@ -122,12 +122,23 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
         {
             input.x = Input.GetAxis("Horizontal");
             input.z = Input.GetAxis("Vertical");
+            if (Mathf.Abs(rb.velocity.x)>maxSpeed)
+            {
+                input.x = 0;
+                rb.velocity = new Vector3(Mathf.Sign(rb.velocity.x) * maxSpeed, rb.velocity.y, rb.velocity.z);
+            }
+            if (Mathf.Abs(rb.velocity.z) > maxSpeed)
+            {
+                input.z = 0;
+                rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, Mathf.Sign(rb.velocity.z) * maxSpeed);
+            }
             currSpeed = (transform.position - lastPos).magnitude;
             lastPos = transform.position;
-            if (currSpeed < maxSpeed)
-            {
+            Debug.Log(rb.velocity);
+           // if (currSpeed < maxSpeed)
+          //  {
                 rb.AddRelativeForce(input * speedMultiplier * Time.deltaTime);
-            }
+            //}
             if (currSpeed < 0.1)
             {
                 animator.SetFloat("animSpeedCap", 0f);
