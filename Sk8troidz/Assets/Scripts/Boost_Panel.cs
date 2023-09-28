@@ -12,7 +12,7 @@ public class Boost_Panel : MonoBehaviour
         Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
         if (collision.gameObject.tag == "Player")
         {
-            ChangeMax(collision.gameObject);
+            StartCoroutine(ChangeMax(collision.gameObject));
         }
         rb.AddForce(rb.velocity.normalized * multiplier);
     }
@@ -22,7 +22,7 @@ public class Boost_Panel : MonoBehaviour
         Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
         if (collision.gameObject.tag == "Player")
         {
-            ChangeMax(collision.gameObject);
+            StartCoroutine(ChangeMax(collision.gameObject));
         }
         rb.AddForce(rb.velocity.normalized * multiplier);
     }
@@ -32,7 +32,7 @@ public class Boost_Panel : MonoBehaviour
         Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
         if (collision.gameObject.tag == "Player")
         {
-            ChangeMax(collision.gameObject);
+            StartCoroutine(ChangeMax(collision.gameObject));
         }
         rb.AddForce(rb.velocity.normalized * multiplier + -1*force);
     }
@@ -42,13 +42,16 @@ public class Boost_Panel : MonoBehaviour
         Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
         if (collision.gameObject.tag == "Player")
         {
-            ChangeMax(collision.gameObject);
+            StartCoroutine(ChangeMax(collision.gameObject));
         }
         rb.AddForce(rb.velocity.normalized * multiplier + 2f*force);
 
     }
-    private void ChangeMax(GameObject gameObject)
+    IEnumerator ChangeMax(GameObject gameObject)
     {
-        gameObject.GetComponent<PlayerMovement>().maxSpeed = 1000f;
+        gameObject.GetComponent<PlayerMovement>().maxSpeed *= 1000f;
+        yield return new WaitForSeconds(1f);
+        gameObject.GetComponent<PlayerMovement>().maxSpeed = gameObject.GetComponent<PlayerMovement>().maxSpeedBase;
     }
+    
 }
