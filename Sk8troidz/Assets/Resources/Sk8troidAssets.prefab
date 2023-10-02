@@ -1369,9 +1369,9 @@ RectTransform:
   - {fileID: 1618717872}
   - {fileID: 1152471555}
   - {fileID: 4987362318846738584}
+  - {fileID: 8640815022680204414}
   - {fileID: 7330687543525701367}
   - {fileID: 5022552548987979905}
-  - {fileID: 8640815022680204414}
   m_Father: {fileID: 6426038364015529102}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -6733,7 +6733,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8640815022680204414
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6750,7 +6750,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -5.8, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1761048695261627737
@@ -6806,9 +6806,11 @@ MonoBehaviour:
   crosshair: {fileID: 2074150114800357113}
   cinemachineCamera: {fileID: 6426038363560892845}
   weapon_loc: {fileID: 6426038363471481738}
-  maxDistance: 100
+  maxDistance: 150
   camera: {fileID: 7855048691978222172}
-  verticalAdjustmentFactor: 2
+  Player: {fileID: 3660938799943817007}
+  verticalAdjustmentFactor: 40
+  verticalOffset: 20
 --- !u!1 &6426038364015529101
 GameObject:
   m_ObjectHideFlags: 0
@@ -6863,7 +6865,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 3660938799943817007}
-  respawn_time: 2
+  respawn_time: 8
   death_anim: {fileID: 7867451033237536302}
   death_head: {fileID: 868399096}
   point: {fileID: 1308115054}

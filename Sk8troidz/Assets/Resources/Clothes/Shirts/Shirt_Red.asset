@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 968b92512329c49e69668d54c013357b, type: 3}
+  m_Name: Shirt_Red
+  m_EditorClassIdentifier: 
+  icon: {fileID: 2800000, guid: 0ca2b005066369e48b8e6072148f30eb, type: 3}
+  mesh: {fileID: 4300000, guid: bc311935d3a3f2044af43c92fcc45918, type: 2}
+  material: {fileID: 2100000, guid: 3e7e398ae2d28459d9d89d8cbc1c8702, type: 2}
+  type: 1
+  sleeveL_mesh: {fileID: 4300000, guid: 4cf949f409dd0fe40be74bd227f5ee45, type: 2}
+  sleeveL_mat: {fileID: 2100000, guid: be77b54d8797c469a8ce83828fa511f3, type: 2}
+  sleeveR_mesh: {fileID: 4300000, guid: 499147e729b71f34bb6585f57c4e144c, type: 2}
+  sleeveR_mat: {fileID: 2100000, guid: 676c289c8318345f6add10bc33151d49, type: 2}

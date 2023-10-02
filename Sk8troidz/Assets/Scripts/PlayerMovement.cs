@@ -95,7 +95,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
                 ts.Start_Trick_System();
                 trick_mode_activated = true;
             }
-            maxSpeed = maxSpeedBase/1.5f;
+            maxSpeed = maxSpeedBase/2f;
             canJump = false;
             animator.SetFloat("IsJumping", 1f);
             animator.speed = 1f;
@@ -144,7 +144,6 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
 
             currSpeed = (transform.position - lastPos).magnitude;
             lastPos = transform.position;
-            Debug.Log(maxSpeed);
 
             rb.AddForce(inputDirection * speedMultiplier * Time.deltaTime);
 
