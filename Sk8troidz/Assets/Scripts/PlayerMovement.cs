@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     Vector3 diff;
     public float maxSpeed; //current max speed
     public float maxSpeedBase; //base max speed
+    public bool boostMode;
     [SerializeField] Camera playerCam;
     [SerializeField] GameObject playerCam_gameObject;
     [SerializeField] GameObject player_ui;
@@ -122,7 +123,8 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     }
     void Move()
     {
-        if (Ragdoll.is_Ragdoll == false)
+        Debug.Log(maxSpeed);
+        if (Ragdoll.is_Ragdoll == false && !boostMode)
         {
             input.x = Input.GetAxis("Horizontal");
             input.z = Input.GetAxis("Vertical");

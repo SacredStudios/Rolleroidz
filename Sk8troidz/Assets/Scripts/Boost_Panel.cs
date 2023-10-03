@@ -14,7 +14,7 @@ public class Boost_Panel : MonoBehaviour
         {
             StartCoroutine(ChangeMax(collision.gameObject));
         }
-        rb.AddForce(rb.velocity.normalized * multiplier);
+        rb.AddForce(rb.velocity.normalized * multiplier + force);
     }
     void OnTriggerStay(Collider collision)
     {
@@ -50,8 +50,10 @@ public class Boost_Panel : MonoBehaviour
     IEnumerator ChangeMax(GameObject gameObject)
     {
         gameObject.GetComponent<PlayerMovement>().maxSpeed *= 1000f;
+        gameObject.GetComponent<PlayerMovement>().boostMode = true;
         yield return new WaitForSeconds(1f);
         gameObject.GetComponent<PlayerMovement>().maxSpeed = gameObject.GetComponent<PlayerMovement>().maxSpeedBase;
+        gameObject.GetComponent<PlayerMovement>().boostMode = false;
     }
     
 }

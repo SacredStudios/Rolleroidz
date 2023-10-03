@@ -21,7 +21,7 @@ public class Crosshair : MonoBehaviour
         Debug.Log(Player.GetComponent<Weapon_Handler>().weapon.range);
         maxDistance = (Player.GetComponent<Weapon_Handler>().weapon.range);
         verticalOffset = maxDistance / 5f;
-        verticalAdjustmentFactor = verticalOffset * 2;
+        verticalAdjustmentFactor = verticalOffset * 1.8f;
     }
     void Update()
     {
