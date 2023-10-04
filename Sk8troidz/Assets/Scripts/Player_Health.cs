@@ -38,7 +38,7 @@ public class Player_Health : MonoBehaviour
         current_health += amount;
         health_bar.value = current_health;
         health_bar_other.value = current_health;
-        if (current_health <= 0)
+        if (current_health <= 0 && pv.IsMine)
         {
             Death();
         }
