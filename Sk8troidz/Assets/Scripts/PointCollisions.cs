@@ -31,10 +31,7 @@ public class PointCollisions : MonoBehaviourPunCallbacks
     [PunRPC] public void DestroyGameObject(int id)
     {
 
-        // PhotonView.Find(id).gameObject.SetActive(false);
-        Debug.Log("destroy me");
-      
-    
+        PhotonView.Find(id).gameObject.SetActive(false);   
      
     }
 }
