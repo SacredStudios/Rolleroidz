@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using Photon.Pun.UtilityScripts;
+using Cinemachine;
 public class Respawn : MonoBehaviour
 {
     [SerializeField] GameObject player;
@@ -14,6 +15,7 @@ public class Respawn : MonoBehaviour
     [SerializeField] PhotonView pv;
     public List<Vector3> respawn_points;
     [SerializeField] Vector3 currLoc;
+    [SerializeField] Camera cam;
 
     public void Death()
     {
@@ -34,6 +36,7 @@ public class Respawn : MonoBehaviour
         if (pv.IsMine)
         {
             player.GetComponent<PlayerMovement>().enabled = false;
+            cam.GetComponent<CinemachineBrain>().enabled = false;
             player.transform.position = new Vector3(9999, 9999, 9999);
             player.GetComponent<Weapon_Handler>().RemoveSuper();
             Debug.Log(pv.Owner.NickName + " died!");
@@ -58,17 +61,20 @@ public class Respawn : MonoBehaviour
                 pv.Owner.AddScore(1);
             }
             pv.Owner.SetScore(pv.Owner.GetScore() / 2);
+            Invoke("Player_Active", respawn_time);
         }
 
         GameObject death_head_clone = Instantiate(death_head, player.transform.position, Quaternion.identity);
         death_head_clone.SetActive(true);
 
-        Invoke("Player_Active", respawn_time);
+        
 
     }
     void Player_Active()
     {
-        
+        player.GetComponent<PlayerMovement>().enabled = false;
+        cam.GetComponent<CinemachineBrain>().enabled = false;
+
         player.SetActive(true);
         player.transform.position = GetFarthestPoint(currLoc);
         if (pv.Owner.GetScore() < 0)

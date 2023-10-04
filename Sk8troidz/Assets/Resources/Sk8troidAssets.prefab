@@ -6871,6 +6871,7 @@ MonoBehaviour:
   point: {fileID: 1308115054}
   pv: {fileID: -8997455347769814163}
   respawn_points: []
+  currLoc: {x: 0, y: 0, z: 0}
 --- !u!114 &-8997455347769814163
 MonoBehaviour:
   m_ObjectHideFlags: 0
