@@ -31,14 +31,14 @@ public class Respawn : MonoBehaviour
             player.transform.position = new Vector3(9999, 9999, 9999);
             player.GetComponent<Weapon_Handler>().RemoveSuper();
             Debug.Log(pv.Owner.NickName + " died!");
-            GameObject point_clone = PhotonNetwork.Instantiate(point.name, death_anim_clone.transform.position, Quaternion.identity);
+            GameObject point_clone = PhotonNetwork.Instantiate(point.name, currLoc, Quaternion.identity);
             point_clone.SetActive(true);
             int n = player.GetPhotonView().Owner.GetScore();
 
             for (int i = 0; i < n / 2; i++)
             {
 
-                GameObject point_clone2 = PhotonNetwork.Instantiate(point.name, death_anim_clone.transform.position, Quaternion.identity);
+                GameObject point_clone2 = PhotonNetwork.Instantiate(point.name, currLoc, Quaternion.identity);
                 point_clone2.SetActive(true);
             }
 
@@ -55,16 +55,13 @@ public class Respawn : MonoBehaviour
             Invoke("Player_Active", respawn_time);
         }
 
-        GameObject death_head_clone = Instantiate(death_head, player.transform.position, Quaternion.identity);
-        death_head_clone.SetActive(true);
-
     }
   
     void Player_Active()
     {
         player.GetComponent<PlayerMovement>().enabled = true;
         cam.enabled = true;
-        player.GetComponent<Player_Health>().Add_Health(100);
+        player.GetComponent<Player_Health>().Add_Health(1000);
 
         player.SetActive(true);
         player.transform.position = GetFarthestPoint(currLoc);
