@@ -7378,21 +7378,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: makethisaspraycan
       objectReference: {fileID: 0}
+    - target: {fileID: 5812255397824587399, guid: db03c3afb90494e0f99eee91135a83e3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5812255397824587451, guid: db03c3afb90494e0f99eee91135a83e3, type: 3}
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5812255397824587451, guid: db03c3afb90494e0f99eee91135a83e3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.364184
+      value: 999
       objectReference: {fileID: 0}
     - target: {fileID: 5812255397824587451, guid: db03c3afb90494e0f99eee91135a83e3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.133333
+      value: 999
       objectReference: {fileID: 0}
     - target: {fileID: 5812255397824587451, guid: db03c3afb90494e0f99eee91135a83e3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 15.342121
+      value: 999
       objectReference: {fileID: 0}
     - target: {fileID: 5812255397824587451, guid: db03c3afb90494e0f99eee91135a83e3, type: 3}
       propertyPath: m_LocalRotation.w

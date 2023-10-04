@@ -22,24 +22,23 @@ public class Respawn : MonoBehaviour
         GameObject death_anim_clone = Instantiate(death_anim, player.transform.position, Quaternion.identity);
 
         death_anim_clone.SetActive(true);
-        currLoc = player.transform.position;
+        
 
         if (pv.IsMine)
         {
+            currLoc = player.transform.position;
             player.GetComponent<PlayerMovement>().enabled = false;
             cam.enabled = false;
             player.transform.position = new Vector3(9999, 9999, 9999);
             player.GetComponent<Weapon_Handler>().RemoveSuper();
             Debug.Log(pv.Owner.NickName + " died!");
             GameObject point_clone = PhotonNetwork.Instantiate(point.name, currLoc, Quaternion.identity);
-            point_clone.SetActive(true);
             int n = player.GetPhotonView().Owner.GetScore();
 
             for (int i = 0; i < n / 2; i++)
             {
 
                 GameObject point_clone2 = PhotonNetwork.Instantiate(point.name, currLoc, Quaternion.identity);
-                point_clone2.SetActive(true);
             }
 
             if (pv.Owner.GetScore() < 0)
@@ -69,7 +68,6 @@ public class Respawn : MonoBehaviour
         {
             pv.Owner.SetScore(0);
         }
-        Invoke("GlitchCheck", 1f);
     }
     Vector3 GetFarthestPoint(Vector3 pos)
     {
@@ -89,9 +87,5 @@ public class Respawn : MonoBehaviour
         }
         return result;
     }
-    public void GlitchCheck()
-    {
-        Debug.Log("check");
-        this.gameObject.SetActive(true);
-    }
+
 }
