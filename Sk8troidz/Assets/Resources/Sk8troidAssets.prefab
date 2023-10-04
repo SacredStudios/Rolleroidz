@@ -7658,6 +7658,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 3.0198
       objectReference: {fileID: 0}
+    - target: {fileID: 7976471394023720146, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: m_UseLocal
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8162643446251379154, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: m_TagString
       value: Player
