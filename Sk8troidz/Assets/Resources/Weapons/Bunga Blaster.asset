@@ -17,7 +17,7 @@ MonoBehaviour:
   weapon_description: Bunga Blaster is slow but powerful. Also it has a hilarious
     name. Bunga Blaster...
   weapon_delay: 0.5
-  damage: 30
+  damage: 45
   attack_cost: 41
   knockback: 0
   offset: {x: 0, y: -0.2, z: 0.1}
