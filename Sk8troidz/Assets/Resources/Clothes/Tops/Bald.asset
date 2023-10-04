@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 968b92512329c49e69668d54c013357b, type: 3}
   m_Name: Bald
   m_EditorClassIdentifier: 
-  icon: {fileID: 2800000, guid: c98f350e47082844fa2954de4d2d5ff9, type: 3}
+  icon: {fileID: 2800000, guid: c6c6f11557fc36945aeb7368a452284f, type: 3}
   mesh: {fileID: 0}
   material: {fileID: 0}
   type: 0
