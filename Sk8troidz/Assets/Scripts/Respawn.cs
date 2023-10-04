@@ -74,6 +74,7 @@ public class Respawn : MonoBehaviour
     {
         player.GetComponent<PlayerMovement>().enabled = true;
         cam.enabled = true;
+        player.GetComponent<Player_Health>().Add_Health(100);
 
         player.SetActive(true);
         player.transform.position = GetFarthestPoint(currLoc);
