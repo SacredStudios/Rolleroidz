@@ -124,7 +124,6 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     }
     void Move()
     {
-        Debug.Log(maxSpeed);
         if (Ragdoll.is_Ragdoll == false && !boostMode)
         {
             input.x = Input.GetAxis("Horizontal");
