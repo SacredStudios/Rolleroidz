@@ -19,17 +19,14 @@ public class Respawn : MonoBehaviour
 
     public void Death()
     {
-        pv.RPC("SyncDeath", RpcTarget.All);
-    }
-    [PunRPC] public void SyncDeath()
-    {
         GameObject death_anim_clone = Instantiate(death_anim, player.transform.position, Quaternion.identity);
-        
-            death_anim_clone.SetActive(true);
-            currLoc = player.transform.position;
-            
 
-        
+        death_anim_clone.SetActive(true);
+        currLoc = player.transform.position;
+        GameObject point_clone = PhotonNetwork.Instantiate(point.name, death_anim_clone.transform.position, Quaternion.identity);
+        point_clone.SetActive(true);
+
+
         //Debug.Log(player.transform.position);
 
 
@@ -67,9 +64,8 @@ public class Respawn : MonoBehaviour
         GameObject death_head_clone = Instantiate(death_head, player.transform.position, Quaternion.identity);
         death_head_clone.SetActive(true);
 
-        
-
     }
+  
     void Player_Active()
     {
         player.GetComponent<PlayerMovement>().enabled = true;
