@@ -23,12 +23,6 @@ public class Respawn : MonoBehaviour
 
         death_anim_clone.SetActive(true);
         currLoc = player.transform.position;
-        GameObject point_clone = PhotonNetwork.Instantiate(point.name, death_anim_clone.transform.position, Quaternion.identity);
-        point_clone.SetActive(true);
-
-
-        //Debug.Log(player.transform.position);
-
 
         if (pv.IsMine)
         {
