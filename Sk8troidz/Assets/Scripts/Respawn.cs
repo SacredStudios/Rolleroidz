@@ -22,6 +22,7 @@ public class Respawn : MonoBehaviour
             death_anim_clone.SetActive(true);
             player.SetActive(false);
             player.transform.position = GetFarthestPoint(player.transform.position);
+            
         }
         //Debug.Log(player.transform.position);
         
@@ -66,6 +67,7 @@ public class Respawn : MonoBehaviour
         {
             pv.Owner.SetScore(0);
         }
+        Invoke("GlitchCheck", 1f);
     }
     Vector3 GetFarthestPoint(Vector3 pos)
     {
@@ -85,5 +87,9 @@ public class Respawn : MonoBehaviour
         }
         return result;
     }
-
+    public void GlitchCheck()
+    {
+        this.gameObject.SetActive(false);
+        this.gameObject.SetActive(true);
+    }
 }
