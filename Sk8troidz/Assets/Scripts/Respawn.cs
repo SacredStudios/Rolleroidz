@@ -13,6 +13,7 @@ public class Respawn : MonoBehaviour
     [SerializeField] GameObject point;
     [SerializeField] PhotonView pv;
     public List<Vector3> respawn_points;
+    [SerializeField] Vector3 currLoc;
 
     public void Death()
     {
@@ -21,20 +22,19 @@ public class Respawn : MonoBehaviour
     [PunRPC] public void SyncDeath()
     {
         GameObject death_anim_clone = Instantiate(death_anim, player.transform.position, Quaternion.identity);
-        if (player.activeSelf == true)
-        {
-
+        
             death_anim_clone.SetActive(true);
-            player.SetActive(false);
-            player.transform.position = GetFarthestPoint(player.transform.position);
+            currLoc = player.transform.position;
+            
 
-        }
         
         //Debug.Log(player.transform.position);
 
 
         if (pv.IsMine)
         {
+            player.GetComponent<PlayerMovement>().enabled = false;
+            player.transform.position = new Vector3(9999, 9999, 9999);
             player.GetComponent<Weapon_Handler>().RemoveSuper();
             Debug.Log(pv.Owner.NickName + " died!");
             GameObject point_clone = PhotonNetwork.Instantiate(point.name, death_anim_clone.transform.position, Quaternion.identity);
@@ -70,6 +70,7 @@ public class Respawn : MonoBehaviour
     {
         
         player.SetActive(true);
+        player.transform.position = GetFarthestPoint(currLoc);
         if (pv.Owner.GetScore() < 0)
         {
             pv.Owner.SetScore(0);
