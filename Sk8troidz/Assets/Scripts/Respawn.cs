@@ -15,7 +15,7 @@ public class Respawn : MonoBehaviour
     [SerializeField] PhotonView pv;
     public List<Vector3> respawn_points;
     [SerializeField] Vector3 currLoc;
-    [SerializeField] Camera cam;
+    [SerializeField] CinemachineBrain cam;
 
     public void Death()
     {
@@ -36,7 +36,7 @@ public class Respawn : MonoBehaviour
         if (pv.IsMine)
         {
             player.GetComponent<PlayerMovement>().enabled = false;
-            cam.GetComponent<CinemachineBrain>().enabled = false;
+            cam.enabled = false;
             player.transform.position = new Vector3(9999, 9999, 9999);
             player.GetComponent<Weapon_Handler>().RemoveSuper();
             Debug.Log(pv.Owner.NickName + " died!");
@@ -73,7 +73,7 @@ public class Respawn : MonoBehaviour
     void Player_Active()
     {
         player.GetComponent<PlayerMovement>().enabled = false;
-        cam.GetComponent<CinemachineBrain>().enabled = false;
+        cam.enabled = false;
 
         player.SetActive(true);
         player.transform.position = GetFarthestPoint(currLoc);
