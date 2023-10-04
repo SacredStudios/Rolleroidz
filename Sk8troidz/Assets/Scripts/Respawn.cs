@@ -16,11 +16,16 @@ public class Respawn : MonoBehaviour
     public void Death()
     {
         GameObject death_anim_clone = Instantiate(death_anim, player.transform.position, Quaternion.identity);
-        death_anim_clone.SetActive(true);
-        player.transform.position = GetFarthestPoint(player.transform.position);
+        if (player.activeSelf == true)
+        {
+            
+            death_anim_clone.SetActive(true);
+            player.SetActive(false);
+            player.transform.position = GetFarthestPoint(player.transform.position);
+        }
         //Debug.Log(player.transform.position);
         
-        player.SetActive(false);
+        
         if (pv.IsMine)
         {
             player.GetComponent<Weapon_Handler>().RemoveSuper();
