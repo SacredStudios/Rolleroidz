@@ -16,6 +16,7 @@ public class Respawn : MonoBehaviour
     public List<Vector3> respawn_points;
     [SerializeField] Vector3 currLoc;
     [SerializeField] CinemachineBrain cam;
+    [SerializeField] CapsuleCollider collider;
 
     public void Death()
     {
@@ -28,6 +29,7 @@ public class Respawn : MonoBehaviour
         {
             currLoc = player.transform.position;
             player.GetComponent<PlayerMovement>().enabled = false;
+            collider.enabled = false;
             cam.enabled = false;
             player.transform.position = new Vector3(9999, 9999, 9999);
             player.GetComponent<Weapon_Handler>().RemoveSuper();
@@ -61,7 +63,8 @@ public class Respawn : MonoBehaviour
         player.GetComponent<PlayerMovement>().enabled = true;
         cam.enabled = true;
         player.GetComponent<Player_Health>().Add_Health(1000);
-
+        player.GetComponent<PlayerMovement>().enabled = true;
+        collider.enabled = true;
         player.SetActive(true);
         player.transform.position = GetFarthestPoint(currLoc);
         if (pv.Owner.GetScore() < 0)

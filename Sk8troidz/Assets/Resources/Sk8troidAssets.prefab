@@ -6873,6 +6873,7 @@ MonoBehaviour:
   respawn_points: []
   currLoc: {x: 0, y: 0, z: 0}
   cam: {fileID: 4597114385376208466}
+  collider: {fileID: 5456136953385268333}
 --- !u!114 &-8997455347769814163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7801,6 +7802,11 @@ Transform:
 --- !u!95 &4471843123587727704 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 7431768936319595448, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+  m_PrefabInstance: {fileID: 6426038362781840096}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &5456136953385268333 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 1339196910368310925, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
   m_PrefabInstance: {fileID: 6426038362781840096}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &6426038363471481738 stripped
