@@ -96,7 +96,7 @@ public class Respawn : MonoBehaviour
     }
     public void GlitchCheck()
     {
-        this.gameObject.SetActive(false);
+        Debug.Log("check");
         this.gameObject.SetActive(true);
     }
 }
