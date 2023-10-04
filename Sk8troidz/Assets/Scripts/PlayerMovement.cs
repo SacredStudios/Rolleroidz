@@ -60,6 +60,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
             playerCam_gameObject.SetActive(false);
             player_ui.SetActive(false);
             vcam.SetActive(false);
+            this.gameObject.GetComponent<PlayerMovement>().enabled = false;
         }
     }
     private void FixedUpdate()
