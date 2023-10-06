@@ -20,13 +20,14 @@ public class Respawn : MonoBehaviour
 
     public void Death()
     {
-        GameObject death_anim_clone = Instantiate(death_anim, player.transform.position, Quaternion.identity);
 
+        GameObject death_anim_clone = Instantiate(death_anim, currLoc, Quaternion.identity);
         death_anim_clone.SetActive(true);
         
 
         if (pv.IsMine)
         {
+            
             currLoc = player.transform.position;
             player.GetComponent<PlayerMovement>().enabled = false;
             collider.enabled = false;
