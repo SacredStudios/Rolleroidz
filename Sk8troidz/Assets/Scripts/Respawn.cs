@@ -22,7 +22,9 @@ public class Respawn : MonoBehaviour
     {
 
         GameObject death_anim_clone = Instantiate(death_anim, currLoc, Quaternion.identity);
+
         death_anim_clone.SetActive(true);
+        death_anim.transform.position = currLoc;
         
 
         if (pv.IsMine)
