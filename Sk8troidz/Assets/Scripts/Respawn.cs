@@ -17,20 +17,16 @@ public class Respawn : MonoBehaviour
     [SerializeField] Vector3 currLoc;
     [SerializeField] CinemachineBrain cam;
     [SerializeField] CapsuleCollider collider;
+    
 
     public void Death()
     {
 
-        GameObject death_anim_clone = Instantiate(death_anim, currLoc, Quaternion.identity);
-
-        death_anim_clone.SetActive(true);
+        currLoc = player.transform.position;
         death_anim.transform.position = currLoc;
-        
-
         if (pv.IsMine)
         {
-            
-            currLoc = player.transform.position;
+            GameObject death_anim_clone = PhotonNetwork.Instantiate(death_anim.name, currLoc, Quaternion.identity);
             player.GetComponent<PlayerMovement>().enabled = false;
             collider.enabled = false;
             cam.enabled = false;

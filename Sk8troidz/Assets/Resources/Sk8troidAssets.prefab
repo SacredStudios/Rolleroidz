@@ -451,7 +451,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &868399099
 Transform:
   m_ObjectHideFlags: 0
@@ -7586,6 +7586,10 @@ PrefabInstance:
       propertyPath: health_bar
       value: 
       objectReference: {fileID: 1618717873}
+    - target: {fileID: 3837474209931795742, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: death_effect
+      value: 
+      objectReference: {fileID: 2189970838978847630, guid: 4db3b1e256a08454eba40317389ff4df, type: 3}
     - target: {fileID: 4117977170921517763, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: m_TagString
       value: Player
@@ -7866,13 +7870,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6426038364015529102}
     m_Modifications:
+    - target: {fileID: 2189970838978847629, guid: 4db3b1e256a08454eba40317389ff4df, type: 3}
+      propertyPath: stopAction
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2189970838978847630, guid: 4db3b1e256a08454eba40317389ff4df, type: 3}
       propertyPath: m_Name
       value: Death_Effect
       objectReference: {fileID: 0}
     - target: {fileID: 2189970838978847630, guid: 4db3b1e256a08454eba40317389ff4df, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2189970838978847631, guid: 4db3b1e256a08454eba40317389ff4df, type: 3}
       propertyPath: m_RootOrder

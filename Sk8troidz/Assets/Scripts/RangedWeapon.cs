@@ -9,21 +9,33 @@ public class RangedWeapon : Weapon
     public GameObject particle_trail;
     public GameObject particle_explosion;
     public GameObject impact_explosion;
-    
+    [SerializeField] Material particle_material;
 
-   // MAKE GAME LIKE NSMBDS MULTIPLAYER
-  
+
+    // MAKE GAME LIKE NSMBDS MULTIPLAYER
+
     public override void Shoot(GameObject parent, GameObject particle_pos, GameObject explosion_pos)
     {
         //  Debug.DrawRay(parent.transform.position, particle_pos.transform.up * range, Color.green); //chage this to capsulecast
-        
+        ParticleSystem particle_system = particle_trail.GetComponent<ParticleSystem>();
+        var renderer_module = particle_system.GetComponent<ParticleSystemRenderer>();
+
+        // Assign the new material to the ParticleSystem's Renderer module
+        //renderer_module.material = particle_material;
+        renderer_module.trailMaterial = particle_material;
+        var mainModule = particle_system.main;
+        mainModule.startSpeed = range / 5f;
+
+
         Ray ray = new Ray(parent.transform.position, particle_pos.transform.up);
         RaycastHit hit = new RaycastHit();
         PhotonNetwork.Instantiate(particle_trail.name, particle_pos.transform.position, particle_pos.transform.rotation);
         Instantiate(particle_explosion, explosion_pos.transform.position, particle_pos.transform.rotation);
-        
+
         if (Physics.Raycast(ray, out hit)) //Target Acquired
         {
+
+
             if (hit.distance <= range)
             {
                 //Debug.Log(hit.collider.tag);
@@ -41,8 +53,8 @@ public class RangedWeapon : Weapon
                             Debug.Log("it works");
 
                         }
-                            ph.Remove_Health(damage);
-                         
+                        ph.Remove_Health(damage);
+
                     }
                     else
                     {
@@ -55,7 +67,7 @@ public class RangedWeapon : Weapon
                 else if (hit.collider.tag == "Player_Head" && hit.collider.GetComponentInParent<PhotonView>().Owner.GetPhotonTeam() != PhotonNetwork.LocalPlayer.GetPhotonTeam())
                 {
                     Player_Health ph = hit.collider.GetComponentInParent<Player_Health>();
-                    if ( ph != null)
+                    if (ph != null)
                     {
                         if (ph.current_health - damage <= 0)
                         {
@@ -73,9 +85,11 @@ public class RangedWeapon : Weapon
 
                 }
             }
-            
-          
         }
-       
     }
-}
+    }
+
+
+
+        
+       

@@ -15,7 +15,7 @@ public class Death_Head : MonoBehaviour
     }
     void Destroy_Me()
     {
-        Destroy(this.gameObject);
+    //    Destroy(this.gameObject);
     }
 
    

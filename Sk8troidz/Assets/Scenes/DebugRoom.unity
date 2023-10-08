@@ -2783,7 +2783,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 434952, guid: 180ae0328a9b63d4ca285487efd1305a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.7
+      value: -2.79
       objectReference: {fileID: 0}
     - target: {fileID: 434952, guid: 180ae0328a9b63d4ca285487efd1305a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -11546,7 +11546,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4347088988090382, guid: 37b6ad62cb2640b41bedf7a18eaf66ae, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.40865517
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 4347088988090382, guid: 37b6ad62cb2640b41bedf7a18eaf66ae, type: 3}
       propertyPath: m_LocalRotation.w
@@ -16144,7 +16144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   multiplier: 0
-  force: {x: 0, y: 0, z: 7500}
+  force: {x: 0, y: 0, z: 9000}
 --- !u!65 &1565718066
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22239,7 +22239,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4589550540961896, guid: 4dbf767b22d06b049853e982adea7162, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.4086609
+      value: 0.6000061
       objectReference: {fileID: 0}
     - target: {fileID: 4589550540961896, guid: 4dbf767b22d06b049853e982adea7162, type: 3}
       propertyPath: m_LocalRotation.w
