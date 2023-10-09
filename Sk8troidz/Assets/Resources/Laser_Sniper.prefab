@@ -4900,7 +4900,7 @@ GameObject:
   - component: {fileID: 484392930733997864}
   - component: {fileID: 3283000737747206675}
   m_Layer: 0
-  m_Name: Laser_Short
+  m_Name: Laser_Sniper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5058,7 +5058,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 20
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5229,7 +5229,7 @@ ParticleSystem:
     startSizeY:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -5282,7 +5282,7 @@ ParticleSystem:
     startSizeZ:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -9725,8 +9725,8 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8edc1274a87970f419e69c8179dc3401, type: 2}
-  - {fileID: 2100000, guid: 8edc1274a87970f419e69c8179dc3401, type: 2}
+  - {fileID: 2100000, guid: 3a2066d72eb634d848e09aec10bdcf0f, type: 2}
+  - {fileID: 2100000, guid: 3a2066d72eb634d848e09aec10bdcf0f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

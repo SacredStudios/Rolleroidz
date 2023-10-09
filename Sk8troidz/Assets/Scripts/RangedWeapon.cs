@@ -9,7 +9,7 @@ public class RangedWeapon : Weapon
     public GameObject particle_trail;
     public GameObject particle_explosion;
     public GameObject impact_explosion;
-    [SerializeField] Material particle_material;
+
 
 
     // MAKE GAME LIKE NSMBDS MULTIPLAYER
@@ -17,14 +17,7 @@ public class RangedWeapon : Weapon
     public override void Shoot(GameObject parent, GameObject particle_pos, GameObject explosion_pos)
     {
         //  Debug.DrawRay(parent.transform.position, particle_pos.transform.up * range, Color.green); //chage this to capsulecast
-        ParticleSystem particle_system = particle_trail.GetComponent<ParticleSystem>();
-        var renderer_module = particle_system.GetComponent<ParticleSystemRenderer>();
-
-        // Assign the new material to the ParticleSystem's Renderer module
-        //renderer_module.material = particle_material;
-        renderer_module.trailMaterial = particle_material;
-        var mainModule = particle_system.main;
-        mainModule.startSpeed = range / 5f;
+       
 
 
         Ray ray = new Ray(parent.transform.position, particle_pos.transform.up);
