@@ -216,13 +216,14 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     public void Skate()
     {
         pv.RPC("SyncSkate", RpcTarget.All);
-        Debug.Log("Test Animation Event Triggered!");
+
     }
 
     [PunRPC]
     void SyncSkate()
     {
         skating_sound.Play();
+        Debug.Log("Test Animation Event Triggered!");
     }
 }
 
