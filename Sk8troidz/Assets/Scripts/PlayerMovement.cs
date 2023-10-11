@@ -91,7 +91,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
             maxSpeed = maxSpeedBase;
             animator.SetFloat("IsJumping", 0f);
             animator.speed = 1f + acceleration;
-            Offground();
+            offground_sound.Play();
         }
         else
         {
@@ -217,15 +217,9 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     //Sound Effects
     public void Skate()
     {
-        pv.RPC("SyncSkate", RpcTarget.All);
         skating_sound.Play();
     }
 
-    [PunRPC]
-    void SyncSkate()
-    {
-        
-    }
 
     public void Offground()
     {
@@ -233,10 +227,5 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
 
     }
 
-    [PunRPC]
-    void SyncOffground()
-    {
-      //  offground_sound.Play();
-    }
 }
 
