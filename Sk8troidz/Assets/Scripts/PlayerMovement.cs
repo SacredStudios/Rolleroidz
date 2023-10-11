@@ -218,13 +218,13 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     public void Skate()
     {
         pv.RPC("SyncSkate", RpcTarget.All);
-
+        skating_sound.Play();
     }
 
     [PunRPC]
     void SyncSkate()
     {
-        skating_sound.Play();
+        
     }
 
     public void Offground()
@@ -236,7 +236,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     [PunRPC]
     void SyncOffground()
     {
-        offground_sound.Play();
+      //  offground_sound.Play();
     }
 }
 
