@@ -18,7 +18,6 @@ public class Explosion : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
- // && collision.gameObject.GetComponent<PhotonView>().Owner.GetPhotonTeam() != PhotonNetwork.LocalPlayer.GetPhotonTeam())
 
             Collider[] colliders = Physics.OverlapSphere(this.transform.position, radius);
             foreach (Collider hit in colliders)

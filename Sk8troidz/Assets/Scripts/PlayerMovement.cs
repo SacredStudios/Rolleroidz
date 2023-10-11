@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     [SerializeField] float extra_gravity;
     [SerializeField] float gravity_multiplier;
     [SerializeField] float max_gravity;
-    [SerializeField] float min_gravity; 
+    [SerializeField] float min_gravity;
     [SerializeField] public int jumpStrength;
     [SerializeField] public bool canJump = true;
     [SerializeField] Animator animator;
@@ -48,6 +48,8 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     [SerializeField] public static bool trick_mode_activated = false;
     private Weapon_Handler wh;
     //ADD PLAYER LEANING ANIMATION
+
+    [SerializeField] AudioSource skating_sound;
 
 
     void Start()
@@ -64,13 +66,14 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
         }
     }
     private void FixedUpdate()
-    {  if (pv.IsMine)
+    {
+        if (pv.IsMine)
         {
             Move();
             Gravity();
         }
-        
-       
+
+
     }
     void Gravity()
     {
@@ -91,13 +94,13 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
         else
         {
             time_airborne += Time.deltaTime;
-            if(time_airborne > 1.5f && !trick_mode_activated)
+            if (time_airborne > 1.5f && !trick_mode_activated)
             {
                 Trick_System ts = trick.GetComponent<Trick_System>();
                 ts.Start_Trick_System();
                 trick_mode_activated = true;
             }
-            maxSpeed = maxSpeedBase/2f;
+            maxSpeed = maxSpeedBase / 2f;
             canJump = false;
             animator.SetFloat("IsJumping", 1f);
             animator.speed = 1f;
@@ -112,14 +115,14 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     private void Update()
     {
         if (pv.IsMine)
-        Jump();    
+            Jump();
     }
     private void LateUpdate()
     {
         if (pv.IsMine)
-        { 
-          RotateWCamera();
-          CameraRotation();
+        {
+            RotateWCamera();
+            CameraRotation();
         }
     }
     void Move()
@@ -159,11 +162,11 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
             }
         }
     }
-        void Jump()
-    { 
-        if(Input.GetButtonDown("Jump") && canJump)
-        {           
-            rb.AddForce(Vector3.up * jumpStrength);                               
+    void Jump()
+    {
+        if (Input.GetButtonDown("Jump") && canJump)
+        {
+            rb.AddForce(Vector3.up * jumpStrength);
             canJump = false;
             trick_mode_activated = true;
         }
@@ -173,34 +176,34 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
         if (Physics.Raycast(jump_pos.transform.position, Vector3.down, rayCastLength)) //IsJumping
         {
             animator.SetFloat("IsJumping", 0f);
-        
-        }
-        
-    }
-    
 
-   
+        }
+
+    }
+
+
+
     void RotateWCamera()
     {
         Vector3 newRotation = new Vector3(transform.eulerAngles.x, playerCam.gameObject.transform.eulerAngles.y, transform.eulerAngles.z);
         transform.rotation = Quaternion.Euler(newRotation);
-       
+
     }
     void CameraRotation()
     {
         //IF DEVICE IS ON MOBILE REMEMBER TO MULTIPLY BY TIME.DELTATIME
-  
-            cineMachineYaw += Input.GetAxis("Mouse X") * sensitivity;
-            cineMachinePitch += (-1) * Input.GetAxis("Mouse Y") * sensitivity;
+
+        cineMachineYaw += Input.GetAxis("Mouse X") * sensitivity;
+        cineMachinePitch += (-1) * Input.GetAxis("Mouse Y") * sensitivity;
 
 
 
-            cineMachineYaw = ClampAngle(cineMachineYaw, float.MinValue, float.MaxValue);
-            cineMachinePitch = ClampAngle(cineMachinePitch, -30, 70);
-            animator.SetFloat("Bend", cineMachinePitch);
+        cineMachineYaw = ClampAngle(cineMachineYaw, float.MinValue, float.MaxValue);
+        cineMachinePitch = ClampAngle(cineMachinePitch, -30, 70);
+        animator.SetFloat("Bend", cineMachinePitch);
 
-            CinemachineTarget.transform.rotation = Quaternion.Euler(cineMachinePitch, cineMachineYaw, 0.0f);
-      
+        CinemachineTarget.transform.rotation = Quaternion.Euler(cineMachinePitch, cineMachineYaw, 0.0f);
+
 
     }
     float ClampAngle(float angle, float min, float max)
@@ -209,5 +212,17 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
         if (angle > 360f) angle -= 360f;
         return Mathf.Clamp(angle, min, max);
     }
-   
+    //Sound Effects
+    public void Skate()
+    {
+        pv.RPC("SyncSkate", RpcTarget.All);
+        Debug.Log("Test Animation Event Triggered!");
+    }
+
+    [PunRPC]
+    void SyncSkate()
+    {
+        skating_sound.Play();
+    }
 }
+

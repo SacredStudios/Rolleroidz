@@ -6907,6 +6907,7 @@ GameObject:
   - component: {fileID: -8997455347769814163}
   - component: {fileID: 2921875789750546953}
   - component: {fileID: 2800908684236408644}
+  - component: {fileID: 7068245521148246201}
   m_Layer: 0
   m_Name: Sk8troidAssets
   m_TagString: Untagged
@@ -7028,6 +7029,18 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
+--- !u!114 &7068245521148246201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6426038364015529101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2af1bcc24cf2274dbbbe28a728a387c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7158498548948600045
 GameObject:
   m_ObjectHideFlags: 0
@@ -7906,7 +7919,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 481cccfed0910dd4782092615da8803b, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
