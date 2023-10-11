@@ -48,8 +48,9 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     [SerializeField] public static bool trick_mode_activated = false;
     private Weapon_Handler wh;
     //ADD PLAYER LEANING ANIMATION
-
+    //Sound Effects
     [SerializeField] AudioSource skating_sound;
+    [SerializeField] AudioSource offground_sound;
 
 
     void Start()
@@ -90,6 +91,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
             maxSpeed = maxSpeedBase;
             animator.SetFloat("IsJumping", 0f);
             animator.speed = 1f + acceleration;
+            Offground();
         }
         else
         {
@@ -223,6 +225,18 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     void SyncSkate()
     {
         skating_sound.Play();
+    }
+
+    public void Offground()
+    {
+        pv.RPC("SyncOffground", RpcTarget.All);
+
+    }
+
+    [PunRPC]
+    void SyncOffground()
+    {
+        offground_sound.Play();
     }
 }
 
