@@ -11,6 +11,8 @@ public class Eye : MonoBehaviour
     [SerializeField] float maxMovementRadius = 0.5f;
     [SerializeField] bool invertMovement = false;
     [SerializeField] PhotonView pv;
+    private float rpcInterval = 0.5f;
+    private float timeSinceLastRPC = 0f;
 
     private Vector3 initialPupilPosition;
 
@@ -77,10 +79,20 @@ public class Eye : MonoBehaviour
             Vector3 newPupilPosition = Vector3.Lerp(initialPupilPosition, desiredPupilPosition, Time.deltaTime * sensitivity);
 
             // Apply the new local position to the pupil.
-            pv.RPC("MoveEye", RpcTarget.Others, newPupilPosition);
             transform.GetChild(0).localPosition = newPupilPosition;
+
+            // Update the timer
+            timeSinceLastRPC += Time.fixedDeltaTime;
+
+            // If the timer exceeds the interval, send the RPC and reset the timer
+            if (timeSinceLastRPC >= rpcInterval)
+            {
+                pv.RPC("MoveEye", RpcTarget.Others, newPupilPosition);
+                timeSinceLastRPC = 0f; // Reset the timer
+            }
         }
     }
+
     [PunRPC]
     void MoveEye(Vector3 newPosition)
     {
