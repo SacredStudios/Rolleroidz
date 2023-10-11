@@ -223,7 +223,6 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     void SyncSkate()
     {
         skating_sound.Play();
-        Debug.Log("Test Animation Event Triggered!");
     }
 }
 

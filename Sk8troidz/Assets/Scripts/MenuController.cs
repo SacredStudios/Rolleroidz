@@ -55,6 +55,7 @@ public class MenuController : MonoBehaviourPunCallbacks
     void Transition()
     {
         transition.SetActive(true);
+        transition.GetComponent<Animator>().SetBool("BothAnim", true);
 
     }
     public void SetInactive()
@@ -109,8 +110,12 @@ public class MenuController : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         transition.SetActive(true);
+        transition.GetComponent<Animator>().SetBool("BothAnim", false);
+        Invoke("LoadLevel", 1f);        
+    }
+    public void LoadLevel()
+    {
         PhotonNetwork.LoadLevel("DebugRoom");
-
     }
     
 }
