@@ -31,6 +31,10 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
         time_last_shot += Time.deltaTime;
         if (weapon != null)
         {
+            if (sb.slider.value >= 100 && weapon.isSuper == false)
+            {
+                weapon = weapon.super;
+            }
             if (shoot_delay < weapon.weapon_delay)
             {
                 shoot_delay += Time.deltaTime;
@@ -62,10 +66,7 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
         }
         else
         {
-            if (sb.slider.value >= 100)
-            {
-                weapon = weapon.super;
-            }
+            
             weapon.Shoot(curr_gun, particle_pos, explosion_pos);
             if (weapon.isSuper)
             {
@@ -95,7 +96,7 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
             i += 0.2f;
             animator.SetLayerWeight(2, i);           
         }
-        if (sb.slider.value >= 100)
+        if (sb.slider.value >= 100 && !weapon.isSuper)
         {
             weapon = weapon.super;
         }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
-
+using Photon.Pun.UtilityScripts;
 public class Explosion : MonoBehaviour
 {
 
@@ -12,6 +12,7 @@ public class Explosion : MonoBehaviour
     public float power;
     public float radius;
     public float speed;
+    public PhotonView pv;
     private void FixedUpdate()
     {
         GetComponent<Rigidbody>().AddRelativeForce(Vector3.up * speed);
@@ -24,16 +25,17 @@ public class Explosion : MonoBehaviour
             {
                 if (hit.gameObject.GetComponent<Player_Health>() != null)
                 {
+                //if (hit.gameObject.GetComponent<PhotonView>().Owner.GetPhotonTeam() != pv.Owner.GetPhotonTeam())
+               // {
                     Debug.Log("hit target");
                     hit.gameObject.GetComponent<Player_Health>().Remove_Health(damage);
                     hit.gameObject.GetComponent<Player_Health>().Add_Explosion(power, radius, this.transform.position.x, this.transform.position.y, this.transform.position.z);
+              //  }
                 }
             }
             
         GameObject explosion_clone = PhotonNetwork.Instantiate(explosion.name, this.transform.position, this.transform.rotation);
-        explosion_clone.transform.localScale += new Vector3(10, 10, 10);
         GameObject smoke_clone = PhotonNetwork.Instantiate(smoke.name, this.transform.position, this.transform.rotation);
-        smoke_clone.transform.localScale += new Vector3(10, 10, 10);
         PhotonNetwork.Destroy(this.gameObject);
     }
 

@@ -18,7 +18,6 @@ public class Rocket : Weapon
     
     public override void Shoot(GameObject parent, GameObject particle_pos, GameObject explosion_pos)
     {
-        Debug.Log("shot");
         GameObject clone = PhotonNetwork.Instantiate(rocket.name, particle_pos.transform.position, particle_pos.transform.rotation);
         Explosion es = clone.GetComponent<Explosion>();
         es.explosion = this.explosion;
@@ -27,5 +26,6 @@ public class Rocket : Weapon
         es.power = this.power;
         es.radius = this.radius;
         es.speed = this.speed;
+        es.pv = this.pv;
     }
 }
