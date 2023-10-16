@@ -19,10 +19,12 @@ public class Crosshair : MonoBehaviour
     private void Start()
     {
         Debug.Log(Player.GetComponent<Weapon_Handler>().weapon.range);
-        maxDistance = (Player.GetComponent<Weapon_Handler>().weapon.range);
-        verticalOffset = maxDistance / 5f;
-        verticalAdjustmentFactor = verticalOffset * 1.8f;
+        maxDistance = Player.GetComponent<Weapon_Handler>().weapon.range;
+
+        verticalOffset = maxDistance/4f;
+        verticalAdjustmentFactor = 1000f/maxDistance;
     }
+
     void Update()
     {
         Ray ray = new Ray(weapon_loc.transform.position, weapon_loc.transform.forward);
@@ -45,7 +47,8 @@ public class Crosshair : MonoBehaviour
         if (pitch > 180)
             pitch -= 360;
 
-        pitch /= 180f; // Normalize pitch to -0.5 to 0.5 range
+        // Adjust normalization for pitch to fit into the -0.3 to 0.7 range
+        pitch = Mathf.Lerp(-0.3f, 0.7f, (pitch + 90f) / 180f);
 
         float adjustment = pitch * verticalAdjustmentFactor;
 
@@ -54,4 +57,5 @@ public class Crosshair : MonoBehaviour
                                                    Screen.height / 2 + verticalOffset + adjustment,
                                                    crosshair.transform.position.z);
     }
+    
 }

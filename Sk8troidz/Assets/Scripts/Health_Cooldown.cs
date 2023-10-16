@@ -27,7 +27,7 @@ public class Health_Cooldown : MonoBehaviour
                 ph.Add_Health(increment);
 
             }
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1f);
         }
     }
 }

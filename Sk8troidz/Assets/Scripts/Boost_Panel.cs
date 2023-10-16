@@ -8,43 +8,46 @@ public class Boost_Panel : MonoBehaviour
     [SerializeField] Vector3 force;
     void OnCollisionStay(Collision collision)
     {
-        Debug.Log("collided");
-        Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
+        
         if (collision.gameObject.tag == "Player")
         {
             StartCoroutine(ChangeMax(collision.gameObject));
+            Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
+            rb.AddForce(rb.velocity.normalized * multiplier + force);
         }
-        rb.AddForce(rb.velocity.normalized * multiplier + force);
+        
     }
     void OnTriggerStay(Collider collision)
     {
-        Debug.Log("collided");
-        Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
+        
         if (collision.gameObject.tag == "Player")
         {
             StartCoroutine(ChangeMax(collision.gameObject));
+            Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
+            rb.AddForce(rb.velocity.normalized * multiplier);
         }
-        rb.AddForce(rb.velocity.normalized * multiplier);
+        
     }
     void OnTriggerEnter(Collider collision)
     {
-        Debug.Log("collided");
-        Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
+       
         if (collision.gameObject.tag == "Player")
         {
             StartCoroutine(ChangeMax(collision.gameObject));
+            Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
+            rb.AddForce(rb.velocity.normalized * multiplier + -1 * force);
         }
-        rb.AddForce(rb.velocity.normalized * multiplier + -1*force);
+        
     }
-    void OnTriggerExit(Collider collision)
-    {
-        Debug.Log("collided");
-        Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
+    void OnTriggerExit(Collider collision) { 
+        
         if (collision.gameObject.tag == "Player")
         {
             StartCoroutine(ChangeMax(collision.gameObject));
+            Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
+            rb.AddForce(rb.velocity.normalized * multiplier + 2f * force);
         }
-        rb.AddForce(rb.velocity.normalized * multiplier + 2f*force);
+        
 
     }
     IEnumerator ChangeMax(GameObject gameObject)

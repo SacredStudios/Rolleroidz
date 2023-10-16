@@ -36,7 +36,7 @@ public class Respawn : MonoBehaviour
             GameObject point_clone = PhotonNetwork.Instantiate(point.name, currLoc, Quaternion.identity);
             int n = player.GetPhotonView().Owner.GetScore();
 
-            for (int i = 0; i < n / 2; i++)
+            for (int i = 0; i < n; i+=2)
             {
 
                 GameObject point_clone2 = PhotonNetwork.Instantiate(point.name, currLoc, Quaternion.identity);
