@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     public float maxSpeed; //current max speed
     public float maxSpeedBase; //base max speed
     public bool boostMode;
+    bool hasLanded = false;
     [SerializeField] Camera playerCam;
     [SerializeField] GameObject playerCam_gameObject;
     [SerializeField] GameObject player_ui;
@@ -29,6 +30,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     float cineMachineYaw;
     float targetRot;
     public GameObject CinemachineTarget;
+
 
 
     [SerializeField] GameObject jump_pos;
@@ -171,6 +173,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
             rb.AddForce(Vector3.up * jumpStrength);
             canJump = false;
             trick_mode_activated = true;
+            hasLanded = false;
         }
     }
     void OnCollisionEnter(Collision collision)
@@ -178,6 +181,10 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
         if (Physics.Raycast(jump_pos.transform.position, Vector3.down, rayCastLength)) //IsJumping
         {
             animator.SetFloat("IsJumping", 0f);
+            if (hasLanded == false) { 
+            Debug.Log("Landed");
+            hasLanded = true;
+        }
 
         }
 

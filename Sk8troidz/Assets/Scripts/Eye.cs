@@ -85,7 +85,7 @@ public class Eye : MonoBehaviour
             timeSinceLastRPC += Time.fixedDeltaTime;
 
             // If the timer exceeds the interval, send the RPC and reset the timer
-            if (timeSinceLastRPC >= rpcInterval)
+            if (timeSinceLastRPC >= rpcInterval && PhotonNetwork.InRoom)
             {
                 pv.RPC("MoveEye", RpcTarget.Others, newPupilPosition);
                 timeSinceLastRPC = 0f; // Reset the timer
