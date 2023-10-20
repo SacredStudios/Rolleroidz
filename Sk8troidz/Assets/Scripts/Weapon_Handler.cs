@@ -23,6 +23,7 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
     [SerializeField] GameObject increment;
     [SerializeField] GameObject increment_parent;
     [SerializeField] PhotonView pv;
+    public AudioSource sound;
 
  
     public bool isOverTrickBtn; //checks if mouse is hovering over a trick btn
@@ -60,6 +61,7 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
             }
             if (Input.GetButton("Fire1") && shoot_delay >= weapon.weapon_delay && weapon.attack_cost <= cooldown.value && pv.IsMine && !isOverTrickBtn)
             {
+
                 cooldown.value -= weapon.attack_cost;
                 shoot_delay = 0;
                 Shoot_Weapon();
@@ -75,6 +77,8 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
 
     void Shoot_Weapon()
     {
+        sound.Play();
+        pv.RPC("Play_Sound", RpcTarget.Others);
         time_last_shot = 0;
         animator.Play("Gun Layer.Shoot", 2, 0);
        
@@ -154,6 +158,7 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
             pv.RPC("SetWeapon", RpcTarget.Others, weapon.name, pv.ViewID);
             temp_weapon = weapon;
             sb = GetComponent<Super_Bar>();
+            sound.clip = weapon.sound;
             weapon.super.ammo = weapon.super.max_ammo;
         }
 
@@ -162,8 +167,14 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
         weapon.pv = this.pv;
         weapon.player = this.gameObject;
     }
+    [PunRPC]
+    public void Play_Sound()
+    {
+        sound.Play();
+    }
     [PunRPC] void SetWeapon(string currname, int viewID)
     {
+
         GameObject weapon_list = GameObject.Find("WeaponList");
         GameObject player = PhotonView.Find(viewID).gameObject;
         //Debug.Log(player.name);
@@ -177,6 +188,7 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
                 curr_gun = Instantiate(w.instance, loc.transform);
                 curr_gun.transform.position += weapon.offset;
                 weapon = w;
+                sound.clip = w.sound;
             }
         }
         

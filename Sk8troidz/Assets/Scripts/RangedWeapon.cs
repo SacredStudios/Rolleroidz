@@ -9,6 +9,7 @@ public class RangedWeapon : Weapon
     public GameObject particle_trail;
     public GameObject particle_explosion;
     public GameObject impact_explosion;
+    
 
 
 
@@ -17,7 +18,7 @@ public class RangedWeapon : Weapon
     public override void Shoot(GameObject parent, GameObject particle_pos, GameObject explosion_pos)
     {
         //  Debug.DrawRay(parent.transform.position, particle_pos.transform.up * range, Color.green); //chage this to capsulecast
-       
+        
 
 
         Ray ray = new Ray(parent.transform.position, particle_pos.transform.up);
@@ -78,7 +79,9 @@ public class RangedWeapon : Weapon
                 }
             }
         }
+        
     }
+    
     }
 
 

@@ -15,16 +15,17 @@ MonoBehaviour:
   icon: {fileID: 0}
   weapon_name: The Swiper
   weapon_description: It's like a sniper, but even better. Don't ask how...
-  weapon_delay: 2
+  weapon_delay: 1.5
   damage: 100
-  attack_cost: 100
-  knockback: 100000
+  attack_cost: 70
+  knockback: 1000
   offset: {x: 0, y: 0, z: 0}
   pv: {fileID: 0}
   range: 100
   max_ammo: 0
   ammo: 0
   isSuper: 0
+  sound: {fileID: 8300000, guid: 99a6b9166b9af444bb362d74a7be445b, type: 3}
   player: {fileID: 0}
   super: {fileID: 11400000, guid: 54a5d182a223340ef8b0766b3b4cfb7e, type: 2}
   instance: {fileID: 1310268070637946, guid: f78357a78db3dfd4e8c638310767dd56, type: 3}

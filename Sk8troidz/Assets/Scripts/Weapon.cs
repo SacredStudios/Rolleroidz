@@ -22,6 +22,7 @@ public class Weapon : ScriptableObject
     public int max_ammo;
     public int ammo;
     public bool isSuper;
+    public AudioClip sound;
 
     public GameObject player;
     public Weapon super;
