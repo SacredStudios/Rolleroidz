@@ -19,6 +19,9 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
     float time_last_shot;
     bool weapon_up;
     [SerializeField] Slider cooldown;
+    [SerializeField] Slider super_ammo;
+    [SerializeField] GameObject increment;
+    [SerializeField] GameObject increment_parent;
     [SerializeField] PhotonView pv;
 
  
@@ -34,6 +37,22 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
             if (sb.slider.value >= 100 && weapon.isSuper == false)
             {
                 weapon = weapon.super;
+                if (!super_ammo.gameObject.activeSelf)
+                { 
+                    super_ammo.gameObject.SetActive(true);                   
+                    super_ammo.maxValue = weapon.max_ammo;
+                    super_ammo.value = weapon.max_ammo;
+                    if (increment.transform.childCount == 0)
+                    {
+                        for (int i = 1; i < weapon.max_ammo; i++)
+                        {
+                            GameObject increment_clone = Instantiate(increment, increment_parent.transform);
+                            increment_clone.SetActive(true);
+                            float distance = super_ammo.gameObject.GetComponent<RectTransform>().rect.width;
+                            increment_clone.transform.position = increment_parent.transform.position + new Vector3(1.5f*i * (distance / weapon.max_ammo), 0, 0);
+                        }
+                    }
+                }
             }
             if (shoot_delay < weapon.weapon_delay)
             {
@@ -70,8 +89,9 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
             weapon.Shoot(curr_gun, particle_pos, explosion_pos);
             if (weapon.isSuper)
             {
-                
+                Debug.Log(weapon.ammo);
                 weapon.ammo -= 1;
+                super_ammo.value = weapon.ammo;
                 if (weapon.ammo <= 0)
                 {
                     RemoveSuper();
@@ -83,7 +103,8 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
     }
     public void RemoveSuper()
     {
-        sb.ChangeAmount(-100);       
+        sb.ChangeAmount(-100);
+        super_ammo.gameObject.SetActive(false);
         weapon = temp_weapon;
         weapon.super.ammo = weapon.super.max_ammo;
     }
@@ -104,6 +125,7 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
         if (weapon.isSuper)
         {
             weapon.ammo -= 1;
+            super_ammo.value = weapon.ammo;
             if (weapon.ammo <= 0)
             {
                 RemoveSuper();
