@@ -19,7 +19,7 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
     float time_last_shot;
     bool weapon_up;
     [SerializeField] Slider cooldown;
-    [SerializeField] Slider super_ammo;
+    [SerializeField] GameObject super_ammo;
     [SerializeField] GameObject increment;
     [SerializeField] GameObject increment_parent;
     [SerializeField] PhotonView pv;
@@ -38,11 +38,10 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
             if (sb.slider.value >= 100 && weapon.isSuper == false)
             {
                 weapon = weapon.super;
-                if (!super_ammo.gameObject.activeSelf)
+                if (!super_ammo.activeSelf)
                 { 
-                    super_ammo.gameObject.SetActive(true);                   
-                    super_ammo.maxValue = weapon.max_ammo;
-                    super_ammo.value = weapon.max_ammo;
+                    super_ammo.SetActive(true);                   
+                    
                     if (increment_parent.transform.childCount == 0)
                     {
                         for (int i = 0; i < weapon.max_ammo; i++)
@@ -102,7 +101,6 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
                 weapon.ammo -= 1;
                 if (weapon.ammo > 0)
                     increment_parent.transform.GetChild(weapon.ammo).gameObject.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
-                super_ammo.value = weapon.ammo;
                 if (weapon.ammo <= 0)
                 {
                     RemoveSuper();
@@ -115,7 +113,7 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
     public void RemoveSuper()
     {
         sb.ChangeAmount(-100);
-        super_ammo.gameObject.SetActive(false);
+        super_ammo.SetActive(false);
         weapon = temp_weapon;
         weapon.super.ammo = weapon.super.max_ammo;
     }
@@ -138,7 +136,6 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
             weapon.ammo -= 1;
             if(weapon.ammo > 0)
               increment_parent.transform.GetChild(weapon.ammo).gameObject.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
-            super_ammo.value = weapon.ammo;
             if (weapon.ammo <= 0)
             {
                 RemoveSuper();
