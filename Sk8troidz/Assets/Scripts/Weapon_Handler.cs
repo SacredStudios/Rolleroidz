@@ -43,14 +43,19 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
                     super_ammo.gameObject.SetActive(true);                   
                     super_ammo.maxValue = weapon.max_ammo;
                     super_ammo.value = weapon.max_ammo;
-                    if (increment.transform.childCount == 0)
+                    if (increment_parent.transform.childCount == 0)
                     {
-                        for (int i = 1; i < weapon.max_ammo; i++)
+                        for (int i = 0; i < weapon.max_ammo; i++)
                         {
                             GameObject increment_clone = Instantiate(increment, increment_parent.transform);
                             increment_clone.SetActive(true);
-                            float distance = super_ammo.gameObject.GetComponent<RectTransform>().rect.width;
-                            increment_clone.transform.position = increment_parent.transform.position + new Vector3(1.5f*i * (distance / weapon.max_ammo), 0, 0);
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < weapon.max_ammo; i++)
+                        {
+                            increment_parent.transform.GetChild(i).gameObject.GetComponent<Image>().color = new Color(255, 255, 225, 100);
                         }
                     }
                 }
@@ -95,6 +100,8 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
             {
                 Debug.Log(weapon.ammo);
                 weapon.ammo -= 1;
+                if (weapon.ammo > 0)
+                    increment_parent.transform.GetChild(weapon.ammo).gameObject.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
                 super_ammo.value = weapon.ammo;
                 if (weapon.ammo <= 0)
                 {
@@ -129,6 +136,8 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
         if (weapon.isSuper)
         {
             weapon.ammo -= 1;
+            if(weapon.ammo > 0)
+              increment_parent.transform.GetChild(weapon.ammo).gameObject.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
             super_ammo.value = weapon.ammo;
             if (weapon.ammo <= 0)
             {
