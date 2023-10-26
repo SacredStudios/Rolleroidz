@@ -86,7 +86,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
         if (Physics.Raycast(jump_pos.transform.position, Vector3.down, rayCastLength))
         {
             wh.weapon = wh.temp_weapon;
-            trick_mode_activated = false;
+
             time_airborne = 0f;
             extra_gravity = min_gravity;
             canJump = true;
@@ -181,10 +181,11 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
         if (Physics.Raycast(jump_pos.transform.position, Vector3.down, rayCastLength)) //IsJumping
         {
             animator.SetFloat("IsJumping", 0f);
-            if (hasLanded == false) { 
-            Debug.Log("Landed");
-            hasLanded = true;
+            if (hasLanded == false) {
+                
+                hasLanded = true;
         }
+            trick_mode_activated = false;
 
         }
 

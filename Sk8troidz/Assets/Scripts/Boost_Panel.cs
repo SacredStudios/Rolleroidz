@@ -9,7 +9,7 @@ public class Boost_Panel : MonoBehaviour
     void OnCollisionStay(Collision collision)
     {
         
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && collision.gameObject.GetComponent<PlayerMovement>().enabled == true)
         {
             StartCoroutine(ChangeMax(collision.gameObject));
             Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
@@ -20,7 +20,7 @@ public class Boost_Panel : MonoBehaviour
     void OnTriggerStay(Collider collision)
     {
         
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && collision.gameObject.GetComponent<PlayerMovement>().enabled == true)
         {
             StartCoroutine(ChangeMax(collision.gameObject));
             Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
@@ -30,8 +30,8 @@ public class Boost_Panel : MonoBehaviour
     }
     void OnTriggerEnter(Collider collision)
     {
-       
-        if (collision.gameObject.tag == "Player")
+
+        if (collision.gameObject.tag == "Player" && collision.gameObject.GetComponent<PlayerMovement>().enabled == true)
         {
             StartCoroutine(ChangeMax(collision.gameObject));
             Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
@@ -41,7 +41,7 @@ public class Boost_Panel : MonoBehaviour
     }
     void OnTriggerExit(Collider collision) { 
         
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && collision.gameObject.GetComponent<PlayerMovement>().enabled == true)
         {
             StartCoroutine(ChangeMax(collision.gameObject));
             Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();

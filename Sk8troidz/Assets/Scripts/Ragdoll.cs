@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Cinemachine;
 public class Ragdoll : MonoBehaviourPunCallbacks
 {
     // Start is called before the first frame update
@@ -11,6 +12,9 @@ public class Ragdoll : MonoBehaviourPunCallbacks
     [SerializeField] Rigidbody rb;
     [SerializeField] PhotonView pv;
     [SerializeField] float timeout;
+    [SerializeField] CinemachineVirtualCamera camera;
+    [SerializeField] GameObject ragdoll_follow;
+    [SerializeField] GameObject camera_follow;
     private void Start()
     {
         pm = GetComponent<PlayerMovement>();
@@ -24,8 +28,8 @@ public class Ragdoll : MonoBehaviourPunCallbacks
             int id = gameObject.GetComponent<PhotonView>().ViewID;
             pv.RPC("SyncRagdoll", RpcTarget.All, id);
         }
-        
         pm.enabled = false;
+        camera.GetComponent<CinemachineVirtualCamera>().Follow = ragdoll_follow.transform;
         GetComponent<Weapon_Handler>().weapon = null;
         is_Ragdoll = true;
         rb.velocity = new Vector3(0, 0, 0);
@@ -56,8 +60,10 @@ public class Ragdoll : MonoBehaviourPunCallbacks
     }
     public void DeactivateRagdolls()
     {
+        
         GetComponent<Animator>().enabled = true;
         pm.enabled = true;
+        camera.GetComponent<CinemachineVirtualCamera>().Follow = camera_follow.transform;
         if (pm.canJump)
         {
             pm.rb.AddForce(Vector3.up * pm.jumpStrength);
