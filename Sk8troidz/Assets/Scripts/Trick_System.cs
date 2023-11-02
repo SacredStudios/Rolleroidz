@@ -35,7 +35,6 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public void AddToCounter(GameObject btn)
     {
-        Debug.Log("isthisrunning");
         animator.SetLayerWeight(2, 0);
         animator.SetBool("trickModeActivated", true);
         wh.weapon = null;
@@ -44,6 +43,7 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     }
     IEnumerator Trick(int n)
     {
+        Debug.Log(n);
         counter = 0;
         Vector3 position = new Vector3(Screen.width/2, Screen.height / 2, 0f);
         for(int i = 0; i < n/2; i++)
@@ -76,7 +76,7 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             {
                 n = 8;
             }
-                yield return Trick(n);
+                yield return Trick(4);
         }
         else if (counter>= 1)
         {

@@ -19,12 +19,15 @@ public class Boost_Panel : MonoBehaviour
     }
     void OnTriggerStay(Collider collision)
     {
-        
-        if (collision.gameObject.tag == "Player" && collision.gameObject.GetComponent<PlayerMovement>().enabled == true)
+
+        if (collision.gameObject.GetComponent<PlayerMovement>() != null)
         {
-            StartCoroutine(ChangeMax(collision.gameObject));
-            Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
-            rb.AddForce(rb.velocity.normalized * multiplier);
+            if (collision.gameObject.GetComponent<PlayerMovement>().enabled == true)
+            {
+                StartCoroutine(ChangeMax(collision.gameObject));
+                Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
+                rb.AddForce(rb.velocity.normalized * multiplier);
+            }
         }
         
     }
