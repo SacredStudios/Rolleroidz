@@ -395,10 +395,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ffe8350066be34bfc8843452d9f31340, type: 2}
   - {fileID: 11400000, guid: a10540edf22de604cbb69b358fad0e5d, type: 2}
   - {fileID: 11400000, guid: d53d54ffc1ad94b339732c2c9e5d2374, type: 2}
+  - {fileID: 11400000, guid: 0589c57a4983e4591965fe9ed0c8e858, type: 2}
   all_weapon_list:
   - {fileID: 11400000, guid: ffe8350066be34bfc8843452d9f31340, type: 2}
   - {fileID: 11400000, guid: a10540edf22de604cbb69b358fad0e5d, type: 2}
   - {fileID: 11400000, guid: d53d54ffc1ad94b339732c2c9e5d2374, type: 2}
+  - {fileID: 11400000, guid: 0589c57a4983e4591965fe9ed0c8e858, type: 2}
   curr_weapon: {fileID: 11400000, guid: ffe8350066be34bfc8843452d9f31340, type: 2}
   sk8troid_menu: {fileID: 0}
   weapon_name: {fileID: 331012036}
