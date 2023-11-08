@@ -151,8 +151,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 5812255397824587448}
-  max: 20
-  min: -20
+  max: 10
+  min: -10
   y_val: 30
 --- !u!114 &3029322172578487276
 MonoBehaviour:

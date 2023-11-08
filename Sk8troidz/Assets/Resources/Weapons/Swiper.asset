@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
   weapon_name: The Swiper
-  weapon_description: It's like a sniper, but even better. Don't ask how...
+  weapon_description: While it's delay is long, the Swiper has a extremely high range
+    and damage. It's like a sniper, but even better. Don't ask how...
   weapon_delay: 1.5
   damage: 100
   attack_cost: 70

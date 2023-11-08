@@ -21,6 +21,7 @@ public class MenuController : MonoBehaviourPunCallbacks
     [SerializeField] int max_players;
     [SerializeField] Animation transition_start;
     [SerializeField] Animation transition_end;
+    [SerializeField] Text ConnectedText;
 
 
 
@@ -44,7 +45,8 @@ public class MenuController : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         PhotonNetwork.JoinLobby(TypedLobby.Default);
-        Debug.Log("Connected");
+        ConnectedText.text = "Connected to Server!";
+        ConnectedText.color = new Color(0,0.6f,0);
     }
     void HideStartMenu()
     {

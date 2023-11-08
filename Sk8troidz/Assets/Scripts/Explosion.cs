@@ -26,10 +26,10 @@ public class Explosion : MonoBehaviour
                 if (hit.gameObject.GetComponent<Player_Health>() != null)
                 {
                 hit.gameObject.GetComponent<Player_Health>().Add_Explosion(power, radius, this.transform.position.x, this.transform.position.y, this.transform.position.z);
-                if (hit.gameObject.GetComponent<PhotonView>().Owner.GetPhotonTeam() != PhotonNetwork.LocalPlayer.GetPhotonTeam())
-                {
-                    hit.gameObject.GetComponent<Player_Health>().Remove_Health(damage);
-                                    }
+                    if (hit.gameObject.GetComponent<PhotonView>().Owner.GetPhotonTeam() != PhotonNetwork.LocalPlayer.GetPhotonTeam())
+                    {
+                        hit.gameObject.GetComponent<Player_Health>().Remove_Health(damage);
+                    }
                 }
             }
             

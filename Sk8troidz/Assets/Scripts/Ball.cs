@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
@@ -7,41 +8,78 @@ using Photon.Pun.UtilityScripts;
 public class Ball : MonoBehaviour
 {
     private const string PlayerTag = "Player";
-    private static GameObject[] players;
-    [SerializeField] float moveSpeed = 5f;
-    [SerializeField] Rigidbody rb;
+    public static GameObject[] players;
     int num_bounces = 0;
-    [SerializeField] int max_bounces;
-    [SerializeField] GameObject Explosion;
+    public GameObject explosion;
+    public GameObject smoke;
+    public float damage;
+    public float power;
+    public float radius;
+    public float speed;
+    public float range;
+    public PhotonView pv;
+    [SerializeField] Rigidbody rb;
+    [SerializeField] AudioSource sound;
+
 
     void Start()
     {
+        Invoke("Explode", 3f);
         if (players == null)
         {
             players = GameObject.FindGameObjectsWithTag(PlayerTag);
-            if (players == null)
-            {
+            
                 List<GameObject> playerList = new List<GameObject>(GameObject.FindGameObjectsWithTag(PlayerTag));
 
                 playerList.RemoveAll(player =>
-                    player.GetComponent<PhotonView>().Owner.GetPhotonTeam() == PhotonNetwork.LocalPlayer.GetPhotonTeam());
+                {
+                    PhotonView photonView = player.GetComponent<PhotonView>();
+                    if (photonView == null) return true;
 
+                    Photon.Realtime.Player owner = photonView.Owner;
+                    Photon.Realtime.Player localPlayer = PhotonNetwork.LocalPlayer;
+
+                    if (owner == null || localPlayer == null) return false;
+
+                    return owner.GetPhotonTeam() == localPlayer.GetPhotonTeam();
+                });
                 players = playerList.ToArray();
-            }
+            
 
         }
-        rb.AddForce(transform.up * moveSpeed*8f, ForceMode.Impulse);
+        rb.AddForce(transform.up * speed*8f, ForceMode.Impulse);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+        sound.Play();
+        Debug.Log("playing sound");
         PointToClosestPlayer();
         StartCoroutine(ApplyForwardForceAfterBounce());
-        num_bounces++;
-        if(num_bounces>max_bounces)
+        if(collision.gameObject.tag == "Player")
         {
-            PhotonNetwork.Destroy(this.gameObject);
+            Explode();
         }
+    }
+
+    void Explode()
+    {
+        Collider[] colliders = Physics.OverlapSphere(this.transform.position, radius);
+        foreach (Collider hit in colliders)
+        {
+            if (hit.gameObject.GetComponent<Player_Health>() != null)
+            {
+                hit.gameObject.GetComponent<Player_Health>().Add_Explosion(power, radius, this.transform.position.x, this.transform.position.y, this.transform.position.z);
+                if (hit.gameObject.GetComponent<PhotonView>().Owner.GetPhotonTeam() != PhotonNetwork.LocalPlayer.GetPhotonTeam())
+                {
+                    hit.gameObject.GetComponent<Player_Health>().Remove_Health(damage);
+                }
+            }
+        }
+
+        GameObject explosion_clone = PhotonNetwork.Instantiate(explosion.name, this.transform.position, this.transform.rotation);
+        GameObject smoke_clone = PhotonNetwork.Instantiate(smoke.name, this.transform.position, this.transform.rotation);
+        PhotonNetwork.Destroy(this.gameObject);
     }
 
     private void PointToClosestPlayer()
@@ -78,6 +116,6 @@ public class Ball : MonoBehaviour
     {
         yield return new WaitForFixedUpdate();
         rb.velocity = new Vector3(0f, 5f, 0f);
-        rb.AddForce(transform.forward * moveSpeed, ForceMode.Impulse);
+        rb.AddForce(transform.forward * speed, ForceMode.Impulse);
     }
 }
