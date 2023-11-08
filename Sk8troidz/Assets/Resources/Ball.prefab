@@ -196,6 +196,7 @@ MonoBehaviour:
   speed: 0
   range: 0
   pv: {fileID: 0}
+  parent: {fileID: 0}
   rb: {fileID: -8229581441703253665}
   sound: {fileID: 7004028734959570506}
 --- !u!82 &7004028734959570506
