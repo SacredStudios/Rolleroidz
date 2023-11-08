@@ -18,8 +18,10 @@ public class Ball : MonoBehaviour
     public float speed;
     public float range;
     public PhotonView pv;
+    public GameObject parent;
     [SerializeField] Rigidbody rb;
     [SerializeField] AudioSource sound;
+
 
 
     void Start()
@@ -72,6 +74,11 @@ public class Ball : MonoBehaviour
                 hit.gameObject.GetComponent<Player_Health>().Add_Explosion(power, radius, this.transform.position.x, this.transform.position.y, this.transform.position.z);
                 if (hit.gameObject.GetComponent<PhotonView>().Owner.GetPhotonTeam() != PhotonNetwork.LocalPlayer.GetPhotonTeam())
                 {
+                    if (hit.gameObject.GetComponent<Player_Health>().current_health - damage <= 0)
+                    {
+                        parent.GetComponentInParent<Super_Bar>().ChangeAmount(25);
+
+                    }
                     hit.gameObject.GetComponent<Player_Health>().Remove_Health(damage);
                 }
             }

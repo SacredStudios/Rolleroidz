@@ -32,6 +32,7 @@ public class BouncyWeapon : Weapon
         bs.speed = this.speed;
         bs.pv = this.pv;
         bs.range = this.range;
+        bs.parent = parent;
     }
 }
 
