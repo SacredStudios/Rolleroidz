@@ -8070,6 +8070,8 @@ MonoBehaviour:
   all_shirts:
   - {fileID: 11400000, guid: 31c3ad2886721482c85660c0529738c6, type: 2}
   - {fileID: 11400000, guid: aab37f7d51a884d73971ceb219607946, type: 2}
+  - {fileID: 11400000, guid: 29af8a164e9224c52b4058922e725fb2, type: 2}
+  - {fileID: 11400000, guid: 338d91879fcc54fc087c9e7b3b3c3449, type: 2}
   all_pants:
   - {fileID: 11400000, guid: 1d908dadd75bf403c896757b2b8a484e, type: 2}
   - {fileID: 11400000, guid: fe1be62d395e6f04c9710cf80b276586, type: 2}
