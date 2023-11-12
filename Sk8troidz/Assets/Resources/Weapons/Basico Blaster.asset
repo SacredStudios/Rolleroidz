@@ -17,8 +17,8 @@ MonoBehaviour:
   weapon_description: It doesn't do much damage but this weapon is fast and free
     baybee. And it's the only free one in the final game.
   weapon_delay: 0.1
-  damage: 30
-  attack_cost: 15
+  damage: 35
+  attack_cost: 10
   knockback: 0
   offset: {x: 0, y: -0.2, z: 0.1}
   pv: {fileID: 0}
