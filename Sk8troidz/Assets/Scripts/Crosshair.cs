@@ -14,19 +14,28 @@ public class Crosshair : MonoBehaviour
     [SerializeField] GameObject Player;
     public float verticalAdjustmentFactor = 50f;  // Factor to adjust crosshair based on pitch
     public float verticalOffset = 50f;            // Offset to move the crosshair up from the center
+    [SerializeField] float offsetChange = 20f;
+    [SerializeField] float adjustmentChange = 1000f;
+
+    public float baseOffset = 10f; // Example base value for verticalOffset
+    public float offsetScaleFactor = 0.1f; // Example scale factor for adjusting offset based on maxDistance
+
+    public float baseAdjustmentFactor = 5f; // Example base value for verticalAdjustmentFactor
+    public float adjustmentScaleFactor = 0.05f; // Example scale factor for adjusting adjustment factor based on maxDistance
 
 
     private void Start()
     {
-        Debug.Log(Player.GetComponent<Weapon_Handler>().weapon.range);
+        // Initialize maxDistance based on the weapon's range
         maxDistance = Player.GetComponent<Weapon_Handler>().weapon.range;
-
-        verticalOffset = maxDistance/4f;
-        verticalAdjustmentFactor = 1000f/maxDistance;
+        
     }
+
 
     void Update()
     {
+        verticalOffset = baseOffset + (maxDistance * offsetScaleFactor);
+        verticalAdjustmentFactor = baseAdjustmentFactor + (maxDistance * adjustmentScaleFactor);
         Ray ray = new Ray(weapon_loc.transform.position, weapon_loc.transform.forward);
         RaycastHit hit;
 
@@ -57,5 +66,5 @@ public class Crosshair : MonoBehaviour
                                                    Screen.height / 2 + verticalOffset + adjustment,
                                                    crosshair.transform.position.z);
     }
-    
+
 }

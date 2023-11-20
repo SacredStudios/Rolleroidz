@@ -32,8 +32,8 @@ Transform:
   m_GameObject: {fileID: 5812255397824587399}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: -1.8, y: -1.8000001, z: 11.5}
-  m_LocalScale: {x: 1, y: -0.0809381, z: 1}
+  m_LocalPosition: {x: -1.8, y: -1.8, z: 11.5}
+  m_LocalScale: {x: 2.0253, y: -0.16392393, z: 2.0253}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -107,10 +107,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
+  m_Radius: 0.6807227
+  m_Height: 16.820822
   m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  m_Center: {x: 0, y: 0, z: -0.00000011920929}
 --- !u!54 &5812255397824587448
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -136,8 +136,8 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
-  m_CollisionDetection: 0
+  m_Constraints: 112
+  m_CollisionDetection: 2
 --- !u!114 &644426083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
+  m_SynchronizeRotation: 0
   m_SynchronizeScale: 0
   m_UseLocal: 1
 --- !u!114 &8630326483662597709
