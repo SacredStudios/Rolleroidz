@@ -8084,9 +8084,9 @@ MonoBehaviour:
   curr_pants: {fileID: 0}
   curr_shoes: {fileID: 0}
   def_top: {fileID: 11400000, guid: f0289f008929c485199be088f787d69d, type: 2}
-  def_shirt: {fileID: 11400000, guid: 31c3ad2886721482c85660c0529738c6, type: 2}
+  def_shirt: {fileID: 11400000, guid: aab37f7d51a884d73971ceb219607946, type: 2}
   def_pants: {fileID: 11400000, guid: 1d908dadd75bf403c896757b2b8a484e, type: 2}
-  def_shoes: {fileID: 11400000, guid: e090208561c364b17851fe2ab27e4723, type: 2}
+  def_shoes: {fileID: 11400000, guid: 0bb5e3d553a1c4746a763a21c93435a8, type: 2}
   sk8troid_menu: {fileID: 0}
 --- !u!4 &1477777242
 Transform:

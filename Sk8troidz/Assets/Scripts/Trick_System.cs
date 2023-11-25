@@ -15,7 +15,7 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     [SerializeField] float delay; //delay after each successful trick
     private Weapon_Handler wh;
     [SerializeField] Animator animator;
-    
+    [SerializeField] GameObject crosshair;
     Super_Bar sb;
 
     void Start()
@@ -27,7 +27,7 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     }
     
     public void Start_Trick_System()
-    {
+    {       
         counter = 0;
         PlayerMovement.trick_mode_activated = true;
         StartCoroutine(Trick(4));
@@ -35,6 +35,7 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public void AddToCounter(GameObject btn)
     {
+        crosshair.SetActive(false);
         animator.SetLayerWeight(2, 0);
         animator.SetBool("trickModeActivated", true);
         wh.weapon = null;
@@ -43,7 +44,6 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     }
     IEnumerator Trick(int n)
     {
-        Debug.Log(n);
         counter = 0;
         Vector3 position = new Vector3(Screen.width/2, Screen.height / 2, 0f);
         for(int i = 0; i < n/2; i++)
@@ -66,7 +66,7 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
 
         animator.SetBool("trickModeActivated", false);
- 
+        crosshair.SetActive(true);
         if (counter >= n-1)
         {
             
