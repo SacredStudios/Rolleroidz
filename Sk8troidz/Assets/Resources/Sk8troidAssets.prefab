@@ -7938,7 +7938,7 @@ MonoBehaviour:
   pv: {fileID: 8999722921355035029}
   cam: {fileID: 7855048691978222172}
   player: {fileID: 3660938799943817007}
-  multiplier: 0.0035
+  multiplier: 0.0038
   rotationOffset: {x: 0, y: 0, z: 0}
 --- !u!1001 &3556923669807240487
 PrefabInstance:
@@ -8152,6 +8152,10 @@ PrefabInstance:
     - target: {fileID: 1513577829, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: max_gravity
       value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1513577829, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: sensitivity
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1513577829, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: jumpStrength

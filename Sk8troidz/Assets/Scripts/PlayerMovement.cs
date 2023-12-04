@@ -118,17 +118,22 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     }
     private void Update()
     {
-        if (pv.IsMine)
+        if (pv.IsMine) {
+            RotateWCamera();
             Jump();
+        
+        }
     }
     private void LateUpdate()
     {
         if (pv.IsMine)
         {
-            RotateWCamera();
+            
             CameraRotation();
+
         }
     }
+   
     void Move()
     {
         if (Ragdoll.is_Ragdoll == false && !boostMode)
@@ -195,9 +200,8 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
 
     void RotateWCamera()
     {
-        Vector3 newRotation = new Vector3(transform.eulerAngles.x, playerCam.gameObject.transform.eulerAngles.y, transform.eulerAngles.z);
-        transform.rotation = Quaternion.Euler(newRotation);
-
+        float cameraYaw = playerCam.transform.eulerAngles.y;
+        transform.rotation = Quaternion.Euler(0, cameraYaw, 0);
     }
     void CameraRotation()
     {
