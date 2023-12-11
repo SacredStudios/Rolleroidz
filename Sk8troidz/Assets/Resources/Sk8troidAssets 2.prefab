@@ -1574,6 +1574,7 @@ MonoBehaviour:
   amount: 10
   delay: 0.35
   animator: {fileID: 4471843123587727704}
+  crosshair: {fileID: 0}
 --- !u!1 &1640545039468459746
 GameObject:
   m_ObjectHideFlags: 0
@@ -6803,14 +6804,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f881f7a518df4e089fcd130333d3748, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crosshair: {fileID: 2074150114800357113}
-  cinemachineCamera: {fileID: 6426038363560892845}
-  weapon_loc: {fileID: 6426038363471481738}
-  maxDistance: 150
-  camera: {fileID: 7855048691978222172}
-  Player: {fileID: 3660938799943817007}
-  verticalAdjustmentFactor: 40
-  verticalOffset: 20
+  pv: {fileID: 0}
+  cam: {fileID: 0}
+  player: {fileID: 0}
+  multiplier: 0
+  rotationOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &5157634687137320113
 GameObject:
   m_ObjectHideFlags: 0
@@ -6908,7 +6906,7 @@ GameObject:
   - component: {fileID: 2921875789750546953}
   - component: {fileID: 2800908684236408644}
   m_Layer: 0
-  m_Name: Sk8troidAssets
+  m_Name: Sk8troidAssets 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7593,6 +7591,18 @@ PrefabInstance:
       propertyPath: playerCam_gameObject
       value: 
       objectReference: {fileID: 2439011514110663955}
+    - target: {fileID: 1940958028, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.16666666
+      objectReference: {fileID: 0}
+    - target: {fileID: 1940958028, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.8433332
+      objectReference: {fileID: 0}
+    - target: {fileID: 1940958028, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.74
+      objectReference: {fileID: 0}
     - target: {fileID: 1940958029, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: m_Lens.FarClipPlane
       value: 10000
@@ -8366,22 +8376,6 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!1 &6426038363471481738 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1768225130, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
-  m_PrefabInstance: {fileID: 6426038362781840096}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &6426038363560892845 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1940958029, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
-  m_PrefabInstance: {fileID: 6426038362781840096}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7695219694839551259 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3740017744543000571, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
