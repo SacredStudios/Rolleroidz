@@ -76,7 +76,7 @@ public class Respawn : MonoBehaviour
             pv.Owner.SetScore(0);
         }
     }
-    public void SetDeadTrue() //called to by Weapon SpawnPoint() function
+    public void SetDeadTrue()
     {
         pv.RPC("DeadTrue", RpcTarget.All);
     }
