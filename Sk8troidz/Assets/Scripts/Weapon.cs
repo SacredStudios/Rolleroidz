@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using UnityEngine.UI;
-using Photon.Pun.UtilityScripts;
 
 
 public class Weapon : ScriptableObject
@@ -24,7 +23,7 @@ public class Weapon : ScriptableObject
     public int ammo;
     public bool isSuper;
     public AudioClip sound;
-    [SerializeField] GameObject point;
+
     public GameObject player;
     public Weapon super;
 
@@ -35,13 +34,6 @@ public class Weapon : ScriptableObject
 
 
    public virtual void Shoot(GameObject parent, GameObject particle_pos, GameObject explosion_pos) { }
-
-    public void SpawnPoint(GameObject deadPlayer)
-    {
-        int n = deadPlayer.GetPhotonView().Owner.GetScore();
-        GameObject point_clone = PhotonNetwork.Instantiate(point.name, deadPlayer.transform.position, Quaternion.identity);
-        point_clone.GetComponent<Point>().value = n / 2 + 1;
-    }
 
    
 
