@@ -38,9 +38,10 @@ public class Weapon : ScriptableObject
 
     public void SpawnPoint(GameObject deadPlayer)
     {
-       if (pv.IsMine) {
-            Debug.Log(deadPlayer);
+       if (deadPlayer.GetComponent<Respawn>().IsDead == false) {
+            deadPlayer.GetComponent<Respawn>().IsDead = true;
             int n = deadPlayer.GetPhotonView().Owner.GetScore();
+            Debug.Log(n);
             GameObject point_clone = PhotonNetwork.Instantiate(point.name, deadPlayer.transform.position, Quaternion.identity);
             point_clone.GetComponent<Point>().value = n / 2 + 1;
         }

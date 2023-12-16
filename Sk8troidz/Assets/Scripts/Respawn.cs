@@ -17,6 +17,9 @@ public class Respawn : MonoBehaviour
     [SerializeField] Vector3 currLoc;
     [SerializeField] CinemachineBrain cam;
     [SerializeField] CapsuleCollider collider;
+
+
+    public bool IsDead;
     
 
     public void Death()
@@ -59,6 +62,7 @@ public class Respawn : MonoBehaviour
   
     void Player_Active()
     {
+        IsDead = false;
         player.GetComponent<PlayerMovement>().enabled = true;
         cam.enabled = true;
         player.GetComponent<Player_Health>().Add_Health(1000);
