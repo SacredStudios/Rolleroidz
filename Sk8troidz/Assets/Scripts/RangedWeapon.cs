@@ -65,7 +65,7 @@ public class RangedWeapon : Weapon
                     {
                         if (ph.current_health - damage <= 0)
                         {
-                            SpawnPoint(hit.collider.gameObject);
+                            Debug.Log("it works");
                             parent.GetComponentInParent<Super_Bar>().ChangeAmount(25);
 
                         }
