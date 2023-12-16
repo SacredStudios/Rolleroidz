@@ -24,7 +24,7 @@ public class Player_Health : MonoBehaviour
     public void Remove_Health(float amount, GameObject player)
     {
         last_hit = player;
-        pv.RPC("ChangeHealth", RpcTarget.All, -1 * amount);
+        pv.RPC("ChangeHealth", RpcTarget.All, -1 * amount, player.GetComponent<PhotonView>().ViewID);
 
     }
     public void Add_Explosion(float power, float radius, float x, float y, float z)
@@ -35,9 +35,10 @@ public class Player_Health : MonoBehaviour
     {
         GetComponent<Rigidbody>().AddExplosionForce(power, new Vector3(x,y,z), radius, 1.12f);
     }
-    [PunRPC] void ChangeHealth(float amount) //the player that last hit you
+    [PunRPC] void ChangeHealth(float amount, int viewID) //the player that last hit you
     {
-        
+        last_hit = PhotonView.Find(viewID).gameObject;
+        Debug.Log(last_hit + "for health");
         current_health += amount;
         health_bar.value = current_health;
         health_bar_other.value = current_health;
