@@ -37,7 +37,8 @@ public class Respawn : MonoBehaviour
             Point p = point_clone.GetComponent<Point>();
             p.player = player.GetComponent<Player_Health>().last_hit;
             p.pv = player.GetComponent<Player_Health>().last_hit.GetComponent<PhotonView>();
-            
+            p.Spawn();
+
             int n = player.GetPhotonView().Owner.GetScore();
 
             for (int i = 0; i < n; i+=2)
@@ -47,6 +48,7 @@ public class Respawn : MonoBehaviour
                 Point p2 = point_clone2.GetComponent<Point>();
                 p2.player = player.GetComponent<Player_Health>().last_hit;
                 p2.pv = player.GetComponent<Player_Health>().last_hit.GetComponent<PhotonView>();
+                p2.Spawn();
             }
 
             if (pv.Owner.GetScore() < 0)

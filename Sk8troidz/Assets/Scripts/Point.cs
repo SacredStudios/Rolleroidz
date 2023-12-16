@@ -11,7 +11,7 @@ public class Point : MonoBehaviour
 
     public PhotonView pv;
     public GameObject player;
-    void Start()
+   public void Spawn()
     { if (pv.IsMine)
         {
             Debug.Log(player);
