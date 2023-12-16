@@ -62,7 +62,8 @@ public class Respawn : MonoBehaviour
   
     void Player_Active()
     {
-        IsDead = false;
+        pv.RPC("DeadFalse", RpcTarget.All);
+        
         player.GetComponent<PlayerMovement>().enabled = true;
         cam.enabled = true;
         player.GetComponent<Player_Health>().Add_Health(1000);
@@ -74,6 +75,19 @@ public class Respawn : MonoBehaviour
         {
             pv.Owner.SetScore(0);
         }
+    }
+    public void SetDeadTrue()
+    {
+        pv.RPC("DeadTrue", RpcTarget.All);
+    }
+    [PunRPC] void DeadFalse()
+    {
+        IsDead = false;
+    }
+    [PunRPC]
+    void DeadTrue()
+    {
+        IsDead = false;
     }
     Vector3 GetFarthestPoint(Vector3 pos)
     {
