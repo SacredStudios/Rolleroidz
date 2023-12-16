@@ -13,6 +13,7 @@ public class Player_Health : MonoBehaviour
     [SerializeField] Slider health_bar;
     [SerializeField] Slider health_bar_other;
     [SerializeField] PhotonView pv;
+    public GameObject last_hit;
 
     void Start()
     {
@@ -20,8 +21,9 @@ public class Player_Health : MonoBehaviour
     }
 
   
-    public void Remove_Health(float amount)
+    public void Remove_Health(float amount, GameObject player)
     {
+        last_hit = player;
         pv.RPC("ChangeHealth", RpcTarget.All, -1 * amount);
 
     }
@@ -33,8 +35,9 @@ public class Player_Health : MonoBehaviour
     {
         GetComponent<Rigidbody>().AddExplosionForce(power, new Vector3(x,y,z), radius, 1.12f);
     }
-    [PunRPC] void ChangeHealth(float amount)
+    [PunRPC] void ChangeHealth(float amount) //the player that last hit you
     {
+        
         current_health += amount;
         health_bar.value = current_health;
         health_bar_other.value = current_health;

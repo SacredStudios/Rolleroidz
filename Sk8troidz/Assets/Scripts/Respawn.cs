@@ -34,12 +34,19 @@ public class Respawn : MonoBehaviour
             player.GetComponent<Weapon_Handler>().RemoveSuper();
             Debug.Log(pv.Owner.NickName + " died!");
             GameObject point_clone = PhotonNetwork.Instantiate(point.name, currLoc, Quaternion.identity);
+            Point p = point_clone.GetComponent<Point>();
+            p.player = player.GetComponent<Player_Health>().last_hit;
+            p.pv = player.GetComponent<Player_Health>().last_hit.GetComponent<PhotonView>();
+            
             int n = player.GetPhotonView().Owner.GetScore();
 
             for (int i = 0; i < n; i+=2)
             {
 
                 GameObject point_clone2 = PhotonNetwork.Instantiate(point.name, currLoc, Quaternion.identity);
+                Point p2 = point_clone2.GetComponent<Point>();
+                p2.player = player.GetComponent<Player_Health>().last_hit;
+                p2.pv = player.GetComponent<Player_Health>().last_hit.GetComponent<PhotonView>();
             }
 
             if (pv.Owner.GetScore() < 0)

@@ -7,10 +7,14 @@ public class Point : MonoBehaviour
     [SerializeField] Rigidbody rb;
     [SerializeField] int max;
     [SerializeField] int min;
-    [SerializeField] int y_val;
+    [SerializeField] int y_val; //set pv to ismine instead of masterclient
+
+    public PhotonView pv;
+    public GameObject player;
     void Start()
-    { if (PhotonNetwork.IsMasterClient)
+    { if (pv.IsMine)
         {
+            Debug.Log(player);
             int x = Random.Range(min, max);
             int z = Random.Range(min, max);
             rb.AddForce(new Vector3(x, y_val, z));

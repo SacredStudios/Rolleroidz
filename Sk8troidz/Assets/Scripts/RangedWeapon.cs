@@ -44,9 +44,8 @@ public class RangedWeapon : Weapon
                         if (ph.current_health - damage <= 0)
                         {
                             parent.GetComponentInParent<Super_Bar>().ChangeAmount(25);
-
                         }
-                        ph.Remove_Health(damage);
+                        ph.Remove_Health(damage, player);
 
                     }
                     else
@@ -68,7 +67,7 @@ public class RangedWeapon : Weapon
                             parent.GetComponentInParent<Super_Bar>().ChangeAmount(25);
 
                         }
-                        ph.Remove_Health(damage * 1.5f);
+                        ph.Remove_Health(damage * 1.5f, player);
                     }
                     else
                     {
