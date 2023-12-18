@@ -37,11 +37,7 @@ public class Player_Health : MonoBehaviour
     }
     [PunRPC] void ChangeHealth(float amount, int viewID) //the player that last hit you
     {
-        if (viewID != 0)
-        {
-            last_hit = PhotonView.Find(viewID).gameObject;
-        }
-        
+        last_hit = PhotonView.Find(viewID).gameObject;
         Debug.Log(last_hit + "for health");
         current_health += amount;
         health_bar.value = current_health;
@@ -60,7 +56,7 @@ public class Player_Health : MonoBehaviour
 
     public void Add_Health(float amount)
     {
-        pv.RPC("ChangeHealth", RpcTarget.All, amount, 0);
+        pv.RPC("ChangeHealth", RpcTarget.All, amount, null);
         
 
     }
