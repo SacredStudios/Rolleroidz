@@ -13,7 +13,6 @@ public class Explosion : MonoBehaviour
     public float radius;
     public float speed;
     public PhotonView pv;
-    public GameObject player;
     private void FixedUpdate()
     {
         GetComponent<Rigidbody>().AddRelativeForce(Vector3.up * speed);
@@ -29,7 +28,7 @@ public class Explosion : MonoBehaviour
                 hit.gameObject.GetComponent<Player_Health>().Add_Explosion(power, radius, this.transform.position.x, this.transform.position.y, this.transform.position.z);
                     if (hit.gameObject.GetComponent<PhotonView>().Owner.GetPhotonTeam() != PhotonNetwork.LocalPlayer.GetPhotonTeam())
                     {
-                        hit.gameObject.GetComponent<Player_Health>().Remove_Health(damage, player);
+                        hit.gameObject.GetComponent<Player_Health>().Remove_Health(damage);
                     }
                 }
             }

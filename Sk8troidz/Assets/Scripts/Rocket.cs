@@ -27,6 +27,5 @@ public class Rocket : Weapon
         es.radius = this.radius;
         es.speed = this.speed;
         es.pv = this.pv;
-        es.player = this.player;
     }
 }

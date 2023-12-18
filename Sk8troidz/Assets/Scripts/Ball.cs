@@ -17,7 +17,6 @@ public class Ball : MonoBehaviour
     public float radius;
     public float speed;
     public float range;
-    public GameObject player;
     public PhotonView pv;
     public GameObject parent;
     [SerializeField] Rigidbody rb;
@@ -80,7 +79,7 @@ public class Ball : MonoBehaviour
                         parent.GetComponentInParent<Super_Bar>().ChangeAmount(25);
 
                     }
-                    hit.gameObject.GetComponent<Player_Health>().Remove_Health(damage, player);
+                    hit.gameObject.GetComponent<Player_Health>().Remove_Health(damage);
                 }
             }
         }
