@@ -33,37 +33,43 @@ public class Respawn : MonoBehaviour
             cam.enabled = false;        
             player.GetComponent<Weapon_Handler>().RemoveSuper();
             Debug.Log(pv.Owner.NickName + " died!");
-            GameObject point_clone = PhotonNetwork.Instantiate(point.name, currLoc, Quaternion.identity);
-            Point p = point_clone.GetComponent<Point>();
-            p.player = player.GetComponent<Player_Health>().last_hit;
-            p.pv = player.GetComponent<Player_Health>().last_hit.GetComponent<PhotonView>();
-            p.Spawn();
+            Invoke("SpawnCoins", 0.1f);
+            
 
-            int n = player.GetPhotonView().Owner.GetScore();
-
-            for (int i = 0; i < n; i+=2)
-            {
-
-                GameObject point_clone2 = PhotonNetwork.Instantiate(point.name, currLoc, Quaternion.identity);
-                Point p2 = point_clone2.GetComponent<Point>();
-                p2.player = player.GetComponent<Player_Health>().last_hit;
-                p2.pv = player.GetComponent<Player_Health>().last_hit.GetComponent<PhotonView>();
-                p2.Spawn();
-            }
-
-            if (pv.Owner.GetScore() < 0)
-            {
-
-                pv.Owner.SetScore(0);
-            }
-            else if (pv.Owner.GetScore() % 2 != 0)
-            {
-                pv.Owner.AddScore(1);
-            }
-            pv.Owner.SetScore(pv.Owner.GetScore() / 2);
+            
             Invoke("Player_Active", respawn_time);
         }
 
+    }
+    public void SpawnCoins()
+    {
+        GameObject point_clone = PhotonNetwork.Instantiate(point.name, currLoc, Quaternion.identity);
+        Point p = point_clone.GetComponent<Point>();
+        p.player = player.GetComponent<Player_Health>().last_hit;
+        p.pv = player.GetComponent<Player_Health>().last_hit.GetComponent<PhotonView>();
+        p.Spawn();
+
+        int n = player.GetPhotonView().Owner.GetScore();
+
+        for (int i = 0; i < n; i += 2)
+        {
+
+            GameObject point_clone2 = PhotonNetwork.Instantiate(point.name, currLoc, Quaternion.identity);
+            Point p2 = point_clone2.GetComponent<Point>();
+            p2.player = player.GetComponent<Player_Health>().last_hit;
+            p2.pv = player.GetComponent<Player_Health>().last_hit.GetComponent<PhotonView>();
+            p2.Spawn();
+        }
+        if (pv.Owner.GetScore() < 0)
+        {
+
+            pv.Owner.SetScore(0);
+        }
+        else if (pv.Owner.GetScore() % 2 != 0)
+        {
+            pv.Owner.AddScore(1);
+        }
+        pv.Owner.SetScore(pv.Owner.GetScore() / 2);
     }
   
     void Player_Active()
