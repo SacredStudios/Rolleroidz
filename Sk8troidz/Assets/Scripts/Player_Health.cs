@@ -56,7 +56,7 @@ public class Player_Health : MonoBehaviour
 
     public void Add_Health(float amount)
     {
-        pv.RPC("ChangeHealth", RpcTarget.All, amount, null);
+        pv.RPC("ChangeHealth", RpcTarget.All, amount);
         
 
     }
