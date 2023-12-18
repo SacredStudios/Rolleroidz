@@ -45,6 +45,7 @@ public class RangedWeapon : Weapon
                         {
                             if (ph.current_health - damage <= 0)
                             {
+                                Debug.Log("it works");
                                 ph.PlayerLastHit(pv.ViewID);
                                 parent.GetComponentInParent<Super_Bar>().ChangeAmount(25);
 
