@@ -166,12 +166,13 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
             sb = GetComponent<Super_Bar>();
             sound.clip = weapon.sound;
             weapon.super.ammo = weapon.super.max_ammo;
+            weapon.pv = this.pv;
+            weapon.player = this.gameObject;
         }
 
         curr_gun.transform.parent = weapon_loc.transform;
         //Debug.Log(weapon.name + " + " +weapon.instance.name);
-        weapon.pv = this.pv;
-        weapon.player = this.gameObject;
+        
     }
     [PunRPC]
     public void Play_Sound()
