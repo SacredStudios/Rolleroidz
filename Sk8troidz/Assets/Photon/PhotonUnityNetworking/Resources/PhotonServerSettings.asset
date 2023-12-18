@@ -66,6 +66,7 @@ MonoBehaviour:
   - Play_Sound
   - IsDeadTrue
   - IsDeadFalse
+  - SyncLastHit
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
