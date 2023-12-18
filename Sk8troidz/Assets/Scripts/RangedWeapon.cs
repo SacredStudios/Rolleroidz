@@ -41,13 +41,16 @@ public class RangedWeapon : Weapon
                     Player_Health ph = hit.collider.GetComponent<Player_Health>();
                     if (ph != null)
                     {
-                        if (ph.current_health - damage <= 0)
+                        if (ph.current_health > 0)
                         {
-                            ph.PlayerLastHit(pv.ViewID);
-                            parent.GetComponentInParent<Super_Bar>().ChangeAmount(25);
+                            if (ph.current_health - damage <= 0)
+                            {
+                                ph.PlayerLastHit(pv.ViewID);
+                                parent.GetComponentInParent<Super_Bar>().ChangeAmount(25);
 
+                            }
+                            ph.Remove_Health(damage);
                         }
-                        ph.Remove_Health(damage);
 
                     }
                     else
@@ -63,14 +66,17 @@ public class RangedWeapon : Weapon
                     Player_Health ph = hit.collider.GetComponentInParent<Player_Health>();
                     if (ph != null)
                     {
-                        if (ph.current_health - damage <= 0)
+                        if (ph.current_health > 0)
                         {
-                            Debug.Log("it works");
-                            ph.PlayerLastHit(pv.ViewID);
-                            parent.GetComponentInParent<Super_Bar>().ChangeAmount(25);
+                            if (ph.current_health - damage <= 0)
+                            {
+                                Debug.Log("it works");
+                                ph.PlayerLastHit(pv.ViewID);
+                                parent.GetComponentInParent<Super_Bar>().ChangeAmount(25);
 
+                            }
+                            ph.Remove_Health(damage * 1.5f);
                         }
-                        ph.Remove_Health(damage * 1.5f);
                     }
                     else
                     {
