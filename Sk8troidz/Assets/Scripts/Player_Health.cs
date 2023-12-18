@@ -13,6 +13,7 @@ public class Player_Health : MonoBehaviour
     [SerializeField] Slider health_bar;
     [SerializeField] Slider health_bar_other;
     [SerializeField] PhotonView pv;
+    int id;
 
     void Start()
     {
@@ -23,7 +24,17 @@ public class Player_Health : MonoBehaviour
     public void Remove_Health(float amount)
     {
         pv.RPC("ChangeHealth", RpcTarget.All, -1 * amount);
-
+    }
+    public void PlayerLastHit(int newId)
+    {
+        pv.RPC("SyncLastHit", RpcTarget.All, newId);
+    }
+    [PunRPC]
+    void SyncLastHit(int newId)
+    {
+        //still need to do this for other weapon types
+        id = newId;
+        Debug.Log(id);
     }
     public void Add_Explosion(float power, float radius, float x, float y, float z)
     {
