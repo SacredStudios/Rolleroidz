@@ -42,7 +42,6 @@ public class Player_Health : MonoBehaviour
             last_hit = PhotonView.Find(viewID).gameObject;
         }
         
-        Debug.Log(last_hit + "for health");
         current_health += amount;
         health_bar.value = current_health;
         health_bar_other.value = current_health;
