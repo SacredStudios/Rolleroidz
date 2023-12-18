@@ -81,7 +81,6 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
 
     void Shoot_Weapon()
     {
-        weapon.player = this.gameObject;
         sound.Play();
         pv.RPC("Play_Sound", RpcTarget.Others);
         time_last_shot = 0;
@@ -120,7 +119,6 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
     }
     IEnumerator Weapon_Up()
     {
-        weapon.player = this.gameObject;
         float i = 0;
         while(i<=1)
         {
