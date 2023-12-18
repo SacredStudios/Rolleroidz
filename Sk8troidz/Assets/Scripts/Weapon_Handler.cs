@@ -166,7 +166,6 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
             sb = GetComponent<Super_Bar>();
             sound.clip = weapon.sound;
             weapon.super.ammo = weapon.super.max_ammo;
-            weapon.super.player = weapon.player;
         }
 
         curr_gun.transform.parent = weapon_loc.transform;
