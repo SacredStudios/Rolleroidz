@@ -26,11 +26,11 @@ public class Respawn : MonoBehaviour
         death_anim.transform.position = currLoc;
         if (pv.IsMine)
         {
-            player.transform.position = new Vector3(9999, 9999, 9999);
             GameObject death_anim_clone = PhotonNetwork.Instantiate(death_anim.name, currLoc, Quaternion.identity);
             player.GetComponent<PlayerMovement>().enabled = false;
             collider.enabled = false;
-            cam.enabled = false;        
+            cam.enabled = false;
+            player.transform.position = new Vector3(9999, 9999, 9999);
             player.GetComponent<Weapon_Handler>().RemoveSuper();
             Debug.Log(pv.Owner.NickName + " died!");
             GameObject point_clone = PhotonNetwork.Instantiate(point.name, currLoc, Quaternion.identity);
