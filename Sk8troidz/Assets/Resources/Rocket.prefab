@@ -177,7 +177,6 @@ MonoBehaviour:
   radius: 0
   speed: 0
   pv: {fileID: 0}
-  player: {fileID: 0}
 --- !u!1 &5221398263278515520
 GameObject:
   m_ObjectHideFlags: 0
