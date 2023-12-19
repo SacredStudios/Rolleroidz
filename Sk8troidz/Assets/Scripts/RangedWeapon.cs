@@ -43,6 +43,7 @@ public class RangedWeapon : Weapon
                     {
                         if (ph.current_health > 0)
                         {
+                            Debug.Log("hit");
                             if (ph.current_health - damage <= 0)
                             {
                                 Debug.Log("it works");
@@ -69,6 +70,7 @@ public class RangedWeapon : Weapon
                     {
                         if (ph.current_health > 0)
                         {
+                            Debug.Log("hit");
                             if (ph.current_health - damage <= 0)
                             {
                                 Debug.Log("it works");
