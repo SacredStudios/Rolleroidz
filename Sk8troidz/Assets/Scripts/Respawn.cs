@@ -44,6 +44,7 @@ public class Respawn : MonoBehaviour
             {
 
                 GameObject point_clone2 = PhotonNetwork.Instantiate(point.name, currLoc, Quaternion.identity);
+                point_clone2.GetComponent<Point>().player = whoShotYou;
             }
 
             if (pv.Owner.GetScore() < 0)
