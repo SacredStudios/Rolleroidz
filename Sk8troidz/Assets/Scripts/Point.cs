@@ -9,6 +9,7 @@ public class Point : MonoBehaviour
     [SerializeField] int min;
     [SerializeField] int y_val;
     public GameObject player;
+    [SerializeField] float speed;
 
     private void Start()
     {
@@ -19,7 +20,7 @@ public class Point : MonoBehaviour
     void Update()
     { if (player != null)
         {
-            Debug.Log(player);
+            transform.position = Vector3.MoveTowards(player.transform.position, player.transform.position, speed * Time.deltaTime);
         }
         
     }
