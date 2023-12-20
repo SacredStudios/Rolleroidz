@@ -36,14 +36,14 @@ public class Respawn : MonoBehaviour
             whoShotYou = PhotonView.Find(id).gameObject;
             
             Debug.Log(whoShotYou);
-            GameObject point_clone = PhotonNetwork.Instantiate(point.name, currLoc, Quaternion.identity);
+            GameObject point_clone = PhotonNetwork.Instantiate(point.name, currLoc, Quaternion.Euler(90, 0, 0));
             point_clone.GetComponent<Point>().player = whoShotYou;
             int n = player.GetPhotonView().Owner.GetScore();
 
             for (int i = 0; i < n; i+=2)
             {
 
-                GameObject point_clone2 = PhotonNetwork.Instantiate(point.name, currLoc, Quaternion.identity);
+                GameObject point_clone2 = PhotonNetwork.Instantiate(point.name, currLoc, Quaternion.Euler(90, 0, 0));
                 point_clone2.GetComponent<Point>().player = whoShotYou;
             }
 

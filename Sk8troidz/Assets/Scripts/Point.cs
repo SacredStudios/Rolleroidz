@@ -16,6 +16,7 @@ public class Point : MonoBehaviour
         int x = Random.Range(min, max);
         int z = Random.Range(min, max);
         rb.AddForce(new Vector3(x, y_val, z));
+        
     }
     void Update()
     { if (player != null)
