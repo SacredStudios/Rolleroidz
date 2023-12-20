@@ -13,7 +13,7 @@ public class Player_Health : MonoBehaviour
     [SerializeField] Slider health_bar;
     [SerializeField] Slider health_bar_other;
     [SerializeField] PhotonView pv;
-    int id;
+    public int id;
 
     void Start()
     {
@@ -72,7 +72,7 @@ public class Player_Health : MonoBehaviour
     void Death()
     {
         Respawn rs = GetComponentInParent<Respawn>();
-        rs.Death();
+        rs.Death(id);
 
      }
 

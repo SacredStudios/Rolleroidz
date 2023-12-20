@@ -17,9 +17,10 @@ public class Respawn : MonoBehaviour
     [SerializeField] Vector3 currLoc;
     [SerializeField] CinemachineBrain cam;
     [SerializeField] CapsuleCollider collider;
-    
 
-    public void Death()
+    [SerializeField] GameObject whoShotYou;
+
+    public void Death(int id)
     {
 
         currLoc = player.transform.position;
@@ -32,7 +33,9 @@ public class Respawn : MonoBehaviour
             cam.enabled = false;
             player.transform.position = new Vector3(9999, 9999, 9999);
             player.GetComponent<Weapon_Handler>().RemoveSuper();
-            Debug.Log(pv.Owner.NickName + " died!");
+            whoShotYou = PhotonView.Find(id).gameObject;
+            
+            Debug.Log(whoShotYou);
             GameObject point_clone = PhotonNetwork.Instantiate(point.name, currLoc, Quaternion.identity);
             int n = player.GetPhotonView().Owner.GetScore();
 

@@ -8,6 +8,8 @@ public class Point : MonoBehaviour
     [SerializeField] int max;
     [SerializeField] int min;
     [SerializeField] int y_val;
+    public PhotonView pv;
+    public GameObject player;
     void Start()
     { if (PhotonNetwork.IsMasterClient)
         {
