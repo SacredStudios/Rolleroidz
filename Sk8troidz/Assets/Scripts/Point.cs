@@ -21,6 +21,7 @@ public class Point : MonoBehaviour
     void Update()
     { if (player != null)
         {
+            transform.Rotate(Vector3.up * speed * Time.deltaTime);
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
         }
         
