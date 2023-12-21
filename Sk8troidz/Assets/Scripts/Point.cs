@@ -24,7 +24,6 @@ public class Point : MonoBehaviour
         if (player != null)
         {
             // Added Debugging
-            Debug.Log("Rotating and Moving Coin");
 
             // Rotating the coin around the y-axis (up) as an example
             
