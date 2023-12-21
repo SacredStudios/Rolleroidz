@@ -20,13 +20,14 @@ public class Point : MonoBehaviour
 
     void Update()
     {
+        transform.Rotate(Vector3.up * speed * 15 * Time.deltaTime);
         if (player != null)
         {
             // Added Debugging
             Debug.Log("Rotating and Moving Coin");
 
             // Rotating the coin around the y-axis (up) as an example
-            transform.Rotate(Vector3.up * speed * 15 * Time.deltaTime);
+            
 
             // Moving the coin towards the player
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
