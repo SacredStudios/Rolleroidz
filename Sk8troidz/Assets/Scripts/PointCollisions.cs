@@ -14,7 +14,7 @@ public class PointCollisions : MonoBehaviourPunCallbacks
 
     void OnCollisionEnter(Collision collider)
     {
-        if (collider.gameObject.tag == "Point")
+      /*  if (collider.gameObject.tag == "Point")
         {
             if (pv.IsMine)
             {
@@ -25,7 +25,7 @@ public class PointCollisions : MonoBehaviourPunCallbacks
         
             
          
-        }
+        } */
         
     }
    

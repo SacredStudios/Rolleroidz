@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Photon.Pun.UtilityScripts;
 public class Point : MonoBehaviour
 {
     [SerializeField] Rigidbody rb;
@@ -23,14 +24,25 @@ public class Point : MonoBehaviour
         transform.Rotate(Vector3.forward * speed * 15 * Time.deltaTime);
         if (player != null)
         {
-            // Added Debugging
 
-            // Rotating the coin around the y-axis (up) as an example
-            
-
-            // Moving the coin towards the player
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
         }
+    }
+    void OnCollisionEnter(Collision collider)
+    {
+        if (collider.gameObject.tag == "Player")
+        {
+            if (player != null)
+            {
+                collider.gameObject.GetComponent<PhotonView>().Owner.AddScore(1);
+                PhotonNetwork.Destroy(this.gameObject);
+                
+            }
+
+
+
+        }
+
     }
 
 }
