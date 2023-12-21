@@ -156,6 +156,7 @@ MonoBehaviour:
   y_val: 30
   player: {fileID: 0}
   speed: 40
+  pv: {fileID: 0}
 --- !u!114 &3029322172578487276
 MonoBehaviour:
   m_ObjectHideFlags: 0

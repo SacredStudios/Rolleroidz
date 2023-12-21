@@ -47,7 +47,7 @@ public class Point : MonoBehaviour
         }
 
     }
-    public void OnDestroy()
+    public void Destroy()
     {
         PhotonNetwork.Destroy(this.gameObject);
     }
