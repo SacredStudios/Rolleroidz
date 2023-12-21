@@ -20,7 +20,7 @@ public class Point : MonoBehaviour
 
     void Update()
     {
-        transform.Rotate(Vector3.left * speed * 15 * Time.deltaTime);
+        transform.Rotate(Vector3.forward * speed * 15 * Time.deltaTime);
         if (player != null)
         {
             // Added Debugging
