@@ -7340,6 +7340,7 @@ MonoBehaviour:
   currLoc: {x: 0, y: 0, z: 0}
   cam: {fileID: 4597114385376208466}
   collider: {fileID: 5456136953385268333}
+  whoShotYou: {fileID: 0}
 --- !u!114 &-8997455347769814163
 MonoBehaviour:
   m_ObjectHideFlags: 0
