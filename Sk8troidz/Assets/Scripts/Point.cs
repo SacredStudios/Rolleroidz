@@ -36,7 +36,7 @@ public class Point : MonoBehaviour
         {
             if (player != null)
             {
-                Debug.Log(collider.gameObject);
+                Debug.Log(value);
                 collider.gameObject.transform.parent.gameObject.GetComponent<PhotonView>().Owner.AddScore(value);
                 GetComponent<CapsuleCollider>().enabled = false;
                 Invoke("Destroy", 0.5f);
