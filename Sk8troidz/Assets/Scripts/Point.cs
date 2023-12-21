@@ -16,16 +16,21 @@ public class Point : MonoBehaviour
         int x = Random.Range(min, max);
         int z = Random.Range(min, max);
         rb.AddForce(new Vector3(x, y_val, z));
-        
-    }
-    void Update()
-    { if (player != null)
-        {
-            transform.Rotate(Vector3.left * speed * 20* Time.deltaTime);
-            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
-        }
-        
     }
 
-    
+    void Update()
+    {
+        if (player != null)
+        {
+            // Added Debugging
+            Debug.Log("Rotating and Moving Coin");
+
+            // Rotating the coin around the y-axis (up) as an example
+            transform.Rotate(Vector3.up * speed * 15 * Time.deltaTime);
+
+            // Moving the coin towards the player
+            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+        }
+    }
+
 }
