@@ -11,6 +11,7 @@ public class Point : MonoBehaviour
     [SerializeField] int y_val;
     public GameObject player;
     [SerializeField] float speed;
+    [SerializeField] PhotonView pv;
 
     private void Start()
     {
@@ -35,7 +36,9 @@ public class Point : MonoBehaviour
             if (player != null)
             {
                 collider.gameObject.GetComponent<PhotonView>().Owner.AddScore(1);
-                PhotonNetwork.Destroy(this.gameObject);
+                GetComponent<CapsuleCollider>().enabled = false;
+                Invoke("Destroy", 0.5f);
+                
                 
             }
 
@@ -43,6 +46,10 @@ public class Point : MonoBehaviour
 
         }
 
+    }
+    public void OnDestroy()
+    {
+        PhotonNetwork.Destroy(this.gameObject);
     }
 
 }
