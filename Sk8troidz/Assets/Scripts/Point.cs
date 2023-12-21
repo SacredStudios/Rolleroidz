@@ -12,6 +12,7 @@ public class Point : MonoBehaviour
     public GameObject player;
     [SerializeField] float speed;
     [SerializeField] PhotonView pv;
+    public int value;
 
     private void Start()
     {
@@ -35,7 +36,7 @@ public class Point : MonoBehaviour
         {
             if (player != null)
             {
-                collider.gameObject.GetComponent<PhotonView>().Owner.AddScore(1);
+                collider.gameObject.GetComponent<PhotonView>().Owner.AddScore(value);
                 GetComponent<CapsuleCollider>().enabled = false;
                 Invoke("Destroy", 0.5f);
                 
