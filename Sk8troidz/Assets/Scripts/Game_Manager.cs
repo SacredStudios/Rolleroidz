@@ -222,7 +222,8 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     }
 
     public void SpawnPlayers()
-    {    
+    { 
+        if(PhotonNetwork.IsMasterClient)
         pv.RPC("SpawnPlayer", RpcTarget.All);
     }
     [PunRPC]
