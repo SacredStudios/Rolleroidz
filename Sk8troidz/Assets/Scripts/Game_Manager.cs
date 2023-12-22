@@ -223,7 +223,6 @@ public class Game_Manager : MonoBehaviourPunCallbacks
 
     public void SpawnPlayers()
     { 
-        if(PhotonNetwork.IsMasterClient)
         pv.RPC("SpawnPlayer", RpcTarget.All);
     }
     [PunRPC]
@@ -237,14 +236,17 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         position = transform.position;
         lobby_cam.SetActive(false);
         lobby.SetActive(false);
-        new_player = PhotonNetwork.Instantiate(player_prefab.name, position, Quaternion.identity, 0);
-        List<Vector3> points = respawn_points.GetComponent<RespawnPoints>().respawn_points; //respawn locations
-        new_player.GetComponent<Respawn>().respawn_points = points; 
-        new_player.GetComponentInChildren<Weapon_Handler>().weapon = my_weapon;
-        Debug.Log(points.Count);
-        new_player.transform.position = points[Random.Range(0, points.Count)];
-        Debug.Log(new_player.transform.position);
+        if (new_player == null)
+        {
+            new_player = PhotonNetwork.Instantiate(player_prefab.name, position, Quaternion.identity, 0);
+            List<Vector3> points = respawn_points.GetComponent<RespawnPoints>().respawn_points; //respawn locations
+            new_player.GetComponent<Respawn>().respawn_points = points;
+            new_player.GetComponentInChildren<Weapon_Handler>().weapon = my_weapon;
+            Debug.Log(points.Count);
+            new_player.transform.position = points[Random.Range(0, points.Count)];
+            Debug.Log(new_player.transform.position);
 
+        }
 
 
 
