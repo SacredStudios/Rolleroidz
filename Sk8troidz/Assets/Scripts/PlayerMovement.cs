@@ -53,6 +53,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     //Sound Effects
     [SerializeField] AudioSource skating_sound;
     [SerializeField] AudioSource offground_sound;
+    [SerializeField] AudioSource landing_sound;
 
 
     void Start()
@@ -187,7 +188,8 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
         {
             animator.SetFloat("IsJumping", 0f);
             if (hasLanded == false) {
-                
+                Land();
+                Debug.Log("Land");
                 hasLanded = true;
         }
             trick_mode_activated = false;
@@ -231,7 +233,10 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     {
         skating_sound.Play();
     }
-
+    public void Land()
+    {
+        landing_sound.Play();
+    }
 
     public void Offground()
     {

@@ -6,6 +6,7 @@ public class Boost_Panel : MonoBehaviour
 {
     [SerializeField] float multiplier;
     [SerializeField] Vector3 force;
+    [SerializeField] AudioSource boost;
     void OnCollisionStay(Collision collision)
     {
         
@@ -14,8 +15,13 @@ public class Boost_Panel : MonoBehaviour
             StartCoroutine(ChangeMax(collision.gameObject));
             Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
             rb.AddForce(rb.velocity.normalized * multiplier + force);
+            boost.Play();
         }
         
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+      
     }
     void OnTriggerStay(Collider collision)
     {
@@ -27,6 +33,7 @@ public class Boost_Panel : MonoBehaviour
                 StartCoroutine(ChangeMax(collision.gameObject));
                 Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
                 rb.AddForce(rb.velocity.normalized * multiplier);
+                
             }
         }
         
@@ -39,6 +46,7 @@ public class Boost_Panel : MonoBehaviour
             StartCoroutine(ChangeMax(collision.gameObject));
             Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
             rb.AddForce(rb.velocity.normalized * multiplier + -1 * force);
+            boost.Play();
         }
         
     }
@@ -49,6 +57,7 @@ public class Boost_Panel : MonoBehaviour
             StartCoroutine(ChangeMax(collision.gameObject));
             Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
             rb.AddForce(rb.velocity.normalized * multiplier + 2f * force);
+            boost.Play();
         }
         
 

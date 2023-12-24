@@ -15,14 +15,17 @@ public class Ragdoll : MonoBehaviourPunCallbacks
     [SerializeField] CinemachineVirtualCamera camera;
     [SerializeField] GameObject ragdoll_follow;
     [SerializeField] GameObject camera_follow;
+    [SerializeField] AudioSource trick_fail;
+    [SerializeField] AudioSource crowd_boo;
     private void Start()
     {
         pm = GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
-    public void ActivateRagdolls ()
+    public void ActivateRagdolls()
     {
+        crowd_boo.Play();
         if(pv.IsMine)
         {
             int id = gameObject.GetComponent<PhotonView>().ViewID;
@@ -38,6 +41,7 @@ public class Ragdoll : MonoBehaviourPunCallbacks
     }
     [PunRPC] void SyncRagdoll(int id)
     {
+       trick_fail.Play();
        GameObject player = PhotonView.Find(id).gameObject;
        player.GetComponent<Animator>().enabled = false;
         foreach (Collider collider in player.GetComponent<Ragdoll>().colliders)
