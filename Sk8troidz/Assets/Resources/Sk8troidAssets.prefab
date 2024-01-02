@@ -8156,7 +8156,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1513577829, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: sensitivity
-      value: 7
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 1513577829, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: jumpStrength
@@ -8760,7 +8760,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8341497289750416907, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: m_Value
-      value: 90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8345991720814722451, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: m_TagString
@@ -9044,7 +9044,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 625204cb93a8e6144957bc1e810bb7b6, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.94
+  m_Volume: 1
   m_Pitch: 0.64
   Loop: 0
   Mute: 0
