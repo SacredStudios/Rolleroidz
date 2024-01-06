@@ -35,6 +35,7 @@ public class MenuController : MonoBehaviourPunCallbacks
     }
     private void Awake()
     {
+        PhotonNetwork.PhotonServerSettings.AppSettings.FixedRegion = "us";
         PhotonNetwork.ConnectUsingSettings();
         PhotonNetwork.NickName = "NewPlayer";
         PhotonNetwork.LocalPlayer.LeaveCurrentTeam();
