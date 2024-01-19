@@ -39,7 +39,7 @@ public class Point : MonoBehaviour
                 Debug.Log(value);
                 collider.gameObject.GetComponent<PhotonView>().Owner.AddScore(value);
                 GetComponent<CapsuleCollider>().enabled = false;
-                PhotonNetwork.Destroy(this.gameObject);
+              //  PhotonNetwork.Destroy(this.gameObject);
 
 
             }
