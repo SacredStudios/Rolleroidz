@@ -97,7 +97,8 @@ public class RangedWeapon : Weapon
     void SpawnCoin(GameObject player, Transform trans)
     {
         Debug.Log(player.GetComponent<PhotonView>().Owner.GetScore());
-        PhotonNetwork.Instantiate(coin.name, trans.position, Quaternion.identity);
+        GameObject coin_clone = PhotonNetwork.Instantiate(coin.name, trans.position, Quaternion.identity);
+        coin_clone.GetComponent<Point>().player = this.player;
     }
     
     }
