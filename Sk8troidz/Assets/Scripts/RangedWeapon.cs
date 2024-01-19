@@ -9,7 +9,7 @@ public class RangedWeapon : Weapon
     public GameObject particle_trail;
     public GameObject particle_explosion;
     public GameObject impact_explosion;
-    
+    public GameObject coin;
 
 
 
@@ -47,6 +47,7 @@ public class RangedWeapon : Weapon
                             if (ph.current_health - damage <= 0)
                             {
                                 Debug.Log("it works");
+                                SpawnCoin(hit.collider.gameObject,hit.transform);
                                 ph.PlayerLastHit(pv.ViewID);
                                 parent.GetComponentInParent<Super_Bar>().ChangeAmount(25);
 
@@ -73,6 +74,7 @@ public class RangedWeapon : Weapon
                             Debug.Log("hit");
                             if (ph.current_health - (damage*1.5) <= 0)
                             {
+                                SpawnCoin(hit.transform.parent.gameObject, hit.transform);
                                 Debug.Log("it works");
                                 ph.PlayerLastHit(pv.ViewID);
                                 parent.GetComponentInParent<Super_Bar>().ChangeAmount(25);
@@ -91,6 +93,11 @@ public class RangedWeapon : Weapon
             }
         }
         
+    }
+    void SpawnCoin(GameObject player, Transform trans)
+    {
+        Debug.Log(player.GetComponent<PhotonView>().Owner.GetScore());
+        PhotonNetwork.Instantiate(coin.name, trans.position, Quaternion.identity);
     }
     
     }
