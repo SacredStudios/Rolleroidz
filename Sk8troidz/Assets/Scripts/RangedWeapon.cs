@@ -97,7 +97,7 @@ public class RangedWeapon : Weapon
     void SpawnCoin(GameObject dead_player, Transform trans)
     {
         
-        if (player != dead_player)
+        if (pv.IsMine)
         {
             Debug.Log(player.GetComponent<PhotonView>().Owner.NickName);
             GameObject coin_clone = PhotonNetwork.Instantiate(coin.name, trans.position, Quaternion.identity);
