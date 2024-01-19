@@ -99,7 +99,10 @@ public class RangedWeapon : Weapon
         Debug.Log("help");
         GameObject coin_clone = PhotonNetwork.Instantiate(coin.name, trans.position, Quaternion.identity);
         Debug.Log(coin_clone.name);
-        coin_clone.GetComponent<Point>().player = this.player;
+        if (player != dead_player)
+        {
+            coin_clone.GetComponent<Point>().player = this.player;
+        }
     }
     
     }
