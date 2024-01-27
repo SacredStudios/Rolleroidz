@@ -33,9 +33,9 @@ public class Respawn : MonoBehaviour
             cam.enabled = false;
             player.transform.position = new Vector3(9999, 9999, 9999);
             player.GetComponent<Weapon_Handler>().RemoveSuper();
-            whoShotYou = PhotonView.Find(id).gameObject;
+           // whoShotYou = PhotonView.Find(id).gameObject;
             
-            Debug.Log(whoShotYou.GetComponent<PhotonView>().Owner.NickName);
+          //  Debug.Log(whoShotYou.GetComponent<PhotonView>().Owner.NickName);
            // GameObject point_clone = PhotonNetwork.Instantiate(point.name, currLoc, Quaternion.Euler(90, 0, 0));
             //point_clone.GetComponent<Point>().player = whoShotYou;
           //  point_clone.GetComponent<Point>().value = (player.GetPhotonView().Owner.GetScore() / 2) +1;

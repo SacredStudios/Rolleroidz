@@ -18,7 +18,7 @@ public class RangedWeapon : Weapon
     public override void Shoot(GameObject parent, GameObject particle_pos, GameObject explosion_pos)
     {
         //  Debug.DrawRay(parent.transform.position, particle_pos.transform.up * range, Color.green); //chage this to capsulecast
-        
+
 
 
         Ray ray = new Ray(parent.transform.position, particle_pos.transform.up);
@@ -47,7 +47,7 @@ public class RangedWeapon : Weapon
                             if (ph.current_health - damage <= 0)
                             {
                                 Debug.Log("it works");
-                                SpawnCoin(hit.collider.gameObject,hit.transform);
+                                SpawnCoin(hit.collider.gameObject, hit.transform);
                                 ph.PlayerLastHit(pv.ViewID);
                                 parent.GetComponentInParent<Super_Bar>().ChangeAmount(25);
 
@@ -72,7 +72,7 @@ public class RangedWeapon : Weapon
                         if (ph.current_health > 0)
                         {
                             Debug.Log("hit");
-                            if (ph.current_health - (damage*1.5) <= 0)
+                            if (ph.current_health - (damage * 1.5) <= 0)
                             {
                                 SpawnCoin(hit.transform.parent.gameObject, hit.transform);
                                 Debug.Log("it works");
@@ -92,21 +92,21 @@ public class RangedWeapon : Weapon
                 }
             }
         }
-        
+
     }
     void SpawnCoin(GameObject dead_player, Transform trans)
     {
-        
-        if (pv.IsMine)
-        {
-            Debug.Log(player.GetComponent<PhotonView>().Owner.NickName);
-            GameObject coin_clone = PhotonNetwork.Instantiate(coin.name, trans.position, Quaternion.identity);
-            Debug.Log(coin_clone.name);
-            coin_clone.GetComponent<Point>().player = this.player;
-        }
+        Debug.Log(player.GetComponent<PhotonView>().Owner.NickName);
+        Debug.Log(dead_player.GetComponent<PhotonView>().Owner.NickName);
+
+        Debug.Log("This should happen only once");
+        GameObject coin_clone = PhotonNetwork.Instantiate(coin.name, trans.position, Quaternion.identity);
+        Debug.Log(coin_clone.name);
+        coin_clone.GetComponent<Point>().player = this.player;
+
+
     }
-    
-    }
+}
 
 
 

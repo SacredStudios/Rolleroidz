@@ -167,7 +167,10 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
             sound.clip = weapon.sound;
             weapon.super.ammo = weapon.super.max_ammo;
             weapon.pv = this.pv;
-            weapon.player = this.gameObject;
+            if (pv.IsMine)
+            {
+                weapon.player = this.gameObject;
+            }
         }
 
         curr_gun.transform.parent = weapon_loc.transform;

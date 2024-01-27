@@ -13,6 +13,7 @@ public class Point : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] PhotonView pv;
     public int value;
+    [SerializeField] float delay;
 
     private void Start()
     {
