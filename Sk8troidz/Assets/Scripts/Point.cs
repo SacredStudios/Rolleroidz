@@ -13,17 +13,24 @@ public class Point : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] PhotonView pv;
     public int value;
-    [SerializeField] float delay;
+    float delay = 0;
+
 
     private void Start()
     {
         int x = Random.Range(min, max);
         int z = Random.Range(min, max);
         rb.AddForce(new Vector3(x, y_val, z));
+        
     }
 
     void Update()
     {
+        if (delay < 2)
+        {
+            delay += Time.deltaTime;
+            Debug.Log(delay);
+        }
         transform.Rotate(Vector3.forward * speed * 15 * Time.deltaTime);
         if (player != null)
         {
@@ -34,14 +41,14 @@ public class Point : MonoBehaviour
     }
     void OnCollisionEnter(Collision collider)
     {
-        if (collider.gameObject.tag == "Player")
+        if (collider.gameObject.tag == "Player" && delay >= 2)
         {
-            if (player != null)
+            if (collider.gameObject.GetComponent<PhotonView>().IsMine)
             {
                 Debug.Log(value);
                 collider.gameObject.GetComponent<PhotonView>().Owner.AddScore(value);
                 GetComponent<CapsuleCollider>().enabled = false;
-              //  PhotonNetwork.Destroy(this.gameObject);
+                PhotonNetwork.Destroy(this.gameObject);
 
 
             }
