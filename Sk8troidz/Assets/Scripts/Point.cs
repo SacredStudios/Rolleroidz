@@ -39,7 +39,7 @@ public class Point : MonoBehaviour
         }
        
     }
-    void OnCollisionEnter(Collision collider)
+    void OnCollisionStay(Collision collider) 
     {
         if (collider.gameObject.tag == "Player" && delay >= 2)
         {
