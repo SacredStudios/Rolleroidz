@@ -26,10 +26,9 @@ public class Point : MonoBehaviour
 
     void Update()
     {
-        if (delay < 2)
+        if (delay < 1)
         {
             delay += Time.deltaTime;
-            Debug.Log(delay);
         }
         transform.Rotate(Vector3.forward * speed * 15 * Time.deltaTime);
         if (player != null)
@@ -41,7 +40,7 @@ public class Point : MonoBehaviour
     }
     void OnCollisionStay(Collision collider) 
     {
-        if (collider.gameObject.tag == "Player" && delay >= 2)
+        if (collider.gameObject.tag == "Player" && delay >= 1)
         {
             if (player != null)
             {
