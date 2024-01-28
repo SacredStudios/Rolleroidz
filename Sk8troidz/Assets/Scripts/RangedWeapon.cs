@@ -103,6 +103,7 @@ public class RangedWeapon : Weapon
         GameObject coin_clone = PhotonNetwork.Instantiate(coin.name, trans.position, Quaternion.identity);
         Debug.Log(coin_clone.name);
         coin_clone.GetComponent<Point>().player = this.player;
+        coin_clone.GetComponent<Point>().value = dead_player.GetComponent<PhotonView>().Owner.GetScore();
 
 
     }

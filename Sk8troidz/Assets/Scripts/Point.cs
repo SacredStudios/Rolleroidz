@@ -43,7 +43,7 @@ public class Point : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player" && delay >= 2)
         {
-            if (collider.gameObject.GetComponent<PhotonView>().IsMine)
+            if (player != null)
             {
                 Debug.Log(value);
                 collider.gameObject.GetComponent<PhotonView>().Owner.AddScore(value);
