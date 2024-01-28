@@ -11,7 +11,7 @@ public class Eye : MonoBehaviour
     [SerializeField] float maxMovementRadius = 0.5f;
     [SerializeField] bool invertMovement = false;
     [SerializeField] PhotonView pv;
-    private float rpcInterval = 0.5f;
+    private float rpcInterval = 1f;
     private float timeSinceLastRPC = 0f;
 
     private Vector3 initialPupilPosition;
