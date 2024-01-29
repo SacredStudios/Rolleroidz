@@ -30,7 +30,7 @@ public class Point : MonoBehaviour
         {
             delay += Time.deltaTime;
         }
-        transform.Rotate(Vector3.forward * speed * 15 * Time.deltaTime);
+        transform.Rotate(Vector3.left * speed * 15 * Time.deltaTime);
         if (player != null)
         {
 
