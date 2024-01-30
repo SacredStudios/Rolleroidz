@@ -21,6 +21,7 @@ public class Ball : MonoBehaviour
     public GameObject parent;
     [SerializeField] Rigidbody rb;
     [SerializeField] AudioSource sound;
+    [SerializeField] Weapon weapon;
 
 
 
@@ -77,6 +78,7 @@ public class Ball : MonoBehaviour
                     if (hit.gameObject.GetComponent<Player_Health>().current_health - damage <= 0)
                     {
                         parent.GetComponentInParent<Super_Bar>().ChangeAmount(25);
+                        weapon.SpawnCoin(hit.GetComponent<Collider>().gameObject, hit.transform);
 
                     }
                     hit.gameObject.GetComponent<Player_Health>().Remove_Health(damage);

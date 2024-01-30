@@ -17,8 +17,8 @@ MonoBehaviour:
   weapon_description: While it's delay is long, the Swiper has a extremely high range
     and damage. It's like a sniper, but even better. Don't ask how...
   weapon_delay: 1.5
-  damage: 100
-  attack_cost: 70
+  damage: 75
+  attack_cost: 100
   knockback: 1000
   offset: {x: 0, y: 0, z: 0}
   pv: {fileID: 0}
@@ -33,3 +33,4 @@ MonoBehaviour:
   particle_trail: {fileID: 484392930733997870, guid: 2fa26cd4816dc471092f58bd6c4c07d5, type: 3}
   particle_explosion: {fileID: 367450934941629301, guid: 317d7bcf65d7646de804cb49b0796ff9, type: 3}
   impact_explosion: {fileID: 2189970838978847630, guid: 343ab2af233024a1c8bbf78f7201a21d, type: 3}
+  coin: {fileID: 5812255397824587399, guid: db03c3afb90494e0f99eee91135a83e3, type: 3}

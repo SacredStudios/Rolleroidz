@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using UnityEngine.UI;
+using Photon.Pun.UtilityScripts;
 
 
 public class Weapon : ScriptableObject
@@ -29,13 +30,25 @@ public class Weapon : ScriptableObject
 
     public GameObject instance;
     //Add var for sound
+    public GameObject coin;
 
-    
 
 
-   public virtual void Shoot(GameObject parent, GameObject particle_pos, GameObject explosion_pos) { }
+    public virtual void Shoot(GameObject parent, GameObject particle_pos, GameObject explosion_pos) { }
 
-   
+    public void SpawnCoin(GameObject dead_player, Transform trans)
+    {
+        Debug.Log(player.GetComponent<PhotonView>().Owner.NickName);
+        Debug.Log(dead_player.GetComponent<PhotonView>().Owner.NickName);
 
-   
+        Debug.Log("This should happen only once");
+        GameObject coin_clone = PhotonNetwork.Instantiate(coin.name, trans.position, Quaternion.identity);
+        Debug.Log(coin_clone.name);
+        coin_clone.GetComponent<Point>().player = this.player;
+        coin_clone.GetComponent<Point>().value = (dead_player.GetComponent<PhotonView>().Owner.GetScore() / 2) + 1;
+
+
+    }
+
+
 }

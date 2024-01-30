@@ -30,6 +30,8 @@ MonoBehaviour:
   player: {fileID: 0}
   super: {fileID: 11400000, guid: 54a5d182a223340ef8b0766b3b4cfb7e, type: 2}
   instance: {fileID: 752707165243343423, guid: 8a570b296fd5b4073a4df7583f56a0e8, type: 3}
+  coin: {fileID: 5812255397824587399, guid: db03c3afb90494e0f99eee91135a83e3, type: 3}
   particle_trail: {fileID: 484392930733997870, guid: e83730576bd6d491294d149809c4fa60, type: 3}
   particle_explosion: {fileID: 367450934941629301, guid: ff835b73a4762094990f9ce060b80dc8, type: 3}
   impact_explosion: {fileID: 2189970838978847630, guid: 503568be5a661af4ba27514877dbb701, type: 3}
+  coin: {fileID: 0}

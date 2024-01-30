@@ -71,7 +71,7 @@ public class RangedWeapon : Weapon
                     {
                         if (ph.current_health > 0)
                         {
-                            Debug.Log("hit");
+                            Debug.Log("headshot");
                             if (ph.current_health - (damage * 1.5) <= 0)
                             {
                                 SpawnCoin(hit.transform.parent.gameObject, hit.transform);

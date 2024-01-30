@@ -14,6 +14,7 @@ public class Point : MonoBehaviour
     [SerializeField] PhotonView pv;
     public int value;
     float delay = 0;
+    [SerializeField] GameObject effect;
 
 
     private void Start()
@@ -30,7 +31,7 @@ public class Point : MonoBehaviour
         {
             delay += Time.deltaTime;
         }
-        transform.Rotate(Vector3.left * speed * 15 * Time.deltaTime);
+        transform.Rotate(Vector3.forward * speed * 15 * Time.deltaTime);
         if (player != null)
         {
 
@@ -40,8 +41,10 @@ public class Point : MonoBehaviour
     }
     void OnCollisionStay(Collision collider) 
     {
+        
         if (collider.gameObject.tag == "Player" && delay >= 1)
         {
+            Instantiate(effect, this.transform.position, Quaternion.identity);
             if (player != null)
             {
                 Debug.Log(value);

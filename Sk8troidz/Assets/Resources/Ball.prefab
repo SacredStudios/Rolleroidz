@@ -199,6 +199,7 @@ MonoBehaviour:
   parent: {fileID: 0}
   rb: {fileID: -8229581441703253665}
   sound: {fileID: 7004028734959570506}
+  weapon: {fileID: 11400000, guid: 0589c57a4983e4591965fe9ed0c8e858, type: 2}
 --- !u!82 &7004028734959570506
 AudioSource:
   m_ObjectHideFlags: 0
