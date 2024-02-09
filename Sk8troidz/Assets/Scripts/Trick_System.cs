@@ -49,16 +49,14 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         for(int i = 0; i < n/2; i++)
         {
             position.y = Screen.height / 2 + Random.Range(-50, 50);
-            GameObject btn_clone = Instantiate(btn, position, Quaternion.identity, parent.transform);
+            GameObject btn_clone = Instantiate(btn, parent.transform);
             btn_clone.SetActive(true);
-            position.x += 90f;
         }
         position = new Vector3(Screen.width / 2, Screen.height / 2, 0f);
         for (int i = 0; i < n / 2-1; i++)
         {
             position.y = Screen.height / 2 + Random.Range(-50, 50);
-            position.x -= 90f;
-            GameObject btn_clone = Instantiate(btn, position, Quaternion.identity, parent.transform);
+            GameObject btn_clone = Instantiate(btn, parent.transform);
             btn_clone.SetActive(true);
         }
         yield return new WaitUntil(() => counter >= n-1 || PlayerMovement.trick_mode_activated == false);
@@ -66,10 +64,11 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
 
         animator.SetBool("trickModeActivated", false);
-        crosshair.SetActive(true);
+        
         if (counter >= n-1)
         {
-            
+            crosshair.SetActive(true);
+
             sb.ChangeAmount(amount);
             yield return new WaitForSeconds(delay);
             if (n > 8)

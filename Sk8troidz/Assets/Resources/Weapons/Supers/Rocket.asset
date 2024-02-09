@@ -25,9 +25,11 @@ MonoBehaviour:
   max_ammo: 5
   ammo: 5
   isSuper: 1
+  sound: {fileID: 0}
   player: {fileID: 0}
   super: {fileID: 0}
   instance: {fileID: 0}
+  coin: {fileID: 5812255397824587399, guid: db03c3afb90494e0f99eee91135a83e3, type: 3}
   radius: 20
   power: 10000
   speed: 300

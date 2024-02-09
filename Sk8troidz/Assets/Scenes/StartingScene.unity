@@ -829,20 +829,32 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1151378854252750212, guid: a6476ea02cc0c40daa369662ce82aaf1, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 211d8fa86df9348b295161ecd2da4af3, type: 2}
     - target: {fileID: 1210297958742844570, guid: a6476ea02cc0c40daa369662ce82aaf1, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1264052092018629822, guid: a6476ea02cc0c40daa369662ce82aaf1, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1452794057642523166, guid: a6476ea02cc0c40daa369662ce82aaf1, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: be77b54d8797c469a8ce83828fa511f3, type: 2}
     - target: {fileID: 1556647079451444615, guid: a6476ea02cc0c40daa369662ce82aaf1, type: 3}
       propertyPath: m_Name
       value: Dummy(For Clothes Icons)
       objectReference: {fileID: 0}
     - target: {fileID: 1556647079451444615, guid: a6476ea02cc0c40daa369662ce82aaf1, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1827119583102407664, guid: a6476ea02cc0c40daa369662ce82aaf1, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1827119583102407664, guid: a6476ea02cc0c40daa369662ce82aaf1, type: 3}
@@ -901,6 +913,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4002978963004834012, guid: a6476ea02cc0c40daa369662ce82aaf1, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 676c289c8318345f6add10bc33151d49, type: 2}
     - target: {fileID: 4253205922594606098, guid: a6476ea02cc0c40daa369662ce82aaf1, type: 3}
       propertyPath: m_Enabled
       value: 0

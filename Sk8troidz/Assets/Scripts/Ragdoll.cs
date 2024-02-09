@@ -17,6 +17,7 @@ public class Ragdoll : MonoBehaviourPunCallbacks
     [SerializeField] GameObject camera_follow;
     [SerializeField] AudioSource trick_fail;
     [SerializeField] AudioSource crowd_boo;
+    [SerializeField] GameObject crosshair;
     private void Start()
     {
         pm = GetComponent<PlayerMovement>();
@@ -62,9 +63,14 @@ public class Ragdoll : MonoBehaviourPunCallbacks
         }
 
     }
+    public void Crosshair_Inactive()
+    {
+        crosshair.SetActive(false);
+    }
     public void DeactivateRagdolls()
     {
-        
+        Debug.Log("test");
+        crosshair.SetActive(true);
         GetComponent<Animator>().enabled = true;
         pm.enabled = true;
         camera.GetComponent<CinemachineVirtualCamera>().Follow = camera_follow.transform;
