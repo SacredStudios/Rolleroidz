@@ -5,8 +5,10 @@ using Photon.Pun;
 using Photon.Realtime;
 using Photon.Pun.UtilityScripts;
 using Cinemachine;
+
 public class Respawn : MonoBehaviour
 {
+    
     [SerializeField] GameObject player;
     [SerializeField] float respawn_time;
     [SerializeField] GameObject death_anim;
@@ -17,9 +19,17 @@ public class Respawn : MonoBehaviour
     [SerializeField] Vector3 currLoc;
     [SerializeField] CinemachineBrain cam;
     [SerializeField] CapsuleCollider collider;
+    [SerializeField] GameObject vcam;
 
     [SerializeField] GameObject whoShotYou;
-
+    [SerializeField] GameObject RespawnCircle;
+    GameObject respawn_cam;
+    [SerializeField] GameObject regular_cam;
+    [SerializeField] GameObject respawn_btn;
+    private void Start()
+    {
+        respawn_cam = GameObject.Find("RespawnCam");
+    }
     public void Death(int id)
     {
 
@@ -51,30 +61,42 @@ public class Respawn : MonoBehaviour
                 pv.Owner.AddScore(1);
             }
             pv.Owner.SetScore(pv.Owner.GetScore() / 2);
-            Invoke("Player_Active", respawn_time);
+            Invoke("Respawn_Screen", respawn_time);
         }
 
     }
   
-    void Player_Active()
+    void Respawn_Screen()
     {
-        player.GetComponent<PlayerMovement>().enabled = true;
         cam.enabled = true;
+        vcam.GetComponent<CinemachineVirtualCamera>().Follow = respawn_cam.transform;
         player.GetComponent<Player_Health>().Add_Health(1000);
-        player.GetComponent<PlayerMovement>().enabled = true;
+        respawn_btn.SetActive(true);
+        //player.GetComponent<PlayerMovement>().enabled = true;
         collider.enabled = true;
-        player.SetActive(true);
-        player.transform.position = GetFarthestPoint(currLoc);
+        //player.SetActive(true);
+        RespawnCircle.SetActive(true);
+        //player.transform.position = GetFarthestPoint(currLoc);
         if (pv.Owner.GetScore() < 0)
         {
             pv.Owner.SetScore(0);
         }
+        
+    }
+    public void Respawn_Player()
+    {
+        collider.enabled = true;
+        vcam.GetComponent<CinemachineVirtualCamera>().Follow = regular_cam.transform;
+        player.transform.position = RespawnCircle.transform.position + new Vector3(0,10f,0);
+        player.GetComponent<PlayerMovement>().enabled = true;
+        RespawnCircle.SetActive(false);
+        respawn_btn.SetActive(false);
     }
     Vector3 GetFarthestPoint(Vector3 pos)
     {
         Vector3 result = new Vector3();
         float distance = 0;
-        for (int i = 0; i< respawn_points.Count; i++)
+        for (int i = 0; i < respawn_points.Count; i++)
         {
             float temp = Mathf.Sqrt(
                   Mathf.Pow(respawn_points[i].x - pos.x, 2) //distance formula
