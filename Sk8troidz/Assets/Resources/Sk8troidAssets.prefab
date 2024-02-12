@@ -12425,6 +12425,7 @@ MonoBehaviour:
   RespawnCircle: {fileID: 2738556902822537796}
   regular_cam: {fileID: 1741244539776109706}
   respawn_btn: {fileID: 791499908265566615}
+  trick_system: {fileID: 1106976187424180103}
 --- !u!114 &-8997455347769814163
 MonoBehaviour:
   m_ObjectHideFlags: 0

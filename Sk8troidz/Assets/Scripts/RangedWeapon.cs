@@ -9,7 +9,6 @@ public class RangedWeapon : Weapon
     public GameObject particle_trail;
     public GameObject particle_explosion;
     public GameObject impact_explosion;
-    public GameObject coin;
 
 
 

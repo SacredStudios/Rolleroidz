@@ -27,7 +27,7 @@ public class Point : MonoBehaviour
 
     void Update()
     {
-        if (delay < 1)
+        if (delay < 0.6f)
         {
             delay += Time.deltaTime;
         }
@@ -42,7 +42,7 @@ public class Point : MonoBehaviour
     void OnCollisionStay(Collision collider) 
     {
         
-        if (collider.gameObject.tag == "Player" && delay >= 1)
+        if (collider.gameObject.tag == "Player" && delay >= 0.6f)
         {
             Instantiate(effect, this.transform.position, Quaternion.identity);
             if (player != null)

@@ -26,6 +26,7 @@ public class Respawn : MonoBehaviour
     GameObject respawn_cam;
     [SerializeField] GameObject regular_cam;
     [SerializeField] GameObject respawn_btn;
+    [SerializeField] GameObject trick_system;
     private void Start()
     {
         respawn_cam = GameObject.Find("RespawnCam");
@@ -43,6 +44,7 @@ public class Respawn : MonoBehaviour
             cam.enabled = false;
             player.transform.position = new Vector3(9999, 9999, 9999);
             player.GetComponent<Weapon_Handler>().RemoveSuper();
+            trick_system.SetActive(false);
            // whoShotYou = PhotonView.Find(id).gameObject;
             
           //  Debug.Log(whoShotYou.GetComponent<PhotonView>().Owner.NickName);
@@ -89,6 +91,7 @@ public class Respawn : MonoBehaviour
         vcam.GetComponent<CinemachineVirtualCamera>().Follow = regular_cam.transform;
         player.transform.position = RespawnCircle.transform.position + new Vector3(0,10f,0);
         player.GetComponent<PlayerMovement>().enabled = true;
+        trick_system.SetActive(true);
         RespawnCircle.SetActive(false);
         respawn_btn.SetActive(false);
     }
