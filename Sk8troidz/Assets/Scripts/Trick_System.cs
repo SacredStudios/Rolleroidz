@@ -46,14 +46,7 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         counter = 0;
         Vector3 position = new Vector3(Screen.width/2, Screen.height / 2, 0f);
-        for(int i = 0; i < n/2; i++)
-        {
-            position.y = Screen.height / 2 + Random.Range(-50, 50);
-            GameObject btn_clone = Instantiate(btn, parent.transform);
-            btn_clone.SetActive(true);
-        }
-        position = new Vector3(Screen.width / 2, Screen.height / 2, 0f);
-        for (int i = 0; i < n / 2-1; i++)
+        for(int i = 0; i < 3; i++)
         {
             position.y = Screen.height / 2 + Random.Range(-50, 50);
             GameObject btn_clone = Instantiate(btn, parent.transform);
@@ -65,7 +58,7 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
         animator.SetBool("trickModeActivated", false);
         
-        if (counter >= n-1)
+        if (counter >= 3)
         {
             crosshair.SetActive(true);
 

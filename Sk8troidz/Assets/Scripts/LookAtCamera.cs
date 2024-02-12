@@ -12,6 +12,7 @@ public class LookAtCamera : MonoBehaviourPunCallbacks
     [SerializeField] PhotonView pv;
     [SerializeField] Text player_name;
     [SerializeField] Text score;
+    [SerializeField] GameObject heart;
     public static Camera cam;
     
 
@@ -32,6 +33,10 @@ public class LookAtCamera : MonoBehaviourPunCallbacks
             {
                 score.color = new Color(0.48f, 0.16f, 0.42f);
                 player_name.color = new Color(0.96f, 0.32f, 0.84f);
+            }
+            if(pv.Owner.GetPhotonTeam() == PhotonNetwork.LocalPlayer.GetPhotonTeam())
+            {
+                heart.SetActive(true);
             }
            
 

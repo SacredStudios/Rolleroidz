@@ -32,6 +32,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
 
     [SerializeField] GameObject gameover_screen;
     [SerializeField] Text gameover_text;
+    [SerializeField] GameObject countdown;
     public Weapon my_weapon;
     GameObject weapon_list;
 
@@ -41,6 +42,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.AutomaticallySyncScene = false;
         weapon_list = GameObject.Find("WeaponList"); //I know gameobject.find is bad. Do you have any better ideas?
+        countdown.SetActive(false);
 
     }
     private void Start()
@@ -104,9 +106,27 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         }
         Debug.Log("StartingGame");
         game_ongoing = true;
+        pv.RPC("Start_Countdown", RpcTarget.All);
         Invoke("SpawnPlayers", 5f);
         
     }
+    [PunRPC] public void Start_Countdown()
+    {
+        countdown.SetActive(true);
+        StartCoroutine(Countdown(5));
+    }
+    IEnumerator Countdown(int n)
+    {
+        while (n > 0)
+        {
+            countdown.GetComponent<Text>().text = n.ToString();
+            yield return new WaitForSeconds(1);
+            n--;
+        }
+
+    }
+
+    
     [PunRPC] public void GetTeams(int x, int y)
     {
         temp1 = x;
