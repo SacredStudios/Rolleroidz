@@ -13,6 +13,7 @@ public class Explosion : MonoBehaviour
     public float radius;
     public float speed;
     public PhotonView pv;
+    public Weapon weapon;
     private void FixedUpdate()
     {
         GetComponent<Rigidbody>().AddRelativeForce(Vector3.up * speed);
@@ -23,13 +24,20 @@ public class Explosion : MonoBehaviour
             Collider[] colliders = Physics.OverlapSphere(this.transform.position, radius);
             foreach (Collider hit in colliders)
             {
-                if (hit.gameObject.GetComponent<Player_Health>() != null)
+            Player_Health ph = hit.GetComponent<Player_Health>();
+            if (ph != null)
                 {
-                hit.gameObject.GetComponent<Player_Health>().Add_Explosion(power, radius, this.transform.position.x, this.transform.position.y, this.transform.position.z);
-                    if (hit.gameObject.GetComponent<PhotonView>().Owner.GetPhotonTeam() != PhotonNetwork.LocalPlayer.GetPhotonTeam())
+                ph.Add_Explosion(power, radius, this.transform.position.x, this.transform.position.y, this.transform.position.z);
+                if (hit.gameObject.GetComponent<PhotonView>().Owner.GetPhotonTeam() != PhotonNetwork.LocalPlayer.GetPhotonTeam())
+                {
+
+                    ph.Remove_Health(damage);
+                    if (ph.current_health > 0 && ph.current_health - damage <= 0)
                     {
-                        hit.gameObject.GetComponent<Player_Health>().Remove_Health(damage);
+                        weapon.SpawnCoin(hit.GetComponent<Collider>().gameObject, hit.transform);
+                        ph.PlayerLastHit(pv.ViewID);
                     }
+                }
                 }
             }
             

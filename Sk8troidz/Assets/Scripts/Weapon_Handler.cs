@@ -159,9 +159,10 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
     {
         if (weapon != null)
         {
+            
             curr_gun = Instantiate(weapon.instance, weapon_loc.transform);
             curr_gun.transform.position += weapon.offset;
-            pv.RPC("SetWeapon", RpcTarget.Others, weapon.name, pv.ViewID);
+            
             temp_weapon = weapon;
             sb = GetComponent<Super_Bar>();
             sound.clip = weapon.sound;
@@ -170,6 +171,7 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
             if (pv.IsMine)
             {
                 weapon.player = this.gameObject;
+                pv.RPC("SetWeapon", RpcTarget.Others, weapon.name, pv.ViewID);
             }
         }
 
@@ -201,8 +203,13 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
                 sound.clip = w.sound;
             }
         }
-        
+        for (int i = 1; i < weapon_loc.transform.childCount; i++)
+        {
+            Destroy(weapon_loc.transform.GetChild(i).gameObject);
+        }
+
+
     }
-    
+
 
 }

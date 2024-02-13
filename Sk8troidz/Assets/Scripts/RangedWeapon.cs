@@ -48,7 +48,7 @@ public class RangedWeapon : Weapon
                                 Debug.Log("it works");
                                 SpawnCoin(hit.collider.gameObject, hit.transform);
                                 ph.PlayerLastHit(pv.ViewID);
-                                parent.GetComponentInParent<Super_Bar>().ChangeAmount(50);
+                                parent.GetComponentInParent<Super_Bar>().ChangeAmount(35);
 
                             }
                             ph.Remove_Health(damage);
@@ -76,7 +76,7 @@ public class RangedWeapon : Weapon
                                 SpawnCoin(hit.transform.parent.gameObject, hit.transform);
                                 Debug.Log("it works");
                                 ph.PlayerLastHit(pv.ViewID);
-                                parent.GetComponentInParent<Super_Bar>().ChangeAmount(50);
+                                parent.GetComponentInParent<Super_Bar>().ChangeAmount(35);
 
                             }
                             ph.Remove_Health(damage * 1.5f);
