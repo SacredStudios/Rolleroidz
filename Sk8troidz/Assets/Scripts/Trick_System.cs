@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 
 public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
@@ -37,12 +38,13 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public void AddToCounter(GameObject btn)
     {
+        btn.GetComponent<Button>().interactable = false;
+        btn.GetComponent<Image>().enabled = false;
         crosshair.SetActive(false);
         animator.SetLayerWeight(2, 0);
         animator.SetBool("trickModeActivated", true);
         wh.weapon = null;
         counter++;
-        btn.SetActive(false);
     }
     IEnumerator Trick(int n)
     {
@@ -51,12 +53,23 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         btn1.SetActive(true);
         btn2.SetActive(true);
         btn3.SetActive(true);
+        btn1.GetComponent<Button>().interactable = true;
+        btn1.GetComponent<Image>().enabled = true;
+
+        btn2.GetComponent<Button>().interactable = true;
+        btn2.GetComponent<Image>().enabled = true;
+
+        btn3.GetComponent<Button>().interactable = true;
+        btn3.GetComponent<Image>().enabled = true;
         yield return new WaitUntil(() => counter >= n-1 || PlayerMovement.trick_mode_activated == false);
         // player.GetComponent<Animator>().enabled = false;
 
 
         animator.SetBool("trickModeActivated", false);
-        
+        btn1.SetActive(false);
+        btn2.SetActive(false);
+        btn3.SetActive(false);
+
         if (counter >= 3)
         {
             crosshair.SetActive(true);
