@@ -37,10 +37,14 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
         {
             if (sb.slider.value >= 100 && weapon.isSuper == false)
             {
+
                 weapon = weapon.super;
+                
+
                 if (!super_ammo.activeSelf)
                 { 
-                    super_ammo.SetActive(true);                   
+                    super_ammo.SetActive(true);
+                    
                     
                     if (increment_parent.transform.childCount == 0)
                     {
@@ -167,10 +171,12 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
             sb = GetComponent<Super_Bar>();
             sound.clip = weapon.sound;
             weapon.super.ammo = weapon.super.max_ammo;
+            
             weapon.pv = this.pv;
             if (pv.IsMine)
             {
                 weapon.player = this.gameObject;
+                weapon.super.player = weapon.player;
                 pv.RPC("SetWeapon", RpcTarget.Others, weapon.name, pv.ViewID);
             }
         }
