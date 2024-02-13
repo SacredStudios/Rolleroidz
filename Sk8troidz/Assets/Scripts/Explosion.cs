@@ -30,13 +30,14 @@ public class Explosion : MonoBehaviour
                 ph.Add_Explosion(power, radius, this.transform.position.x, this.transform.position.y, this.transform.position.z);
                 if (hit.gameObject.GetComponent<PhotonView>().Owner.GetPhotonTeam() != PhotonNetwork.LocalPlayer.GetPhotonTeam())
                 {
-
-                    ph.Remove_Health(damage);
                     if (ph.current_health > 0 && ph.current_health - damage <= 0)
                     {
                         weapon.SpawnCoin(hit.GetComponent<Collider>().gameObject, hit.transform);
                         ph.PlayerLastHit(pv.ViewID);
                     }
+
+                    ph.Remove_Health(damage);
+                    
                 }
                 }
             }
