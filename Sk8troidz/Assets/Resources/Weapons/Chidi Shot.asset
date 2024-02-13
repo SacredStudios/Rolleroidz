@@ -18,7 +18,7 @@ MonoBehaviour:
     exploding basketballs that target the nearest enemy.  (Must be 7 foot tall to
     use)
   weapon_delay: 1
-  damage: 25
+  damage: 40
   attack_cost: 100
   knockback: 0
   offset: {x: 0, y: 0, z: 0}
@@ -36,6 +36,6 @@ MonoBehaviour:
   particle_explosion: {fileID: 367450934941629301, guid: 317d7bcf65d7646de804cb49b0796ff9, type: 3}
   radius: 3
   power: 10000
-  speed: 22.5
+  speed: 25
   explosion: {fileID: 2189970838978847630, guid: 343ab2af233024a1c8bbf78f7201a21d, type: 3}
   smoke: {fileID: 1019805676534266626, guid: 007cae03502534ac1902efeaee5e2802, type: 3}

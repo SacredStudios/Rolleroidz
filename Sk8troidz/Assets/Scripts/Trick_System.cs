@@ -6,7 +6,9 @@ using UnityEngine.EventSystems;
 
 public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField] GameObject btn;
+    [SerializeField] GameObject btn1;
+    [SerializeField] GameObject btn2;
+    [SerializeField] GameObject btn3;
     public int counter;
     [SerializeField] GameObject parent;
     [SerializeField] GameObject player;
@@ -40,18 +42,15 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         animator.SetBool("trickModeActivated", true);
         wh.weapon = null;
         counter++;
-        Destroy(btn);
+        btn.SetActive(false);
     }
     IEnumerator Trick(int n)
     {
         counter = 0;
         Vector3 position = new Vector3(Screen.width/2, Screen.height / 2, 0f);
-        for(int i = 0; i < 3; i++)
-        {
-            position.y = Screen.height / 2 + Random.Range(-50, 50);
-            GameObject btn_clone = Instantiate(btn, parent.transform);
-            btn_clone.SetActive(true);
-        }
+        btn1.SetActive(true);
+        btn2.SetActive(true);
+        btn3.SetActive(true);
         yield return new WaitUntil(() => counter >= n-1 || PlayerMovement.trick_mode_activated == false);
         // player.GetComponent<Animator>().enabled = false;
 

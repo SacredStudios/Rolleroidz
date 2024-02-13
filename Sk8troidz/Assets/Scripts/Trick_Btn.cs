@@ -12,7 +12,7 @@ public class Trick_Btn : MonoBehaviour//makes sure weapon is not fired whenever 
     {
         if (PlayerMovement.trick_mode_activated == false)
         {
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
         }
     }
     

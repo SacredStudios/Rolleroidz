@@ -63,6 +63,7 @@ public class Respawn : MonoBehaviour
   
     void Respawn_Screen()
     {
+        Invoke("Respawn_Player", 10f);
         cam.enabled = true;
         vcam.GetComponent<CinemachineVirtualCamera>().Follow = respawn_cam.transform;
         player.GetComponent<Player_Health>().Add_Health(1000);
@@ -80,13 +81,16 @@ public class Respawn : MonoBehaviour
     }
     public void Respawn_Player()
     {
-        collider.enabled = true;
-        vcam.GetComponent<CinemachineVirtualCamera>().Follow = regular_cam.transform;
-        player.transform.position = RespawnCircle.transform.position + new Vector3(0,10f,0);
-        player.GetComponent<PlayerMovement>().enabled = true;
-        trick_system.SetActive(true);
-        RespawnCircle.SetActive(false);
-        respawn_btn.SetActive(false);
+        if (RespawnCircle.activeSelf)
+        {
+            collider.enabled = true;
+            vcam.GetComponent<CinemachineVirtualCamera>().Follow = regular_cam.transform;
+            player.transform.position = RespawnCircle.transform.position + new Vector3(0, 10f, 0);
+            player.GetComponent<PlayerMovement>().enabled = true;
+            trick_system.SetActive(true);
+            RespawnCircle.SetActive(false);
+            respawn_btn.SetActive(false);
+        }
     }
     Vector3 GetFarthestPoint(Vector3 pos)
     {
