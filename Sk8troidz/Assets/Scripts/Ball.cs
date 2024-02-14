@@ -50,7 +50,7 @@ public class Ball : MonoBehaviour
             
 
         }
-        rb.AddForce(transform.up * speed*8f, ForceMode.Impulse);
+        rb.AddForce(transform.up * speed*4f, ForceMode.Impulse);
     }
 
     private void OnCollisionEnter(Collision collision)
