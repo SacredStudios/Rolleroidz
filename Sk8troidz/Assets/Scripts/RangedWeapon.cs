@@ -45,10 +45,12 @@ public class RangedWeapon : Weapon
                             Debug.Log("hit");
                             if (ph.current_health - damage <= 0)
                             {
-                                Debug.Log("it works");
-                                SpawnCoin(hit.collider.gameObject, hit.transform);
+                                Transform oldpos = hit.collider.transform;
+                                hit.collider.transform.position = new Vector3(9999, 9999, 9999);
+                                SpawnCoin(hit.transform.parent.gameObject, oldpos);
                                 ph.PlayerLastHit(pv.ViewID);
                                 parent.GetComponentInParent<Super_Bar>().ChangeAmount(35);
+
 
                             }
                             ph.Remove_Health(damage);
@@ -73,7 +75,9 @@ public class RangedWeapon : Weapon
                             Debug.Log("headshot");
                             if (ph.current_health - (damage * 1.5) <= 0)
                             {
-                                SpawnCoin(hit.transform.parent.gameObject, hit.transform);
+                                Transform oldpos = hit.collider.transform;
+                                hit.collider.transform.position = new Vector3(9999, 9999, 9999);
+                                SpawnCoin(hit.transform.parent.gameObject, oldpos);
                                 Debug.Log("it works");
                                 ph.PlayerLastHit(pv.ViewID);
                                 parent.GetComponentInParent<Super_Bar>().ChangeAmount(35);
