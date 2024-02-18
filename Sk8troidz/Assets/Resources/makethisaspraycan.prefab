@@ -156,7 +156,7 @@ MonoBehaviour:
   min: -10
   y_val: 30
   player: {fileID: 0}
-  speed: 40
+  speed: 20
   pv: {fileID: 0}
   value: 0
   effect: {fileID: 1539295708446964675, guid: 08b7731d858a54536a8acb7696523880, type: 3}
