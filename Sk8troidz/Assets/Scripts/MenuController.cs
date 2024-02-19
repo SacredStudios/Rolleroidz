@@ -47,7 +47,7 @@ public class MenuController : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.JoinLobby(TypedLobby.Default);
         ConnectedText.text = "Connected to Server!";
-        ConnectedText.color = new Color(0,0.6f,0);
+        ConnectedText.color = new Color(0.45f,1f,0.45f);
     }
     void HideStartMenu()
     {

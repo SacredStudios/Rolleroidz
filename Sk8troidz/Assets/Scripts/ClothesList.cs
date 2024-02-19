@@ -32,31 +32,100 @@ public class ClothesList : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(this.gameObject);
-        sk8troid_menu = GameObject.Find("Sk8troid(MENUVERSION)");
-        ChangeClothes(def_top);
-        ChangeClothes(def_shirt);
-        ChangeClothes(def_pants);
-        ChangeClothes(def_shoes);
+        sk8troid_menu = GameObject.Find("Sk8troid(MENUVERSION)");       
+        
+        if(PlayerPrefs.HasKey("top")) {
+            LoadClothes(PlayerPrefs.GetString("top"), Clothing.Type.Top);
+        }
+        if (PlayerPrefs.HasKey("shirt"))
+        {
+            LoadClothes(PlayerPrefs.GetString("shirt"), Clothing.Type.Shirt);
+        }
+        if (PlayerPrefs.HasKey("pants"))
+        {
+            LoadClothes(PlayerPrefs.GetString("pants"), Clothing.Type.Pants);
+        }
+        if (PlayerPrefs.HasKey("shoes"))
+        {
+            LoadClothes(PlayerPrefs.GetString("shoes"), Clothing.Type.Shoes);
+        }
+    }
 
+    public void LoadClothes(string name, Clothing.Type type)
+    {
+        switch (type)
+        {
+            case Clothing.Type.Top: 
+                foreach(Clothing clothing in my_tops) //would be better if I used a hashmap
+                {
+                    
+                    if(clothing.name == name)
+                    {
+                        Debug.Log(name + clothing.name);
+                        ChangeClothes(clothing);
+                    }
+                }
+                break;
+            case Clothing.Type.Shirt:
+                foreach (Clothing clothing in my_shirts)
+                {
+
+                    if (clothing.name == name)
+                    {
+                        Debug.Log(name + clothing.name);
+                        ChangeClothes(clothing);
+                    }
+                }
+                break;
+            case Clothing.Type.Pants:
+                foreach (Clothing clothing in my_pants)
+                {
+
+                    if (clothing.name == name)
+                    {
+                        Debug.Log(name + clothing.name);
+                        ChangeClothes(clothing);
+                    }
+                }
+                break;
+            case Clothing.Type.Shoes:
+                foreach (Clothing clothing in my_shoes)
+                {
+
+                    if (clothing.name == name)
+                    {
+                        Debug.Log(name + clothing.name);
+                        ChangeClothes(clothing);
+                    }
+                }
+                break;
+        }
     }
 
     public void ChangeClothes(Clothing clothes)
     {
         sk8troid_menu.GetComponent<Clothes_Dummy>().ChangeClothes(clothes);
-        Debug.Log(clothes.name);
         switch (clothes.type)
         {
             case Clothing.Type.Top:
                 curr_top = clothes;
+                PlayerPrefs.SetString("top", clothes.name);
+                PlayerPrefs.Save();
                 break;
             case Clothing.Type.Shirt:
                 curr_shirt = clothes;
+                PlayerPrefs.SetString("shirt", clothes.name);
+                PlayerPrefs.Save();
                 break;
             case Clothing.Type.Pants:
                 curr_pants = clothes;
+                PlayerPrefs.SetString("pants", clothes.name);
+                PlayerPrefs.Save();
                 break;
             case Clothing.Type.Shoes:
                 curr_shoes = clothes;
+                PlayerPrefs.SetString("shoes", clothes.name);
+                PlayerPrefs.Save();
                 break;
         }
     }

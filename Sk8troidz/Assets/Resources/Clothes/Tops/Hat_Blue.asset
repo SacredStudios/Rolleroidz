@@ -20,3 +20,4 @@ MonoBehaviour:
   sleeveL_mat: {fileID: 0}
   sleeveR_mesh: {fileID: 0}
   sleeveR_mat: {fileID: 0}
+  id: 1

@@ -29,10 +29,10 @@ public class Clothes_Dummy : MonoBehaviour
         
         ClothesList cl = ClothesList.GetComponent<ClothesList>();
         Weapon_List wl = WeaponList.GetComponent<Weapon_List>();
-        cl.ChangeClothes(cl.curr_top);
+       /* cl.ChangeClothes(cl.curr_top);
         cl.ChangeClothes(cl.curr_shirt);
         cl.ChangeClothes(cl.curr_pants);
-        cl.ChangeClothes(cl.curr_shoes);
+        cl.ChangeClothes(cl.curr_shoes); */
         wl.ChangeWeapon(wl.curr_weapon);
     }
     public void ChangeClothes(Clothing clothes)
