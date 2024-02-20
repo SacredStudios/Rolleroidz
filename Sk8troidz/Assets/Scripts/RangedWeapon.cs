@@ -47,7 +47,7 @@ public class RangedWeapon : Weapon
                             {
                                 Transform oldpos = hit.collider.transform;
                                 hit.collider.transform.position = new Vector3(9999, 9999, 9999);
-                                SpawnCoin(hit.transform.parent.gameObject, oldpos);
+                                SpawnCoin(hit.transform.parent.gameObject, hit.point);
                                 ph.PlayerLastHit(pv.ViewID);
                                 parent.GetComponentInParent<Super_Bar>().ChangeAmount(35);
 
@@ -77,7 +77,7 @@ public class RangedWeapon : Weapon
                             {
                                 Transform oldpos = hit.collider.transform;
                                 hit.collider.transform.position = new Vector3(9999, 9999, 9999);
-                                SpawnCoin(hit.transform.parent.gameObject, oldpos);
+                                SpawnCoin(hit.transform.parent.gameObject, hit.point);
                                 Debug.Log("it works");
                                 ph.PlayerLastHit(pv.ViewID);
                                 parent.GetComponentInParent<Super_Bar>().ChangeAmount(35);
@@ -97,19 +97,7 @@ public class RangedWeapon : Weapon
         }
 
     }
-    void SpawnCoin(GameObject dead_player, Transform trans)
-    {
-        Debug.Log(player.GetComponent<PhotonView>().Owner.NickName);
-        Debug.Log(dead_player.GetComponent<PhotonView>().Owner.NickName);
-
-        Debug.Log("This should happen only once");
-        GameObject coin_clone = PhotonNetwork.Instantiate(coin.name, trans.position, Quaternion.identity);
-        Debug.Log(coin_clone.name);
-        coin_clone.GetComponent<Point>().player = this.player;
-        coin_clone.GetComponent<Point>().value = (dead_player.GetComponent<PhotonView>().Owner.GetScore() / 2) + 1;
-
-
-    }
+    
 }
 
 

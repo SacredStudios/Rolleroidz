@@ -266,7 +266,6 @@ public class Game_Manager : MonoBehaviourPunCallbacks
             Debug.Log(points.Count);
             new_player.transform.position = points[Random.Range(0, points.Count)];
             Debug.Log(new_player.transform.position);
-
         }
 
 

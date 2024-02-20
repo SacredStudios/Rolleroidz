@@ -22,11 +22,12 @@ public class MenuController : MonoBehaviourPunCallbacks
     [SerializeField] Animation transition_start;
     [SerializeField] Animation transition_end;
     [SerializeField] Text ConnectedText;
+    [SerializeField] InputField input_field;
 
 
 
     public void ShowMainMenu()
-    {
+    {      
         StartBtn.GetComponent<Button>().enabled = false;
        // StartCoroutine(ConnectToServer());
         Transition();   
@@ -40,6 +41,11 @@ public class MenuController : MonoBehaviourPunCallbacks
         PhotonNetwork.NickName = "NewPlayer";
         PhotonNetwork.LocalPlayer.LeaveCurrentTeam();
         start_pos = transition.transform.position;
+        if (PlayerPrefs.HasKey("nickname"))
+        {
+            input_field.text = PlayerPrefs.GetString("nickname");
+            Debug.Log(input_field.text);
+        }
         //DontDestroyOnLoad(this.gameObject);
 
     }
@@ -53,6 +59,7 @@ public class MenuController : MonoBehaviourPunCallbacks
     {
         StartMenu.SetActive(false);
         Menu_Skatroid.SetActive(true);
+        
     }
 
     void Transition()
@@ -79,6 +86,8 @@ public class MenuController : MonoBehaviourPunCallbacks
         if (s.Length-white_spaces >= 1)
         {
             PhotonNetwork.NickName = s;
+            PlayerPrefs.SetString("nickname", s);
+
         }
         
     }

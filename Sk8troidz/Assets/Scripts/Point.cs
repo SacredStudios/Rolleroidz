@@ -10,6 +10,7 @@ public class Point : MonoBehaviour
     [SerializeField] int min;
     [SerializeField] int y_val;
     public GameObject player;
+    public GameObject dead_player;
     [SerializeField] float speed;
     [SerializeField] PhotonView pv;
     public int value;
@@ -17,17 +18,9 @@ public class Point : MonoBehaviour
     [SerializeField] GameObject effect;
 
 
-    private void Start()
-    {
-        int x = Random.Range(min, max);
-        int z = Random.Range(min, max);
-        rb.AddForce(new Vector3(x, y_val, z));
-        
-    }
-
     void Update()
     {
-        if (delay < 1.5f)
+        if (delay < 0.5f)
         {
             delay += Time.deltaTime;
         }
@@ -42,7 +35,7 @@ public class Point : MonoBehaviour
     void OnCollisionStay(Collision collider) 
     {
         
-        if (collider.gameObject.tag == "Player" && delay >= 1.5f)
+        if (collider.gameObject.tag == "Player" && delay >= 0.5f && collider.gameObject != dead_player)
         {
             Instantiate(effect, this.transform.position, Quaternion.identity);
             if (player != null)

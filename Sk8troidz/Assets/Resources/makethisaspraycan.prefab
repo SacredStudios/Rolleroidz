@@ -156,6 +156,7 @@ MonoBehaviour:
   min: -10
   y_val: 30
   player: {fileID: 0}
+  dead_player: {fileID: 0}
   speed: 20
   pv: {fileID: 0}
   value: 0

@@ -78,7 +78,7 @@ public class Ball : MonoBehaviour
                     if (hit.gameObject.GetComponent<Player_Health>().current_health - damage <= 0)
                     {
                         parent.GetComponentInParent<Super_Bar>().ChangeAmount(35);
-                        weapon.SpawnCoin(hit.GetComponent<Collider>().gameObject, hit.transform);
+                        weapon.SpawnCoin(hit.GetComponent<Collider>().gameObject, hit.transform.position);
 
                     }
                     hit.gameObject.GetComponent<Player_Health>().Remove_Health(damage);

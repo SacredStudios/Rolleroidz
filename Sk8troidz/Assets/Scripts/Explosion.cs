@@ -32,7 +32,7 @@ public class Explosion : MonoBehaviour
                 {
                     if (ph.current_health > 0 && ph.current_health - damage <= 0)
                     {
-                        weapon.SpawnCoin(hit.GetComponent<Collider>().gameObject, hit.transform);
+                        weapon.SpawnCoin(hit.GetComponent<Collider>().gameObject, hit.transform.position);
                         ph.PlayerLastHit(pv.ViewID);
                     }
 

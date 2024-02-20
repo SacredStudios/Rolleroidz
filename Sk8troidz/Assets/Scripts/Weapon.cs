@@ -36,15 +36,16 @@ public class Weapon : ScriptableObject
 
     public virtual void Shoot(GameObject parent, GameObject particle_pos, GameObject explosion_pos) { }
 
-    public void SpawnCoin(GameObject dead_player, Transform trans)
+    public void SpawnCoin(GameObject dead_player, Vector3 pos)
     {
         Debug.Log(player.GetComponent<PhotonView>().Owner.NickName);
         Debug.Log(dead_player.GetComponent<PhotonView>().Owner.NickName);
 
         Debug.Log("This should happen only once");
-        GameObject coin_clone = PhotonNetwork.Instantiate(coin.name, trans.position, Quaternion.identity);
+        GameObject coin_clone = PhotonNetwork.Instantiate(coin.name, pos, Quaternion.identity);
         Debug.Log(coin_clone.name);
         coin_clone.GetComponent<Point>().player = this.player;
+        coin_clone.GetComponent<Point>().dead_player = dead_player;
         coin_clone.GetComponent<Point>().value = (dead_player.GetComponent<PhotonView>().Owner.GetScore() / 2) + 1;
 
 
