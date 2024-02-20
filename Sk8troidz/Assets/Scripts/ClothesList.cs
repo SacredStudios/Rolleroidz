@@ -37,17 +37,33 @@ public class ClothesList : MonoBehaviour
         if(PlayerPrefs.HasKey("top")) {
             LoadClothes(PlayerPrefs.GetString("top"), Clothing.Type.Top);
         }
+        else
+        {
+            LoadClothes(my_tops[0].name, Clothing.Type.Top);
+        }
         if (PlayerPrefs.HasKey("shirt"))
         {
             LoadClothes(PlayerPrefs.GetString("shirt"), Clothing.Type.Shirt);
+        }
+        else
+        {
+            LoadClothes(my_shirts[0].name, Clothing.Type.Top);
         }
         if (PlayerPrefs.HasKey("pants"))
         {
             LoadClothes(PlayerPrefs.GetString("pants"), Clothing.Type.Pants);
         }
+        else
+        {
+            LoadClothes(my_pants[0].name, Clothing.Type.Top);
+        }
         if (PlayerPrefs.HasKey("shoes"))
         {
             LoadClothes(PlayerPrefs.GetString("shoes"), Clothing.Type.Shoes);
+        }
+        else
+        {
+            LoadClothes(my_shoes[0].name, Clothing.Type.Top);
         }
     }
 
