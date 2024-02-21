@@ -39,7 +39,7 @@ public class ClothesList : MonoBehaviour
         }
         else
         {
-            LoadClothes(my_tops[0].name, Clothing.Type.Top);
+            LoadClothes(my_tops[1].name, Clothing.Type.Top);
         }
         if (PlayerPrefs.HasKey("shirt"))
         {
@@ -47,7 +47,7 @@ public class ClothesList : MonoBehaviour
         }
         else
         {
-            LoadClothes(my_shirts[0].name, Clothing.Type.Top);
+            LoadClothes(my_shirts[2].name, Clothing.Type.Shirt);
         }
         if (PlayerPrefs.HasKey("pants"))
         {
@@ -55,7 +55,7 @@ public class ClothesList : MonoBehaviour
         }
         else
         {
-            LoadClothes(my_pants[0].name, Clothing.Type.Top);
+            LoadClothes(my_pants[1].name, Clothing.Type.Pants);
         }
         if (PlayerPrefs.HasKey("shoes"))
         {
@@ -63,7 +63,7 @@ public class ClothesList : MonoBehaviour
         }
         else
         {
-            LoadClothes(my_shoes[0].name, Clothing.Type.Top);
+            LoadClothes(my_shoes[1].name, Clothing.Type.Shoes);
         }
     }
 

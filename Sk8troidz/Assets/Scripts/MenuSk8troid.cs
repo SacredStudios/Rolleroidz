@@ -9,12 +9,13 @@ public class MenuSk8troid : MonoBehaviour
     [SerializeField] Camera mainCamera;
     [SerializeField] Animator animator;
     bool isRunning = false;
+    Quaternion start_rot;
     
     bool canSpin;
 
     private void Start()
     {
-        this.gameObject.transform.rotation = new Quaternion(0, -0.6229886f, 0, -0.1f);
+        start_rot = this.gameObject.transform.rotation;
     }
     public void Spin_Enabled()
     {
@@ -46,7 +47,7 @@ public class MenuSk8troid : MonoBehaviour
         if (PhotonNetwork.IsConnectedAndReady)
         {
             canSpin = false;
-            this.gameObject.transform.rotation = new Quaternion(0, -0.6229886f, 0, -0.1f);
+            this.gameObject.transform.rotation = start_rot;
             animator.SetFloat("animSpeedCap", 1);
             animator.speed = 2;
             isRunning = true;
