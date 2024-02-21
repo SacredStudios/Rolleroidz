@@ -32,7 +32,8 @@ public class MenuSk8troid : MonoBehaviour
             {
                 if (hit.transform == transform) // Check if the raycast hit this GameObject
                 {
-                    float mouseX = Input.GetAxis("Mouse X") * rotationSpeed * Time.deltaTime;
+                    
+                    float mouseX = Input.GetAxis("Mouse X") * rotationSpeed / Screen.width * Time.deltaTime;
                     transform.Rotate(Vector3.up, mouseX);
                 }
             }
