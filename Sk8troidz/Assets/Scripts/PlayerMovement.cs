@@ -58,6 +58,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
 
     void Start()
     {
+        
         maxSpeedBase = maxSpeed;
         targetRot = transform.eulerAngles.z;
         wh = this.gameObject.GetComponent<Weapon_Handler>();

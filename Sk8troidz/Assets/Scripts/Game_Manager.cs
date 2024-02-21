@@ -174,7 +174,9 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         {
             new_player.GetComponentInChildren<PlayerMovement>().enabled = false;
             new_player.GetComponentInChildren<Weapon_Handler>().enabled = false;
-           // new_player.
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            // new_player.
         }
         else
         {
@@ -249,7 +251,9 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     [PunRPC]
     public void SpawnPlayer()
     {
-        if(PhotonNetwork.IsMasterClient)
+       
+        
+        if (PhotonNetwork.IsMasterClient)
         {
             PhotonNetwork.CurrentRoom.IsOpen = false;
         }

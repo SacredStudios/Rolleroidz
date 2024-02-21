@@ -26,11 +26,14 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
         wh = player.GetComponent<Weapon_Handler>();
         sb = player.GetComponent<Super_Bar>();
+        Cursor.lockState = CursorLockMode.Locked;
+        WebGLInput.stickyCursorLock = false;
 
     }
     
     public void Start_Trick_System()
-    {       
+    {
+        Cursor.lockState = CursorLockMode.Confined;
         counter = 0;
         PlayerMovement.trick_mode_activated = true;
         StartCoroutine(Trick(4));
@@ -89,6 +92,7 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             rd.ActivateRagdolls();
         }
         counter = 0;
+        Cursor.lockState = CursorLockMode.Locked;
 
 
     }
