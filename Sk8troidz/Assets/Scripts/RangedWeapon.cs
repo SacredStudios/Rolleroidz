@@ -19,13 +19,13 @@ public class RangedWeapon : Weapon
         //  Debug.DrawRay(parent.transform.position, particle_pos.transform.up * range, Color.green); //chage this to capsulecast
 
 
-
+        float radius = 0.5f;
         Ray ray = new Ray(parent.transform.position, particle_pos.transform.up);
         RaycastHit hit = new RaycastHit();
         PhotonNetwork.Instantiate(particle_trail.name, particle_pos.transform.position, particle_pos.transform.rotation);
         Instantiate(particle_explosion, explosion_pos.transform.position, particle_pos.transform.rotation);
 
-        if (Physics.Raycast(ray, out hit)) //Target Acquired
+        if (Physics.SphereCast(ray, radius, out hit, range)) //Target Acquired
         {
 
 
