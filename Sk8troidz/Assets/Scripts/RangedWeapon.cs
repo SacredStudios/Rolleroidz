@@ -20,7 +20,7 @@ public class RangedWeapon : Weapon
 
 
         float radius = 1f;
-        Ray ray = new Ray(parent.transform.position, particle_pos.transform.up);
+        Ray ray = new Ray(parent.transform.position, particle_pos.transform.up); //-new Vector3(radius, 0, 0), 
         RaycastHit hit = new RaycastHit();
         PhotonNetwork.Instantiate(particle_trail.name, particle_pos.transform.position, particle_pos.transform.rotation);
         Instantiate(particle_explosion, explosion_pos.transform.position, particle_pos.transform.rotation);

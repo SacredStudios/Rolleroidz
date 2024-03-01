@@ -152,6 +152,10 @@ public class Game_Manager : MonoBehaviourPunCallbacks
                         team2count += player.GetScore();
                     }
                 }
+                if(team1count >= win_score || team2count >= win_score)
+                    {
+                Invoke("DoubleCheck", 3f);
+                    }
                 if (team1count >= win_score)
                 {
                   pv.RPC("GameOver", RpcTarget.All, 1);
@@ -161,9 +165,35 @@ public class Game_Manager : MonoBehaviourPunCallbacks
                   pv.RPC("GameOver", RpcTarget.All, 2);
                 }
         }
+
         PropChange();
         
         base.OnPlayerPropertiesUpdate(targetPlayer, changedProps);
+    }
+    void DoubleCheck()
+    {
+        pv.RPC("GetTeams", RpcTarget.All, tm.GetTeamMembersCount(1), tm.GetTeamMembersCount(2));
+        team1count = 0;
+        team2count = 0;
+        foreach (Player player in PhotonNetwork.PlayerList)
+        {
+            if (player.GetPhotonTeam().Code == 1)
+            {
+                team1count += player.GetScore();
+            }
+            else
+            {
+                team2count += player.GetScore();
+            }
+        }
+        if (team1count >= win_score)
+        {
+            pv.RPC("GameOver", RpcTarget.All, 1);
+        }
+        else if (team2count >= win_score)
+        {
+            pv.RPC("GameOver", RpcTarget.All, 2);
+        }
     }
 
     
