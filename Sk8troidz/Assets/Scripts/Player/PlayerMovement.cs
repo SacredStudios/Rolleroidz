@@ -142,8 +142,10 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     {
         if (Ragdoll.is_Ragdoll == false && !boostMode)
         {
-            input.x = Input.GetAxis("Horizontal");
+            input.x = Input.GetAxis("Horizontal");           
             input.z = Input.GetAxis("Vertical");
+            animator.SetFloat("inputX", input.x);
+            animator.SetFloat("inputZ", Mathf.Abs(input.z));
 
             Vector3 inputDirection = new Vector3(input.x, 0, input.z);
             inputDirection = transform.TransformDirection(inputDirection);

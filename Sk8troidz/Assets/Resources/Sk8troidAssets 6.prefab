@@ -13483,10 +13483,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crosshair
       objectReference: {fileID: 0}
-    - target: {fileID: 1801814237300794, guid: eab521f307d482c4995c712c7ed1a430, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 4840649037603178, guid: eab521f307d482c4995c712c7ed1a430, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.9534082
