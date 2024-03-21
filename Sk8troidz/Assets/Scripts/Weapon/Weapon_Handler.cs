@@ -178,7 +178,9 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
                 weapon.player = this.gameObject;
                 weapon.super.player = weapon.player;
                 pv.RPC("SetWeapon", RpcTarget.Others, weapon.name, pv.ViewID);
+                GetComponent<PlayerMovement>().maxSpeedBase -= weapon.weight;
             }
+           
         }
 
         curr_gun.transform.parent = weapon_loc.transform;

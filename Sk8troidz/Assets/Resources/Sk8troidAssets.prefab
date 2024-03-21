@@ -968,7 +968,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 1152471556}
-  increment: 5
+  increment: 3
   game_ongoing: 1
   max_value: 0
 --- !u!1 &1163349572

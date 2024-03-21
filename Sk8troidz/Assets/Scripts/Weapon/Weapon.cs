@@ -24,6 +24,7 @@ public class Weapon : ScriptableObject
     public int ammo;
     public bool isSuper;
     public AudioClip sound;
+    public float weight;
 
     public GameObject player;
     public Weapon super;
@@ -31,6 +32,7 @@ public class Weapon : ScriptableObject
     public GameObject instance;
     //Add var for sound
     public GameObject coin;
+
 
 
 
