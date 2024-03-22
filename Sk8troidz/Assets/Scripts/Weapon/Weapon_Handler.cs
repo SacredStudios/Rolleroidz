@@ -25,10 +25,12 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
     [SerializeField] PhotonView pv;
     public AudioSource sound;
 
+
  
     public bool isOverTrickBtn; //checks if mouse is hovering over a trick btn
     Super_Bar sb;
 
+    CameraShake cs;
 
     private void Update()
     {
@@ -85,6 +87,7 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
 
     void Shoot_Weapon()
     {
+        cs.Shake(2f,0.25f);
         sound.Play();
         pv.RPC("Play_Sound", RpcTarget.Others);
         time_last_shot = 0;
@@ -101,7 +104,6 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
             weapon.Shoot(curr_gun, particle_pos, explosion_pos);
             if (weapon.isSuper)
             {
-                Debug.Log(weapon.ammo);
                 weapon.ammo -= 1;
                 if (weapon.ammo > 0)
                     increment_parent.transform.GetChild(weapon.ammo).gameObject.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
@@ -123,6 +125,7 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
     }
     IEnumerator Weapon_Up()
     {
+        cs.Shake(2f, 0.25f);
         float i = 0;
         while(i<=1)
         {
@@ -163,7 +166,7 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
     {
         if (weapon != null)
         {
-            
+            cs = GetComponent<CameraShake>();
             curr_gun = Instantiate(weapon.instance, weapon_loc.transform);
             curr_gun.transform.position += weapon.offset;
             
@@ -184,7 +187,6 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
         }
 
         curr_gun.transform.parent = weapon_loc.transform;
-        //Debug.Log(weapon.name + " + " +weapon.instance.name);
         
     }
     [PunRPC]
@@ -197,9 +199,7 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
 
         GameObject weapon_list = GameObject.Find("WeaponList");
         GameObject player = PhotonView.Find(viewID).gameObject;
-        //Debug.Log(player.name);
         GameObject loc = player.GetComponent<Weapon_Handler>().weapon_loc;
-        Debug.Log(loc.name);
         foreach (Weapon w in weapon_list.GetComponent<Weapon_List>().all_weapon_list)
         {
             //Photon Hashtable might be more efficient. Yes Photon has a custom version of Hashtable. This was not a typo.
