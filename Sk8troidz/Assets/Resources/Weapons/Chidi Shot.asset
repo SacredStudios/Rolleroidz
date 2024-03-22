@@ -19,7 +19,7 @@ MonoBehaviour:
     use)
   weapon_delay: 1
   damage: 28
-  attack_cost: 85
+  attack_cost: 75
   knockback: 0
   offset: {x: 0, y: 0, z: 0}
   pv: {fileID: 0}
@@ -28,9 +28,11 @@ MonoBehaviour:
   ammo: 0
   isSuper: 0
   sound: {fileID: 0}
+  weight: 0
   player: {fileID: 0}
   super: {fileID: 11400000, guid: 54a5d182a223340ef8b0766b3b4cfb7e, type: 2}
   instance: {fileID: 1294344428940038, guid: 733a3d43f887c47f5bb96deea53fafc1, type: 3}
+  shake: 10
   coin: {fileID: 5812255397824587399, guid: db03c3afb90494e0f99eee91135a83e3, type: 3}
   ball: {fileID: 2963263930969083303, guid: 21a973ee901cd444b941d38ae00fcabe, type: 3}
   particle_explosion: {fileID: 367450934941629301, guid: 317d7bcf65d7646de804cb49b0796ff9, type: 3}

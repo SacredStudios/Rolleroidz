@@ -87,7 +87,7 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
 
     void Shoot_Weapon()
     {
-        cs.Shake(2f,0.25f);
+        cs.Shake(weapon.shake, 0.25f);
         sound.Play();
         pv.RPC("Play_Sound", RpcTarget.Others);
         time_last_shot = 0;
@@ -125,7 +125,7 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
     }
     IEnumerator Weapon_Up()
     {
-        cs.Shake(2f, 0.25f);
+        cs.Shake(weapon.shake, 0.25f);
         float i = 0;
         while(i<=1)
         {

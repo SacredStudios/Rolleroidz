@@ -30,6 +30,7 @@ public class Weapon : ScriptableObject
     public Weapon super;
 
     public GameObject instance;
+    public float shake;
     //Add var for sound
     public GameObject coin;
 
