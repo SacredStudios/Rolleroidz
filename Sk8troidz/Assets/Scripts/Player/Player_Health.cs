@@ -43,6 +43,7 @@ public class Player_Health : MonoBehaviour
     [PunRPC] void Explode(float power, float radius, float x, float y, float z)
     {
         GetComponent<Rigidbody>().AddExplosionForce(power, new Vector3(x,y,z), radius, 1.12f);
+        GetComponent<CameraShake>().Shake(power/2000f, 0.5f);
     }
     [PunRPC] void ChangeHealth(float amount)
     {

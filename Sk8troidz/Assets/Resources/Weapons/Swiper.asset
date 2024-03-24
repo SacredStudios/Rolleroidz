@@ -27,11 +27,11 @@ MonoBehaviour:
   ammo: 0
   isSuper: 0
   sound: {fileID: 8300000, guid: 99a6b9166b9af444bb362d74a7be445b, type: 3}
-  weight: 4
+  weight: 3.5
   player: {fileID: 0}
   super: {fileID: 11400000, guid: 54a5d182a223340ef8b0766b3b4cfb7e, type: 2}
   instance: {fileID: 1310268070637946, guid: f78357a78db3dfd4e8c638310767dd56, type: 3}
-  shake: 10
+  shake: 6
   coin: {fileID: 5812255397824587399, guid: db03c3afb90494e0f99eee91135a83e3, type: 3}
   particle_trail: {fileID: 484392930733997870, guid: 2fa26cd4816dc471092f58bd6c4c07d5, type: 3}
   particle_explosion: {fileID: 367450934941629301, guid: 317d7bcf65d7646de804cb49b0796ff9, type: 3}
