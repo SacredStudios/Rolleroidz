@@ -70,7 +70,6 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
             this.gameObject.GetComponent<PlayerMovement>().enabled = false;
         }
         sensitivity = PlayerPrefs.GetFloat("mouse_sensitivity");
-        Debug.Log(PlayerPrefs.GetFloat("mouse_sensitivity") + "is sens");
     }
     private void FixedUpdate()
     {

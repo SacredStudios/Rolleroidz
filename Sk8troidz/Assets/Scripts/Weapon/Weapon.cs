@@ -39,19 +39,17 @@ public class Weapon : ScriptableObject
 
     public virtual void Shoot(GameObject parent, GameObject particle_pos, GameObject explosion_pos) { }
 
-    public void SpawnCoin(GameObject dead_player, Vector3 pos)
+    public void SpawnCoin(GameObject dead_player, Vector3 pos) //change the name of this
     {
-        Debug.Log(player.GetComponent<PhotonView>().Owner.NickName);
-        Debug.Log(dead_player.GetComponent<PhotonView>().Owner.NickName);
+        Photon.Realtime.Player player_photon = player.GetComponent<PhotonView>().Owner;
+        Photon.Realtime.Player dead_player_photon = dead_player.GetComponent<PhotonView>().Owner;
 
-        Debug.Log("This should happen only once");
-        GameObject coin_clone = PhotonNetwork.Instantiate(coin.name, pos, Quaternion.identity);
-        Debug.Log(coin_clone.name);
-        coin_clone.GetComponent<Point>().player = this.player;
-        coin_clone.GetComponent<Point>().dead_player = dead_player;
-        coin_clone.GetComponent<Point>().value = (dead_player.GetComponent<PhotonView>().Owner.GetScore() / 2) + 1;
-
-
+        player_photon.AddScore((dead_player_photon.GetScore() / 2) + 1);
+        pv.RPC("PrintKO", RpcTarget.All, player_photon.NickName, dead_player_photon.NickName);
+    }
+    [PunRPC] void PrintKO(string player, string dead_player)
+    {
+        Debug.Log(player + " KO'd " + dead_player);
     }
 
 

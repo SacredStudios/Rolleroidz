@@ -288,7 +288,6 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         {
             PhotonNetwork.CurrentRoom.IsOpen = false;
         }
-        print(my_weapon);
         position = transform.position;
         lobby_cam.SetActive(false);
         lobby.SetActive(false);
