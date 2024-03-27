@@ -45,7 +45,9 @@ public class Respawn : MonoBehaviour
             player.transform.position = new Vector3(9999, 9999, 9999);
             player.GetComponent<Weapon_Handler>().RemoveSuper();
             trick_system.SetActive(false);
-          
+            //int n = Random.Range(-9, 9);
+            //Debug.Log(n + " is the random num");
+            //pv.Owner.SetScore(pv.Owner.GetScore() + n);
             if (pv.Owner.GetScore() < 0)
             {
 
@@ -55,6 +57,7 @@ public class Respawn : MonoBehaviour
             {
                 pv.Owner.AddScore(1);
             }
+            
             pv.Owner.SetScore(pv.Owner.GetScore() / 2);
             Invoke("Respawn_Screen", respawn_time);
         }

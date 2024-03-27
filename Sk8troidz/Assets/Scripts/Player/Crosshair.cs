@@ -19,18 +19,18 @@ public class Crosshair : MonoBehaviour
             this.gameObject.SetActive(false);
         }
 
-        float maxDistance = player.GetComponent<Weapon_Handler>().weapon.range;
-        this.transform.position = this.transform.position+ new Vector3(0, maxDistance*multiplier, 0);
+       // float maxDistance = player.GetComponent<Weapon_Handler>().weapon.range;
+       // this.transform.position = this.transform.position+ new Vector3(0, maxDistance*multiplier, 0);
         
 
     }
     void LateUpdate()
     {
         // Apply the rotation offset to the object's rotation
-        Quaternion rotationWithOffset = cam.transform.rotation * Quaternion.Euler(rotationOffset);
+       // Quaternion rotationWithOffset = cam.transform.rotation * Quaternion.Euler(rotationOffset);
 
         // Update the object's rotation
-        transform.LookAt(transform.position + rotationWithOffset * Vector3.forward, rotationWithOffset * Vector3.up);
+       // transform.LookAt(transform.position + rotationWithOffset * Vector3.forward, rotationWithOffset * Vector3.up);
     }
 
 }

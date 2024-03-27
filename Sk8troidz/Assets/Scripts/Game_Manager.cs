@@ -105,7 +105,6 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         {
             yield return new WaitUntil(() => player_temp.GetPhotonTeam() != null);
         }
-        Debug.Log("StartingGame");
         game_ongoing = true;
         pv.RPC("Start_Countdown", RpcTarget.All);
         Invoke("SpawnPlayers", 5f);
@@ -297,9 +296,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
             List<Vector3> points = respawn_points.GetComponent<RespawnPoints>().respawn_points; //respawn locations
             new_player.GetComponent<Respawn>().respawn_points = points;
             new_player.GetComponentInChildren<Weapon_Handler>().weapon = my_weapon;
-            Debug.Log(points.Count);
             new_player.transform.position = points[Random.Range(0, points.Count)];
-            Debug.Log(new_player.transform.position);
         }
 
 
