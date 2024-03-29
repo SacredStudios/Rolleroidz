@@ -235,11 +235,13 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     //Sound Effects
     public void Skate()
     {
+        if(skating_sound != null)
         skating_sound.Play();
     }
     public void Land()
     {
-        landing_sound.Play();
+        if (landing_sound != null)
+            landing_sound.Play();
     }
 
     public void Offground()

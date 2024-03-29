@@ -142,13 +142,15 @@ public class Game_Manager : MonoBehaviourPunCallbacks
                 team2count = 0;
                 foreach (Player player in PhotonNetwork.PlayerList)
                 {
-                    if (player.GetPhotonTeam().Code == 1)
-                    {
-                        team1count += player.GetScore();
-                    }
-                    else
-                    {
-                        team2count += player.GetScore();
+                    if(player.GetPhotonTeam() != null) {
+                        if (player.GetPhotonTeam().Code == 1)
+                        {
+                            team1count += player.GetScore();
+                        }
+                        else
+                        {
+                            team2count += player.GetScore();
+                        }
                     }
                 }
                 if(team1count >= win_score || team2count >= win_score)
@@ -259,17 +261,20 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         Team2List.text = "";
         foreach (Player player in PhotonNetwork.PlayerList)
         {
-            if (player.GetPhotonTeam().Code == 1)
+            if (player.GetPhotonTeam() != null)
             {
-                Team1List.text += player.NickName + "\n";
-            }
-            else if(player.GetPhotonTeam().Code == 2)
-            {
-                Team2List.text += player.NickName + "\n";
-            }
-            else
-            {
-                StartCoroutine(SwitchTeam(player));
+                if (player.GetPhotonTeam().Code == 1)
+                {
+                    Team1List.text += player.NickName + "\n";
+                }
+                else if (player.GetPhotonTeam().Code == 2)
+                {
+                    Team2List.text += player.NickName + "\n";
+                }
+                else
+                {
+                    StartCoroutine(SwitchTeam(player));
+                }
             }
         }
     }

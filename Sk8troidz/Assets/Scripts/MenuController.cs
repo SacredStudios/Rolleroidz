@@ -64,8 +64,11 @@ public class MenuController : MonoBehaviourPunCallbacks
 
     void Transition()
     {
-        transition.SetActive(true);
-        transition.GetComponent<Animator>().SetBool("BothAnim", true);
+        if (transition != null)
+        {
+            transition.SetActive(true);
+            transition.GetComponent<Animator>().SetBool("BothAnim", true);
+        }
 
     }
     public void SetInactive()
