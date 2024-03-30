@@ -20,7 +20,6 @@ public class Shooting_Cooldown : MonoBehaviour
     {
         while (game_ongoing)
         {
-         
             slider.value += increment;
             yield return new WaitForSeconds(0.1f);
         }

@@ -20,19 +20,27 @@ public class BouncyWeapon : Weapon
 
     public override void Shoot(GameObject parent, GameObject particle_pos, GameObject explosion_pos)
     {
-     
-        GameObject clone = PhotonNetwork.Instantiate(ball.name, particle_pos.transform.position, particle_pos.transform.rotation);
-        Instantiate(particle_explosion, explosion_pos.transform.position, particle_pos.transform.rotation);
-        Ball bs = clone.GetComponent<Ball>();
-        bs.explosion = this.explosion;
-        bs.smoke = this.smoke;
-        bs.damage = this.damage;
-        bs.power = this.power;
-        bs.radius = this.radius;
-        bs.speed = this.speed;
-        bs.pv = this.pv;
-        bs.range = this.range;
-        bs.parent = parent;
+        Ray distance = new Ray(player.transform.position, particle_pos.transform.up);
+
+        if (Physics.Raycast(distance, min_distance))
+        {
+            Debug.Log("too short");
+        }
+        else
+        {
+            GameObject clone = PhotonNetwork.Instantiate(ball.name, particle_pos.transform.position, particle_pos.transform.rotation);
+            Instantiate(particle_explosion, explosion_pos.transform.position, particle_pos.transform.rotation);
+            Ball bs = clone.GetComponent<Ball>();
+            bs.explosion = this.explosion;
+            bs.smoke = this.smoke;
+            bs.damage = this.damage;
+            bs.power = this.power;
+            bs.radius = this.radius;
+            bs.speed = this.speed;
+            bs.pv = this.pv;
+            bs.range = this.range;
+            bs.parent = parent;
+        }
     }
 }
 

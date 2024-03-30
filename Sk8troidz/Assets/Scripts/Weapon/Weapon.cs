@@ -33,6 +33,7 @@ public class Weapon : ScriptableObject
     public float shake;
     //Add var for sound
     public GameObject coin;
+    public float min_distance = 2.5f;
 
 
 
@@ -51,6 +52,7 @@ public class Weapon : ScriptableObject
     {
         Debug.Log(player + " KO'd " + dead_player);
     }
+   
 
 
 }
