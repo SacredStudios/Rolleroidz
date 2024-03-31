@@ -131,7 +131,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     {
         if (pv.IsMine)
         {
-            Debug.DrawRay(this.transform.position, Vector3.forward * 50f, Color.green);
+            
             
             CameraRotation();
 

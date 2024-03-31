@@ -18,14 +18,23 @@ public class Rocket : Weapon
     
     public override void Shoot(GameObject parent, GameObject particle_pos, GameObject explosion_pos)
     {
-        GameObject clone = PhotonNetwork.Instantiate(rocket.name, particle_pos.transform.position, particle_pos.transform.rotation);
-        Explosion es = clone.GetComponent<Explosion>();
-        es.explosion = this.explosion;
-        es.smoke = this.smoke;
-        es.damage = this.damage;
-        es.power = this.power;
-        es.radius = this.radius;
-        es.speed = this.speed;
-        es.pv = this.pv;
+        Ray distance = new Ray(player.transform.position, particle_pos.transform.up);
+
+        if (Physics.Raycast(distance, min_distance))
+        {
+            Debug.Log("too short");
+        }
+        else
+        {
+            GameObject clone = PhotonNetwork.Instantiate(rocket.name, particle_pos.transform.position, particle_pos.transform.rotation);
+            Explosion es = clone.GetComponent<Explosion>();
+            es.explosion = this.explosion;
+            es.smoke = this.smoke;
+            es.damage = this.damage;
+            es.power = this.power;
+            es.radius = this.radius;
+            es.speed = this.speed;
+            es.pv = this.pv;
+        }
     }
 }
