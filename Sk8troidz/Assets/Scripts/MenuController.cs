@@ -96,19 +96,22 @@ public class MenuController : MonoBehaviourPunCallbacks
     }
     public void AddRandomGame()
     {
-   
-        if(!PhotonNetwork.IsConnected)
+
+        if (!PhotonNetwork.IsConnected)
         {
             PhotonNetwork.ConnectUsingSettings();
         }
-        //PhotonNetwork.JoinRandomOrCreateRoom(null, roomOptions.MaxPlayers, MatchmakingMode.FillRoom, TypedLobby.Default);
         StartCoroutine(LeaveTeam());
+        
         
     }
     IEnumerator LeaveTeam()
     {
-        PhotonNetwork.LocalPlayer.LeaveCurrentTeam();
-        yield return new WaitUntil(() => PhotonNetwork.LocalPlayer.GetPhotonTeam() == null);
+        if (PhotonNetwork.LocalPlayer.GetPhotonTeam() != null)
+        {
+            PhotonNetwork.LocalPlayer.LeaveCurrentTeam();
+            yield return new WaitUntil(() => PhotonNetwork.LocalPlayer.GetPhotonTeam() == null);
+        }
        
         PhotonNetwork.JoinRandomRoom();
         

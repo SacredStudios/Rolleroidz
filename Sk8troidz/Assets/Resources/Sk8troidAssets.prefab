@@ -15346,7 +15346,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5007903472875531354, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: m_SynchronizeParameters.Array.size
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5007903472875531354, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: m_SynchronizeParameters.Array.data[4].Name
@@ -15363,6 +15363,14 @@ PrefabInstance:
     - target: {fileID: 5007903472875531354, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: m_SynchronizeParameters.Array.data[5].Type
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5007903472875531354, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: m_SynchronizeParameters.Array.data[6].Name
+      value: tauntModeActivated
+      objectReference: {fileID: 0}
+    - target: {fileID: 5007903472875531354, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: m_SynchronizeParameters.Array.data[6].Type
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5007903472875531354, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: m_SynchronizeParameters.Array.data[4].SynchronizeType
@@ -15378,7 +15386,7 @@ PrefabInstance:
       objectReference: {fileID: 12800000, guid: 580d0a614f64c9c4c93d447403f34dcd, type: 3}
     - target: {fileID: 5289297984290239771, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: m_SynchronizeParameters.Array.size
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5289297984290239771, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: m_SynchronizeParameters.Array.data[4].Name
@@ -15397,7 +15405,23 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5289297984290239771, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: m_SynchronizeParameters.Array.data[6].Name
+      value: tauntModeActivated
+      objectReference: {fileID: 0}
+    - target: {fileID: 5289297984290239771, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: m_SynchronizeParameters.Array.data[6].Type
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5289297984290239771, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: m_SynchronizeParameters.Array.data[0].SynchronizeType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5289297984290239771, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: m_SynchronizeParameters.Array.data[3].SynchronizeType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5289297984290239771, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: m_SynchronizeParameters.Array.data[6].SynchronizeType
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5499063215790416216, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}

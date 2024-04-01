@@ -27,7 +27,7 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         wh = player.GetComponent<Weapon_Handler>();
         sb = player.GetComponent<Super_Bar>();
         Cursor.lockState = CursorLockMode.Locked;
-        WebGLInput.stickyCursorLock = false;
+       // WebGLInput.stickyCursorLock = false;
 
     }
     

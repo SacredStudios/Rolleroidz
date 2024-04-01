@@ -5,7 +5,7 @@ using UnityEngine.Animations;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class PlayerMovement : MonoBehaviourPunCallbacks
+public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
 {
 
     Vector3 input;
@@ -48,8 +48,8 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     [SerializeField] float time_airborne;
     [SerializeField] GameObject trick;
     [SerializeField] public static bool trick_mode_activated = false;
+    public static bool taunt_mode_activated = false;
     private Weapon_Handler wh;
-    //ADD PLAYER LEANING ANIMATION
     //Sound Effects
     [SerializeField] AudioSource skating_sound;
     [SerializeField] AudioSource offground_sound;
@@ -75,8 +75,23 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     {
         if (pv.IsMine)
         {
-            Move();
             Gravity();
+            if (!taunt_mode_activated)
+            {
+                Move();
+                
+            }
+            else
+            {
+                animator.SetBool("tauntModeActivated", true);
+                wh.weapon = null;
+                if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+                {
+                    animator.SetBool("tauntModeActivated", false);
+                    taunt_mode_activated = false;
+                    Debug.Log("taunt_over");
+                }
+            }
         }
 
 
@@ -88,7 +103,10 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
         last_velocity = rb.velocity;
         if (Physics.Raycast(jump_pos.transform.position, Vector3.down, rayCastLength))
         {
-            wh.weapon = wh.temp_weapon;
+            if (!taunt_mode_activated)
+            {
+                wh.weapon = wh.temp_weapon;
+            }
 
             time_airborne = 0f;
             extra_gravity = min_gravity;
@@ -122,14 +140,25 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     private void Update()
     {
         if (pv.IsMine) {
-            RotateWCamera();
-            Jump();
-        
+            if (!taunt_mode_activated)
+            {
+                RotateWCamera();
+                Jump();
+            }
+            if (Input.GetButton("Fire2"))
+            {
+                taunt_mode_activated = true;
+                animator.speed = 1f;
+                animator.SetFloat("Bend", 0.2f);
+                Debug.Log("taunting");
+            }
+
         }
     }
     private void LateUpdate()
     {
         if (pv.IsMine)
+            
         {
             
             
@@ -140,6 +169,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
    
     void Move()
     {
+        
         if (Ragdoll.is_Ragdoll == false && !boostMode)
         {
             input.x = Input.GetAxis("Horizontal");           
@@ -208,6 +238,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     void RotateWCamera()
     {
         float cameraYaw = playerCam.transform.eulerAngles.y;
+
         transform.rotation = Quaternion.Euler(0, cameraYaw, 0);
     }
     void CameraRotation()

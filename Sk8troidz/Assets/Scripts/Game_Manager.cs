@@ -53,10 +53,6 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         PhotonNetwork.LocalPlayer.JoinTeam((byte)Random.Range(1, 3));
         
         StartCoroutine(SwitchTeam(PhotonNetwork.LocalPlayer));
-        if(PhotonNetwork.IsMasterClient)
-        {
-            StartCoroutine(CheckForPlayers());
-        }
 
     }
     
@@ -68,6 +64,10 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         }
         base.OnPlayerEnteredRoom(newPlayer);
         PropChange();
+        if (newPlayer == PhotonNetwork.LocalPlayer && PhotonNetwork.CurrentRoom.PlayerCount >= min_room_size)
+        {
+            StartCoroutine(CheckForPlayers());
+        }
     }
     public override void OnPlayerLeftRoom(Player newPlayer)
     {
@@ -75,19 +75,23 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         PropChange();
     }
     IEnumerator SwitchTeam(Player player)
-    { 
+    {
+        yield return new WaitUntil(() => PhotonNetwork.IsConnectedAndReady);
         foreach (Player player_temp in PhotonNetwork.PlayerList)
         {
             yield return new WaitUntil(() => player_temp.GetPhotonTeam() != null);
         }
         yield return new WaitUntil(() => temp1 != 9999 && temp2 != 9999);
-        if (temp1 < temp2) //get team count from master client
+        if (player.GetPhotonTeam() != null)
         {
-            player.SwitchTeam(1);
-        }
-        else if (temp1 > temp2)
-        {
-            player.SwitchTeam(2);
+            if (temp1 < temp2) //get team count from master client
+            {
+                player.SwitchTeam(1);
+            }
+            else if (temp1 > temp2)
+            {
+                player.SwitchTeam(2);
+            }
         }
         
         
