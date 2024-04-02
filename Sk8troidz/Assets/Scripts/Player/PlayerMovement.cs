@@ -81,17 +81,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
                 Move();
                 
             }
-            else
-            {
-                animator.SetBool("tauntModeActivated", true);
-                wh.weapon = null;
-                if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
-                {
-                    animator.SetBool("tauntModeActivated", false);
-                    taunt_mode_activated = false;
-                    Debug.Log("taunt_over");
-                }
-            }
+            
         }
 
 
@@ -129,6 +119,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
             canJump = false;
             animator.SetFloat("IsJumping", 1f);
             animator.speed = 1f;
+
         }
 
         if (extra_gravity < max_gravity)
@@ -145,12 +136,25 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
                 RotateWCamera();
                 Jump();
             }
+            else
+            {
+                animator.SetBool("tauntModeActivated", true);
+                wh.weapon = null;
+                animator.SetLayerWeight(2, 0f);
+                if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+                {
+                    animator.SetBool("tauntModeActivated", false);
+                    taunt_mode_activated = false;
+                    Debug.Log("taunt_over");
+                }
+            }
             if (Input.GetButton("Fire2"))
             {
                 taunt_mode_activated = true;
                 animator.speed = 1f;
-                animator.SetFloat("Bend", 0.2f);
+                animator.SetFloat("Bend", 0f);
                 Debug.Log("taunting");
+                
             }
 
         }
