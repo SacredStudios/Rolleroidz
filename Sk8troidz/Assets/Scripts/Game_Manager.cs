@@ -50,7 +50,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     {
         my_weapon = weapon_list.GetComponent<Weapon_List>().curr_weapon;
         pv.Owner.SetScore(0);
-        PhotonNetwork.LocalPlayer.JoinTeam((byte)Random.Range(1, 3));
+        //PhotonNetwork.LocalPlayer.JoinTeam((byte)Random.Range(1, 3));
         
         StartCoroutine(SwitchTeam(PhotonNetwork.LocalPlayer));
 

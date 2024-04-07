@@ -131,6 +131,14 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
     private void Update()
     {
         if (pv.IsMine) {
+            if (Input.GetButton("Fire2"))
+            {
+                taunt_mode_activated = true;
+                animator.speed = 1f;
+                animator.SetFloat("Bend", 0f);
+                Debug.Log("taunting");
+
+            }
             if (!taunt_mode_activated)
             {
                 RotateWCamera();
@@ -148,14 +156,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
                     Debug.Log("taunt_over");
                 }
             }
-            if (Input.GetButton("Fire2"))
-            {
-                taunt_mode_activated = true;
-                animator.speed = 1f;
-                animator.SetFloat("Bend", 0f);
-                Debug.Log("taunting");
-                
-            }
+            
 
         }
     }

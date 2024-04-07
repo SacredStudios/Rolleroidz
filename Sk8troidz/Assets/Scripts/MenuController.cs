@@ -128,6 +128,7 @@ public class MenuController : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         transition.SetActive(true);
+        PhotonNetwork.LocalPlayer.JoinTeam((byte)Random.Range(1, 3));
         transition.GetComponent<Animator>().SetBool("BothAnim", false);
         Invoke("LoadLevel", 1f);        
     }

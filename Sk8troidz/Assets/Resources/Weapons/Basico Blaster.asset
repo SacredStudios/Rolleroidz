@@ -16,9 +16,9 @@ MonoBehaviour:
   weapon_name: Basico Blaster
   weapon_description: It doesn't do much damage but this weapon is fast and free
     baybee. And it's the only free one in the final game.
-  weapon_delay: 0.2
-  damage: 20
-  attack_cost: 20
+  weapon_delay: 0.1
+  damage: 25
+  attack_cost: 15
   knockback: 0
   offset: {x: 0, y: -0.2, z: 0.1}
   pv: {fileID: 0}
@@ -27,7 +27,7 @@ MonoBehaviour:
   ammo: 0
   isSuper: 0
   sound: {fileID: 8300000, guid: 99a6b9166b9af444bb362d74a7be445b, type: 3}
-  weight: 0
+  weight: -2
   player: {fileID: 0}
   super: {fileID: 11400000, guid: 54a5d182a223340ef8b0766b3b4cfb7e, type: 2}
   instance: {fileID: 752707165243343423, guid: f3d2d992a57d1434384b3db5d5fba565, type: 3}
