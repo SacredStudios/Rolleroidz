@@ -233,13 +233,13 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     void WinScreen()
     {
         gameover_screen.SetActive(true);
-        gameover_text.text =" You Win!";
+        gameover_text.text =" YOU WIN";
         Debug.Log("You Win");
     }
     void LoseScreen()
     {
         gameover_screen.SetActive(true);
-        gameover_text.text = " You Lose!";
+        gameover_text.text = " YOU LOSE";
         Debug.Log("You Lose");
     }
     public void BackToStart()

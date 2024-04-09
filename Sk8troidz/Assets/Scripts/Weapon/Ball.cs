@@ -125,6 +125,6 @@ public class Ball : MonoBehaviour
     {
         yield return new WaitForFixedUpdate();
         rb.velocity = new Vector3(0f, 5f, 0f);
-        rb.AddForce(transform.forward * speed, ForceMode.Impulse);
+        rb.AddForce(transform.forward * speed*2f, ForceMode.Impulse);
     }
 }
