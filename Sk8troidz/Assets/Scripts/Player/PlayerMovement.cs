@@ -109,12 +109,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
         else
         {
             time_airborne += Time.deltaTime;
-            if (time_airborne > 1.5f && !trick_mode_activated)
-            {
-                Trick_System ts = trick.GetComponent<Trick_System>();
-                ts.Start_Trick_System();
-                trick_mode_activated = true;
-            }
+            
             maxSpeed = maxSpeedBase / 2f;
             canJump = false;
             animator.SetFloat("IsJumping", 1f);
@@ -133,10 +128,23 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
         if (pv.IsMine) {
             if (Input.GetButton("Fire2"))
             {
-                taunt_mode_activated = true;
-                animator.speed = 1f;
-                animator.SetFloat("Bend", 0f);
-                Debug.Log("taunting");
+                if (canJump)
+                {
+                    taunt_mode_activated = true;
+                    animator.speed = 1f;
+                    animator.SetFloat("Bend", 0f);
+                    Debug.Log("taunting");
+                }
+                else
+                {
+                    if (!trick_mode_activated && time_airborne > 1.5f)
+                    {
+                        Trick_System ts = trick.GetComponent<Trick_System>();
+                        ts.Start_Trick_System();
+                        trick_mode_activated = true;
+                        Debug.Log("trick");
+                    }
+                }
 
             }
             if (!taunt_mode_activated)
@@ -218,7 +226,6 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
         {
             rb.AddForce(Vector3.up * jumpStrength);
             canJump = false;
-            trick_mode_activated = true;
             hasLanded = false;
         }
     }

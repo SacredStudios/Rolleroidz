@@ -1907,9 +1907,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c1245f608a420c4aa9766648cc6041c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  btn1: {fileID: 8507229456281188486}
-  btn2: {fileID: 407656195087133623}
-  btn3: {fileID: 2886520519091486344}
+  slider: {fileID: 9061380369378633641}
+  speed: 5
   counter: 0
   parent: {fileID: 1106976187424180103}
   player: {fileID: 3660938799943817007}
@@ -15332,6 +15331,10 @@ PrefabInstance:
       propertyPath: pv
       value: 
       objectReference: {fileID: -8997455347769814163}
+    - target: {fileID: 4859126739336465849, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4877951713952045813, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: m_TagString
       value: Player

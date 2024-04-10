@@ -7,9 +7,8 @@ using UnityEngine.UI;
 
 public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField] GameObject btn1;
-    [SerializeField] GameObject btn2;
-    [SerializeField] GameObject btn3;
+    [SerializeField] Slider slider;
+    [SerializeField] float speed;
     public int counter;
     [SerializeField] GameObject parent;
     [SerializeField] GameObject player;
@@ -33,9 +32,12 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     
     public void Start_Trick_System()
     {
-        Cursor.lockState = CursorLockMode.Confined;
         counter = 0;
         PlayerMovement.trick_mode_activated = true;
+        wh.weapon = null;
+        crosshair.SetActive(false);
+        animator.SetLayerWeight(2, 0);
+        animator.SetBool("trickModeActivated", true);
         StartCoroutine(Trick(4));
     }
 
@@ -43,56 +45,38 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         btn.GetComponent<Button>().interactable = false;
         btn.GetComponent<Image>().enabled = false;
-        crosshair.SetActive(false);
-        animator.SetLayerWeight(2, 0);
-        animator.SetBool("trickModeActivated", true);
-        wh.weapon = null;
+        
+        
         counter++;
     }
     IEnumerator Trick(int n)
     {
-        counter = 0;
-        Vector3 position = new Vector3(Screen.width/2, Screen.height / 2, 0f);
-        btn1.SetActive(true);
-        btn2.SetActive(true);
-        btn3.SetActive(true);
-        btn1.GetComponent<Button>().interactable = true;
-        btn1.GetComponent<Image>().enabled = true;
 
-        btn2.GetComponent<Button>().interactable = true;
-        btn2.GetComponent<Image>().enabled = true;
-
-        btn3.GetComponent<Button>().interactable = true;
-        btn3.GetComponent<Image>().enabled = true;
-        yield return new WaitUntil(() => counter >= n-1 || PlayerMovement.trick_mode_activated == false);
+        while (Input.GetButton("Fire2") && PlayerMovement.trick_mode_activated == true && slider.value != slider.maxValue)
+        {
+            Debug.Log("tricking");
+            slider.value += Time.deltaTime * speed;
+            yield return null;
+        }
         // player.GetComponent<Animator>().enabled = false;
 
 
         animator.SetBool("trickModeActivated", false);
-        btn1.SetActive(false);
-        btn2.SetActive(false);
-        btn3.SetActive(false);
-
-        if (counter >= 3)
+        if (slider.value == slider.maxValue)
+        {
+            sb.ChangeAmount(100);
+            crosshair.SetActive(true);
+        }
+        else if (!Input.GetButton("Fire2"))
         {
             crosshair.SetActive(true);
-
-            sb.ChangeAmount(amount);
-            yield return new WaitForSeconds(delay);
-            if (n > 8)
-            {
-                n = 8;
-            }
-                yield return Trick(4);
         }
-        else if (counter>= 1)
+        else
         {
-
             Ragdoll rd = player.GetComponent<Ragdoll>();
             rd.ActivateRagdolls();
         }
-        counter = 0;
-        Cursor.lockState = CursorLockMode.Locked;
+
 
 
     }

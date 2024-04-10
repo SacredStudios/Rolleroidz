@@ -21,6 +21,7 @@ public class LookAtCamera : MonoBehaviourPunCallbacks
         if(pv.IsMine)
         {
             player_name.text = PhotonNetwork.NickName;
+
             canvas.SetActive(false);
             cam = Player_Assets.GetComponentInChildren<Camera>();
           
