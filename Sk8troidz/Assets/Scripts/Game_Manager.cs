@@ -82,8 +82,8 @@ public class Game_Manager : MonoBehaviourPunCallbacks
             yield return new WaitUntil(() => player_temp.GetPhotonTeam() != null);
         }
         yield return new WaitUntil(() => temp1 != 9999 && temp2 != 9999);
-        if (player.GetPhotonTeam() != null)
-        {
+        Debug.Log(temp1 + "+" + temp2);
+        
             if (temp1 < temp2) //get team count from master client
             {
                 player.SwitchTeam(1);
@@ -92,7 +92,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
             {
                 player.SwitchTeam(2);
             }
-        }
+        
         
         
     }
@@ -161,14 +161,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
                     {
                 Invoke("DoubleCheck", 3f);
                     }
-                if (team1count >= win_score)
-                {
-                  pv.RPC("GameOver", RpcTarget.All, 1);
-                }
-                else if (team2count >= win_score)
-                {
-                  pv.RPC("GameOver", RpcTarget.All, 2);
-                }
+               
         }
 
         PropChange();
@@ -178,6 +171,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     void DoubleCheck()
     {
         pv.RPC("GetTeams", RpcTarget.All, tm.GetTeamMembersCount(1), tm.GetTeamMembersCount(2));
+        Debug.Log("Double Checking");
         team1count = 0;
         team2count = 0;
         foreach (Player player in PhotonNetwork.PlayerList)
@@ -275,10 +269,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
                 {
                     Team2List.text += player.NickName + "\n";
                 }
-                else
-                {
-                    StartCoroutine(SwitchTeam(player));
-                }
+                
             }
         }
     }
