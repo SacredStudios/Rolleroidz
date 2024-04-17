@@ -18,7 +18,7 @@ MonoBehaviour:
     baybee. And it's the only free one in the final game.
   weapon_delay: 0.1
   damage: 18
-  attack_cost: 15
+  attack_cost: 13
   knockback: 0
   offset: {x: 0, y: -0.2, z: 0.1}
   pv: {fileID: 0}
