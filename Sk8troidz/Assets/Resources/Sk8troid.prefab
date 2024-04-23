@@ -2944,6 +2944,7 @@ MonoBehaviour:
   pv: {fileID: 0}
   player_name: {fileID: 0}
   score: {fileID: 0}
+  heart: {fileID: 0}
 --- !u!1 &3312202482041811171
 GameObject:
   m_ObjectHideFlags: 0
@@ -6112,6 +6113,7 @@ MonoBehaviour:
   trick: {fileID: 0}
   skating_sound: {fileID: 0}
   offground_sound: {fileID: 0}
+  landing_sound: {fileID: 0}
 --- !u!114 &1358525819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6172,6 +6174,7 @@ MonoBehaviour:
   health_bar: {fileID: 0}
   health_bar_other: {fileID: 8341497289750416907}
   pv: {fileID: 2722618974921175925}
+  id: 0
 --- !u!114 &5289297984290239771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6199,6 +6202,15 @@ MonoBehaviour:
   - Type: 4
     SynchronizeType: 0
     Name: trickModeActivated
+  - Type: 1
+    SynchronizeType: 0
+    Name: inputX
+  - Type: 1
+    SynchronizeType: 0
+    Name: inputZ
+  - Type: 4
+    SynchronizeType: 0
+    Name: tauntModeActivated
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
@@ -6277,6 +6289,7 @@ MonoBehaviour:
   pv: {fileID: 0}
   player_name: {fileID: 5247628439255982016}
   score: {fileID: 3740017744543000571}
+  heart: {fileID: 0}
 --- !u!114 &3057022809242229270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6312,6 +6325,7 @@ MonoBehaviour:
   score_mine: {fileID: 0}
   game_ongoing: 1
   pv: {fileID: 2722618974921175925}
+  rolling_meter: {fileID: 0}
 --- !u!114 &5007903472875531354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6339,6 +6353,15 @@ MonoBehaviour:
   - Type: 4
     SynchronizeType: 0
     Name: trickModeActivated
+  - Type: 1
+    SynchronizeType: 0
+    Name: inputX
+  - Type: 1
+    SynchronizeType: 0
+    Name: inputZ
+  - Type: 4
+    SynchronizeType: 0
+    Name: tauntModeActivated
   m_SynchronizeLayers:
   - SynchronizeType: 1
     LayerIndex: 0
@@ -6375,6 +6398,9 @@ MonoBehaviour:
   camera: {fileID: 0}
   ragdoll_follow: {fileID: 0}
   camera_follow: {fileID: 0}
+  trick_fail: {fileID: 0}
+  crowd_boo: {fileID: 0}
+  crosshair: {fileID: 0}
 --- !u!1 &7799373281882646360
 GameObject:
   m_ObjectHideFlags: 0
@@ -6619,7 +6645,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8276578107356573700
 Transform:
   m_ObjectHideFlags: 0
