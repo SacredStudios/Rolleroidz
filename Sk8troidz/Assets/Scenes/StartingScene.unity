@@ -10269,8 +10269,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   my_tops:
   - {fileID: 11400000, guid: 8c999011c4a674b4180b541e6b359cfe, type: 2}
-  - {fileID: 11400000, guid: f0289f008929c485199be088f787d69d, type: 2}
-  - {fileID: 11400000, guid: b6a8bed7671cb4e48bd958f2a16b1aa3, type: 2}
+  - {fileID: 11400000, guid: cae54d680e54c4869a3548cff44c7a06, type: 2}
   my_shirts:
   - {fileID: 11400000, guid: 31c3ad2886721482c85660c0529738c6, type: 2}
   - {fileID: 11400000, guid: aab37f7d51a884d73971ceb219607946, type: 2}
@@ -10287,6 +10286,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f0289f008929c485199be088f787d69d, type: 2}
   - {fileID: 11400000, guid: 8c999011c4a674b4180b541e6b359cfe, type: 2}
   - {fileID: 11400000, guid: b6a8bed7671cb4e48bd958f2a16b1aa3, type: 2}
+  - {fileID: 11400000, guid: cae54d680e54c4869a3548cff44c7a06, type: 2}
   all_shirts:
   - {fileID: 11400000, guid: 31c3ad2886721482c85660c0529738c6, type: 2}
   - {fileID: 11400000, guid: aab37f7d51a884d73971ceb219607946, type: 2}
@@ -15404,6 +15404,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7885662142551224972, guid: a6476ea02cc0c40daa369662ce82aaf1, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cdac1dd6e10ae4719a8a8ac4e498eebe, type: 2}
     - target: {fileID: 9113537336634149635, guid: a6476ea02cc0c40daa369662ce82aaf1, type: 3}
       propertyPath: m_IsActive
       value: 0
