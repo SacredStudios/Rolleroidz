@@ -10283,9 +10283,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0bb5e3d553a1c4746a763a21c93435a8, type: 2}
   - {fileID: 11400000, guid: 8b9d10bbd904c1f4abc359abf796f819, type: 2}
   all_tops:
-  - {fileID: 11400000, guid: f0289f008929c485199be088f787d69d, type: 2}
   - {fileID: 11400000, guid: 8c999011c4a674b4180b541e6b359cfe, type: 2}
-  - {fileID: 11400000, guid: b6a8bed7671cb4e48bd958f2a16b1aa3, type: 2}
   - {fileID: 11400000, guid: cae54d680e54c4869a3548cff44c7a06, type: 2}
   all_shirts:
   - {fileID: 11400000, guid: 31c3ad2886721482c85660c0529738c6, type: 2}

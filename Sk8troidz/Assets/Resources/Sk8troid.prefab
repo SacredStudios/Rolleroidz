@@ -8080,9 +8080,13 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8963599831222826740, guid: ff0fae8713e625d45827f6bf707d1a0d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8963599831222826740, guid: ff0fae8713e625d45827f6bf707d1a0d, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: c4943d7eff325466ab28c23ec041f5dd, type: 2}
+      objectReference: {fileID: 2100000, guid: cdac1dd6e10ae4719a8a8ac4e498eebe, type: 2}
     - target: {fileID: 9219760572836378970, guid: ff0fae8713e625d45827f6bf707d1a0d, type: 3}
       propertyPath: m_Name
       value: Hat

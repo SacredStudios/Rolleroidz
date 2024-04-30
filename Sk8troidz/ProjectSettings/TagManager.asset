@@ -8,6 +8,7 @@ TagManager:
   - Player_Head
   - Bullet
   - Point
+  - Rail
   layers:
   - Default
   - TransparentFX

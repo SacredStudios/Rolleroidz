@@ -58,7 +58,7 @@ public class ClothesManager : MonoBehaviourPunCallbacks
         Debug.Log(PhotonView.Find(viewID).Owner.NickName);
         foreach (Clothing c in clothes_list.GetComponent<ClothesList>().all_tops)
         {
- //Photon Hashtable might be more efficient. Yes Photon has a custom version of Hashtable. This was not a typo.
+ //Photon Hashtable might be more efficient.
             if (c.name == currname)
             {
                 Debug.Log(c.name);
@@ -77,7 +77,7 @@ public class ClothesManager : MonoBehaviourPunCallbacks
         GameObject sleeveL = player.GetComponent<ClothesManager>().sleeveL_obj;
         GameObject sleeveR = player.GetComponent<ClothesManager>().sleeveR_obj;
         foreach (Clothing c in clothes_list.GetComponent<ClothesList>().all_shirts)
-        {//Photon Hashtable might be more efficient. Yes Photon has a custom version of Hashtable. This was not a typo.
+        {//Photon Hashtable might be more efficient.
             if (c.name == currname)
             {
                 Debug.Log(c.name);
@@ -98,14 +98,14 @@ public class ClothesManager : MonoBehaviourPunCallbacks
         GameObject pants = player.GetComponent<ClothesManager>().pants_obj;
 
         foreach (Clothing c in clothes_list.GetComponent<ClothesList>().all_pants)
-        {//Photon Hashtable might be more efficient. Yes Photon has a custom version of Hashtable. This was not a typo.
+        {//Photon Hashtable might be more efficient.
             if (c.name == currname)
             {
                 Debug.Log(c.name);
                 pants.GetComponent<SkinnedMeshRenderer>().sharedMesh = c.mesh;
                 pants.GetComponent<Renderer>().material = c.material;
             }
-        } //MAKE setshoes here
+        }
     }
     [PunRPC]
     void SetShoes(string currname, int viewID)
@@ -115,7 +115,7 @@ public class ClothesManager : MonoBehaviourPunCallbacks
         GameObject shoes = player.GetComponent<ClothesManager>().shoes_obj;
 
         foreach (Clothing c in clothes_list.GetComponent<ClothesList>().all_shoes)
-        {//Photon Hashtable might be more efficient. Yes Photon has a custom version of Hashtable. This was not a typo.
+        {//Photon Hashtable might be more efficient.
             if (c.name == currname)
             {
                 Debug.Log(c.name);
