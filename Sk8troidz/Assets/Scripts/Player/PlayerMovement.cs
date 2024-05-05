@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
 {
 
     Vector3 input;
+    [SerializeField] Joystick joy;
     Vector3 cam_Forward;
     Vector3 diff;
     public float maxSpeed; //current max speed
@@ -187,6 +188,11 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
         {
             input.x = Input.GetAxis("Horizontal");           
             input.z = Input.GetAxis("Vertical");
+            if(joy.Horizontal != 0 && joy.Vertical != 0)
+            {
+                input.x = joy.Horizontal;
+                input.z = joy.Vertical;
+            }
             animator.SetFloat("inputX", input.x);
             animator.SetFloat("inputZ", input.z);
 

@@ -10,6 +10,8 @@ public class Railgrinding : MonoBehaviour
 
     public bool onRail;
     [SerializeField] float speed;
+    [SerializeField] float min_speed;
+
     [SerializeField] float height_offset;
     float time_for_spline;
     float elapsed_time;
@@ -17,7 +19,7 @@ public class Railgrinding : MonoBehaviour
 
     [SerializeField] Rail curr_rail; //script for rail
     [SerializeField] Rigidbody rb;
-
+    
     void Start()
     {
         
@@ -75,13 +77,14 @@ public class Railgrinding : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Rail")
+        if (collision.gameObject.tag == "Rail" && !onRail)
         {
             onRail = true;
             curr_rail = collision.gameObject.GetComponent<Rail>();
             SetRailPosition();
             GetComponent<PlayerMovement>().enabled = false;
             rb.useGravity = false;
+            speed = min_speed + 2*Mathf.Abs(rb.velocity.x + rb.velocity.z);
         }
     }
 
