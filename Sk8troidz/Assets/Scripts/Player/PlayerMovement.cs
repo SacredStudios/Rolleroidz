@@ -50,6 +50,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
     [SerializeField] GameObject trick;
     [SerializeField] public static bool trick_mode_activated = false;
     public static bool taunt_mode_activated = false;
+    [SerializeField] GameObject crosshair; //disappears when taunting
     private Weapon_Handler wh;
     //Sound Effects
     [SerializeField] AudioSource skating_sound;
@@ -79,13 +80,9 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
             Gravity();
             if (!taunt_mode_activated)
             {
-                Move();
-                
-            }
-            
+                Move();               
+            }            
         }
-
-
     }
     void Gravity()
     {
@@ -109,13 +106,11 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
         }
         else
         {
-            time_airborne += Time.deltaTime;
-            
+            time_airborne += Time.deltaTime;           
             maxSpeed = maxSpeedBase / 2f;
             canJump = false;
             animator.SetFloat("IsJumping", 1f);
             animator.speed = 1f;
-
         }
 
         if (extra_gravity < max_gravity)
@@ -135,6 +130,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
                     animator.speed = 1f;
                     animator.SetFloat("Bend", 0f);
                     Debug.Log("taunting");
+                    crosshair.SetActive(false);
                 }
                 else
                 {
@@ -162,7 +158,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
                 {
                     animator.SetBool("tauntModeActivated", false);
                     taunt_mode_activated = false;
-                    Debug.Log("taunt_over");
+                    crosshair.SetActive(true);
                 }
             }
             
@@ -171,13 +167,9 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
     }
     private void LateUpdate()
     {
-        if (pv.IsMine)
-            
-        {
-            
-            
+        if (pv.IsMine)           
+        {                      
             CameraRotation();
-
         }
     }
    
@@ -242,13 +234,11 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
             animator.SetFloat("IsJumping", 0f);
             if (hasLanded == false) {
                 Land();
-                Debug.Log("Land");
                 hasLanded = true;
         }
             trick_mode_activated = false;
 
         }
-
     }
 
 
@@ -265,9 +255,6 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
 
         cineMachineYaw += Input.GetAxis("Mouse X") * sensitivity;
         cineMachinePitch += (-1) * Input.GetAxis("Mouse Y") * sensitivity;
-
-
-
         cineMachineYaw = ClampAngle(cineMachineYaw, float.MinValue, float.MaxValue);
         cineMachinePitch = ClampAngle(cineMachinePitch, -30, 70);
         animator.SetFloat("Bend", cineMachinePitch);

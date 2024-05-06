@@ -14901,6 +14901,10 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1513577829, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: crosshair
+      value: 
+      objectReference: {fileID: 1854916410952173134}
+    - target: {fileID: 1513577829, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: playerCam
       value: 
       objectReference: {fileID: 7855048691978222172}
