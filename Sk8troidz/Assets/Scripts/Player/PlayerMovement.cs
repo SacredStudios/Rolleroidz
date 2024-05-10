@@ -56,7 +56,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
     [SerializeField] AudioSource skating_sound;
     [SerializeField] AudioSource offground_sound;
     [SerializeField] AudioSource landing_sound;
-
+    public bool onRail;
 
     void Start()
     {
@@ -77,11 +77,14 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
     {
         if (pv.IsMine)
         {
-            Gravity();
-            if (!taunt_mode_activated)
+            if (!onRail)
             {
-                Move();               
-            }            
+                Gravity();
+                if (!taunt_mode_activated)
+                {
+                    Move();
+                }
+            }
         }
     }
     void Gravity()
@@ -122,7 +125,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
     private void Update()
     {
         if (pv.IsMine) {
-            if (Input.GetButton("Fire2"))
+            if (Input.GetButton("Fire2") && !onRail)
             {
                 if (canJump)
                 {
@@ -146,7 +149,10 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
             }
             if (!taunt_mode_activated)
             {
-                RotateWCamera();
+                if (!onRail)
+                {
+                    RotateWCamera();
+                }
                 Jump();
             }
             else
@@ -176,7 +182,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
     void Move()
     {
         
-        if (Ragdoll.is_Ragdoll == false && !boostMode)
+        if (Ragdoll.is_Ragdoll == false && !boostMode && !onRail)
         {
             input.x = Input.GetAxis("Horizontal");           
             input.z = Input.GetAxis("Vertical");
@@ -218,13 +224,15 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
             }
         }
     }
-    void Jump()
+    public void Jump()
     {
         if (Input.GetButtonDown("Jump") && canJump)
         {
+            onRail = false;
             rb.AddForce(Vector3.up * jumpStrength);
             canJump = false;
             hasLanded = false;
+            
         }
     }
     void OnCollisionEnter(Collision collision)

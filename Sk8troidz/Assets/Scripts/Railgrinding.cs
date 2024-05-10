@@ -19,13 +19,8 @@ public class Railgrinding : MonoBehaviour
 
     [SerializeField] Rail curr_rail; //script for rail
     [SerializeField] Rigidbody rb;
+    [SerializeField] PlayerMovement pm;
     
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void FixedUpdate()
     {
         if(onRail == true)
@@ -33,10 +28,24 @@ public class Railgrinding : MonoBehaviour
             MoveAlongRail();
         }
     }
+    private void Update()
+    {
+        
+    }
     void MoveAlongRail()
     {
         if (curr_rail != null && onRail == true)
         {
+            if (Input.GetButtonDown("Jump"))
+            {              
+                ThrowOffRail();
+                pm.canJump = true;
+                pm.Jump();
+                onRail = false;
+                pm.onRail = false;
+                return;
+            }
+            pm.onRail = true;
             float progress = elapsed_time / time_for_spline;
             if(progress < 0 || progress > 1)
             {
@@ -82,9 +91,9 @@ public class Railgrinding : MonoBehaviour
             onRail = true;
             curr_rail = collision.gameObject.GetComponent<Rail>();
             SetRailPosition();
-            GetComponent<PlayerMovement>().enabled = false;
+            pm.onRail = true;
             rb.useGravity = false;
-            speed = min_speed + 2*Mathf.Abs(rb.velocity.x + rb.velocity.z);
+            speed = min_speed + 2 * Mathf.Abs(rb.velocity.x + rb.velocity.z);
         }
     }
 
@@ -104,10 +113,15 @@ public class Railgrinding : MonoBehaviour
     }
     void ThrowOffRail()
     {
+        pm.onRail = false;
         onRail = false;
         curr_rail = null;
         transform.position += transform.forward * 1;
-        GetComponent<PlayerMovement>().enabled = true;
+        pm.onRail = false;
         rb.useGravity = true;
+    }
+    private void Start()
+    {
+        pm = GetComponent<PlayerMovement>();
     }
 }
