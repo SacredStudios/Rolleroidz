@@ -124,7 +124,7 @@ public class Ball : MonoBehaviour
     private IEnumerator ApplyForwardForceAfterBounce()
     {
         yield return new WaitForFixedUpdate();
-        rb.velocity = new Vector3(0f, 5f, 0f);
+        rb.linearVelocity = new Vector3(0f, 5f, 0f);
         rb.AddForce(transform.forward * speed*2f, ForceMode.Impulse);
     }
 }

@@ -36,7 +36,7 @@ public class Ragdoll : MonoBehaviourPunCallbacks
         camera.GetComponent<CinemachineVirtualCamera>().Follow = ragdoll_follow.transform;
         GetComponent<Weapon_Handler>().weapon = null;
         is_Ragdoll = true;
-        rb.velocity = new Vector3(0, 0, 0);
+        rb.linearVelocity = new Vector3(0, 0, 0);
         Invoke("DeactivateRagdolls", timeout);
        
     }
@@ -48,7 +48,7 @@ public class Ragdoll : MonoBehaviourPunCallbacks
         foreach (Collider collider in player.GetComponent<Ragdoll>().colliders)
         {
             collider.enabled = true;
-            collider.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+            collider.GetComponent<Rigidbody>().linearVelocity = new Vector3(0, 0, 0);
         }
 
     }

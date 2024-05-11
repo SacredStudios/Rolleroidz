@@ -14,7 +14,7 @@ public class Boost_Panel : MonoBehaviour
         {
             StartCoroutine(ChangeMax(collision.gameObject));
             Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
-            rb.AddForce(rb.velocity.normalized * multiplier + force);
+            rb.AddForce(rb.linearVelocity.normalized * multiplier + force);
             boost.Play();
         }
         
@@ -32,7 +32,7 @@ public class Boost_Panel : MonoBehaviour
             {
                 StartCoroutine(ChangeMax(collision.gameObject));
                 Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
-                rb.AddForce(rb.velocity.normalized * multiplier);
+                rb.AddForce(rb.linearVelocity.normalized * multiplier);
                 
             }
         }
@@ -45,7 +45,7 @@ public class Boost_Panel : MonoBehaviour
         {
             StartCoroutine(ChangeMax(collision.gameObject));
             Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
-            rb.AddForce(rb.velocity.normalized * multiplier + -1 * force);
+            rb.AddForce(rb.linearVelocity.normalized * multiplier + -1 * force);
             boost.Play();
         }
         
@@ -56,7 +56,7 @@ public class Boost_Panel : MonoBehaviour
         {
             StartCoroutine(ChangeMax(collision.gameObject));
             Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
-            rb.AddForce(rb.velocity.normalized * multiplier + 2f * force);
+            rb.AddForce(rb.linearVelocity.normalized * multiplier + 2f * force);
             boost.Play();
         }
         

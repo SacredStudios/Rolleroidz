@@ -93,7 +93,7 @@ public class Railgrinding : MonoBehaviour
             SetRailPosition();
             pm.onRail = true;
             rb.useGravity = false;
-            speed = min_speed + 2 * Mathf.Abs(rb.velocity.x + rb.velocity.z);
+            speed = min_speed + 2 * Mathf.Abs(rb.linearVelocity.x + rb.linearVelocity.z);
         }
     }
 

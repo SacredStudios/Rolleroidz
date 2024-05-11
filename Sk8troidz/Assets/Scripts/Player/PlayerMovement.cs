@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
+using UnityEngine.EventSystems;
 using Photon.Pun;
 using Photon.Realtime;
 
@@ -60,7 +61,6 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
 
     void Start()
     {
-        
         maxSpeedBase = maxSpeed;
         targetRot = transform.eulerAngles.z;
         wh = this.gameObject.GetComponent<Weapon_Handler>();
@@ -89,9 +89,9 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
     }
     void Gravity()
     {
-        float acceleration = ((Mathf.Abs(rb.velocity.x - last_velocity.x) + Mathf.Abs(rb.velocity.y - last_velocity.y) +
-        Mathf.Abs(rb.velocity.z - last_velocity.z)) * acc_multiplier) / Time.deltaTime;
-        last_velocity = rb.velocity;
+        float acceleration = ((Mathf.Abs(rb.linearVelocity.x - last_velocity.x) + Mathf.Abs(rb.linearVelocity.y - last_velocity.y) +
+        Mathf.Abs(rb.linearVelocity.z - last_velocity.z)) * acc_multiplier) / Time.deltaTime;
+        last_velocity = rb.linearVelocity;
         if (Physics.Raycast(jump_pos.transform.position, Vector3.down, rayCastLength))
         {
             if (!taunt_mode_activated)
@@ -197,16 +197,16 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
             Vector3 inputDirection = new Vector3(input.x, 0, input.z);
             inputDirection = transform.TransformDirection(inputDirection);
 
-            if (Mathf.Abs(rb.velocity.x) > maxSpeed)
+            if (Mathf.Abs(rb.linearVelocity.x) > maxSpeed)
             {
                 input.x = 0;
-                rb.velocity = new Vector3(Mathf.Sign(rb.velocity.x) * maxSpeed, rb.velocity.y, rb.velocity.z);
+                rb.linearVelocity = new Vector3(Mathf.Sign(rb.linearVelocity.x) * maxSpeed, rb.linearVelocity.y, rb.linearVelocity.z);
             }
 
-            if (Mathf.Abs(rb.velocity.z) > maxSpeed)
+            if (Mathf.Abs(rb.linearVelocity.z) > maxSpeed)
             {
                 input.z = 0;
-                rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, Mathf.Sign(rb.velocity.z) * maxSpeed);
+                rb.linearVelocity = new Vector3(rb.linearVelocity.x, rb.linearVelocity.y, Mathf.Sign(rb.linearVelocity.z) * maxSpeed);
             }
 
             currSpeed = (transform.position - lastPos).magnitude;
@@ -223,6 +223,18 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
                 animator.SetFloat("animSpeedCap", 1f);
             }
         }
+    }
+    bool IsJoystickArea(Vector2 touchPosition)
+    {
+        float joystickAreaSize = 0.2f; // 20% of the screen
+        float screenWidth = Screen.width * joystickAreaSize;
+        float screenHeight = Screen.height * joystickAreaSize;
+
+        // Define the joystick area
+        Rect joystickArea = new Rect(0, Screen.height - screenHeight, screenWidth, screenHeight);
+
+        // Check if the touch position is within the joystick area
+        return joystickArea.Contains(touchPosition);
     }
     public void Jump()
     {
@@ -257,17 +269,42 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
 
         transform.rotation = Quaternion.Euler(0, cameraYaw, 0);
     }
+
     void CameraRotation()
     {
         //IF DEVICE IS ON MOBILE REMEMBER TO MULTIPLY BY TIME.DELTATIME
+        if (Input.touchCount > 0) //change to Application.isMobilePlatform
+        {
+            foreach (Touch touch in Input.touches)
+            {
+                // Ensure the touch is not over a UI element or the joystick area
+                if (!EventSystem.current.IsPointerOverGameObject(touch.fingerId) && !IsJoystickArea(touch.position))
+                {
+                    // Only rotate camera if the touch phase is Moved
+                    if (touch.phase == TouchPhase.Moved)
+                    {
+                        cineMachineYaw += touch.deltaPosition.x * sensitivity * Time.deltaTime;
+                        cineMachinePitch += (-1) * touch.deltaPosition.y * sensitivity * Time.deltaTime;
 
-        cineMachineYaw += Input.GetAxis("Mouse X") * sensitivity;
-        cineMachinePitch += (-1) * Input.GetAxis("Mouse Y") * sensitivity;
-        cineMachineYaw = ClampAngle(cineMachineYaw, float.MinValue, float.MaxValue);
-        cineMachinePitch = ClampAngle(cineMachinePitch, -30, 70);
-        animator.SetFloat("Bend", cineMachinePitch);
+                        // Clamp the pitch angle
+                        cineMachinePitch = ClampAngle(cineMachinePitch, -30, 70);
 
-        CinemachineTarget.transform.rotation = Quaternion.Euler(cineMachinePitch, cineMachineYaw, 0.0f);
+                        // Update the camera rotation
+                        CinemachineTarget.transform.rotation = Quaternion.Euler(cineMachinePitch, cineMachineYaw, 0.0f);
+                    }
+                }
+            }
+        }
+        else
+        {
+            cineMachineYaw += Input.GetAxis("Mouse X") * sensitivity;
+            cineMachinePitch += (-1) * Input.GetAxis("Mouse Y") * sensitivity;
+            cineMachineYaw = ClampAngle(cineMachineYaw, float.MinValue, float.MaxValue);
+            cineMachinePitch = ClampAngle(cineMachinePitch, -30, 70);
+            animator.SetFloat("Bend", cineMachinePitch);
+
+            CinemachineTarget.transform.rotation = Quaternion.Euler(cineMachinePitch, cineMachineYaw, 0.0f);
+        }
 
 
     }
@@ -285,8 +322,8 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
     }
     public void Land()
     {
-        if (landing_sound != null)
-            landing_sound.Play();
+    if(landing_sound != null)
+        landing_sound.Play();
     }
 
     public void Offground()
