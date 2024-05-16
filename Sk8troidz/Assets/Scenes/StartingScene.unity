@@ -1399,6 +1399,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4939695040324320126, guid: a6476ea02cc0c40daa369662ce82aaf1, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: 50043e211d9a9ad4094081d17adc7aef, type: 2}
+    - target: {fileID: 4939695040324320126, guid: a6476ea02cc0c40daa369662ce82aaf1, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 0aff0277dc91c5049864ab9a49273d68, type: 2}
@@ -10395,6 +10399,7 @@ MonoBehaviour:
   my_pants:
   - {fileID: 11400000, guid: 1d908dadd75bf403c896757b2b8a484e, type: 2}
   - {fileID: 11400000, guid: fe1be62d395e6f04c9710cf80b276586, type: 2}
+  - {fileID: 11400000, guid: 1226a28ae4c324b3dbf6ced8d878db60, type: 2}
   my_shoes:
   - {fileID: 11400000, guid: e090208561c364b17851fe2ab27e4723, type: 2}
   - {fileID: 11400000, guid: 0bb5e3d553a1c4746a763a21c93435a8, type: 2}
@@ -10410,6 +10415,7 @@ MonoBehaviour:
   all_pants:
   - {fileID: 11400000, guid: 1d908dadd75bf403c896757b2b8a484e, type: 2}
   - {fileID: 11400000, guid: fe1be62d395e6f04c9710cf80b276586, type: 2}
+  - {fileID: 11400000, guid: 1226a28ae4c324b3dbf6ced8d878db60, type: 2}
   all_shoes:
   - {fileID: 11400000, guid: e090208561c364b17851fe2ab27e4723, type: 2}
   - {fileID: 11400000, guid: 0bb5e3d553a1c4746a763a21c93435a8, type: 2}
@@ -15482,7 +15488,7 @@ PrefabInstance:
     - target: {fileID: 4939695040324320126, guid: a6476ea02cc0c40daa369662ce82aaf1, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 7786816919049954300, guid: e03fe9b463a3c478096ed62885c3b29f, type: 3}
+      objectReference: {fileID: 4300000, guid: 50043e211d9a9ad4094081d17adc7aef, type: 2}
     - target: {fileID: 5935816816605236775, guid: a6476ea02cc0c40daa369662ce82aaf1, type: 3}
       propertyPath: m_IsActive
       value: 0

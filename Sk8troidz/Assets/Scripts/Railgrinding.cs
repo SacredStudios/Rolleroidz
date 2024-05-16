@@ -20,6 +20,7 @@ public class Railgrinding : MonoBehaviour
     [SerializeField] Rail curr_rail; //script for rail
     [SerializeField] Rigidbody rb;
     [SerializeField] PlayerMovement pm;
+    [SerializeField] Animator animator;
     
     void FixedUpdate()
     {
@@ -28,12 +29,10 @@ public class Railgrinding : MonoBehaviour
             MoveAlongRail();
         }
     }
-    private void Update()
-    {
-        
-    }
+   
     void MoveAlongRail()
     {
+        
         if (curr_rail != null && onRail == true)
         {
             if (Input.GetButtonDown("Jump"))
@@ -88,12 +87,13 @@ public class Railgrinding : MonoBehaviour
     {
         if (collision.gameObject.tag == "Rail" && !onRail)
         {
+            animator.SetLayerWeight(3, 1f);
             onRail = true;
             curr_rail = collision.gameObject.GetComponent<Rail>();
             SetRailPosition();
             pm.onRail = true;
             rb.useGravity = false;
-            speed = min_speed + 2 * Mathf.Abs(rb.linearVelocity.x + rb.linearVelocity.z);
+            speed = min_speed + Mathf.Abs(rb.linearVelocity.x + rb.linearVelocity.z);
         }
     }
 
@@ -113,6 +113,7 @@ public class Railgrinding : MonoBehaviour
     }
     void ThrowOffRail()
     {
+        animator.SetLayerWeight(3, 0f);
         pm.onRail = false;
         onRail = false;
         curr_rail = null;
