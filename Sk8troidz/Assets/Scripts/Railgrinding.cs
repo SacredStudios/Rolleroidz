@@ -21,7 +21,20 @@ public class Railgrinding : MonoBehaviour
     [SerializeField] Rigidbody rb;
     [SerializeField] PlayerMovement pm;
     [SerializeField] Animator animator;
-    
+
+    public void JumpOffRail()
+    {
+        ThrowOffRail();
+        pm.canJump = true;
+        pm.Jump();
+        onRail = false;
+        pm.onRail = false;
+    }
+    public void Test()
+    {
+        Debug.Log("1");
+    }
+
     void FixedUpdate()
     {
         if(onRail == true)
@@ -29,19 +42,16 @@ public class Railgrinding : MonoBehaviour
             MoveAlongRail();
         }
     }
-   
+    
     void MoveAlongRail()
     {
         
         if (curr_rail != null && onRail == true)
         {
+            animator.SetFloat("animSpeedCap", 0);
             if (Input.GetButtonDown("Jump"))
-            {              
-                ThrowOffRail();
-                pm.canJump = true;
-                pm.Jump();
-                onRail = false;
-                pm.onRail = false;
+            {
+                JumpOffRail();
                 return;
             }
             pm.onRail = true;
@@ -88,6 +98,7 @@ public class Railgrinding : MonoBehaviour
         if (collision.gameObject.tag == "Rail" && !onRail)
         {
             animator.SetLayerWeight(3, 1f);
+            animator.SetFloat("animSpeedCap", 0);
             onRail = true;
             curr_rail = collision.gameObject.GetComponent<Rail>();
             SetRailPosition();
@@ -111,7 +122,7 @@ public class Railgrinding : MonoBehaviour
         transform.position = spline_point + (transform.up * height_offset);
 
     }
-    void ThrowOffRail()
+    public void ThrowOffRail()
     {
         animator.SetLayerWeight(3, 0f);
         pm.onRail = false;

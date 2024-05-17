@@ -153,7 +153,10 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
                 {
                     RotateWCamera();
                 }
-                Jump();
+                if (Input.GetButtonDown("Jump"))
+                {
+                    Jump();
+                }
             }
             else
             {
@@ -238,15 +241,17 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
     }
     public void Jump()
     {
-        if (Input.GetButtonDown("Jump") && canJump)
+        if (canJump)
         {
             onRail = false;
             rb.AddForce(Vector3.up * jumpStrength);
             canJump = false;
             hasLanded = false;
-            
+            extra_gravity = min_gravity;
+
         }
     }
+    
     void OnCollisionEnter(Collision collision)
     {
         if (Physics.Raycast(jump_pos.transform.position, Vector3.down, rayCastLength)) //IsJumping
@@ -273,7 +278,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
     void CameraRotation()
     {
         //IF DEVICE IS ON MOBILE REMEMBER TO MULTIPLY BY TIME.DELTATIME
-        if (Input.touchCount > 0) //change to Application.isMobilePlatform
+        if (Application.IsMov) //change to Application.isMobilePlatform
         {
             foreach (Touch touch in Input.touches)
             {
