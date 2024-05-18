@@ -10,7 +10,7 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
     public Weapon weapon;
     public Weapon temp_weapon;
     public GameObject curr_gun;
-   
+    [SerializeField] HoldButton btn;
     [SerializeField] GameObject weapon_loc;
     [SerializeField] GameObject particle_pos;
     [SerializeField] GameObject explosion_pos;
@@ -69,13 +69,10 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
             {
                 shoot_delay += Time.deltaTime;
             }
-            if (Input.GetButton("Fire1") && shoot_delay >= weapon.weapon_delay && weapon.attack_cost <= cooldown.value && pv.IsMine && !isOverTrickBtn)
+            if (Input.GetButton("Fire1") || btn.isDown)
             {
-
-                cooldown.value -= weapon.attack_cost;
-                shoot_delay = 0;
-                Shoot_Weapon();
-            }
+                FireCheck();
+            }    
             if (time_last_shot > 1f && weapon_up)
             {
                 weapon_up = false;
@@ -84,8 +81,18 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
             }
         }
     }
+    public void FireCheck()
+    {
+        if (shoot_delay >= weapon.weapon_delay && weapon.attack_cost <= cooldown.value && pv.IsMine)
+        {
+            cooldown.value -= weapon.attack_cost;
+            shoot_delay = 0;
+            Shoot_Weapon();
+            
+        }
+    }
 
-    void Shoot_Weapon()
+    public void Shoot_Weapon()
     {
         cs.Shake(weapon.shake, 0.25f);
         sound.Play();
