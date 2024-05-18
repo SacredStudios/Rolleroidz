@@ -24,16 +24,16 @@ public class Railgrinding : MonoBehaviour
 
     public void JumpOffRail()
     {
-        ThrowOffRail();
-        pm.canJump = true;
-        pm.Jump();
-        onRail = false;
-        pm.onRail = false;
+        if (onRail)
+        {
+            ThrowOffRail();
+            pm.canJump = true;
+            pm.Jump();
+            onRail = false;
+            pm.onRail = false;
+        }
     }
-    public void Test()
-    {
-        Debug.Log("1");
-    }
+   
 
     void FixedUpdate()
     {
