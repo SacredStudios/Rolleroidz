@@ -241,7 +241,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
     }
     public void Jump()
     {
-        if (canJump)
+        if (canJump && !onRail)
         {
             onRail = false;
             rb.AddForce(Vector3.up * jumpStrength);
