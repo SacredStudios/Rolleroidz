@@ -16,10 +16,13 @@ public class Railgrinding : MonoBehaviour
     float time_for_spline;
     float elapsed_time;
     [SerializeField] float lerp_speed = 10f;
+    public float progress;
 
     [SerializeField] Rail curr_rail; //script for rail
     [SerializeField] Rigidbody rb;
     [SerializeField] PlayerMovement pm;
+    [SerializeField] Trick_System ts;
+    [SerializeField] HoldButton taunt_btn;
     [SerializeField] Animator animator;
 
     public void JumpOffRail()
@@ -54,8 +57,13 @@ public class Railgrinding : MonoBehaviour
                 JumpOffRail();
                 return;
             }
+            if(taunt_btn.isDown)
+            {
+                ts.Start_Rail_Trick_System();
+                speed = speed * 2;
+            }
             pm.onRail = true;
-            float progress = elapsed_time / time_for_spline;
+            progress = elapsed_time / time_for_spline;
             if(progress < 0 || progress > 1)
             {
                 ThrowOffRail();

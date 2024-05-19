@@ -19,6 +19,7 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     private Weapon_Handler wh;
     [SerializeField] Animator animator;
     [SerializeField] GameObject crosshair;
+    [SerializeField] Railgrinding railgrinding;
     Super_Bar sb;
 
     void Start()
@@ -42,12 +43,19 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         StartCoroutine(Trick(4));
     }
 
+    public void Start_Rail_Trick_System()
+    {
+        PlayerMovement.trick_mode_activated = true;
+        animator.SetLayerWeight(3, 0f);
+        animator.SetLayerWeight(2, 0);
+        animator.SetBool("trickModeActivated", true);
+        StartCoroutine(RailTrick());
+    }
+
     public void AddToCounter(GameObject btn)
     {
         btn.GetComponent<Button>().interactable = false;
         btn.GetComponent<Image>().enabled = false;
-        
-        
         counter++;
     }
     IEnumerator Trick(int n)
@@ -55,7 +63,6 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
         while ((Input.GetButton("Fire2") || btn.isDown) && PlayerMovement.trick_mode_activated == true && slider.value != slider.maxValue)
         {
-            Debug.Log("tricking");
             slider.value += Time.deltaTime * speed;
             yield return null;
         }
@@ -78,8 +85,15 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             rd.ActivateRagdolls();
         }
 
-
-
+    }
+    IEnumerator RailTrick()
+    {
+        while ((Input.GetButton("Fire2") || btn.isDown) && railgrinding.progress >= 0 && railgrinding.progress <= 1)
+        {
+            slider.value += Time.deltaTime * speed;
+            yield return null;
+        }
+        animator.SetBool("trickModeActivated", false);
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
