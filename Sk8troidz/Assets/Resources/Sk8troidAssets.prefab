@@ -1932,6 +1932,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c1245f608a420c4aa9766648cc6041c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  btn: {fileID: 7361257003140502380}
   slider: {fileID: 9061380369378633641}
   speed: 5
   counter: 0
@@ -16503,7 +16504,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8341497289750416907, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: m_Value
-      value: 50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8345991720814722451, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: m_TagString

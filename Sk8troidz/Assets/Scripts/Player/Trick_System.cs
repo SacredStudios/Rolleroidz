@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    [SerializeField] HoldButton btn;
     [SerializeField] Slider slider;
     [SerializeField] float speed;
     public int counter;
@@ -52,7 +53,7 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     IEnumerator Trick(int n)
     {
 
-        while (Input.GetButton("Fire2") && PlayerMovement.trick_mode_activated == true && slider.value != slider.maxValue)
+        while ((Input.GetButton("Fire2") || btn.isDown) && PlayerMovement.trick_mode_activated == true && slider.value != slider.maxValue)
         {
             Debug.Log("tricking");
             slider.value += Time.deltaTime * speed;
@@ -67,7 +68,7 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             sb.ChangeAmount(100);
             crosshair.SetActive(true);
         }
-        else if (!Input.GetButton("Fire2"))
+        else if (!(Input.GetButton("Fire2") || btn.isDown))
         {
             crosshair.SetActive(true);
         }
