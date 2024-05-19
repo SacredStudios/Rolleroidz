@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
 
     Vector3 input;
     [SerializeField] Joystick joy;
+    [SerializeField] HoldButton taunt_btn;
     Vector3 cam_Forward;
     Vector3 diff;
     public float maxSpeed; //current max speed
@@ -125,7 +126,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
     private void Update()
     {
         if (pv.IsMine) {
-            if (Input.GetButton("Fire2") && !onRail)
+            if ((Input.GetButton("Fire2") || taunt_btn.isDown) && !onRail)
             {
                 if (canJump)
                 {
