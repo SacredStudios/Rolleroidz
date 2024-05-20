@@ -46,9 +46,9 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     public void Start_Rail_Trick_System()
     {
         PlayerMovement.trick_mode_activated = true;
-        animator.SetLayerWeight(3, 0f);
-        animator.SetLayerWeight(2, 0);
+        animator.SetLayerWeight(2, 0f);
         animator.SetBool("trickModeActivated", true);
+        animator.SetFloat("animSpeedCap", 0);
         StartCoroutine(RailTrick());
     }
 
@@ -90,7 +90,8 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         while ((Input.GetButton("Fire2") || btn.isDown) && railgrinding.progress >= 0 && railgrinding.progress <= 1)
         {
-            slider.value += Time.deltaTime * speed;
+            Debug.Log(animator.GetBool("trickModeActivated"));
+            slider.value += Time.deltaTime * speed/100f;
             yield return null;
         }
         animator.SetBool("trickModeActivated", false);

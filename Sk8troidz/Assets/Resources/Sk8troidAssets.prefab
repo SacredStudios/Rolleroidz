@@ -16768,7 +16768,8 @@ MonoBehaviour:
   curr_rail: {fileID: 0}
   rb: {fileID: 6733349961974867772}
   pm: {fileID: 0}
-  ts: {fileID: 0}
+  ts: {fileID: 3928861488535298053}
+  taunt_btn: {fileID: 7361257003140502380}
   animator: {fileID: 4471843123587727704}
 --- !u!114 &1769069853070996491
 MonoBehaviour:

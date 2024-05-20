@@ -57,10 +57,9 @@ public class Railgrinding : MonoBehaviour
                 JumpOffRail();
                 return;
             }
-            if(taunt_btn.isDown)
+            if (taunt_btn.isDown || Input.GetButton("Fire2"))
             {
                 ts.Start_Rail_Trick_System();
-                speed = speed * 2;
             }
             pm.onRail = true;
             progress = elapsed_time / time_for_spline;
