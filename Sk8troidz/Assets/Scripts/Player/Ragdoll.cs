@@ -69,14 +69,13 @@ public class Ragdoll : MonoBehaviourPunCallbacks
     }
     public void DeactivateRagdolls()
     {
-        Debug.Log("test");
         crosshair.SetActive(true);
         GetComponent<Animator>().enabled = true;
         pm.enabled = true;
         camera.GetComponent<CinemachineVirtualCamera>().Follow = camera_follow.transform;
         if (pm.canJump)
         {
-            pm.rb.AddForce(Vector3.up * pm.jumpStrength);
+            pm.Jump();
         }
         is_Ragdoll = false;
         int id = gameObject.GetComponent<PhotonView>().ViewID;

@@ -43,6 +43,10 @@ public class Railgrinding : MonoBehaviour
         if(onRail == true)
         {
             MoveAlongRail();
+            if (taunt_btn.isDown || Input.GetButton("Fire2"))
+            {
+                speed = 1f;
+            }
         }
     }
     
@@ -119,7 +123,9 @@ public class Railgrinding : MonoBehaviour
 
     void SetRailPosition()
     {
+        Debug.Log("setting rail position");
         time_for_spline = curr_rail.length / speed;
+        
         Vector3 spline_point;
         float normalized_time = curr_rail.CalcTargetRailPoint(transform.position, out spline_point);
         elapsed_time = time_for_spline * normalized_time;

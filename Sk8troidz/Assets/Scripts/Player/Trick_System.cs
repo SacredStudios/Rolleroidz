@@ -7,7 +7,8 @@ using UnityEngine.UI;
 
 public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField] HoldButton btn;
+    [SerializeField] HoldButton trick_btn;
+    [SerializeField] HoldButton jump_btn;
     [SerializeField] Slider slider;
     [SerializeField] float speed;
     public int counter;
@@ -46,6 +47,8 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     public void Start_Rail_Trick_System()
     {
         PlayerMovement.trick_mode_activated = true;
+        wh.weapon = null;
+        crosshair.SetActive(false);
         animator.SetLayerWeight(2, 0f);
         animator.SetBool("trickModeActivated", true);
         animator.SetFloat("animSpeedCap", 0);
@@ -61,7 +64,7 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     IEnumerator Trick(int n)
     {
 
-        while ((Input.GetButton("Fire2") || btn.isDown) && PlayerMovement.trick_mode_activated == true && slider.value != slider.maxValue)
+        while ((Input.GetButton("Fire2") || trick_btn.isDown) && PlayerMovement.trick_mode_activated == true && slider.value != slider.maxValue)
         {
             slider.value += Time.deltaTime * speed;
             yield return null;
@@ -75,7 +78,7 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             sb.ChangeAmount(100);
             crosshair.SetActive(true);
         }
-        else if (!(Input.GetButton("Fire2") || btn.isDown))
+        else if (!(Input.GetButton("Fire2") || trick_btn.isDown))
         {
             crosshair.SetActive(true);
         }
@@ -88,13 +91,36 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     }
     IEnumerator RailTrick()
     {
-        while ((Input.GetButton("Fire2") || btn.isDown) && railgrinding.progress >= 0 && railgrinding.progress <= 1)
+        while (((Input.GetButton("Fire2") || trick_btn.isDown) && railgrinding.progress >= 0 && railgrinding.progress <= 1) && railgrinding.onRail)
         {
             Debug.Log(animator.GetBool("trickModeActivated"));
             slider.value += Time.deltaTime * speed/100f;
             yield return null;
         }
-        animator.SetBool("trickModeActivated", false);
+        animator.SetBool("trickModeActivated", false);       
+        
+        if (slider.value == slider.maxValue)
+        {
+            sb.ChangeAmount(100);
+            crosshair.SetActive(true);
+        }
+        else if (railgrinding.onRail)
+        {
+            yield return null;
+        }
+        else if (!(Input.GetButton("Fire2") || trick_btn.isDown) || (Input.GetButton("Jump") || jump_btn.isDown))
+        {
+            crosshair.SetActive(true);
+            railgrinding.onRail = false;
+            railgrinding.progress = 0;
+        }       
+        else
+        {
+            railgrinding.progress = 0;
+            railgrinding.onRail = false;
+            Ragdoll rd = player.GetComponent<Ragdoll>();
+            rd.ActivateRagdolls();
+        }
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
