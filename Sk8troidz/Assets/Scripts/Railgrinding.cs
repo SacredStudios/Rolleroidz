@@ -24,11 +24,13 @@ public class Railgrinding : MonoBehaviour
     [SerializeField] Trick_System ts;
     [SerializeField] HoldButton taunt_btn;
     [SerializeField] Animator animator;
+    [SerializeField] GameObject crosshair;
 
     public void JumpOffRail()
     {
         if (onRail)
         {
+            crosshair.SetActive(true);
             ThrowOffRail();
             pm.canJump = true;
             pm.Jump();
@@ -119,6 +121,7 @@ public class Railgrinding : MonoBehaviour
             pm.onRail = true;
             rb.useGravity = false;
             speed = min_speed + Mathf.Abs(rb.linearVelocity.x + rb.linearVelocity.z);
+            crosshair.SetActive(false);
         }
     }
 
@@ -140,6 +143,7 @@ public class Railgrinding : MonoBehaviour
     }
     public void ThrowOffRail()
     {
+        crosshair.SetActive(true);
         animator.SetLayerWeight(3, 0f);
         pm.onRail = false;
         onRail = false;

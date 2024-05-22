@@ -110,9 +110,12 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         }
         else if (!(Input.GetButton("Fire2") || trick_btn.isDown) || (Input.GetButton("Jump") || jump_btn.isDown))
         {
-            crosshair.SetActive(true);
             railgrinding.onRail = false;
             railgrinding.progress = 0;
+            if(Input.GetButton("Jump") || jump_btn.isDown)
+            {
+             crosshair.SetActive(true);
+            }
         }       
         else
         {
