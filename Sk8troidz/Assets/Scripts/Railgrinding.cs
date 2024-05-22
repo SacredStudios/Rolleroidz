@@ -42,11 +42,7 @@ public class Railgrinding : MonoBehaviour
     {
         if(onRail == true)
         {
-            MoveAlongRail();
-            if (taunt_btn.isDown || Input.GetButton("Fire2"))
-            {
-                speed = 1f;
-            }
+            MoveAlongRail();           
         }
     }
     
@@ -73,14 +69,21 @@ public class Railgrinding : MonoBehaviour
                 return;
             }
 
+            float deltaTime = Time.deltaTime;
+
+            if (Input.GetButton("Fire2"))
+            {
+                deltaTime *= 2f;
+            }
+
             float next_time_normalized;
             if(curr_rail.dir == true)
             {
-                next_time_normalized = (elapsed_time + Time.deltaTime) / time_for_spline;
+                next_time_normalized = (elapsed_time + deltaTime) / time_for_spline;
             }
             else
             {
-                next_time_normalized = (elapsed_time - Time.deltaTime) / time_for_spline;
+                next_time_normalized = (elapsed_time - deltaTime) / time_for_spline;
             }
             float3 pos, tangent, up;
             float3 next_pos_float, next_tan, next_up;
@@ -96,11 +99,11 @@ public class Railgrinding : MonoBehaviour
 
             if (curr_rail.dir == true)
             {
-                elapsed_time += Time.deltaTime;
+                elapsed_time += deltaTime;
             }
             else
             {
-                elapsed_time -= Time.deltaTime;
+                elapsed_time -= deltaTime;
             }
         }
     }
