@@ -29,6 +29,7 @@ public class Ragdoll : MonoBehaviourPunCallbacks
         crowd_boo.Play();
         if(pv.IsMine)
         {
+            Crosshair_Inactive();
             int id = gameObject.GetComponent<PhotonView>().ViewID;
             pv.RPC("SyncRagdoll", RpcTarget.All, id);
         }
