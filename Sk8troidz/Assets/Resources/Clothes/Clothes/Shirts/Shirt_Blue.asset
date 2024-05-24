@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Shirt_Blue
   m_EditorClassIdentifier: 
   icon: {fileID: 2800000, guid: 0ca2b005066369e48b8e6072148f30eb, type: 3}
-  mesh: {fileID: 4300000, guid: 712213157af664736bc91659ad810646, type: 2}
+  mesh: {fileID: 4300000, guid: bc311935d3a3f2044af43c92fcc45918, type: 2}
   material: {fileID: 2100000, guid: 8ba907449bae37c45a0444c90fc02362, type: 2}
   type: 1
   sleeveL_mesh: {fileID: 4300000, guid: 4cf949f409dd0fe40be74bd227f5ee45, type: 2}

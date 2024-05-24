@@ -25,7 +25,7 @@ public class Railgrinding : MonoBehaviour
     [SerializeField] HoldButton taunt_btn;
     [SerializeField] Animator animator;
     [SerializeField] GameObject crosshair;
-
+    [SerializeField] GameObject sparks;
     public void JumpOffRail()
     {
         if (onRail)
@@ -122,6 +122,7 @@ public class Railgrinding : MonoBehaviour
             rb.useGravity = false;
             speed = min_speed + Mathf.Abs(rb.linearVelocity.x + rb.linearVelocity.z);
             crosshair.SetActive(false);
+            sparks.SetActive(true);
         }
     }
 
@@ -144,12 +145,12 @@ public class Railgrinding : MonoBehaviour
     public void ThrowOffRail()
     {
         crosshair.SetActive(true);
+        sparks.SetActive(false);
         animator.SetLayerWeight(3, 0f);
         pm.onRail = false;
         onRail = false;
         curr_rail = null;
         transform.position += transform.forward * 1;
-        pm.onRail = false;
         rb.useGravity = true;
     }
     private void Start()
