@@ -16969,6 +16969,7 @@ MonoBehaviour:
   animator: {fileID: 4471843123587727704}
   crosshair: {fileID: 1854916410952173134}
   sparks: {fileID: 5549067889696163032}
+  pv: {fileID: 8999722921355035029}
 --- !u!114 &1769069853070996491
 MonoBehaviour:
   m_ObjectHideFlags: 0

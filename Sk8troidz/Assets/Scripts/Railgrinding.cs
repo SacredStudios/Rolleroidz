@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Mathematics;
 using UnityEngine.Splines;
+using Photon.Pun;
 public class Railgrinding : MonoBehaviour
 {
     bool jump;
@@ -26,6 +27,7 @@ public class Railgrinding : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] GameObject crosshair;
     [SerializeField] GameObject sparks;
+    [SerializeField] PhotonView pv;
     public void JumpOffRail()
     {
         if (onRail)
@@ -111,7 +113,7 @@ public class Railgrinding : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Rail" && !onRail)
+        if (collision.gameObject.tag == "Rail" && !onRail && pv.IsMine)
         {
             animator.SetLayerWeight(3, 1f);
             animator.SetFloat("animSpeedCap", 0);
