@@ -18,11 +18,8 @@ public class Game_Manager : MonoBehaviourPunCallbacks
   
     [SerializeField] GameObject lobby_cam;
     [SerializeField] PhotonTeamsManager tm;
-    [SerializeField] Text Team1List;
-    [SerializeField] Text Team2List;
+    [SerializeField] Text list;
     [SerializeField] PhotonView pv;
-    [SerializeField] int temp1 = 9999; //check to see if teamsize has been received from MasterClient
-    [SerializeField] int temp2 = 9999;
     bool game_ongoing = false;
     [SerializeField] int team1count;
     [SerializeField] int team2count;
@@ -51,9 +48,6 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         my_weapon = weapon_list.GetComponent<Weapon_List>().curr_weapon;
         pv.Owner.SetScore(0);
         //PhotonNetwork.LocalPlayer.JoinTeam((byte)Random.Range(1, 3));
-        
-        StartCoroutine(SwitchTeam(PhotonNetwork.LocalPlayer));
-
     }
     
     public override void OnPlayerEnteredRoom(Player newPlayer)
@@ -74,27 +68,31 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         base.OnPlayerEnteredRoom(newPlayer);
         PropChange();
     }
-    IEnumerator SwitchTeam(Player player)
+    IEnumerator SwitchTeams()
     {
+        int count = 0;
         yield return new WaitUntil(() => PhotonNetwork.IsConnectedAndReady);
-        foreach (Player player_temp in PhotonNetwork.PlayerList)
+        foreach (Player player in PhotonNetwork.PlayerList)
         {
-            yield return new WaitUntil(() => player_temp.GetPhotonTeam() != null);
+            //sometimes the player is still on the same team as last game, so this is a check to
+            //set it to null
+            player.LeaveCurrentTeam();
+            yield return new WaitUntil(() => player.GetPhotonTeam() == null);
+            if (++count % 2 == 0)
+            {
+                player.JoinTeam(1);
+            }
+            else
+            {
+                player.JoinTeam(2);
+            }
+            yield return new WaitUntil(() => player.GetPhotonTeam() != null);
         }
-        yield return new WaitUntil(() => temp1 != 9999 && temp2 != 9999);
-        Debug.Log(temp1 + "+" + temp2);
-        
-            if (temp1 < temp2) //get team count from master client
-            {
-                player.SwitchTeam(1);
-            }
-            else if (temp1 > temp2)
-            {
-                player.SwitchTeam(2);
-            }
-        
-        
-        
+
+
+        pv.RPC("SpawnPlayer", RpcTarget.All);
+
+
     }
     IEnumerator LeaveTeam()
     {
@@ -131,17 +129,10 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     }
 
     
-    [PunRPC] public void GetTeams(int x, int y)
-    {
-        temp1 = x;
-        temp2 = y;
-    }
-
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
     {
        if(PhotonNetwork.IsMasterClient)
         {
-                pv.RPC("GetTeams", RpcTarget.All, tm.GetTeamMembersCount(1), tm.GetTeamMembersCount(2));
                 team1count = 0;
                 team2count = 0;
                 foreach (Player player in PhotonNetwork.PlayerList)
@@ -159,7 +150,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
                 }
                 if(team1count >= win_score || team2count >= win_score)
                     {
-                Invoke("DoubleCheck", 3f);
+                        Invoke("DoubleCheck", 3f);
                     }
                
         }
@@ -206,7 +197,6 @@ public class Game_Manager : MonoBehaviourPunCallbacks
             new_player.GetComponentInChildren<Weapon_Handler>().enabled = false;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-            // new_player.
         }
         else
         {
@@ -255,28 +245,16 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     }
     void PropChange()
     {
-        Team1List.text = "";
-        Team2List.text = "";
+        list.text = "";
         foreach (Player player in PhotonNetwork.PlayerList)
         {
-            if (player.GetPhotonTeam() != null)
-            {
-                if (player.GetPhotonTeam().Code == 1)
-                {
-                    Team1List.text += player.NickName + "\n";
-                }
-                else if (player.GetPhotonTeam().Code == 2)
-                {
-                    Team2List.text += player.NickName + "\n";
-                }
-                
-            }
+            list.text += player.NickName + "\n";           
         }
     }
 
     public void SpawnPlayers()
-    { 
-        pv.RPC("SpawnPlayer", RpcTarget.All);
+    {
+        StartCoroutine(SwitchTeams());
     }
     [PunRPC]
     public void SpawnPlayer()
