@@ -58,7 +58,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         }
         base.OnPlayerEnteredRoom(newPlayer);
         PropChange();
-        if (newPlayer == PhotonNetwork.LocalPlayer && PhotonNetwork.CurrentRoom.PlayerCount >= min_room_size)
+        if (newPlayer == PhotonNetwork.LocalPlayer && PhotonNetwork.CurrentRoom.PlayerCount >= min_room_size && PhotonNetwork.IsMasterClient)
         {
             StartCoroutine(CheckForPlayers());
         }
@@ -89,7 +89,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
             yield return new WaitUntil(() => player.GetPhotonTeam() != null);
         }
 
-
+        yield return new WaitForSeconds(5);
         pv.RPC("SpawnPlayer", RpcTarget.All);
 
 
@@ -102,15 +102,16 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     }
     IEnumerator CheckForPlayers() //Checks if teams have been assigned correctly before starting game
     {
-        yield return new WaitUntil(() => PhotonNetwork.CurrentRoom.PlayerCount >= min_room_size);
-        foreach (Player player_temp in PhotonNetwork.PlayerList)
-        {
-            yield return new WaitUntil(() => player_temp.GetPhotonTeam() != null);
-        }
+        yield return new WaitUntil(() => PhotonNetwork.CurrentRoom.PlayerCount >= min_room_size || 1==1); //delete this part in official builds
         game_ongoing = true;
         pv.RPC("Start_Countdown", RpcTarget.All);
-        Invoke("SpawnPlayers", 5f);
+        yield return new WaitForSeconds(5);
+        SpawnPlayers();
         
+    }
+    public void CheckForPlayersDebug()
+    {
+        StartCoroutine(CheckForPlayers());
     }
     [PunRPC] public void Start_Countdown()
     {

@@ -23719,7 +23719,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2026277106}
         m_TargetAssemblyTypeName: Game_Manager, Assembly-CSharp
-        m_MethodName: SpawnPlayers
+        m_MethodName: CheckForPlayersDebug
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

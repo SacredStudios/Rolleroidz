@@ -279,7 +279,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
     void CameraRotation()
     {
         //IF DEVICE IS ON MOBILE REMEMBER TO MULTIPLY BY TIME.DELTATIME
-        if (Application.isMobilePlatform) //change to Application.isMobilePlatform
+        if (Application.isMobilePlatform || 1==1)
         {
             foreach (Touch touch in Input.touches)
             {
@@ -298,6 +298,11 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
                         // Update the camera rotation
                         CinemachineTarget.transform.rotation = Quaternion.Euler(cineMachinePitch, cineMachineYaw, 0.0f);
                     }
+                }
+                else
+                {
+                    input.x = joy.Horizontal;
+                    input.z = joy.Vertical;
                 }
             }
         }

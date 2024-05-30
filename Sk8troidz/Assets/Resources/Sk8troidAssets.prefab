@@ -13682,6 +13682,7 @@ GameObject:
   - component: {fileID: -8997455347769814163}
   - component: {fileID: 2921875789750546953}
   - component: {fileID: 2800908684236408644}
+  - component: {fileID: 5511225722747246954}
   m_Layer: 0
   m_Name: Sk8troidAssets
   m_TagString: Untagged
@@ -13811,6 +13812,18 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
+--- !u!114 &5511225722747246954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6426038364015529101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aca4e63794d347eba5c059d4c1a0229, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6476795089022077179
 GameObject:
   m_ObjectHideFlags: 0
@@ -16234,6 +16247,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2423700415769794534, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2423700415769794534, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2611967291638545871, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
