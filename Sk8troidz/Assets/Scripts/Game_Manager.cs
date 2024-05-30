@@ -32,8 +32,10 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     [SerializeField] GameObject countdown;
     public Weapon my_weapon;
     GameObject weapon_list;
+    List<GameObject> ai_players;
 
-
+    int count = 0;
+    [SerializeField] GameObject AIPlayer;
 
     private void Awake()
     {
@@ -70,7 +72,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     }
     IEnumerator SwitchTeams()
     {
-        int count = 0;
+        
         yield return new WaitUntil(() => PhotonNetwork.IsConnectedAndReady);
         foreach (Player player in PhotonNetwork.PlayerList)
         {
@@ -109,6 +111,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         SpawnPlayers();
         
     }
+    
     public void CheckForPlayersDebug()
     {
         StartCoroutine(CheckForPlayers());
@@ -256,6 +259,29 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     public void SpawnPlayers()
     {
         StartCoroutine(SwitchTeams());
+        SpawnAIPlayers();
+    }
+    void SpawnAIPlayers()
+    {
+        while (count < min_room_size-team1count-team2count)
+        {
+            if (++count % 2 == 0)
+            {
+                GameObject ai_player = PhotonNetwork.Instantiate(AIPlayer.name, position, Quaternion.identity, 0);
+                List<Vector3> points = respawn_points.GetComponent<RespawnPoints>().respawn_points; //respawn locations
+                ai_player.GetComponent<Respawn>().respawn_points = points;
+                ai_player.GetComponentInChildren<Weapon_Handler>().weapon = my_weapon;
+                ai_player.transform.position = points[Random.Range(0, points.Count)];
+            }
+            else
+            {
+                GameObject ai_player = PhotonNetwork.Instantiate(AIPlayer.name, position, Quaternion.identity, 0);
+                List<Vector3> points = respawn_points.GetComponent<RespawnPoints>().respawn_points; //respawn locations
+                ai_player.GetComponent<Respawn>().respawn_points = points;
+                ai_player.GetComponentInChildren<Weapon_Handler>().weapon = my_weapon;
+                ai_player.transform.position = points[Random.Range(0, points.Count)];
+            }
+        }
     }
     [PunRPC]
     public void SpawnPlayer()
@@ -274,9 +300,11 @@ public class Game_Manager : MonoBehaviourPunCallbacks
             new_player = PhotonNetwork.Instantiate(player_prefab.name, position, Quaternion.identity, 0);
             List<Vector3> points = respawn_points.GetComponent<RespawnPoints>().respawn_points; //respawn locations
             new_player.GetComponent<Respawn>().respawn_points = points;
-            new_player.GetComponentInChildren<Weapon_Handler>().weapon = my_weapon;
-            new_player.transform.position = points[Random.Range(0, points.Count)];
+            new_player.GetComponentInChildren<Weapon_Handler>().weapon = my_weapon;         
         }
+        Debug.Log(new_player.GetComponentInChildren<Camera>());
+        AI_LookAt.cam = new_player.GetComponentInChildren<Camera>();
+        AI_LookAt.pv = new_player.GetComponent<PhotonView>();
 
 
 

@@ -279,7 +279,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
     void CameraRotation()
     {
         //IF DEVICE IS ON MOBILE REMEMBER TO MULTIPLY BY TIME.DELTATIME
-        if (Application.isMobilePlatform || 1==1)
+        if (Application.isMobilePlatform)
         {
             foreach (Touch touch in Input.touches)
             {
