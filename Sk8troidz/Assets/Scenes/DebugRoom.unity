@@ -5588,8 +5588,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.0157013, y: 1, z: 1.0155722}
+  m_Center: {x: 0.007851397, y: 0, z: 0.0077857585}
 --- !u!23 &530673704
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7070,7 +7070,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1345122655}
+    m_TransformParent: {fileID: 1520153508}
     m_Modifications:
     - target: {fileID: 1215542030005526, guid: f0274b246cd36f849b6f60898f359f1e, type: 3}
       propertyPath: m_Name
@@ -7090,15 +7090,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4167107128406550, guid: f0274b246cd36f849b6f60898f359f1e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -22.807827
       objectReference: {fileID: 0}
     - target: {fileID: 4167107128406550, guid: f0274b246cd36f849b6f60898f359f1e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.029999733
       objectReference: {fileID: 0}
     - target: {fileID: 4167107128406550, guid: f0274b246cd36f849b6f60898f359f1e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.6
+      value: 55.71
       objectReference: {fileID: 0}
     - target: {fileID: 4167107128406550, guid: f0274b246cd36f849b6f60898f359f1e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7172,9 +7172,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4167107128406550, guid: f0274b246cd36f849b6f60898f359f1e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 724568270}
-    - targetCorrespondingSourceObject: {fileID: 4167107128406550, guid: f0274b246cd36f849b6f60898f359f1e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1157536013}
     - targetCorrespondingSourceObject: {fileID: 4167107128406550, guid: f0274b246cd36f849b6f60898f359f1e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 321748715}
@@ -7602,8 +7599,9 @@ GameObject:
   - component: {fileID: 724568273}
   - component: {fileID: 724568272}
   - component: {fileID: 724568271}
+  - component: {fileID: 724568274}
   m_Layer: 0
-  m_Name: Invisible Wall (5)
+  m_Name: Invisible Ceiling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7698,6 +7696,25 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 724568269}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &724568274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 724568269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 0
+  m_ApplyToChildren: 0
+  m_AffectedAgents: ffffffff
 --- !u!1001 &726883968
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12793,7 +12810,7 @@ GameObject:
   - component: {fileID: 1157536015}
   - component: {fileID: 1157536014}
   m_Layer: 0
-  m_Name: Invisible Floor
+  m_Name: Invisible Floor (Storage Room)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12807,12 +12824,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1157536012}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: -5.07, y: -0.245, z: -7.23}
-  m_LocalScale: {x: 14.605641, y: 10.011362, z: 0.53989893}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0.7071068, w: 0}
+  m_LocalPosition: {x: -51.727848, y: -0.95000076, z: 75.990005}
+  m_LocalScale: {x: 58.422596, y: 40.045425, z: 2.1595955}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1102408624}
+  m_Father: {fileID: 1520153508}
   m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
 --- !u!65 &1157536014
 BoxCollider:
@@ -15558,7 +15575,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1102408624}
   - {fileID: 1040312625}
   m_Father: {fileID: 1520153508}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -17746,7 +17762,7 @@ MonoBehaviour:
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_UseGeometry: 0
+  m_UseGeometry: 1
   m_DefaultArea: 0
   m_GenerateLinks: 0
   m_IgnoreNavMeshAgent: 1
@@ -17771,6 +17787,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1157536013}
+  - {fileID: 1102408624}
   - {fileID: 71994740}
   - {fileID: 1345122655}
   - {fileID: 1805723562}

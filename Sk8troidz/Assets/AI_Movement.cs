@@ -9,12 +9,29 @@ public class AI_Movement : MonoBehaviour
     public float update_speed = 5f;
     [SerializeField] NavMeshAgent agent;
     List<GameObject> playerList;
+    [SerializeField] Rigidbody rb;
+    [SerializeField] Animator animator;
+    float currSpeed = 0;
+    Vector3 lastPos;
     void Start()
     {
         
         
         StartCoroutine(Check_For_Players());
         agent = GetComponent<NavMeshAgent>();
+    }
+    private void Update()
+    {
+        currSpeed = (transform.position - lastPos).magnitude;
+        lastPos = transform.position;
+        if (currSpeed < 0.1)
+        {
+            animator.SetFloat("animSpeedCap", 0f);
+        }
+        else
+        {
+            animator.SetFloat("animSpeedCap", 1f);
+        }
     }
 
     IEnumerator Check_For_Players()
@@ -36,7 +53,6 @@ public class AI_Movement : MonoBehaviour
             yield return Follow_Target();
         }
         Target = playerList[0].transform;
-        Debug.Log(Target);
         yield return new WaitUntil(() => Target != null && agent != null);
         WaitForSeconds wait = new WaitForSeconds(update_speed);
         
@@ -44,6 +60,7 @@ public class AI_Movement : MonoBehaviour
          {           
             yield return wait;
             agent.SetDestination(Target.transform.position);
+
         }
         
         yield return wait;
