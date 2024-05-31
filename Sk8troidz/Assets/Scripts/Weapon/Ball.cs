@@ -56,7 +56,6 @@ public class Ball : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         sound.Play();
-        Debug.Log("playing sound");
         PointToClosestPlayer();
         StartCoroutine(ApplyForwardForceAfterBounce());
         if(collision.gameObject.tag == "Player")

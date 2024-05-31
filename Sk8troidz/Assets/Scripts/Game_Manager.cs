@@ -107,6 +107,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         yield return new WaitUntil(() => PhotonNetwork.CurrentRoom.PlayerCount >= min_room_size || 1==1); //delete this part in official builds
         game_ongoing = true;
         pv.RPC("Start_Countdown", RpcTarget.All);
+        SpawnAIPlayers();
         yield return new WaitForSeconds(5);
         SpawnPlayers();
         
@@ -259,11 +260,12 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     public void SpawnPlayers()
     {
         StartCoroutine(SwitchTeams());
-        SpawnAIPlayers();
+        
     }
     void SpawnAIPlayers()
     {
-        while (count < min_room_size-team1count-team2count)
+        Debug.Log(team1count + "+" + team2count);
+        while (count < min_room_size- PhotonNetwork.PlayerList.Length)
         {
             if (++count % 2 == 0)
             {

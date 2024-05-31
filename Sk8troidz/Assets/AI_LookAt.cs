@@ -42,7 +42,6 @@ public class AI_LookAt : MonoBehaviour
         {
             SetText();
             canvas.transform.LookAt(transform.position + cam.transform.rotation * Vector3.forward, cam.transform.rotation * Vector3.up);
-            Debug.Log("Testing");
             // Player_Name.transform.LookAt(Player_Name.transform.position + cam.transform.rotation * Vector3.forward, cam.transform.rotation * Vector3.up);
         }
         
