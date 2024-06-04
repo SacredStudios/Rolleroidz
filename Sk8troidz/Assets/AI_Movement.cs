@@ -11,7 +11,10 @@ public class AI_Movement : MonoBehaviour
     List<GameObject> playerList;
     [SerializeField] Rigidbody rb;
     [SerializeField] Animator animator;
+    [SerializeField] GameObject jump_pos;
+    [SerializeField] float rayCastLength;
     float currSpeed = 0;
+    
     Vector3 lastPos;
     void Start()
     {
@@ -22,6 +25,15 @@ public class AI_Movement : MonoBehaviour
     }
     private void Update()
     {
+        if (Physics.Raycast(jump_pos.transform.position, Vector3.down, rayCastLength))
+        {
+            animator.SetFloat("IsJumping", 0f);
+            //offground_sound.Play();
+        }
+        else
+        {
+            animator.SetFloat("IsJumping", 1f);
+        }
         currSpeed = (transform.position - lastPos).magnitude;
         lastPos = transform.position;
         if (currSpeed < 0.1)
