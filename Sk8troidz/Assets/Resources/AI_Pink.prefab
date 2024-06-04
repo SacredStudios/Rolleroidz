@@ -16439,6 +16439,10 @@ PrefabInstance:
       value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 3837474209931795742, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3837474209931795742, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: health_bar
       value: 
       objectReference: {fileID: 1618717873}
@@ -17710,7 +17714,7 @@ MonoBehaviour:
   rb: {fileID: 6733349961974867772}
   animator: {fileID: 4471843123587727704}
   jump_pos: {fileID: 4508992423428243009}
-  rayCastLength: 1
+  rayCastLength: 2
 --- !u!114 &3581155260943904439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17977,7 +17981,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 6426038362781840096}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3660938799943817007}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 928757a2606d7a742adfd4988abe27a6, type: 3}
   m_Name: 
