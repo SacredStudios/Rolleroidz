@@ -7,7 +7,7 @@ using UnityEngine.Splines;
 public class Rail : MonoBehaviour
 {
 
-    public bool dir;
+
     public SplineContainer rail_spline;
     public float length;
     void Start()
@@ -32,16 +32,16 @@ public class Rail : MonoBehaviour
         world_spline_pos = LocalToWorld(nearest_point);
         return time;
     }
-    public void CalcDirection(float3 rail_fwd, Vector3 player_fwd)
+    public bool CalcDirection(float3 rail_fwd, Vector3 player_fwd)
     {
-        float angle = Vector3.Angle(rail_fwd, player_fwd.normalized);
+    float angle = Vector3.Angle(rail_fwd, player_fwd.normalized);
         if (angle > 90f)
         {
-            dir = false;
+            return false;
         }
         else
         {
-            dir = true;
+            return true;
         }
     }
 }

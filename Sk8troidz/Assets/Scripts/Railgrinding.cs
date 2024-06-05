@@ -28,6 +28,7 @@ public class Railgrinding : MonoBehaviour
     [SerializeField] GameObject crosshair;
     [SerializeField] GameObject sparks;
     [SerializeField] PhotonView pv;
+    bool dir;
     public void JumpOffRail()
     {
         if (onRail)
@@ -81,7 +82,7 @@ public class Railgrinding : MonoBehaviour
             }
 
             float next_time_normalized;
-            if(curr_rail.dir == true)
+            if(dir == true)
             {
                 next_time_normalized = (elapsed_time + deltaTime) / time_for_spline;
             }
@@ -101,7 +102,7 @@ public class Railgrinding : MonoBehaviour
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(next_pos - world_pos), lerp_speed * Time.deltaTime);
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.FromToRotation(transform.up, up) * transform.rotation, lerp_speed * Time.deltaTime);
 
-            if (curr_rail.dir == true)
+            if (dir == true)
             {
                 elapsed_time += deltaTime;
             }
@@ -140,7 +141,7 @@ public class Railgrinding : MonoBehaviour
         elapsed_time = time_for_spline * normalized_time;
         float3 pos, forward, up;
         SplineUtility.Evaluate(curr_rail.rail_spline.Spline, normalized_time, out pos, out forward, out up);
-        curr_rail.CalcDirection(forward, transform.forward);
+        dir = curr_rail.CalcDirection(forward, transform.forward);
         transform.position = spline_point + (transform.up * height_offset);
 
     }

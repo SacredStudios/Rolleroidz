@@ -26,7 +26,7 @@ public class AI_Railgrinding : MonoBehaviour
     [SerializeField] PhotonView pv;
     public AI_Movement movement;
     [SerializeField] NavMeshAgent agent;
-
+    bool dir;
 
     void FixedUpdate()
     {
@@ -53,7 +53,7 @@ public class AI_Railgrinding : MonoBehaviour
 
 
             float next_time_normalized;
-            if (curr_rail.dir == true)
+            if (dir == true)
             {
                 next_time_normalized = (elapsed_time + deltaTime) / time_for_spline;
             }
@@ -73,7 +73,7 @@ public class AI_Railgrinding : MonoBehaviour
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(next_pos - world_pos), lerp_speed * Time.deltaTime);
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.FromToRotation(transform.up, up) * transform.rotation, lerp_speed * Time.deltaTime);
 
-            if (curr_rail.dir == true)
+            if (dir == true)
             {
                 elapsed_time += deltaTime;
             }
