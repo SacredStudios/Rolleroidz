@@ -18,7 +18,7 @@ public class AI_Movement : MonoBehaviour
     {
         Searching, Railgrinding, Tricking, Boosting
     }
-    State current_state;
+    public State current_state;
 
     Vector3 lastPos;
     void Start()
@@ -32,6 +32,7 @@ public class AI_Movement : MonoBehaviour
         if (collision.gameObject.tag == "Rail") //change this to a better tag name
         {
             agent.enabled = false;
+            current_state = State.Railgrinding;
         }        
     }
     private void Update()

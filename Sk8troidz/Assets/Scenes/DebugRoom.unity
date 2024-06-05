@@ -3490,11 +3490,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AgentTypeID: 0
   m_StartPoint: {x: 8.044098, y: 9.405945, z: 19.28418}
-  m_EndPoint: {x: 34.87584, y: -3.6303582, z: 54.854652}
+  m_EndPoint: {x: 35.423965, y: -3.2889352, z: 65.42098}
   m_StartTransform: {fileID: 1375329555}
   m_EndTransform: {fileID: 997667189}
   m_Activated: 1
-  m_Width: 12.37
+  m_Width: 2.3350904
   m_CostModifier: 1
   m_Bidirectional: 0
   m_AutoUpdatePosition: 1
