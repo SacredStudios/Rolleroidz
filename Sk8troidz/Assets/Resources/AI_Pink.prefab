@@ -17821,11 +17821,7 @@ MonoBehaviour:
   progress: 0
   curr_rail: {fileID: 0}
   rb: {fileID: 6733349961974867772}
-  pm: {fileID: 0}
-  ts: {fileID: 0}
-  taunt_btn: {fileID: 0}
   animator: {fileID: 4471843123587727704}
-  crosshair: {fileID: 0}
   sparks: {fileID: 0}
   pv: {fileID: 8999722921355035029}
   movement: {fileID: 7850225385335410116}

@@ -37,7 +37,7 @@ public class AI_Movement : MonoBehaviour
     }
     private void Update()
     {
-        if (current_state == State.Searching)
+        if (current_state == State.Searching && )
         {
             if (Physics.Raycast(jump_pos.transform.position, Vector3.down, rayCastLength))
             {
@@ -86,7 +86,10 @@ public class AI_Movement : MonoBehaviour
          while(enabled)
          {           
             yield return wait;
-            agent.SetDestination(Target.transform.position);
+            if (agent.isOnNavMesh)
+            {
+                agent.SetDestination(Target.transform.position);
+            }
 
         }
         

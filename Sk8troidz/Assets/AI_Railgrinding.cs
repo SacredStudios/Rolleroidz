@@ -87,11 +87,11 @@ public class AI_Railgrinding : MonoBehaviour
             animator.SetLayerWeight(3, 1f);
             animator.SetFloat("animSpeedCap", 0);
             onRail = true;
-            curr_rail = collision.gameObject.GetComponent<Rail>();
+            curr_rail = collision.gameObject.GetComponent<Rail>();        
             SetRailPosition();
             rb.useGravity = false;
             speed = min_speed + Mathf.Abs(rb.linearVelocity.x + rb.linearVelocity.z);
-            sparks.SetActive(true);
+           // sparks.SetActive(true);
         }
     }
 
@@ -113,13 +113,15 @@ public class AI_Railgrinding : MonoBehaviour
     }
     public void ThrowOffRail()
     {
-        movement.current_state = AI_Movement.State.Searching;
-        sparks.SetActive(false);
+
+        
+     //   sparks.SetActive(false);
         animator.SetLayerWeight(3, 0f);
         onRail = false;
         curr_rail = null;
         transform.position += transform.forward * 1;
         rb.useGravity = true;
+        movement.current_state = AI_Movement.State.Searching;
     }
     
 }
