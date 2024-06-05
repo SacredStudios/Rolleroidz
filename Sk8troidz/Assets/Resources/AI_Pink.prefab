@@ -1941,7 +1941,7 @@ MonoBehaviour:
   delay: 0.5
   animator: {fileID: 4471843123587727704}
   crosshair: {fileID: 1854916410952173134}
-  railgrinding: {fileID: 8496117777071962040}
+  railgrinding: {fileID: 0}
 --- !u!114 &7789752532816426779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2120,7 +2120,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 8496117777071962040}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: Railgrinding, Assembly-CSharp
           m_MethodName: JumpOffRail
           m_Mode: 1
@@ -16964,9 +16964,6 @@ PrefabInstance:
       addedObject: {fileID: 4459783896661882009}
     - targetCorrespondingSourceObject: {fileID: 7774228532153837007, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8496117777071962040}
-    - targetCorrespondingSourceObject: {fileID: 7774228532153837007, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 6375225652618928654}
     - targetCorrespondingSourceObject: {fileID: 8345991720814722451, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       insertIndex: -1
@@ -17774,33 +17771,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8496117777071962040
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3660938799943817007}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3629663f14ab54d71a411c7075378ad7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onRail: 0
-  speed: 10
-  min_speed: 15
-  height_offset: 2.5
-  lerp_speed: 10
-  progress: 0
-  curr_rail: {fileID: 0}
-  rb: {fileID: 6733349961974867772}
-  pm: {fileID: 0}
-  ts: {fileID: 3928861488535298053}
-  taunt_btn: {fileID: 7361257003140502380}
-  animator: {fileID: 4471843123587727704}
-  crosshair: {fileID: 1854916410952173134}
-  sparks: {fileID: 5549067889696163032}
-  pv: {fileID: 8999722921355035029}
 --- !u!114 &6375225652618928654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17825,6 +17795,7 @@ MonoBehaviour:
   sparks: {fileID: 0}
   pv: {fileID: 8999722921355035029}
   movement: {fileID: 7850225385335410116}
+  agent: {fileID: 360661135566408208}
 --- !u!114 &4008135090205734450 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7976471394023720146, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}

@@ -31,13 +31,12 @@ public class AI_Movement : MonoBehaviour
     {
         if (collision.gameObject.tag == "Rail") //change this to a better tag name
         {
-            agent.enabled = false;
             current_state = State.Railgrinding;
         }        
     }
     private void Update()
     {
-        if (current_state == State.Searching && )
+        if (current_state == State.Searching)
         {
             if (Physics.Raycast(jump_pos.transform.position, Vector3.down, rayCastLength))
             {
@@ -90,7 +89,6 @@ public class AI_Movement : MonoBehaviour
             {
                 agent.SetDestination(Target.transform.position);
             }
-
         }
         
         yield return wait;

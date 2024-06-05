@@ -4,6 +4,8 @@ using UnityEngine;
 using Unity.Mathematics;
 using UnityEngine.Splines;
 using Photon.Pun;
+using UnityEngine.AI;
+
 public class AI_Railgrinding : MonoBehaviour
 {
 
@@ -23,6 +25,7 @@ public class AI_Railgrinding : MonoBehaviour
     [SerializeField] GameObject sparks;
     [SerializeField] PhotonView pv;
     public AI_Movement movement;
+    [SerializeField] NavMeshAgent agent;
 
 
     void FixedUpdate()
@@ -99,6 +102,7 @@ public class AI_Railgrinding : MonoBehaviour
 
     void SetRailPosition()
     {
+        agent.enabled = false;
         Debug.Log("setting rail position");
         time_for_spline = curr_rail.length / speed;
 
@@ -114,8 +118,9 @@ public class AI_Railgrinding : MonoBehaviour
     public void ThrowOffRail()
     {
 
-        
-     //   sparks.SetActive(false);
+
+        //   sparks.SetActive(false);
+        agent.enabled = true;
         animator.SetLayerWeight(3, 0f);
         onRail = false;
         curr_rail = null;
