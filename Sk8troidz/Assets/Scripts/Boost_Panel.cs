@@ -17,6 +17,10 @@ public class Boost_Panel : MonoBehaviour
             rb.AddForce(rb.linearVelocity.normalized * multiplier + force);
             boost.Play();
         }
+        else if (collision.gameObject.tag == "AI_Player")
+        {
+            boost.Play();
+        }
         
     }
     private void OnCollisionEnter(Collision collision)

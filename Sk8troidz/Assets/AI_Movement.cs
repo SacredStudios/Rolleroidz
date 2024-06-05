@@ -7,42 +7,56 @@ public class AI_Movement : MonoBehaviour
 {
     public Transform Target;
     public float update_speed = 5f;
-    [SerializeField] NavMeshAgent agent;
+    public NavMeshAgent agent;
     List<GameObject> playerList;
     [SerializeField] Rigidbody rb;
     [SerializeField] Animator animator;
     [SerializeField] GameObject jump_pos;
     [SerializeField] float rayCastLength;
     float currSpeed = 0;
-    
+    public enum State
+    {
+        Searching, Railgrinding, Tricking, Boosting
+    }
+    State current_state;
+
     Vector3 lastPos;
     void Start()
     {
-        
-        
+        current_state = State.Searching;
         StartCoroutine(Check_For_Players());
         agent = GetComponent<NavMeshAgent>();
     }
+    void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.tag == "Rail") //change this to a better tag name
+        {
+            agent.enabled = false;
+        }        
+    }
     private void Update()
     {
-        if (Physics.Raycast(jump_pos.transform.position, Vector3.down, rayCastLength))
+        if (current_state == State.Searching)
         {
-            animator.SetFloat("IsJumping", 0f);
-            //offground_sound.Play();
-        }
-        else
-        {
-            animator.SetFloat("IsJumping", 1f);
-        }
-        currSpeed = (transform.position - lastPos).magnitude;
-        lastPos = transform.position;
-        if (currSpeed < 0.1)
-        {
-            animator.SetFloat("animSpeedCap", 0f);
-        }
-        else
-        {
-            animator.SetFloat("animSpeedCap", 1f);
+            if (Physics.Raycast(jump_pos.transform.position, Vector3.down, rayCastLength))
+            {
+                animator.SetFloat("IsJumping", 0f);
+                //offground_sound.Play();
+            }
+            else
+            {
+                animator.SetFloat("IsJumping", 1f);
+            }
+            currSpeed = (transform.position - lastPos).magnitude;
+            lastPos = transform.position;
+            if (currSpeed < 0.1)
+            {
+                animator.SetFloat("animSpeedCap", 0f);
+            }
+            else
+            {
+                animator.SetFloat("animSpeedCap", 1f);
+            }
         }
     }
 
