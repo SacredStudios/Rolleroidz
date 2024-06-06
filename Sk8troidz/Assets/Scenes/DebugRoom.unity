@@ -11381,12 +11381,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AgentTypeID: 0
-  m_StartPoint: {x: -35.593533, y: 20.852917, z: 100.554886}
-  m_EndPoint: {x: -35.452072, y: -15.745734, z: 66.82728}
-  m_StartTransform: {fileID: 997667189}
-  m_EndTransform: {fileID: 1375329555}
+  m_StartPoint: {x: -35.452072, y: -15.745734, z: 66.82728}
+  m_EndPoint: {x: -35.593533, y: 20.852917, z: 100.554886}
+  m_StartTransform: {fileID: 1375329555}
+  m_EndTransform: {fileID: 997667189}
   m_Activated: 1
-  m_Width: 12.739537
+  m_Width: 12.634768
   m_CostModifier: 1
   m_Bidirectional: 0
   m_AutoUpdatePosition: 1
