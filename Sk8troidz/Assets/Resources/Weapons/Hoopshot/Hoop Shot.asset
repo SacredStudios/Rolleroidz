@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: abccba2cbef4d4a60a7789732b2b5b59, type: 3}
-  m_Name: Chidi Shot
+  m_Name: Hoop Shot
   m_EditorClassIdentifier: 
   icon: {fileID: 2800000, guid: 39042d64398874c7fbe2a79fb37efd30, type: 3}
-  weapon_name: Chidi Shot
-  weapon_description: Dunk on your enemies with the Chidi Shot! This bad boy shoots
+  weapon_name: Hoop Shot
+  weapon_description: Dunk on your enemies with the Hoop Shot! This bad boy shoots
     exploding basketballs that target the nearest enemy.  (Must be 7 foot tall to
     use)
   weapon_delay: 1
@@ -31,7 +31,7 @@ MonoBehaviour:
   weight: 0
   player: {fileID: 0}
   super: {fileID: 11400000, guid: 54a5d182a223340ef8b0766b3b4cfb7e, type: 2}
-  instance: {fileID: 1294344428940038, guid: 733a3d43f887c47f5bb96deea53fafc1, type: 3}
+  instance: {fileID: 1697766647219394255, guid: 9771ad165f30c4bca94a742a4cce7f08, type: 3}
   shake: 4
   coin: {fileID: 5812255397824587399, guid: db03c3afb90494e0f99eee91135a83e3, type: 3}
   min_distance: 2.5
