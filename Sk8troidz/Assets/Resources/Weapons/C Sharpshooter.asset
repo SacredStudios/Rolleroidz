@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c2b305abf6b06f94db6cb13c15b13191, type: 3}
-  m_Name: Swiper
+  m_Name: C Sharpshooter
   m_EditorClassIdentifier: 
   icon: {fileID: 2800000, guid: 329531b5033e043c9a18007a3d15caff, type: 3}
-  weapon_name: The Swiper
-  weapon_description: While it's delay is long, the Swiper has a extremely high range
-    and damage. It's like a sniper, but even better. Don't ask how...
+  weapon_name: C SharpShooter
+  weapon_description: While it's delay is long, this deadly instrument has a extremely
+    high range and damage. It's like a sniper, but even better. Don't ask how...
   weapon_delay: 1.5
   damage: 100
   attack_cost: 100
@@ -30,7 +30,7 @@ MonoBehaviour:
   weight: 4.5
   player: {fileID: 0}
   super: {fileID: 11400000, guid: 54a5d182a223340ef8b0766b3b4cfb7e, type: 2}
-  instance: {fileID: 1310268070637946, guid: f78357a78db3dfd4e8c638310767dd56, type: 3}
+  instance: {fileID: 3983561086496247025, guid: 5f2211ee3666e41c686849542ccdf349, type: 3}
   shake: 6
   coin: {fileID: 5812255397824587399, guid: db03c3afb90494e0f99eee91135a83e3, type: 3}
   min_distance: 2.5
