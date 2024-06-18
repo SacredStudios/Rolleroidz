@@ -77,13 +77,19 @@ public class AI_Movement : MonoBehaviour
                 {
                     float curr_bend = animator.GetFloat("Bend");
                     Debug.Log(curr_bend + "+" + Target.transform.position.y + "+" + hit.point.y);
+                    // TODO make it so that if already pointing at player, skip
                     if (Target.transform.position.y > hit.point.y)
                     {
                         Debug.Log("Going up");
                         animator.SetFloat("Bend", curr_bend -=5);
                     }
+                    if (Target.transform.position.y < hit.point.y)
+                    {
+                        Debug.Log("Going up");
+                        animator.SetFloat("Bend", curr_bend += 5);
+                    }
                     if (curr_bend < -30) animator.SetFloat("Bend", -30);
-                   // if (curr_bend > 70) animator.SetFloat("Bend", 70);
+                    if (curr_bend > 70) animator.SetFloat("Bend", 70);
 
                 }
 
