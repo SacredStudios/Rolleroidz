@@ -17688,6 +17688,7 @@ MonoBehaviour:
   animator: {fileID: 4471843123587727704}
   jump_pos: {fileID: 4508992423428243009}
   rayCastLength: 2
+  laser_loc: {fileID: 6426038363471481738}
   current_state: 0
 --- !u!114 &3581155260943904439
 MonoBehaviour:
@@ -17869,6 +17870,11 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!1 &6426038363471481738 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1768225130, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+  m_PrefabInstance: {fileID: 6426038362781840096}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6426038363560892843 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1940958027, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}

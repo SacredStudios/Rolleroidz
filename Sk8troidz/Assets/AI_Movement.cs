@@ -13,6 +13,7 @@ public class AI_Movement : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] GameObject jump_pos;
     [SerializeField] float rayCastLength;
+    [SerializeField] GameObject laser_loc;
     float currSpeed = 0;
     public enum State
     {
@@ -25,6 +26,7 @@ public class AI_Movement : MonoBehaviour
     {
         current_state = State.Searching;
         StartCoroutine(Check_For_Players());
+        StartCoroutine(Bend());
         agent = GetComponent<NavMeshAgent>();
     }
     void OnCollisionStay(Collision collision)
@@ -36,6 +38,8 @@ public class AI_Movement : MonoBehaviour
     }
     private void Update()
     {
+        
+
         if (current_state == State.Searching)
         {
             if (Physics.Raycast(jump_pos.transform.position, Vector3.down, rayCastLength))
@@ -57,6 +61,35 @@ public class AI_Movement : MonoBehaviour
             {
                 animator.SetFloat("animSpeedCap", 1f);
             }
+        }
+    }
+    IEnumerator Bend()
+    {
+        while (enabled)
+        {
+            if (Target != null)
+            {
+                animator.SetLayerWeight(2, 1);
+                Ray ray = new Ray(this.transform.position, laser_loc.transform.up * 500f); //-new Vector3(radius, 0, 0), 
+                RaycastHit hit = new RaycastHit();
+                Debug.DrawRay(this.transform.position, laser_loc.transform.up * 500f, Color.green);
+                if (Physics.Raycast(ray, out hit))
+                {
+                    float curr_bend = animator.GetFloat("Bend");
+                    Debug.Log(curr_bend + "+" + Target.transform.position.y + "+" + hit.point.y);
+                    if (Target.transform.position.y > hit.point.y)
+                    {
+                        Debug.Log("Going up");
+                        animator.SetFloat("Bend", curr_bend -=5);
+                    }
+                    if (curr_bend < -30) animator.SetFloat("Bend", -30);
+                   // if (curr_bend > 70) animator.SetFloat("Bend", 70);
+
+                }
+
+                yield return new WaitForSeconds(0.1f);
+            }
+            yield return null;
         }
     }
 

@@ -30,7 +30,7 @@ MonoBehaviour:
   weight: 4.5
   player: {fileID: 0}
   super: {fileID: 11400000, guid: 54a5d182a223340ef8b0766b3b4cfb7e, type: 2}
-  instance: {fileID: 3983561086496247025, guid: 5f2211ee3666e41c686849542ccdf349, type: 3}
+  instance: {fileID: 7160205516692060138, guid: 929a1113d8692482db9742165a93342a, type: 3}
   shake: 6
   coin: {fileID: 5812255397824587399, guid: db03c3afb90494e0f99eee91135a83e3, type: 3}
   min_distance: 2.5
