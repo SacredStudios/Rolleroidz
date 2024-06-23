@@ -17718,6 +17718,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f119a72bda5e490cbabaf53509a6102, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapon: {fileID: 0}
+  temp_weapon: {fileID: 0}
+  curr_gun: {fileID: 0}
+  btn: {fileID: 0}
+  weapon_loc: {fileID: 6426038362739416648}
+  particle_pos: {fileID: 6426038363471481738}
+  explosion_pos: {fileID: 6426038364052203110}
+  animator: {fileID: 0}
+  cooldown: {fileID: 0}
+  super_ammo: {fileID: 0}
+  increment: {fileID: 0}
+  increment_parent: {fileID: 0}
+  pv: {fileID: 0}
+  sound: {fileID: 0}
 --- !u!195 &360661135566408208
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -17870,6 +17884,11 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!1 &6426038362739416648 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 45706408, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+  m_PrefabInstance: {fileID: 6426038362781840096}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6426038363471481738 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1768225130, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
@@ -17943,6 +17962,11 @@ MonoBehaviour:
   m_AmplitudeGain: 0
   m_FrequencyGain: 1
   mNoiseOffsets: {x: -110.51404, y: -989.2125, z: 643.94946}
+--- !u!1 &6426038364052203110 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1425659014, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+  m_PrefabInstance: {fileID: 6426038362781840096}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6426038364223549317 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1513577829, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}

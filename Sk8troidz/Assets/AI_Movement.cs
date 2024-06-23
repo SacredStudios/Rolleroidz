@@ -76,8 +76,7 @@ public class AI_Movement : MonoBehaviour
                 if (Physics.Raycast(ray, out hit))
                 {
                     float curr_bend = animator.GetFloat("Bend");
-                    Debug.Log(curr_bend + "+" + Target.transform.position.y + "+" + hit.point.y);
-                    // TODO make it so that if already pointing at player, skip
+               
                     if (hit.collider.gameObject.tag != "Player" && hit.collider.gameObject.tag != "Player_Head")
                     {
 
