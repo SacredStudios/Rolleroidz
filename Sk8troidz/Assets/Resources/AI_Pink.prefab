@@ -16965,6 +16965,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7774228532153837007, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6375225652618928654}
+    - targetCorrespondingSourceObject: {fileID: 7774228532153837007, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2388904151919888664}
     - targetCorrespondingSourceObject: {fileID: 8345991720814722451, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8792122585693599034}
@@ -17811,6 +17814,19 @@ MonoBehaviour:
   pv: {fileID: 8999722921355035029}
   movement: {fileID: 7850225385335410116}
   agent: {fileID: 360661135566408208}
+--- !u!114 &2388904151919888664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3660938799943817007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa66e8bc2da3045b88f61445779a1e22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ai_team: 0
 --- !u!114 &4008135090205734450 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7976471394023720146, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}

@@ -81,12 +81,10 @@ public class AI_Movement : MonoBehaviour
 
                         if (Target.transform.position.y > hit.point.y)
                         {
-                            Debug.Log("Going up");
                             animator.SetFloat("Bend", curr_bend -= 5);
                         }
                         if (Target.transform.position.y < hit.point.y)
                         {
-                            Debug.Log("Going up");
                             animator.SetFloat("Bend", curr_bend += 5);
                         }
                         if (curr_bend < -30) animator.SetFloat("Bend", -30);

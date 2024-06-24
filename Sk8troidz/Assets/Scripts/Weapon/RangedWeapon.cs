@@ -41,7 +41,7 @@ public class RangedWeapon : Weapon
                     //  Debug.Log(hit.collider.GetComponent<PhotonView>().Owner.GetPhotonTeam() + " + " + PhotonNetwork.LocalPlayer.GetPhotonTeam());
                     PhotonNetwork.Instantiate(impact_explosion.name, hit.point, Quaternion.identity);
                     //"if()" is a good name of a book
-                    if ((hit.collider.tag == "Player") && hit.collider.GetComponent<PhotonView>().Owner.GetPhotonTeam() != PhotonNetwork.LocalPlayer.GetPhotonTeam())
+                    if ((hit.collider.tag == "Player") && hit.collider.GetComponent<Team_Handler>().GetTeam() != player.GetComponent<Team_Handler>().GetTeam())
                     {
                         Player_Health ph = hit.collider.GetComponent<Player_Health>();
                         if (ph != null)
