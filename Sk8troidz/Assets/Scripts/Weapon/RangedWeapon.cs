@@ -54,7 +54,7 @@ public class RangedWeapon : Weapon
                                     Transform oldpos = hit.collider.transform;
                                     hit.collider.transform.position = new Vector3(9999, 9999, 9999);
                                     SpawnCoin(hit.transform.parent.gameObject, hit.point);
-                                    ph.PlayerLastHit(pv.ViewID);
+                                    ph.PlayerLastHit(pv.ViewID); //base this off of the gameObject, not ID
                                     parent.GetComponentInParent<Super_Bar>().ChangeAmount(35);
 
 

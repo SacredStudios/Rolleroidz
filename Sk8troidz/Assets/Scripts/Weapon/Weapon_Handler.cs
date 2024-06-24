@@ -18,7 +18,7 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
     float shoot_delay;
     float time_last_shot;
     bool weapon_up;
-    [SerializeField] Slider cooldown;
+    [SerializeField] Slider cooldown; //TODO Add this slider from the playerassets gameobject
     [SerializeField] GameObject super_ammo;
     [SerializeField] GameObject increment;
     [SerializeField] GameObject increment_parent;
@@ -81,7 +81,7 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
             }
         }
     }
-    public void FireCheck()
+    public void FireCheck() //Check if you even are allowed to shoot yet
     {
         if (shoot_delay >= weapon.weapon_delay && weapon.attack_cost <= cooldown.value && pv.IsMine)
         {
