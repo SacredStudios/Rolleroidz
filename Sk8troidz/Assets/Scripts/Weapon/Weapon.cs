@@ -45,8 +45,11 @@ public class Weapon : ScriptableObject
         Photon.Realtime.Player player_photon = player.GetComponent<PhotonView>().Owner;
         Photon.Realtime.Player dead_player_photon = dead_player.GetComponent<PhotonView>().Owner;
 
-        player_photon.AddScore((dead_player_photon.GetScore() / 2) + 2);
-        pv.RPC("PrintKO", RpcTarget.All, player_photon.NickName, dead_player_photon.NickName);
+        if (player.tag == "Player")
+        {
+            player_photon.AddScore((dead_player_photon.GetScore() / 2) + 2);
+            //pv.RPC("PrintKO", RpcTarget.All, player_photon.NickName, dead_player_photon.NickName);
+        }
     }
     [PunRPC] void PrintKO(string player, string dead_player)
     {

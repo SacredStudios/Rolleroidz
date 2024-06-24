@@ -17608,6 +17608,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa66e8bc2da3045b88f61445779a1e22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ai_team: 0
 --- !u!114 &4008135090205734450 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7976471394023720146, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
