@@ -908,18 +908,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1152471554}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1163349573}
   - {fileID: 486536550}
-  m_Father: {fileID: 1737457468}
+  m_Father: {fileID: 6426038364015529102}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -238.702, y: 158.99998}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100.838, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1152471556
@@ -941,7 +941,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -963,7 +963,7 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
-  m_FillRect: {fileID: 544291592}
+  m_FillRect: {fileID: 0}
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
@@ -1390,7 +1390,6 @@ RectTransform:
   - {fileID: 6034345299090155199}
   - {fileID: 7188938619682236470}
   - {fileID: 1618717872}
-  - {fileID: 1152471555}
   - {fileID: 2408573985349613641}
   - {fileID: 4987362318846738584}
   - {fileID: 7330687543525701367}
@@ -13706,6 +13705,7 @@ Transform:
   - {fileID: 3144552604962584784}
   - {fileID: 7867451033237536303}
   - {fileID: 868399099}
+  - {fileID: 1152471555}
   - {fileID: 1737457468}
   - {fileID: 1308115026}
   - {fileID: 1853050696066691984}
@@ -17721,16 +17721,16 @@ MonoBehaviour:
   weapon: {fileID: 0}
   temp_weapon: {fileID: 0}
   curr_gun: {fileID: 0}
-  btn: {fileID: 0}
   weapon_loc: {fileID: 6426038362739416648}
   particle_pos: {fileID: 6426038363471481738}
   explosion_pos: {fileID: 6426038364052203110}
-  animator: {fileID: 0}
-  cooldown: {fileID: 0}
+  animator: {fileID: 4471843123587727704}
+  cooldown: {fileID: 1152471556}
   super_ammo: {fileID: 0}
   increment: {fileID: 0}
   increment_parent: {fileID: 0}
-  pv: {fileID: 0}
+  pv: {fileID: 8999722921355035029}
+  sb: {fileID: 0}
   sound: {fileID: 0}
 --- !u!195 &360661135566408208
 NavMeshAgent:

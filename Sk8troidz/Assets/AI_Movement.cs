@@ -69,7 +69,6 @@ public class AI_Movement : MonoBehaviour
         {
             if (Target != null)
             {
-                animator.SetLayerWeight(2, 1);
                 Ray ray = new Ray(this.transform.position, laser_loc.transform.up * 500f); //-new Vector3(radius, 0, 0), 
                 RaycastHit hit = new RaycastHit();
                 Debug.DrawRay(this.transform.position, laser_loc.transform.up * 500f, Color.green);

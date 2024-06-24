@@ -10,7 +10,6 @@ public class AI_Weapon_Handler : MonoBehaviour
     public Weapon weapon;
     public Weapon temp_weapon;
     public GameObject curr_gun;
-    [SerializeField] HoldButton btn;
     [SerializeField] GameObject weapon_loc;
     [SerializeField] GameObject particle_pos;
     [SerializeField] GameObject explosion_pos;
@@ -25,7 +24,7 @@ public class AI_Weapon_Handler : MonoBehaviour
     [SerializeField] PhotonView pv;
     [SerializeField] Super_Bar sb;
     public AudioSource sound;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
         GameObject weapon_list = GameObject.Find("WeaponList");
@@ -33,25 +32,29 @@ public class AI_Weapon_Handler : MonoBehaviour
         curr_gun = Instantiate(weapon.instance, weapon_loc.transform);
         curr_gun.transform.position += weapon.offset;
         curr_gun.transform.parent = weapon_loc.transform;
+        if (pv.IsMine)
+        {
+            weapon.player = this.gameObject;
+            weapon.super.player = weapon.player;
 
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
         time_last_shot += Time.deltaTime;
         if (weapon != null)
         {
-            if (sb.slider.value >= 100 && weapon.isSuper == false)
+           /* if (sb.slider.value >= 100 && weapon.isSuper == false)
             {
                 weapon = weapon.super;
-            }
+            } */
 
             if (shoot_delay < weapon.weapon_delay)
             {
                 shoot_delay += Time.deltaTime;
             }
-            if (Input.GetButton("Fire1") || btn.isDown)
+            if (Input.GetButton("Fire1"))
             {
                 FireCheck();
             }
@@ -115,10 +118,10 @@ public class AI_Weapon_Handler : MonoBehaviour
                 i += 0.2f;
                 animator.SetLayerWeight(2, i);
             }
-            if (sb.slider.value >= 100 && !weapon.isSuper)
+            /*if (sb.slider.value >= 100 && !weapon.isSuper)
             {
                 weapon = weapon.super;
-            }
+            } */
             weapon.Shoot(curr_gun, particle_pos, explosion_pos);
             if (weapon.isSuper)
             {
