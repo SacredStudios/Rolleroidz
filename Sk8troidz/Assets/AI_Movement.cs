@@ -127,6 +127,7 @@ public class AI_Movement : MonoBehaviour
             if (agent.isOnNavMesh)
             {
                 agent.SetDestination(Target.transform.position);
+                
             }
         }
         

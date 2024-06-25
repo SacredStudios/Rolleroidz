@@ -34,6 +34,7 @@ public class Weapon : ScriptableObject
     //Add var for sound
     public GameObject coin;
     public float min_distance = 2.5f;
+    public GameObject death_effect;
 
 
 

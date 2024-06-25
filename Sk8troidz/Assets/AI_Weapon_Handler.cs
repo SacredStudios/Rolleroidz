@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
+using UnityEngine.AI;
 
 
 public class AI_Weapon_Handler : MonoBehaviour
@@ -24,6 +25,8 @@ public class AI_Weapon_Handler : MonoBehaviour
     [SerializeField] PhotonView pv;
     [SerializeField] Super_Bar sb;
     public AudioSource sound;
+    [SerializeField] NavMeshAgent agent;
+    [SerializeField] GameObject laser_loc;
 
     void Start()
     {
@@ -36,6 +39,7 @@ public class AI_Weapon_Handler : MonoBehaviour
         {
             weapon.player = this.gameObject;
             weapon.super.player = weapon.player;
+            agent.stoppingDistance = weapon.range - Random.Range(5f, 20f);
 
         }
     }
@@ -54,7 +58,9 @@ public class AI_Weapon_Handler : MonoBehaviour
             {
                 shoot_delay += Time.deltaTime;
             }
-            if (Input.GetButton("Fire1"))
+            Ray ray = new Ray(this.transform.position, laser_loc.transform.up * weapon.range); //-new Vector3(radius, 0, 0), 
+            RaycastHit hit = new RaycastHit();
+            if (Physics.Raycast(ray, out hit))
             {
                 FireCheck();
             }
@@ -80,7 +86,7 @@ public class AI_Weapon_Handler : MonoBehaviour
     public void Shoot_Weapon()
     {
 
-        // pv.RPC("Play_Sound", RpcTarget.Others);
+        agent.stoppingDistance = weapon.range - Random.Range(5f, 20f);
         time_last_shot = 0;
         // animator.Play("Gun Layer.Shoot", 2, 0);
 

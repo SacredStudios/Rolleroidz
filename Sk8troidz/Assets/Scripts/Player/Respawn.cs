@@ -38,7 +38,9 @@ public class Respawn : MonoBehaviour
         death_anim.transform.position = currLoc;
         if (pv.IsMine)
         {
+            Debug.Log("player died");
             GameObject death_anim_clone = PhotonNetwork.Instantiate(death_anim.name, currLoc, Quaternion.identity);
+            Debug.Log(death_anim_clone.transform.position);
             player.GetComponent<PlayerMovement>().enabled = false;
             collider.enabled = false;
             cam.enabled = false;

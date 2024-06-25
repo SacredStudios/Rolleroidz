@@ -5,7 +5,7 @@ using Photon.Pun.UtilityScripts;
 
 public class Team_Handler : MonoBehaviour
 {
-    public int ai_team; //set this only with ai players
+    public byte ai_team; //set this only with ai players
 
     public int GetTeam()
     {
