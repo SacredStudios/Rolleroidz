@@ -48,8 +48,13 @@ public class Weapon : ScriptableObject
 
         if (player.tag == "Player")
         {
-            player_photon.AddScore((dead_player_photon.GetScore() / 2) + 2);
+            player_photon.AddScore((dead_player.GetComponent<Team_Handler>().GetScore() / 2) + 2);
             //pv.RPC("PrintKO", RpcTarget.All, player_photon.NickName, dead_player_photon.NickName);
+        }
+        else
+        {
+            player.GetComponent<AI_Handler>().score += (dead_player.GetComponent<Team_Handler>().GetScore() / 2) + 2;
+            Debug.Log(player.GetComponent<AI_Handler>().score);
         }
     }
     [PunRPC] void PrintKO(string player, string dead_player)

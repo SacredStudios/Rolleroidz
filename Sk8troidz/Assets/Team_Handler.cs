@@ -23,5 +23,21 @@ public class Team_Handler : MonoBehaviour
             return 0;
         }
     }
+
+    public int GetScore()
+    {
+        if (this.gameObject.tag == "Player")
+        {
+            return GetComponent<PhotonView>().Owner.GetScore();
+        }
+        if (this.gameObject.tag == "AI_Player")
+        {
+            return GetComponent<AI_Handler>().score;
+        }
+        else
+        {
+            return 0;
+        }
+    }
    
 }
