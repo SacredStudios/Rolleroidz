@@ -39,7 +39,7 @@ public class AI_Weapon_Handler : MonoBehaviour
         {
             weapon.player = this.gameObject;
             weapon.super.player = weapon.player;
-            agent.stoppingDistance = Random.Range(5f, 10f);
+            agent.stoppingDistance = Random.Range(10f, 20f);
 
         }
     }
@@ -62,7 +62,7 @@ public class AI_Weapon_Handler : MonoBehaviour
             RaycastHit hit = new RaycastHit();
             if (Physics.Raycast(ray, out hit))
             {
-                if(hit.collider.tag == "Player")
+                if(hit.collider.tag == "Player" || hit.collider.tag == "Player_Head")
                 {
                     FireCheck();
                 }
@@ -90,7 +90,7 @@ public class AI_Weapon_Handler : MonoBehaviour
     public void Shoot_Weapon()
     {
 
-        agent.stoppingDistance = Random.Range(5f, 10f);
+        
         time_last_shot = 0;
         // animator.Play("Gun Layer.Shoot", 2, 0);
 

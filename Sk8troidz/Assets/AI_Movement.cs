@@ -61,6 +61,16 @@ public class AI_Movement : MonoBehaviour
             {
                 animator.SetFloat("animSpeedCap", 1f);
             }
+            if (agent != null)
+            {
+                if (agent.remainingDistance <= 10)
+                {
+                    Debug.Log("turnin'");
+                    Vector3 targetDirection = Target.transform.position - transform.position;
+                    targetDirection.y = 0;
+                    transform.rotation = Quaternion.LookRotation(targetDirection);
+                }
+            }
         }
     }
     IEnumerator BendAndRotate()
@@ -70,9 +80,8 @@ public class AI_Movement : MonoBehaviour
             if (Target != null)
             {
                 // Calculate the ray from the current position in the direction of 'up' multiplied by a distance.
-                Ray ray = new Ray(transform.position, laser_loc.transform.up * 500f);
+                Ray ray = new Ray(laser_loc.transform.position, laser_loc.transform.up * 500f);
                 RaycastHit hit;
-                Debug.DrawRay(transform.position, laser_loc.transform.up * 500f, Color.green);
 
                 if (Physics.Raycast(ray, out hit))
                 {
@@ -92,19 +101,10 @@ public class AI_Movement : MonoBehaviour
                         if (curr_bend < -30) animator.SetFloat("Bend", -30);
                         if (curr_bend > 70) animator.SetFloat("Bend", 70);
                     }
-                    //TODO: This doesn't work right now. Fix it.
-                    
-                    /*Vector3 targetDirection = Target.transform.position - transform.position;
-                    targetDirection.z = this.transform.rotation.z; // Ignoring the vertical component to keep the rotation in the horizontal plane.
-                    Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
-                    float rotationSpeed = 2f; // Rotation speed in degrees per second.
-
-                    // Smoothly rotate towards the target on the y-axis.
-                    transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-                */
+                  
                 }
 
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(0.05f);
             }
             yield return null;
         }
@@ -140,14 +140,7 @@ public class AI_Movement : MonoBehaviour
                 agent.SetDestination(Target.transform.position);
                 
             }
-            if (agent.remainingDistance <= 0)
-            {
-                Vector3 targetDirection = Target.transform.position - transform.position;
-                targetDirection.y = 0; // Ignoring the vertical component to ensure rotation is only on the horizontal plane.
-
-                // Setting rotation directly to look towards the target on the horizontal plane.
-                transform.rotation = Quaternion.LookRotation(targetDirection);
-            }
+            
         }
         
         yield return wait;
