@@ -61,7 +61,7 @@ public class AI_Movement : MonoBehaviour
             {
                 animator.SetFloat("animSpeedCap", 1f);
             }
-            if (agent != null)
+            if (Target != null)
             {
                 if (agent.remainingDistance <= 10)
                 {
