@@ -26,7 +26,7 @@ public class AI_Movement : MonoBehaviour
     {
         current_state = State.Searching;
         StartCoroutine(Check_For_Players());
-        StartCoroutine(Bend());
+        StartCoroutine(BendAndRotate());
         agent = GetComponent<NavMeshAgent>();
     }
     void OnCollisionStay(Collision collision)
@@ -63,22 +63,24 @@ public class AI_Movement : MonoBehaviour
             }
         }
     }
-    IEnumerator Bend()
+    IEnumerator BendAndRotate()
     {
         while (enabled)
         {
             if (Target != null)
             {
-                Ray ray = new Ray(this.transform.position, laser_loc.transform.up * 500f); //-new Vector3(radius, 0, 0), 
-                RaycastHit hit = new RaycastHit();
-                Debug.DrawRay(this.transform.position, laser_loc.transform.up * 500f, Color.green);
+                // Calculate the ray from the current position in the direction of 'up' multiplied by a distance.
+                Ray ray = new Ray(transform.position, laser_loc.transform.up * 500f);
+                RaycastHit hit;
+                Debug.DrawRay(transform.position, laser_loc.transform.up * 500f, Color.green);
+
                 if (Physics.Raycast(ray, out hit))
                 {
                     float curr_bend = animator.GetFloat("Bend");
-               
+
+                    // Bending the GameObject based on the target's position relative to the hit point.
                     if (hit.collider.gameObject.tag != "Player" && hit.collider.gameObject.tag != "Player_Head")
                     {
-
                         if (Target.transform.position.y > hit.point.y)
                         {
                             animator.SetFloat("Bend", curr_bend -= 5);
@@ -89,9 +91,16 @@ public class AI_Movement : MonoBehaviour
                         }
                         if (curr_bend < -30) animator.SetFloat("Bend", -30);
                         if (curr_bend > 70) animator.SetFloat("Bend", 70);
-
                     }
-                }
+                    //TODO: This doesn't work right now. Fix it.
+                    /*Vector3 targetDirection = Target.transform.position - transform.position;
+                    targetDirection.z = this.transform.rotation.z; // Ignoring the vertical component to keep the rotation in the horizontal plane.
+                    Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+                    float rotationSpeed = 2f; // Rotation speed in degrees per second.
+
+                    // Smoothly rotate towards the target on the y-axis.
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+                */}
 
                 yield return new WaitForSeconds(0.1f);
             }
