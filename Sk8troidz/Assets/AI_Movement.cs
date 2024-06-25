@@ -93,6 +93,7 @@ public class AI_Movement : MonoBehaviour
                         if (curr_bend > 70) animator.SetFloat("Bend", 70);
                     }
                     //TODO: This doesn't work right now. Fix it.
+                    
                     /*Vector3 targetDirection = Target.transform.position - transform.position;
                     targetDirection.z = this.transform.rotation.z; // Ignoring the vertical component to keep the rotation in the horizontal plane.
                     Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
@@ -100,7 +101,8 @@ public class AI_Movement : MonoBehaviour
 
                     // Smoothly rotate towards the target on the y-axis.
                     transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-                */}
+                */
+                }
 
                 yield return new WaitForSeconds(0.1f);
             }
@@ -137,6 +139,14 @@ public class AI_Movement : MonoBehaviour
             {
                 agent.SetDestination(Target.transform.position);
                 
+            }
+            if (agent.remainingDistance <= 0)
+            {
+                Vector3 targetDirection = Target.transform.position - transform.position;
+                targetDirection.y = 0; // Ignoring the vertical component to ensure rotation is only on the horizontal plane.
+
+                // Setting rotation directly to look towards the target on the horizontal plane.
+                transform.rotation = Quaternion.LookRotation(targetDirection);
             }
         }
         
