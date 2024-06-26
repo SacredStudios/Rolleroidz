@@ -13825,6 +13825,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team: 2
+  score: 0
 --- !u!1 &6476795089022077179
 GameObject:
   m_ObjectHideFlags: 0
@@ -17772,6 +17773,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team: 2
+  score: 0
 --- !u!114 &4459783896661882009
 MonoBehaviour:
   m_ObjectHideFlags: 0

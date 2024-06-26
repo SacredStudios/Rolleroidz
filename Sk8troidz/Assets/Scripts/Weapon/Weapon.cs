@@ -54,7 +54,6 @@ public class Weapon : ScriptableObject
         else
         {
             player.GetComponent<AI_Handler>().score += (dead_player.GetComponent<Team_Handler>().GetScore() / 2) + 2;
-            Debug.Log(player.GetComponent<AI_Handler>().score);
         }
     }
     [PunRPC] void PrintKO(string player, string dead_player)
