@@ -16265,7 +16265,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1965424083503852722, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: AI_Head
       objectReference: {fileID: 0}
     - target: {fileID: 2416270414412712746, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

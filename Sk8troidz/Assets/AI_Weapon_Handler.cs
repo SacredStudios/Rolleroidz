@@ -31,7 +31,7 @@ public class AI_Weapon_Handler : MonoBehaviour
     void Start()
     {
         GameObject weapon_list = GameObject.Find("WeaponList");
-        weapon = weapon_list.GetComponent<Weapon_List>().all_weapon_list[0];
+        weapon = weapon_list.GetComponent<Weapon_List>().all_weapon_list[weapon_list.GetComponent<Weapon_List>().all_weapon_list.Count -1];
         //change this to own list of ai weapons to circumvent the problem if you choose the same weapon
         curr_gun = Instantiate(weapon.instance, weapon_loc.transform);
         curr_gun.transform.position += weapon.offset;
@@ -62,11 +62,12 @@ public class AI_Weapon_Handler : MonoBehaviour
             }
             Ray ray = new Ray(this.transform.position, laser_loc.transform.up * weapon.range); //-new Vector3(radius, 0, 0), 
             RaycastHit hit = new RaycastHit();
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.SphereCast(ray, 1f, out hit, weapon.range)) //Target Acquired
+ 
             {
                 if(hit.collider.tag == "Player" || hit.collider.tag == "Player_Head")
                 {
-                   // FireCheck();
+                   FireCheck();
                 }
                 
             }
