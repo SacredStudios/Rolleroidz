@@ -16,6 +16,7 @@ public class Team_Handler : MonoBehaviour
         }
         if (this.gameObject.tag == "AI_Player")
         {
+            Debug.Log(ai_team);
             return ai_team;
         }
         else

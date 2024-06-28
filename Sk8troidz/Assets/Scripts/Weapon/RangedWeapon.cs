@@ -34,11 +34,10 @@ public class RangedWeapon : Weapon
 
             if (Physics.SphereCast(ray, radius, out hit, range)) //Target Acquired
             {
-
+                
 
                 if (hit.distance <= range)
                 {
-                    //Debug.Log(hit.collider.tag);
                     //  Debug.Log(hit.collider.GetComponent<PhotonView>().Owner.GetPhotonTeam() + " + " + PhotonNetwork.LocalPlayer.GetPhotonTeam());
                     PhotonNetwork.Instantiate(impact_explosion.name, hit.point, Quaternion.identity);
                     //"if()" is a good name of a book
@@ -76,6 +75,7 @@ public class RangedWeapon : Weapon
                     }
                     else if (hit.collider.tag == "Player_Head" && hit.collider.GetComponentInParent<Team_Handler>().GetTeam() != player.GetComponent<Team_Handler>().GetTeam())
                     {
+                        Debug.Log(hit.collider.GetComponentInParent<Team_Handler>().GetTeam());
                         Player_Health ph = hit.collider.GetComponentInParent<Player_Health>();
                         if (ph != null)
                         {

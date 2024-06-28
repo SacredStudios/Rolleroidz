@@ -65,7 +65,6 @@ public class AI_Movement : MonoBehaviour
             {
                 if (agent.remainingDistance <= 10)
                 {
-                    Debug.Log("turnin'");
                     Vector3 targetDirection = Target.transform.position - transform.position;
                     targetDirection.y = 0;
                     transform.rotation = Quaternion.LookRotation(targetDirection);

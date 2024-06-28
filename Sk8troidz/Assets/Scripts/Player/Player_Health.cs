@@ -23,7 +23,14 @@ public class Player_Health : MonoBehaviour
   
     public void Remove_Health(float amount)
     {
-        pv.RPC("ChangeHealth", RpcTarget.All, -1 * amount);
+        if (this.gameObject.tag == "AI_Player")
+        {
+            Debug.Log("Applying damage: " + amount);
+        }
+        else
+        {
+            pv.RPC("ChangeHealth", RpcTarget.All, -1 * amount);
+        }
     }
     public void PlayerLastHit(int newId)
     {

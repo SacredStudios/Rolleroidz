@@ -32,12 +32,14 @@ public class AI_Weapon_Handler : MonoBehaviour
     {
         GameObject weapon_list = GameObject.Find("WeaponList");
         weapon = weapon_list.GetComponent<Weapon_List>().all_weapon_list[0];
+        //change this to own list of ai weapons to circumvent the problem if you choose the same weapon
         curr_gun = Instantiate(weapon.instance, weapon_loc.transform);
         curr_gun.transform.position += weapon.offset;
         curr_gun.transform.parent = weapon_loc.transform;
         if (pv.IsMine)
         {
             weapon.player = this.gameObject;
+            Debug.Log(weapon.player.tag);
             weapon.super.player = weapon.player;
             agent.stoppingDistance = Random.Range(10f, 20f);
 
@@ -64,7 +66,7 @@ public class AI_Weapon_Handler : MonoBehaviour
             {
                 if(hit.collider.tag == "Player" || hit.collider.tag == "Player_Head")
                 {
-                    FireCheck();
+                   // FireCheck();
                 }
                 
             }
