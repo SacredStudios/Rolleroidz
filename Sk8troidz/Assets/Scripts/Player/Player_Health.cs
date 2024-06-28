@@ -25,7 +25,7 @@ public class Player_Health : MonoBehaviour
     {
         if (this.gameObject.tag == "AI_Player")
         {
-            Debug.Log("Applying damage: " + amount);
+            pv.RPC("ChangeHealth", RpcTarget.All, -1 * amount);
         }
         else
         {
@@ -54,6 +54,7 @@ public class Player_Health : MonoBehaviour
     }
     [PunRPC] void ChangeHealth(float amount)
     {
+        Debug.Log("health is changing");
         current_health += amount;
         health_bar.value = current_health;
         health_bar_other.value = current_health;

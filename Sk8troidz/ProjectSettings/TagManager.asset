@@ -10,6 +10,7 @@ TagManager:
   - Point
   - Rail
   - AI_Player
+  - AI_Head
   layers:
   - Default
   - TransparentFX
