@@ -41,7 +41,7 @@ public class RangedWeapon : Weapon
                     //  Debug.Log(hit.collider.GetComponent<PhotonView>().Owner.GetPhotonTeam() + " + " + PhotonNetwork.LocalPlayer.GetPhotonTeam());
                     PhotonNetwork.Instantiate(impact_explosion.name, hit.point, Quaternion.identity);
                     //"if()" is a good name of a book
-                    if ((hit.collider.tag == "AI_Player") && hit.collider.GetComponent<Team_Handler>().GetTeam() != player.GetComponent<Team_Handler>().GetTeam())
+                    if ((hit.collider.tag == "AI_Player" || hit.collider.tag == "Player") && hit.collider.GetComponent<Team_Handler>().GetTeam() != player.GetComponent<Team_Handler>().GetTeam())
                     {
                         Debug.Log("hit");
                         Player_Health ph = hit.collider.GetComponent<Player_Health>();
@@ -73,7 +73,7 @@ public class RangedWeapon : Weapon
                         // Debug.Log(hit.collider.gameObject.GetComponent<PhotonView>().Owner.GetPhotonTeam() + "+" + pv.Owner.GetPhotonTeam());
 
                     }
-                    else if ((hit.collider.tag == "AI_Head") && hit.collider.GetComponentInParent<Team_Handler>().GetTeam() != player.GetComponent<Team_Handler>().GetTeam())
+                    else if ((hit.collider.tag == "AI_Head" || hit.collider.tag == "Player_Head") && hit.collider.GetComponentInParent<Team_Handler>().GetTeam() != player.GetComponent<Team_Handler>().GetTeam())
                     {
                         Debug.Log(hit.collider.GetComponentInParent<Team_Handler>().GetTeam());
                         Player_Health ph = hit.collider.GetComponentInParent<Player_Health>();
