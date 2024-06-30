@@ -50,22 +50,23 @@ public class Respawn : MonoBehaviour
             {
                 player.GetComponent<PlayerMovement>().enabled = false;
                 player.GetComponent<Weapon_Handler>().RemoveSuper();
-            }
-            trick_system.SetActive(false);
-            //int n = Random.Range(-9, 9);
-            //Debug.Log(n + " is the random num");
-            //pv.Owner.SetScore(pv.Owner.GetScore() + n);
-            if (pv.Owner.GetScore() < 0)
-            {
+                trick_system.SetActive(false);
+                if (pv.Owner.GetScore() < 0)
+                {
+                    pv.Owner.SetScore(0);
+                }
+                else if (pv.Owner.GetScore() % 2 != 0)
+                {
+                    pv.Owner.AddScore(1);
+                }
 
-                pv.Owner.SetScore(0);
+                pv.Owner.SetScore(pv.Owner.GetScore() / 2);
             }
-            else if (pv.Owner.GetScore() % 2 != 0)
+            else
             {
-                pv.Owner.AddScore(1);
+                player.GetComponent<AI_Movement>().enabled = false;
             }
             
-            pv.Owner.SetScore(pv.Owner.GetScore() / 2);
             Invoke("Respawn_Screen", respawn_time);
         }
 
