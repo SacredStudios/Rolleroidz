@@ -33,19 +33,24 @@ public class Respawn : MonoBehaviour
     }
     public void Death(int id)
     {
+        //test if AI leaves if masterclient leaves
+        Debug.Log("player died");
         Cursor.lockState = CursorLockMode.None;
         currLoc = player.transform.position;
         death_anim.transform.position = currLoc;
         if (pv.IsMine)
         {
-            Debug.Log("player died");
+            
             GameObject death_anim_clone = PhotonNetwork.Instantiate(death_anim.name, currLoc, Quaternion.identity);
-            Debug.Log(death_anim_clone.transform.position);
-            player.GetComponent<PlayerMovement>().enabled = false;
+            
             collider.enabled = false;
             cam.enabled = false;
             player.transform.position = new Vector3(9999, 9999, 9999);
-            player.GetComponent<Weapon_Handler>().RemoveSuper();
+            if (player.tag == "Player")
+            {
+                player.GetComponent<PlayerMovement>().enabled = false;
+                player.GetComponent<Weapon_Handler>().RemoveSuper();
+            }
             trick_system.SetActive(false);
             //int n = Random.Range(-9, 9);
             //Debug.Log(n + " is the random num");

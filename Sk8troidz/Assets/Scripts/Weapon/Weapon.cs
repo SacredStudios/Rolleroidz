@@ -43,18 +43,19 @@ public class Weapon : ScriptableObject
 
     public void SpawnCoin(GameObject dead_player, Vector3 pos) //change the name of this
     {
+        Debug.Log(dead_player);
         Photon.Realtime.Player player_photon = player.GetComponent<PhotonView>().Owner;
         Photon.Realtime.Player dead_player_photon = dead_player.GetComponent<PhotonView>().Owner;
-
-        if (player.tag == "Player")
+        if (player.tag == "AI_Player")
         {
-            player_photon.AddScore((dead_player.GetComponent<Team_Handler>().GetScore() / 2) + 2);
-            //pv.RPC("PrintKO", RpcTarget.All, player_photon.NickName, dead_player_photon.NickName);
+            //TODO: Change this to Photon.Pun function
+            player.GetComponent<AI_Handler>().score += dead_player.GetComponent<Team_Handler>().GetScore() / 2 + 2;
         }
         else
         {
-            player.GetComponent<AI_Handler>().score += (dead_player.GetComponent<Team_Handler>().GetScore() / 2) + 2;
+            player_photon.AddScore((dead_player.GetComponent<Team_Handler>().GetScore() / 2) + 2);
         }
+        //pv.RPC("PrintKO", RpcTarget.All, player_photon.NickName, dead_player_photon.NickName); 
     }
     [PunRPC] void PrintKO(string player, string dead_player)
     {
