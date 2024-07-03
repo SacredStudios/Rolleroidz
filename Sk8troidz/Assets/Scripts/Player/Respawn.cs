@@ -86,13 +86,23 @@ public class Respawn : MonoBehaviour
         //player.GetComponent<PlayerMovement>().enabled = true;
         collider.enabled = true;
         //player.SetActive(true);
-        RespawnCircle.SetActive(true);
-        //player.transform.position = GetFarthestPoint(currLoc);
-        if (pv.Owner.GetScore() < 0)
+        if (player.tag == "Player")
         {
-            pv.Owner.SetScore(0);
+            RespawnCircle.SetActive(true);
+
+            //player.transform.position = GetFarthestPoint(currLoc);
+            if (pv.Owner.GetScore() < 0)
+            {
+                pv.Owner.SetScore(0);
+            }
         }
-        
+        else
+        {     
+            player.GetComponent<AI_Movement>().enabled = true;
+            player.transform.position = respawn_points[Random.Range(0, respawn_points.Count)];
+            player.GetComponent<NavMeshAgent>().enabled = true;
+        }
+
     }
     public void Respawn_Player()
     {

@@ -22,7 +22,7 @@ public class AI_Movement : MonoBehaviour
     public State current_state;
 
     Vector3 lastPos;
-    void Start()
+    void OnEnable()
     {
         current_state = State.Searching;
         StartCoroutine(Check_For_Players());
@@ -61,7 +61,7 @@ public class AI_Movement : MonoBehaviour
             {
                 animator.SetFloat("animSpeedCap", 1f);
             }
-            if (Target != null)
+            if (Target != null && agent.isOnNavMesh)
             {
                 if (agent.remainingDistance <= 10)
                 {
