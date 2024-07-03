@@ -5,6 +5,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using Photon.Pun.UtilityScripts;
 using Cinemachine;
+using UnityEngine.AI;
 
 public class Respawn : MonoBehaviour
 {
@@ -65,6 +66,9 @@ public class Respawn : MonoBehaviour
             else
             {
                 player.GetComponent<AI_Movement>().enabled = false;
+                player.GetComponent<NavMeshAgent>().enabled = false;
+                player.transform.position = new Vector3(9999, 9999, 9999);
+
             }
             
             Invoke("Respawn_Screen", respawn_time);
