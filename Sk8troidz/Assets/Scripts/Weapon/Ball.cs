@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,9 @@ public class Ball : MonoBehaviour
 {
     private const string PlayerTag = "Player";
     public static GameObject[] players;
+    List<GameObject> playerList;
     int num_bounces = 0;
+    //change this to just grab the weapon itself
     public GameObject explosion;
     public GameObject smoke;
     public float damage;
@@ -22,32 +25,39 @@ public class Ball : MonoBehaviour
     [SerializeField] Rigidbody rb;
     [SerializeField] AudioSource sound;
     [SerializeField] Weapon weapon;
+    
 
 
 
     void Start()
     {
         Invoke("Explode", 3f);
-        if (players == null)
+        if (players == null || players.Length == 0)
         {
-            players = GameObject.FindGameObjectsWithTag(PlayerTag);
-            
-                List<GameObject> playerList = new List<GameObject>(GameObject.FindGameObjectsWithTag(PlayerTag));
+            GameObject[] human_players = GameObject.FindGameObjectsWithTag(PlayerTag);
+            GameObject[] ai_players = GameObject.FindGameObjectsWithTag("AI_Player");           
+            GameObject[] players = human_players.Concat(ai_players).ToArray();
 
-                playerList.RemoveAll(player =>
-                {
-                    PhotonView photonView = player.GetComponent<PhotonView>();
-                    if (photonView == null) return true;
+            playerList = new List<GameObject>(players);
+            playerList.RemoveAll(player =>
+            {
+                PhotonView photonView = player.GetComponent<PhotonView>();
+                if (photonView == null) return true;
 
-                    Photon.Realtime.Player owner = photonView.Owner;
-                    Photon.Realtime.Player localPlayer = PhotonNetwork.LocalPlayer;
+                Photon.Realtime.Player owner = photonView.Owner;
+                Photon.Realtime.Player localPlayer = PhotonNetwork.LocalPlayer;
 
-                    if (owner == null || localPlayer == null) return false;
+                if (owner == null || localPlayer == null) return false;
 
-                    return owner.GetPhotonTeam() == localPlayer.GetPhotonTeam();
-                });
-                players = playerList.ToArray();
-            
+                return weapon.player.GetComponent<Team_Handler>().GetTeam() == player.GetComponent<Team_Handler>().GetTeam();
+            });
+              
+            players = playerList.ToArray();
+            for (int i = 0; i < players.Length; i++)
+            {
+                Debug.Log(players[i] + " is the playerlist");
+            }
+
 
         }
         rb.AddForce(transform.up * speed*4f, ForceMode.Impulse);
@@ -58,7 +68,7 @@ public class Ball : MonoBehaviour
         sound.Play();
         PointToClosestPlayer();
         StartCoroutine(ApplyForwardForceAfterBounce());
-        if(collision.gameObject.tag == "Player")
+        if(collision.gameObject.tag == "Player" || collision.gameObject.tag == "Player")
         {
             Explode();
         }
@@ -72,7 +82,7 @@ public class Ball : MonoBehaviour
             if (hit.gameObject.GetComponent<Player_Health>() != null)
             {
                 hit.gameObject.GetComponent<Player_Health>().Add_Explosion(power, radius, this.transform.position.x, this.transform.position.y, this.transform.position.z);
-                if (hit.gameObject.GetComponent<PhotonView>().Owner.GetPhotonTeam() != PhotonNetwork.LocalPlayer.GetPhotonTeam())
+                if (hit.gameObject.GetComponent<Team_Handler>().GetTeam() != weapon.player.GetComponent<Team_Handler>().GetTeam())
                 {
                     if (hit.gameObject.GetComponent<Player_Health>().current_health - damage <= 0)
                     {
@@ -94,6 +104,7 @@ public class Ball : MonoBehaviour
     {
         if (players == null || players.Length == 0)
         {
+            Debug.Log("glitch");
             return;
         }
 
@@ -103,6 +114,7 @@ public class Ball : MonoBehaviour
 
         foreach (GameObject player in players)
         {
+            Debug.Log("test why not work");
             Vector3 directionToPlayer = player.transform.position - currentPosition;
             float dSqrToPlayer = directionToPlayer.sqrMagnitude;
             if (dSqrToPlayer < closestDistanceSqr)
@@ -114,6 +126,7 @@ public class Ball : MonoBehaviour
 
         if (closestPlayer != null)
         {
+            Debug.Log(closestPlayer);
             Vector3 direction = (closestPlayer.transform.position - currentPosition).normalized;
             Quaternion lookRotation = Quaternion.LookRotation(direction);
             transform.rotation = lookRotation;
