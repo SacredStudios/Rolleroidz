@@ -36,7 +36,7 @@ public class Ball : MonoBehaviour
         {
             GameObject[] human_players = GameObject.FindGameObjectsWithTag(PlayerTag);
             GameObject[] ai_players = GameObject.FindGameObjectsWithTag("AI_Player");           
-            GameObject[] players = human_players.Concat(ai_players).ToArray();
+            players = human_players.Concat(ai_players).ToArray();
 
             playerList = new List<GameObject>(players);
             playerList.RemoveAll(player =>
