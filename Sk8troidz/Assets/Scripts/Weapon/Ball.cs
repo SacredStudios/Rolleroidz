@@ -68,7 +68,7 @@ public class Ball : MonoBehaviour
         sound.Play();
         PointToClosestPlayer();
         StartCoroutine(ApplyForwardForceAfterBounce());
-        if(collision.gameObject.tag == "Player" || collision.gameObject.tag == "Player")
+        if(collision.gameObject.tag == "Player" || collision.gameObject.tag == "AI_Player")
         {
             Explode();
         }
@@ -114,7 +114,6 @@ public class Ball : MonoBehaviour
 
         foreach (GameObject player in players)
         {
-            Debug.Log("test why not work");
             Vector3 directionToPlayer = player.transform.position - currentPosition;
             float dSqrToPlayer = directionToPlayer.sqrMagnitude;
             if (dSqrToPlayer < closestDistanceSqr)
