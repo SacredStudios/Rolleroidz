@@ -28,7 +28,7 @@ public class Explosion : MonoBehaviour
             if (ph != null)
                 {
                 ph.Add_Explosion(power, radius, this.transform.position.x, this.transform.position.y, this.transform.position.z);
-                if (hit.gameObject.GetComponent<PhotonView>().Owner.GetPhotonTeam() != PhotonNetwork.LocalPlayer.GetPhotonTeam())
+                if (hit.GetComponent<Team_Handler>().GetTeam() != weapon.player.GetComponent<Team_Handler>().GetTeam())
                 {
                     if (ph.current_health > 0 && ph.current_health - damage <= 0)
                     {
