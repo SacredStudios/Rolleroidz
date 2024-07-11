@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
+using Photon.Pun;
 
 public class AI_Movement : MonoBehaviour
 {
@@ -120,8 +122,21 @@ public class AI_Movement : MonoBehaviour
         }
     }
     IEnumerator Follow_Target()
-    {
-        List<GameObject> playerList = new List<GameObject>(GameObject.FindGameObjectsWithTag("Player"));
+    {     
+        List<GameObject> human_players = new List<GameObject>(GameObject.FindGameObjectsWithTag("Player"));
+        List<GameObject> ai_players = new List<GameObject>(GameObject.FindGameObjectsWithTag("AI_Player"));
+        playerList = human_players.Concat(ai_players).ToList(); ;
+        playerList.RemoveAll(player =>
+        {
+            PhotonView photonView = player.GetComponent<PhotonView>();
+            if (photonView == null) return true;
+
+            Photon.Realtime.Player owner = photonView.Owner;
+            Photon.Realtime.Player localPlayer = PhotonNetwork.LocalPlayer;
+
+            if (owner == null || localPlayer == null) return false;
+            return GetComponent<Team_Handler>().GetTeam() == player.GetComponent<Team_Handler>().GetTeam();
+        });
         if (playerList.Count == 0)
         {
             yield return new WaitForSeconds(update_speed);

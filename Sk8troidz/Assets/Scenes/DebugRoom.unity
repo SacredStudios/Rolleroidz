@@ -26559,6 +26559,7 @@ MonoBehaviour:
   countdown: {fileID: 818973193}
   my_weapon: {fileID: 0}
   AIPlayer: {fileID: 6426038364015529101, guid: e733034ad18bd4a3f919eda69c77bf95, type: 3}
+  start_early: {fileID: 2012876687}
 --- !u!114 &2026277107
 MonoBehaviour:
   m_ObjectHideFlags: 0

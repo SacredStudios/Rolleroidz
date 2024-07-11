@@ -11,12 +11,10 @@ public class Team_Handler : MonoBehaviour
     {
         if (this.gameObject.tag == "Player")
         {
-            Debug.Log(GetComponent<PhotonView>().Owner.GetPhotonTeam().Code);
             return GetComponent<PhotonView>().Owner.GetPhotonTeam().Code;
         }
         if (this.gameObject.tag == "AI_Player")
         {
-            Debug.Log(ai_team);
             return ai_team;
         }
         else

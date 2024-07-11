@@ -36,7 +36,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
 
     int count = 0;
     [SerializeField] GameObject AIPlayer;
-
+    [SerializeField] GameObject start_early;
     private void Awake()
     {
         PhotonNetwork.AutomaticallySyncScene = false;
@@ -115,6 +115,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     
     public void CheckForPlayersDebug()
     {
+        start_early.SetActive(false);
         StartCoroutine(CheckForPlayers());
     }
     [PunRPC] public void Start_Countdown()

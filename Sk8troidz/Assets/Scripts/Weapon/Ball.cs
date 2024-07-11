@@ -53,11 +53,7 @@ public class Ball : MonoBehaviour
             });
               
             players = playerList.ToArray();
-            for (int i = 0; i < players.Length; i++)
-            {
-                Debug.Log(players[i] + " is the playerlist");
-            }
-
+            
 
         }
         rb.AddForce(transform.up * speed*4f, ForceMode.Impulse);
