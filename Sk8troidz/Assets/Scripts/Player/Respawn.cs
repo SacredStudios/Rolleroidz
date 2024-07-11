@@ -45,10 +45,12 @@ public class Respawn : MonoBehaviour
             GameObject death_anim_clone = PhotonNetwork.Instantiate(death_anim.name, currLoc, Quaternion.identity);
             
             collider.enabled = false;
-            cam.enabled = false;
-            player.transform.position = new Vector3(9999, 9999, 9999);
+            
+            
             if (player.tag == "Player")
             {
+                cam.enabled = false;
+                player.transform.position = new Vector3(9999, 9999, 9999);
                 player.GetComponent<PlayerMovement>().enabled = false;
                 player.GetComponent<Weapon_Handler>().RemoveSuper();
                 trick_system.SetActive(false);
@@ -79,15 +81,17 @@ public class Respawn : MonoBehaviour
     void Respawn_Screen()
     {
         Invoke("Respawn_Player", 10f);
-        cam.enabled = true;
-        vcam.GetComponent<CinemachineVirtualCamera>().Follow = respawn_cam.transform;
+        
         player.GetComponent<Player_Health>().Add_Health(1000);
-        respawn_btn.SetActive(true);
+        
         //player.GetComponent<PlayerMovement>().enabled = true;
         collider.enabled = true;
         //player.SetActive(true);
         if (player.tag == "Player")
         {
+            cam.enabled = true;
+            vcam.GetComponent<CinemachineVirtualCamera>().Follow = respawn_cam.transform;
+            respawn_btn.SetActive(true);
             RespawnCircle.SetActive(true);
 
             //player.transform.position = GetFarthestPoint(currLoc);

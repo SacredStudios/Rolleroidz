@@ -31,6 +31,7 @@ public class Ball : MonoBehaviour
 
     void Start()
     {
+        players = null;
         Invoke("Explode", 3f);
         if (players == null || players.Length == 0)
         {
