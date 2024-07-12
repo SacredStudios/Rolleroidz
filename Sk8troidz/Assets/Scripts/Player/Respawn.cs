@@ -68,6 +68,7 @@ public class Respawn : MonoBehaviour
             else
             {
                 player.GetComponent<AI_Movement>().enabled = false;
+                player.GetComponent<AI_Handler>().DivideScore();
                 player.GetComponent<NavMeshAgent>().enabled = false;
                 player.transform.position = new Vector3(9999, 9999, 9999);
 

@@ -133,8 +133,11 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         }
 
     }
+    private void Update()
+    {
+        
+    }
 
-    
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
     {
        if(PhotonNetwork.IsMasterClient)
@@ -154,7 +157,27 @@ public class Game_Manager : MonoBehaviourPunCallbacks
                         }
                     }
                 }
-                if(team1count >= win_score || team2count >= win_score)
+                if (ai_players != null)
+                {
+                    foreach (GameObject player in ai_players)
+                    {
+                        Debug.Log("check");
+                        Debug.Log(player.GetComponent<AI_Handler>().score + " is the AI_score");
+                        if (player.GetComponent<Team_Handler>().GetTeam() == 1)
+                        {
+                        
+                        team1count += player.GetComponent<AI_Handler>().score;
+                        }
+                        if (player.GetComponent<Team_Handler>().GetTeam() == 2)
+                        {
+                            
+                            team2count += player.GetComponent<AI_Handler>().score;
+                        }
+                        Debug.Log(team1count + "+" + team2count);
+                    }
+                }
+
+                if (team1count >= win_score || team2count >= win_score)
                     {
                         Invoke("DoubleCheck", 3f);
                     }
@@ -265,6 +288,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     }
     void SpawnAIPlayers()
     {
+        ai_players = new List<GameObject>();
         Debug.Log(team1count + "+" + team2count);
         while (count < min_room_size- PhotonNetwork.PlayerList.Length)
         {
@@ -274,6 +298,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
                 List<Vector3> points = respawn_points.GetComponent<RespawnPoints>().respawn_points; //respawn locations
                 ai_player.GetComponent<Respawn>().respawn_points = points;
                 ai_player.transform.position = points[Random.Range(0, points.Count)];
+                ai_players.Add(ai_player.transform.GetChild(0).gameObject);
             }
             else
             {
@@ -281,6 +306,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
                 List<Vector3> points = respawn_points.GetComponent<RespawnPoints>().respawn_points; //respawn locations
                 ai_player.GetComponent<Respawn>().respawn_points = points;
                 ai_player.transform.position = points[Random.Range(0, points.Count)];
+                ai_players.Add(ai_player);
             }
         }
     }

@@ -13576,13 +13576,13 @@ Transform:
   m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 4144882711953722773}
   - {fileID: 7867451033237536303}
   - {fileID: 868399099}
   - {fileID: 1152471555}
   - {fileID: 1737457468}
   - {fileID: 1308115026}
   - {fileID: 1853050696066691984}
-  - {fileID: 4144882711953722773}
   - {fileID: 8803178555986753499}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -13692,13 +13692,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6426038364015529101}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9aca4e63794d347eba5c059d4c1a0229, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   team: 2
   score: 0
+  pv: {fileID: 0}
 --- !u!114 &254198442585384076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17646,6 +17647,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team: 2
   score: 0
+  pv: {fileID: 8999722921355035029}
 --- !u!114 &4459783896661882009
 MonoBehaviour:
   m_ObjectHideFlags: 0

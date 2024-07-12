@@ -49,7 +49,7 @@ public class Weapon : ScriptableObject
         if (player.tag == "AI_Player")
         {
             //TODO: Change this to Photon.Pun function
-            player.GetComponent<AI_Handler>().score += dead_player.GetComponent<Team_Handler>().GetScore() / 2 + 2;
+            player.GetComponent<AI_Handler>().AddScore(dead_player.GetComponent<Team_Handler>().GetScore() / 2 + 2);
         }
         else
         {
