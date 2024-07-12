@@ -166,7 +166,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
                         if (player.GetComponent<Team_Handler>().GetTeam() == 1)
                         {
                         
-                        team1count += player.GetComponent<AI_Handler>().score;
+                            team1count += player.GetComponent<AI_Handler>().score;
                         }
                         if (player.GetComponent<Team_Handler>().GetTeam() == 2)
                         {
@@ -306,9 +306,10 @@ public class Game_Manager : MonoBehaviourPunCallbacks
                 List<Vector3> points = respawn_points.GetComponent<RespawnPoints>().respawn_points; //respawn locations
                 ai_player.GetComponent<Respawn>().respawn_points = points;
                 ai_player.transform.position = points[Random.Range(0, points.Count)];
-                ai_players.Add(ai_player);
+                ai_players.Add(ai_player.transform.GetChild(0).gameObject);
             }
         }
+        //Debug.Log(ai_players[0] + "+" + ai_players[1] + "+" + ai_players[2]);
     }
     [PunRPC]
     public void SpawnPlayer()
