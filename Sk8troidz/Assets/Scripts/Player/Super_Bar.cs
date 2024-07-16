@@ -11,8 +11,10 @@ public class Super_Bar : MonoBehaviourPunCallbacks
     [SerializeField] GameObject super_particles;
     public void ChangeAmount(float new_amount)
     {
-        Debug.Log("changing amount" + new_amount);
-        pv.RPC("ChangeSuperBar", RpcTarget.All, new_amount);       
+        if (player.tag == "Player")
+        {
+            pv.RPC("ChangeSuperBar", RpcTarget.All, new_amount);
+        }
     }
     [PunRPC] void ChangeSuperBar(float amount)
     {

@@ -27,9 +27,32 @@ public class AI_Movement : MonoBehaviour
     void OnEnable()
     {
         current_state = State.Searching;
-        StartCoroutine(Check_For_Players());
+        StartCoroutine(Follow_Target());
         StartCoroutine(BendAndRotate());
         agent = GetComponent<NavMeshAgent>();
+    }
+    IEnumerator Find_Target()
+    {
+        while (enabled)
+        {
+            Target = null;
+            float closestDistanceSqr = Mathf.Infinity;
+            Vector3 currentPlayerPosition = this.transform.position;
+            foreach (GameObject player in playerList)
+            {
+                Vector3 directionToTarget = player.transform.position - currentPlayerPosition;
+                float dSqrToTarget = directionToTarget.sqrMagnitude;
+                if (dSqrToTarget < closestDistanceSqr)
+                {
+                    closestDistanceSqr = dSqrToTarget;
+                    Target = player.transform;
+                }
+            }
+            
+            yield return new WaitForSeconds(5f);
+
+        }
+        yield return null;
     }
     void OnCollisionStay(Collision collision)
     {
@@ -111,16 +134,6 @@ public class AI_Movement : MonoBehaviour
         }
     }
 
-    IEnumerator Check_For_Players()
-    {
-        playerList = new List<GameObject>(GameObject.FindGameObjectsWithTag("Player"));
-        yield return new WaitForSeconds(update_speed);
-        StartCoroutine(Check_For_Players());
-        if (playerList.Count > 0)
-        {
-            StartCoroutine(Follow_Target());
-        }
-    }
     IEnumerator Follow_Target()
     {     
         List<GameObject> human_players = new List<GameObject>(GameObject.FindGameObjectsWithTag("Player"));
@@ -137,7 +150,7 @@ public class AI_Movement : MonoBehaviour
             if (owner == null || localPlayer == null) return false;
             return GetComponent<Team_Handler>().GetTeam() == player.GetComponent<Team_Handler>().GetTeam();
         });
-        if (playerList.Count == 0)
+        if (playerList.Count < 1)
         {
             yield return new WaitForSeconds(update_speed);
             yield return Follow_Target();

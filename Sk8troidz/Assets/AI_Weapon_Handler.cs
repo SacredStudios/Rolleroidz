@@ -27,19 +27,18 @@ public class AI_Weapon_Handler : MonoBehaviour
     public AudioSource sound;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] GameObject laser_loc;
+    public static int index;
 
     void Start()
     {
         GameObject weapon_list = GameObject.Find("WeaponList");
-        weapon = weapon_list.GetComponent<Weapon_List>().all_weapon_list[weapon_list.GetComponent<Weapon_List>().all_weapon_list.Count -1];
-        //change this to own list of ai weapons to circumvent the problem if you choose the same weapon
+        weapon = weapon_list.GetComponent<Weapon_List>().ai_weapon_list[index++];
         curr_gun = Instantiate(weapon.instance, weapon_loc.transform);
         curr_gun.transform.position += weapon.offset;
         curr_gun.transform.parent = weapon_loc.transform;
         if (pv.IsMine)
         {
             weapon.player = this.gameObject;
-            Debug.Log(weapon.player.tag);
             weapon.super.player = weapon.player;
             agent.stoppingDistance = Random.Range(10f, 20f);
 
@@ -51,11 +50,6 @@ public class AI_Weapon_Handler : MonoBehaviour
         time_last_shot += Time.deltaTime;
         if (weapon != null)
         {
-           /* if (sb.slider.value >= 100 && weapon.isSuper == false)
-            {
-                weapon = weapon.super;
-            } */
-
             if (shoot_delay < weapon.weapon_delay)
             {
                 shoot_delay += Time.deltaTime;
@@ -91,12 +85,8 @@ public class AI_Weapon_Handler : MonoBehaviour
     }
 
     public void Shoot_Weapon()
-    {
-
-        
+    {   
         time_last_shot = 0;
-        // animator.Play("Gun Layer.Shoot", 2, 0);
-
         if (animator.GetLayerWeight(2) <= 0.5)
         {
             weapon_up = true;

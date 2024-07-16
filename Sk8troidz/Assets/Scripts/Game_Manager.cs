@@ -161,8 +161,6 @@ public class Game_Manager : MonoBehaviourPunCallbacks
                 {
                     foreach (GameObject player in ai_players)
                     {
-                        Debug.Log("check");
-                        Debug.Log(player.GetComponent<AI_Handler>().score + " is the AI_score");
                         if (player.GetComponent<Team_Handler>().GetTeam() == 1)
                         {
                         
@@ -191,7 +189,6 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     void DoubleCheck()
     {
         pv.RPC("GetTeams", RpcTarget.All, tm.GetTeamMembersCount(1), tm.GetTeamMembersCount(2));
-        Debug.Log("Double Checking");
         team1count = 0;
         team2count = 0;
         foreach (Player player in PhotonNetwork.PlayerList)

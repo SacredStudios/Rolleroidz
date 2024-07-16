@@ -7,6 +7,7 @@ public class Weapon_List : MonoBehaviour
 {
     public List<Weapon> my_weapon_list;
     public List<Weapon> all_weapon_list;
+    public List<Weapon> ai_weapon_list;
     public Weapon curr_weapon; //the current weapon
     public GameObject sk8troid_menu;
 
