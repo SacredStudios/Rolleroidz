@@ -32,6 +32,10 @@ public class AI_Weapon_Handler : MonoBehaviour
     void Start()
     {
         GameObject weapon_list = GameObject.Find("WeaponList");
+        if (index >= 3) //Hardcoded for now, change this later
+        {
+            index = 0;
+        }
         weapon = weapon_list.GetComponent<Weapon_List>().ai_weapon_list[index++];
         curr_gun = Instantiate(weapon.instance, weapon_loc.transform);
         curr_gun.transform.position += weapon.offset;

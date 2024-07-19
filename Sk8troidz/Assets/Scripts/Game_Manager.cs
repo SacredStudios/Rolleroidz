@@ -203,6 +203,17 @@ public class Game_Manager : MonoBehaviourPunCallbacks
                 team2count += player.GetScore();
             }
         }
+        foreach (GameObject player in ai_players)
+        {
+            if(player.GetComponent<Team_Handler>().GetTeam() ==  1)
+            {
+                team1count += player.GetComponentInChildren<AI_Handler>().score;
+            }
+            else
+            {
+                team2count += player.GetComponentInChildren<AI_Handler>().score;
+            }
+        }
         if (team1count >= win_score)
         {
             pv.RPC("GameOver", RpcTarget.All, 1);
