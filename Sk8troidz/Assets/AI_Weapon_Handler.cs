@@ -94,7 +94,6 @@ public class AI_Weapon_Handler : MonoBehaviour
         }
         else
         {
-
             weapon.Shoot(curr_gun, particle_pos, explosion_pos);
             if (weapon.isSuper)
             {
