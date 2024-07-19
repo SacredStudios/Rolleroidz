@@ -188,7 +188,8 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     }
     void DoubleCheck()
     {
-        pv.RPC("GetTeams", RpcTarget.All, tm.GetTeamMembersCount(1), tm.GetTeamMembersCount(2));
+        //pv.RPC("GetTeams", RpcTarget.All, tm.GetTeamMembersCount(1), tm.GetTeamMembersCount(2));
+        //TODO: Add AI_players
         team1count = 0;
         team2count = 0;
         foreach (Player player in PhotonNetwork.PlayerList)
