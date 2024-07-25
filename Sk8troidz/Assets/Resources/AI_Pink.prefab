@@ -13699,6 +13699,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team: 2
   score: 0
+  text: {fileID: 0}
   pv: {fileID: 0}
 --- !u!114 &254198442585384076
 MonoBehaviour:
@@ -17647,6 +17648,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team: 2
   score: 0
+  text: {fileID: 7695219694839551259}
   pv: {fileID: 8999722921355035029}
 --- !u!114 &4459783896661882009
 MonoBehaviour:
