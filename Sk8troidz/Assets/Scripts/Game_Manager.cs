@@ -203,15 +203,18 @@ public class Game_Manager : MonoBehaviourPunCallbacks
                 team2count += player.GetScore();
             }
         }
-        foreach (GameObject player in ai_players)
+        if (ai_players != null)
         {
-            if(player.GetComponent<Team_Handler>().GetTeam() ==  1)
+            foreach (GameObject player in ai_players)
             {
-                team1count += player.GetComponentInChildren<AI_Handler>().score;
-            }
-            else
-            {
-                team2count += player.GetComponentInChildren<AI_Handler>().score;
+                if (player.GetComponent<Team_Handler>().GetTeam() == 1)
+                {
+                    team1count += player.GetComponentInChildren<AI_Handler>().score;
+                }
+                else
+                {
+                    team2count += player.GetComponentInChildren<AI_Handler>().score;
+                }
             }
         }
         if (team1count >= win_score)
