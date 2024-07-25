@@ -13697,8 +13697,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aca4e63794d347eba5c059d4c1a0229, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: 2
+  team: 1
   score: 0
+  text: {fileID: 0}
   pv: {fileID: 0}
 --- !u!114 &254198442585384076
 MonoBehaviour:
@@ -13712,7 +13713,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa66e8bc2da3045b88f61445779a1e22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ai_team: 2
+  ai_team: 1
 --- !u!1 &6476795089022077179
 GameObject:
   m_ObjectHideFlags: 0
@@ -17645,8 +17646,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aca4e63794d347eba5c059d4c1a0229, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: 2
+  team: 1
   score: 0
+  text: {fileID: 7695219694839551259}
   pv: {fileID: 8999722921355035029}
 --- !u!114 &4459783896661882009
 MonoBehaviour:
@@ -17704,7 +17706,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa66e8bc2da3045b88f61445779a1e22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ai_team: 2
+  ai_team: 1
 --- !u!114 &4008135090205734450 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7976471394023720146, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}

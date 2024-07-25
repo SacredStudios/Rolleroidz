@@ -30,6 +30,7 @@ public class AI_Movement : MonoBehaviour
         StartCoroutine(Follow_Target());
         StartCoroutine(BendAndRotate());
         agent = GetComponent<NavMeshAgent>();
+        StartCoroutine(Find_Target());
     }
     IEnumerator Find_Target()
     {
