@@ -42,7 +42,10 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         PhotonNetwork.AutomaticallySyncScene = false;
         weapon_list = GameObject.Find("WeaponList"); //I know gameobject.find is bad. Do you have any better ideas?
         countdown.SetActive(false);
-        Debug.Log(PlayerPrefs.GetFloat("sensitivity"));
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            start_early.SetActive(false);
+        }
 
     }
     private void Start()

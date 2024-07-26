@@ -10,7 +10,7 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     [SerializeField] HoldButton trick_btn;
     [SerializeField] HoldButton jump_btn;
     [SerializeField] Slider slider;
-    [SerializeField] float speed;
+    [SerializeField] float speed; //speed the super_bar grows by
     public int counter;
     [SerializeField] GameObject parent;
     [SerializeField] GameObject player;
@@ -93,7 +93,7 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         while (((Input.GetButton("Fire2") || trick_btn.isDown) && railgrinding.progress >= 0 && railgrinding.progress <= 1) && railgrinding.onRail)
         {
             Debug.Log(animator.GetBool("trickModeActivated"));
-            slider.value += Time.deltaTime * speed/200f;
+            slider.value += Time.deltaTime * speed;
             yield return null;
         }
         animator.SetBool("trickModeActivated", false);       
