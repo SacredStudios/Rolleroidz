@@ -16,6 +16,7 @@ public class Super_Bar : MonoBehaviourPunCallbacks
             pv.RPC("ChangeSuperBar", RpcTarget.All, new_amount);
         }
     }
+    //Adds/subtracts amount from slider value
     [PunRPC] void ChangeSuperBar(float amount)
     {
         slider.value += amount;

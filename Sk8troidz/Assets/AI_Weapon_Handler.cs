@@ -63,7 +63,7 @@ public class AI_Weapon_Handler : MonoBehaviour
             if (Physics.SphereCast(ray, 1f, out hit, weapon.range)) //Target Acquired
  
             {
-                if(hit.collider.tag == "Player" || hit.collider.tag == "Player_Head")
+                if(hit.collider.tag == "Player" || hit.collider.tag == "Player_Head" || hit.collider.tag == "AI_Player" || hit.collider.tag == "AI_Head")
                 {
                    FireCheck();
                 }

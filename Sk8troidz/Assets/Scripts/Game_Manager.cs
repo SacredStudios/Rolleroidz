@@ -36,6 +36,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
 
     int count = 0;
     [SerializeField] GameObject AIPlayer;
+    [SerializeField] GameObject AIPlayer2;
     [SerializeField] GameObject start_early;
     private void Awake()
     {
@@ -52,6 +53,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     {
         my_weapon = weapon_list.GetComponent<Weapon_List>().curr_weapon;
         pv.Owner.SetScore(0);
+        Invoke("CheckForPlayersOnTime", 30f);
         //PhotonNetwork.LocalPlayer.JoinTeam((byte)Random.Range(1, 3));
     }
     
@@ -63,7 +65,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         }
         base.OnPlayerEnteredRoom(newPlayer);
         PropChange();
-        if (newPlayer == PhotonNetwork.LocalPlayer && PhotonNetwork.CurrentRoom.PlayerCount >= min_room_size && PhotonNetwork.IsMasterClient)
+        if (PhotonNetwork.CurrentRoom.PlayerCount >= min_room_size && PhotonNetwork.IsMasterClient) //why do we need this ->newPlayer == PhotonNetwork.LocalPlayer &&
         {
             StartCoroutine(CheckForPlayers());
         }
@@ -99,6 +101,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
 
 
     }
+   
     IEnumerator LeaveTeam()
     {
         yield return new WaitUntil(() => PhotonNetwork.LocalPlayer.GetPhotonTeam() == null);
@@ -111,11 +114,21 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         game_ongoing = true;
         pv.RPC("Start_Countdown", RpcTarget.All);
         SpawnAIPlayers();
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(5); //test to see if this can be a shorter time
         SpawnPlayers();
         
     }
-    
+
+    //Checks for players after 30 second timer is up
+    public void CheckForPlayersOnTime()
+    {
+        if (start_early.activeSelf)
+        {
+            start_early.SetActive(false);
+            StartCoroutine(CheckForPlayers());
+        }
+    }
+    //Checks for players after button is pressed
     public void CheckForPlayersDebug()
     {
         start_early.SetActive(false);
@@ -307,9 +320,11 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         Debug.Log(team1count + "+" + team2count);
         while (count < min_room_size- PhotonNetwork.PlayerList.Length)
         {
-            if (++count % 2 == 0)
+            Debug.Log(count);
+            count++;
+            if (count % 2 == 0)
             {
-                GameObject ai_player = PhotonNetwork.Instantiate(AIPlayer.name, position, Quaternion.identity, 0);
+                GameObject ai_player = PhotonNetwork.Instantiate(AIPlayer2.name, position, Quaternion.identity, 0);
                 List<Vector3> points = respawn_points.GetComponent<RespawnPoints>().respawn_points; //respawn locations
                 ai_player.GetComponent<Respawn>().respawn_points = points;
                 ai_player.transform.position = points[Random.Range(0, points.Count)];

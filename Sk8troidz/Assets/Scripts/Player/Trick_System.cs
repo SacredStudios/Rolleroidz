@@ -93,7 +93,7 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         while (((Input.GetButton("Fire2") || trick_btn.isDown) && railgrinding.progress >= 0 && railgrinding.progress <= 1) && railgrinding.onRail)
         {
             Debug.Log(animator.GetBool("trickModeActivated"));
-            slider.value += Time.deltaTime * speed;
+            slider.value += Time.deltaTime * speed / 200f;
             yield return null;
         }
         animator.SetBool("trickModeActivated", false);       

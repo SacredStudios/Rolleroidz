@@ -36,7 +36,7 @@ public class Respawn : MonoBehaviour
     {
         //test if AI leaves if masterclient leaves
         Debug.Log("player died");
-        Cursor.lockState = CursorLockMode.None;
+        
         currLoc = player.transform.position;
         death_anim.transform.position = currLoc;
         if (pv.IsMine)
@@ -49,6 +49,7 @@ public class Respawn : MonoBehaviour
             
             if (player.tag == "Player")
             {
+                Cursor.lockState = CursorLockMode.None;
                 cam.enabled = false;
                 player.transform.position = new Vector3(9999, 9999, 9999);
                 player.GetComponent<PlayerMovement>().enabled = false;
