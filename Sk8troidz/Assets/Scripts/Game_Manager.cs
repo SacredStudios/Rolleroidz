@@ -247,11 +247,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     [PunRPC]
     public void GameOver(int winningteam)
     {
-        if(PhotonNetwork.IsMasterClient)
-        {
-            PhotonNetwork.DestroyAll();
-        }
-            Cursor.lockState = CursorLockMode.None;
+        Cursor.lockState = CursorLockMode.None;
         if (new_player.GetComponentInChildren<PlayerMovement>() != null)
         {
             new_player.GetComponentInChildren<PlayerMovement>().enabled = false;
