@@ -26,14 +26,14 @@ public class Rolling_Meter : MonoBehaviour
         {
             number = 0;
         }
-        if (num > 9)
+        if (num > 20)
         {
-            num = 9;
+            num = 20;
         }
         elementHeight = child.GetComponent<RectTransform>().rect.height;
         Debug.Log(number);
         // Target position calculation
-        float targetYPosition = 960 - (number * elementHeight);
+        float targetYPosition = 2060 - (number * elementHeight);
         Debug.Log(targetYPosition + " is target");
 
         // Start the scrolling coroutine
