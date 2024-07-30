@@ -55,7 +55,7 @@ public class RangedWeapon : Weapon
                                     PhotonNetwork.Instantiate(death_effect.name, hit.point, Quaternion.identity);
                                     Transform oldpos = hit.collider.transform;
                                     hit.collider.transform.position = new Vector3(9999, 9999, 9999);
-                                    SpawnCoin(hit.transform.parent.gameObject, hit.point);
+                                    SpawnCoin(hit.transform.gameObject, hit.point);
                                     //ph.PlayerLastHit(pv.ViewID); //base this off of the gameObject, not ID
                                     parent.GetComponentInParent<Super_Bar>().ChangeAmount(35);
 
