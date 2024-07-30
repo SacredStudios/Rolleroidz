@@ -49,11 +49,11 @@ public class Weapon : ScriptableObject
         if (player.tag == "AI_Player")
         {
             //TODO: Change this to Photon.Pun function
-            player.GetComponent<AI_Handler>().AddScore(dead_player.GetComponent<Team_Handler>().GetScore() / 2 + 2);
+            player.GetComponent<AI_Handler>().AddScore(dead_player.GetComponent<Team_Handler>().GetScore() + 2);
         }
         else
         {
-            player_photon.AddScore((dead_player.GetComponent<Team_Handler>().GetScore() / 2) + 2);
+            player_photon.AddScore((dead_player.GetComponent<Team_Handler>().GetScore()) + 2);
         }
         //pv.RPC("PrintKO", RpcTarget.All, player_photon.NickName, dead_player_photon.NickName); 
     }
