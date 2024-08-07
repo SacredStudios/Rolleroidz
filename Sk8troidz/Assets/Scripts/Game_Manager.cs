@@ -277,12 +277,14 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     }
     void WinScreen()
     {
+        lobby_cam.SetActive(true);
         gameover_screen.SetActive(true);
         gameover_text.text =" YOU WIN";
         Debug.Log("You Win");
     }
     void LoseScreen()
     {
+        lobby_cam.SetActive(true);
         gameover_screen.SetActive(true);
         gameover_text.text = " YOU LOSE";
         Debug.Log("You Lose");
