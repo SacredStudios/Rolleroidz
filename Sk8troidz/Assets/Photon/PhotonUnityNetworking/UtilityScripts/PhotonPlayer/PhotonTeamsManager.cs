@@ -485,7 +485,6 @@ namespace Photon.Pun.UtilityScripts
         {
         }
 
-      
         #endregion
     }
 

@@ -136,5 +136,9 @@ public class MenuController : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.LoadLevel("DebugRoom");
     }
-    
+    public void LoadTutorial()
+    {
+        PhotonNetwork.LoadLevel("TutorialRoom");
+    }
+
 }
