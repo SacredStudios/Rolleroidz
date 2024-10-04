@@ -8,9 +8,12 @@ public class DialogTrigger : MonoBehaviour
     [SerializeField] Text_Manager tm;
     void OnTriggerEnter(Collider other)
     {
-        text.gameObject.SetActive(true);
-        tm.SetText(text.gameObject);
-        Invoke("HideText", 10f);
+        if (!text.gameObject.activeInHierarchy) 
+        {
+            text.gameObject.SetActive(true);
+            tm.SetText(text.gameObject);
+            Invoke("HideText", 10f);
+        }
     }
 
     public void HideText()
