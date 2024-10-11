@@ -13650,8 +13650,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Score: 0
-  score_mine: {fileID: 7647086874312537764}
-  score_others: {fileID: 7695219694839551259}
 --- !u!114 &2800908684236408644
 MonoBehaviour:
   m_ObjectHideFlags: 0
