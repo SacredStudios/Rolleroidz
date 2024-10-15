@@ -17,7 +17,10 @@ public class GameManager : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("Joined room, now instantiating player.");
-        PhotonNetwork.Instantiate(player_assets.name, this.transform.position, this.transform.rotation);
+        GameObject player = PhotonNetwork.Instantiate(player_assets.name, this.transform.position, this.transform.rotation);
+        player.transform.GetChild(3).gameObject.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public override void OnJoinRandomFailed(short returnCode, string message)
