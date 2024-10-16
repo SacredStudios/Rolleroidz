@@ -784,6 +784,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8883766866366520986, guid: 75d7d5311f7703a488bf706b3c0eacf3, type: 3}
+      propertyPath: m_Text
+      value: Move around with the arrow keys, (WASD)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
