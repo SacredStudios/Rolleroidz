@@ -1,5 +1,6 @@
 using Photon.Pun;
 using UnityEngine;
+using Photon.Pun.UtilityScripts;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
@@ -22,6 +23,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         WeaponList = GameObject.Find("WeaponList");
         GameObject player = PhotonNetwork.Instantiate(player_assets.name, this.transform.position, this.transform.rotation);
         player.GetComponentInChildren<Weapon_Handler>().weapon = WeaponList.GetComponent<Weapon_List>().curr_weapon;
+        player.GetComponent<PhotonView>().Owner.JoinTeam(1);
         //player.transform.GetChild(3).gameObject.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;

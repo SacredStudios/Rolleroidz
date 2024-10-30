@@ -33,10 +33,8 @@ public class Text_Reveal : MonoBehaviour
 
     private IEnumerator RevealText()
     {
-        Debug.Log("This is a test for coroutine");
         for (int i = 0; i <= fullText.Length; i++)
         {
-            Debug.Log("This is the " + i +"th test for coroutine");
             textComponent.text = fullText.Substring(0, i);
             yield return new WaitForSeconds(revealDelay);
         }
