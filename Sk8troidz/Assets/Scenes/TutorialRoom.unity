@@ -1185,6 +1185,8 @@ Transform:
   - {fileID: 1170261867}
   - {fileID: 7467834547668490445}
   - {fileID: 1640921059}
+  - {fileID: 1226924467}
+  - {fileID: 1788204213}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &770778841
@@ -1421,6 +1423,93 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 7467834547058079875, guid: 75d7d5311f7703a488bf706b3c0eacf3, type: 3}
   m_PrefabInstance: {fileID: 252260880761370787}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1226924466
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 770778840}
+    m_Modifications:
+    - target: {fileID: 492396183366247129, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: revealDelay
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 1064262062573109374, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_Name
+      value: DialogTrigger4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1293438790315818706, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1293438790315818706, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1293438790315818706, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 133.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1293438790315818706, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1293438790315818706, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1293438790315818706, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1293438790315818706, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1293438790315818706, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1293438790315818706, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1293438790315818706, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7666056725268992662, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7791580049179979134, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 19.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8379869421196537700, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8748765527607836951, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_Text
+      value: Try holding "T" to trick on the rail. Be sure to let go before you reach
+        the end!
+      objectReference: {fileID: 0}
+    - target: {fileID: 9016860579201604732, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: tm
+      value: 
+      objectReference: {fileID: 770778841}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+--- !u!4 &1226924467 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1293438790315818706, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+  m_PrefabInstance: {fileID: 1226924466}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1415149452
 GameObject:
@@ -1780,6 +1869,88 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player_assets: {fileID: 6426038364015529101, guid: fe0a9f3acf38b2547b140b4aae9b2b42, type: 3}
+--- !u!1001 &1788204212
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 770778840}
+    m_Modifications:
+    - target: {fileID: 1064262062573109374, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_Name
+      value: DialogTrigger5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1293438790315818706, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1293438790315818706, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 23.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1293438790315818706, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 252.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1293438790315818706, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1293438790315818706, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1293438790315818706, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1293438790315818706, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1293438790315818706, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1293438790315818706, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1293438790315818706, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7666056725268992662, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7791580049179979134, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 19.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8379869421196537700, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8748765527607836951, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_Text
+      value: You can also trick if you are airborne!
+      objectReference: {fileID: 0}
+    - target: {fileID: 9016860579201604732, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: tm
+      value: 
+      objectReference: {fileID: 770778841}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+--- !u!4 &1788204213 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1293438790315818706, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+  m_PrefabInstance: {fileID: 1788204212}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1853613638
 GameObject:
   m_ObjectHideFlags: 0
@@ -2224,7 +2395,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8883766866366520986, guid: 75d7d5311f7703a488bf706b3c0eacf3, type: 3}
       propertyPath: m_Text
-      value: "Sup. \nMove around with the arrow keys, (WASD)"
+      value: "Hey! \nRun with the arrow keys, (WASD)"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
