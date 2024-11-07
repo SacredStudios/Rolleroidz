@@ -60,7 +60,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
     [SerializeField] AudioSource offground_sound;
     [SerializeField] AudioSource landing_sound;
     public bool onRail;
-    public List<GameObject> landing_list;
+    [SerializeField] public static List<GameObject> landing_list;
     void Start()
     {
         maxSpeedBase = maxSpeed;

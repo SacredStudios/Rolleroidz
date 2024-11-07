@@ -22,7 +22,9 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     [SerializeField] GameObject crosshair;
     [SerializeField] Railgrinding railgrinding;
     Super_Bar sb;
-    
+
+    [SerializeField] float total_multiplier_duration = 5f;
+    [SerializeField] float multiplier_duration = 0;
 
     void Start()
     {
@@ -36,7 +38,11 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     public void Start_Trick_System()
     {
         counter = 0;
-        PlayerMovement.trick_mode_activated = true;
+        PlayerMovement.trick_mode_activated = true; //redundant code, could be moved to Trick() coroutine
+        if (multiplier_duration == 0) 
+        {
+            PlayerMovement.landing_list.Clear();
+        }
         wh.weapon = null;
         crosshair.SetActive(false);
         animator.SetLayerWeight(2, 0);
@@ -47,6 +53,10 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     public void Start_Rail_Trick_System()
     {
         PlayerMovement.trick_mode_activated = true;
+        if (multiplier_duration == 0)
+        {
+            PlayerMovement.landing_list.Clear();
+        }
         wh.weapon = null;
         crosshair.SetActive(false);
         animator.SetLayerWeight(2, 0f);
