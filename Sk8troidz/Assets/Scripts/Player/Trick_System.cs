@@ -22,6 +22,7 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     [SerializeField] GameObject crosshair;
     [SerializeField] Railgrinding railgrinding;
     Super_Bar sb;
+    
 
     void Start()
     {

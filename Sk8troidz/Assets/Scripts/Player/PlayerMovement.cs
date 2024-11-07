@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 using Photon.Pun;
 using Photon.Realtime;
 
+
 public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
 {
 
@@ -59,7 +60,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
     [SerializeField] AudioSource offground_sound;
     [SerializeField] AudioSource landing_sound;
     public bool onRail;
-
+    public List<GameObject> landing_list;
     void Start()
     {
         maxSpeedBase = maxSpeed;
@@ -257,6 +258,8 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
     {
         if (Physics.Raycast(jump_pos.transform.position, Vector3.down, rayCastLength)) //IsJumping
         {
+            landing_list.Add(collision.gameObject);
+            Debug.Log(landing_list);
             animator.SetFloat("IsJumping", 0f);
             if (hasLanded == false) {
                 Land();
