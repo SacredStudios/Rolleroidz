@@ -1942,6 +1942,9 @@ MonoBehaviour:
   animator: {fileID: 4471843123587727704}
   crosshair: {fileID: 1854916410952173134}
   railgrinding: {fileID: 8496117777071962040}
+  total_multiplier_duration: 5
+  multiplier_duration: 0
+  multiplier: 0
 --- !u!114 &7789752532816426779
 MonoBehaviour:
   m_ObjectHideFlags: 0

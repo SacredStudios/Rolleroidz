@@ -1,3 +1,4 @@
+using Photon.Pun.UtilityScripts;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,6 +26,7 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     [SerializeField] float total_multiplier_duration = 5f;
     [SerializeField] float multiplier_duration = 0;
+    [SerializeField] float multiplier = 0;
 
     void Start()
     {
@@ -39,10 +41,14 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         counter = 0;
         PlayerMovement.trick_mode_activated = true; //redundant code, could be moved to Trick() coroutine
-        if (multiplier_duration == 0) 
+        if (multiplier_duration <= 0) 
         {
+            multiplier = 0;
             PlayerMovement.landing_list.Clear();
+            StartCoroutine(StartCountdown());
         }
+        
+        
         wh.weapon = null;
         crosshair.SetActive(false);
         animator.SetLayerWeight(2, 0);
@@ -53,10 +59,13 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     public void Start_Rail_Trick_System()
     {
         PlayerMovement.trick_mode_activated = true;
-        if (multiplier_duration == 0)
+        if (multiplier_duration <= 0)
         {
+            multiplier = 0;
             PlayerMovement.landing_list.Clear();
+            StartCoroutine(StartCountdown());
         }
+        
         wh.weapon = null;
         crosshair.SetActive(false);
         animator.SetLayerWeight(2, 0f);
@@ -73,7 +82,9 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     }
     IEnumerator Trick(int n)
     {
-
+        Debug.Log(multiplier + " is the multiplier");
+        multiplier_duration = total_multiplier_duration;
+        multiplier++;
         while ((Input.GetButton("Fire2") || trick_btn.isDown) && PlayerMovement.trick_mode_activated == true && slider.value != slider.maxValue)
         {
             slider.value += Time.deltaTime * speed;
@@ -101,10 +112,11 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     }
     IEnumerator RailTrick()
     {
+        multiplier_duration = total_multiplier_duration;
+        multiplier++;
         while (((Input.GetButton("Fire2") || trick_btn.isDown) && railgrinding.progress >= 0 && railgrinding.progress <= 1) && railgrinding.onRail)
         {
-            Debug.Log(animator.GetBool("trickModeActivated"));
-            slider.value += Time.deltaTime * speed / 200f;
+            slider.value += (Time.deltaTime * speed / 200f) * (multiplier+1);
             yield return null;
         }
         animator.SetBool("trickModeActivated", false);       
@@ -134,6 +146,19 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             Ragdoll rd = player.GetComponent<Ragdoll>();
             rd.ActivateRagdolls();
         }
+    }
+    private IEnumerator StartCountdown()
+    {
+        
+        while (multiplier_duration > 0)
+        {
+            yield return new WaitForSeconds(1f);
+            multiplier_duration --;
+            Debug.Log(multiplier_duration + " is the multiplier_duration");
+        }
+
+        multiplier_duration = 0;
+        multiplier = 0;
     }
     public void OnPointerEnter(PointerEventData eventData)
     {

@@ -73,6 +73,10 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
             vcam.SetActive(false);
             this.gameObject.GetComponent<PlayerMovement>().enabled = false;
         }
+        else
+        {
+            landing_list = new List<GameObject>();
+        }
         sensitivity = PlayerPrefs.GetFloat("mouse_sensitivity");
     }
     private void FixedUpdate()
