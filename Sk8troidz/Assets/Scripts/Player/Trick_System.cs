@@ -1,6 +1,8 @@
 using Photon.Pun.UtilityScripts;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -43,12 +45,21 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         PlayerMovement.trick_mode_activated = true; //redundant code, could be moved to Trick() coroutine
         if (multiplier_duration <= 0) 
         {
+            multiplier_duration = total_multiplier_duration;
             multiplier = 0;
             PlayerMovement.landing_list.Clear();
             StartCoroutine(StartCountdown());
         }
-        
-        
+        if (PlayerMovement.landing_list.Count != 0)
+        {
+            var lastItem = PlayerMovement.landing_list.Last();
+            if (PlayerMovement.landing_list.Count(item => item == lastItem) <= 1)
+            {
+                multiplier_duration = total_multiplier_duration;
+                multiplier++;
+            }
+        }
+
         wh.weapon = null;
         crosshair.SetActive(false);
         animator.SetLayerWeight(2, 0);
@@ -58,14 +69,28 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public void Start_Rail_Trick_System()
     {
+
         PlayerMovement.trick_mode_activated = true;
+
         if (multiplier_duration <= 0)
         {
+            multiplier_duration = total_multiplier_duration;
             multiplier = 0;
             PlayerMovement.landing_list.Clear();
             StartCoroutine(StartCountdown());
         }
-        
+        if (PlayerMovement.landing_list.Count != 0)
+        {
+            var lastItem = PlayerMovement.landing_list.Last();
+            if (lastItem != null)
+            {
+                if (PlayerMovement.landing_list.Count(item => item == lastItem) <= 1)
+                {
+                    multiplier_duration = total_multiplier_duration;
+                    multiplier++;
+                }
+            }
+        }
         wh.weapon = null;
         crosshair.SetActive(false);
         animator.SetLayerWeight(2, 0f);
@@ -83,11 +108,10 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     IEnumerator Trick(int n)
     {
         Debug.Log(multiplier + " is the multiplier");
-        multiplier_duration = total_multiplier_duration;
-        multiplier++;
+        
         while ((Input.GetButton("Fire2") || trick_btn.isDown) && PlayerMovement.trick_mode_activated == true && slider.value != slider.maxValue)
         {
-            slider.value += Time.deltaTime * speed;
+            slider.value += (Time.deltaTime * speed) * (multiplier);
             yield return null;
         }
         // player.GetComponent<Animator>().enabled = false;
@@ -112,11 +136,9 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     }
     IEnumerator RailTrick()
     {
-        multiplier_duration = total_multiplier_duration;
-        multiplier++;
         while (((Input.GetButton("Fire2") || trick_btn.isDown) && railgrinding.progress >= 0 && railgrinding.progress <= 1) && railgrinding.onRail)
         {
-            slider.value += (Time.deltaTime * speed / 200f) * (multiplier+1);
+            slider.value += (Time.deltaTime * speed / 200f) * (multiplier);
             yield return null;
         }
         animator.SetBool("trickModeActivated", false);       

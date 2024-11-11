@@ -50,7 +50,18 @@ public class Railgrinding : MonoBehaviour
             MoveAlongRail();           
         }
     }
-    
+    private void Update()
+    {
+        if (onRail == true)
+        {
+            if (Input.GetButtonDown("Jump"))
+            {
+                JumpOffRail();
+ 
+            }
+        }
+    }
+
     void MoveAlongRail()
     {
         
