@@ -30,6 +30,7 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     [SerializeField] float multiplier_duration = 0;
     [SerializeField] float multiplier = 0;
     [SerializeField] List<GameObject> list;
+    [SerializeField] Slider duration_slider;
 
     void Start()
     {
@@ -168,10 +169,11 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         
         while (multiplier_duration > 0)
         {
+            duration_slider.value = multiplier_duration;
             yield return new WaitForSeconds(1f);
             multiplier_duration --;
         }
-
+        duration_slider.value = multiplier_duration;
         multiplier_duration = 0;
         multiplier = 0;
     }
