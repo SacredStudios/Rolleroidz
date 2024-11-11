@@ -29,6 +29,7 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     [SerializeField] float total_multiplier_duration = 5f;
     [SerializeField] float multiplier_duration = 0;
     [SerializeField] float multiplier = 0;
+    [SerializeField] List<GameObject> list;
 
     void Start()
     {
@@ -36,6 +37,7 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         wh = player.GetComponent<Weapon_Handler>();
         sb = player.GetComponent<Super_Bar>();
         Cursor.lockState = CursorLockMode.Locked;
+        list = new List<GameObject>();
 
     }
     
@@ -46,18 +48,15 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         if (multiplier_duration <= 0) 
         {
             multiplier_duration = total_multiplier_duration;
-            multiplier = 0;
-            PlayerMovement.landing_list.Clear();
+            multiplier = 1;
+            list.Clear();
             StartCoroutine(StartCountdown());
         }
-        if (PlayerMovement.landing_list.Count != 0)
+       if (!list.Contains(PlayerMovement.last_collision))
         {
-            var lastItem = PlayerMovement.landing_list.Last();
-            if (PlayerMovement.landing_list.Count(item => item == lastItem) <= 1)
-            {
-                multiplier_duration = total_multiplier_duration;
-                multiplier++;
-            }
+            list.Add(PlayerMovement.last_collision);
+            multiplier++;
+            multiplier_duration = total_multiplier_duration;
         }
 
         wh.weapon = null;
@@ -75,21 +74,15 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         if (multiplier_duration <= 0)
         {
             multiplier_duration = total_multiplier_duration;
-            multiplier = 0;
-            PlayerMovement.landing_list.Clear();
+            multiplier = 1;
+            list.Clear();
             StartCoroutine(StartCountdown());
         }
-        if (PlayerMovement.landing_list.Count != 0)
+        if (!list.Contains(PlayerMovement.last_collision))
         {
-            var lastItem = PlayerMovement.landing_list.Last();
-            if (lastItem != null)
-            {
-                if (PlayerMovement.landing_list.Count(item => item == lastItem) <= 1)
-                {
-                    multiplier_duration = total_multiplier_duration;
-                    multiplier++;
-                }
-            }
+            list.Add(PlayerMovement.last_collision);
+            multiplier++;
+            multiplier_duration = total_multiplier_duration;
         }
         wh.weapon = null;
         crosshair.SetActive(false);
@@ -136,6 +129,7 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     }
     IEnumerator RailTrick()
     {
+        Debug.Log(multiplier + " is the multiplier");
         while (((Input.GetButton("Fire2") || trick_btn.isDown) && railgrinding.progress >= 0 && railgrinding.progress <= 1) && railgrinding.onRail)
         {
             slider.value += (Time.deltaTime * speed / 200f) * (multiplier);
@@ -176,7 +170,6 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         {
             yield return new WaitForSeconds(1f);
             multiplier_duration --;
-            Debug.Log(multiplier_duration + " is the multiplier_duration");
         }
 
         multiplier_duration = 0;

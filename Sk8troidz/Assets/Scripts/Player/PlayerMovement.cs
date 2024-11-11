@@ -60,7 +60,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
     [SerializeField] AudioSource offground_sound;
     [SerializeField] AudioSource landing_sound;
     public bool onRail;
-    [SerializeField] public static List<GameObject> landing_list;
+    [SerializeField] public static GameObject last_collision;
     void Start()
     {
         maxSpeedBase = maxSpeed;
@@ -73,10 +73,8 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
             vcam.SetActive(false);
             this.gameObject.GetComponent<PlayerMovement>().enabled = false;
         }
-        else
-        {
-            landing_list = new List<GameObject>();
-        }
+        
+        
         sensitivity = PlayerPrefs.GetFloat("mouse_sensitivity");
     }
     private void FixedUpdate()
@@ -262,8 +260,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
     {
         if (Physics.Raycast(jump_pos.transform.position, Vector3.down, rayCastLength)) //IsJumping
         {
-            landing_list.Add(collision.gameObject);
-            Debug.Log(landing_list);
+            last_collision = collision.gameObject;
             animator.SetFloat("IsJumping", 0f);
             if (hasLanded == false) {
                 Land();
