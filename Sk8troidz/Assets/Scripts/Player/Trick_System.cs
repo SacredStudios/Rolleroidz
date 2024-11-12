@@ -170,8 +170,8 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         while (multiplier_duration > 0)
         {
             duration_slider.value = multiplier_duration;
-            yield return new WaitForSeconds(1f);
-            multiplier_duration --;
+            yield return new WaitForSeconds(0.2f);
+            multiplier_duration -= 0.2f;
         }
         duration_slider.value = multiplier_duration;
         multiplier_duration = 0;

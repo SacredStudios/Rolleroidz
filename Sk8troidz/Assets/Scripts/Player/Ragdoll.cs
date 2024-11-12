@@ -34,7 +34,6 @@ public class Ragdoll : MonoBehaviourPunCallbacks
             pv.RPC("SyncRagdoll", RpcTarget.All, id);
         }
         pm.enabled = false;
-        Debug.Log(ragdoll_follow.transform.position);
         camera.GetComponent<CinemachineVirtualCamera>().Follow = ragdoll_follow.transform;
         GetComponent<Weapon_Handler>().weapon = null;
         is_Ragdoll = true;
