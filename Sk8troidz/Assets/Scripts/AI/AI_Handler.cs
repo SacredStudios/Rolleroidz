@@ -19,7 +19,6 @@ public class AI_Handler : MonoBehaviour
     [PunRPC] public void SyncScore(int new_score)
     {
         text.text = "" + new_score;
-        Debug.Log(new_score + " is the new score");
         if (this.gameObject.tag == "AI_Player")
         {
             score = new_score;

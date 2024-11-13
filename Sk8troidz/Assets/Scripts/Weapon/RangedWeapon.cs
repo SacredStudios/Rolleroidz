@@ -43,7 +43,6 @@ public class RangedWeapon : Weapon
                     //"if()" is a good name of a book
                     if ((hit.collider.tag == "AI_Player" || hit.collider.tag == "Player") && hit.collider.GetComponent<Team_Handler>().GetTeam() != player.GetComponent<Team_Handler>().GetTeam())
                     {
-                        Debug.Log("hit");
                         Player_Health ph = hit.collider.GetComponent<Player_Health>();
                         if (ph != null)
                         {
@@ -67,7 +66,6 @@ public class RangedWeapon : Weapon
                         }
                         else
                         {
-                            Debug.Log("hit");
                         }
                         //call function from individual joints
                         // Debug.Log(hit.collider.gameObject.GetComponent<PhotonView>().Owner.GetPhotonTeam() + "+" + pv.Owner.GetPhotonTeam());
@@ -75,20 +73,17 @@ public class RangedWeapon : Weapon
                     }
                     else if ((hit.collider.tag == "AI_Head" || hit.collider.tag == "Player_Head") && hit.collider.GetComponentInParent<Team_Handler>().GetTeam() != player.GetComponent<Team_Handler>().GetTeam())
                     {
-                        Debug.Log(hit.collider.GetComponentInParent<Team_Handler>().GetTeam());
                         Player_Health ph = hit.collider.GetComponentInParent<Player_Health>();
                         if (ph != null)
                         {
                             if (ph.current_health > 0)
                             {
-                                Debug.Log("headshot");
                                 if (ph.current_health - (damage * 1.5) <= 0)
                                 {
                                     PhotonNetwork.Instantiate(death_effect.name, hit.point, Quaternion.identity);
                                     Transform oldpos = hit.collider.transform;
                                     hit.collider.transform.position = new Vector3(9999, 9999, 9999);
                                     SpawnCoin(hit.transform.parent.gameObject, hit.point);
-                                    Debug.Log("it works");
                                     //ph.PlayerLastHit(pv.ViewID);
                                     parent.GetComponentInParent<Super_Bar>().ChangeAmount(35);
 
@@ -98,7 +93,6 @@ public class RangedWeapon : Weapon
                         }
                         else
                         {
-                            Debug.Log("hit");
                         }
                         //Debug.Log("HeadShot");
 

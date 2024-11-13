@@ -31,10 +31,8 @@ public class Rolling_Meter : MonoBehaviour
             num = 20;
         }
         elementHeight = child.GetComponent<RectTransform>().rect.height;
-        Debug.Log(number);
         // Target position calculation
         float targetYPosition = 2060 - (number * elementHeight);
-        Debug.Log(targetYPosition + " is target");
 
         // Start the scrolling coroutine
         StartCoroutine(SmoothScroll(targetYPosition));

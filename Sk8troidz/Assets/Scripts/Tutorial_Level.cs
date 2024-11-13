@@ -12,14 +12,12 @@ public class GameManager : MonoBehaviourPunCallbacks
         if (!PhotonNetwork.InRoom)
         {
             PhotonNetwork.JoinRandomRoom();
-            Debug.Log("Attempting to join a random room...");
         }
     }
 
     public override void OnJoinedRoom()
     {
 
-        Debug.Log("Joined room, now instantiating player.");
         WeaponList = GameObject.Find("WeaponList");
         GameObject player = PhotonNetwork.Instantiate(player_assets.name, this.transform.position, this.transform.rotation);
         player.GetComponentInChildren<Weapon_Handler>().weapon = WeaponList.GetComponent<Weapon_List>().curr_weapon;

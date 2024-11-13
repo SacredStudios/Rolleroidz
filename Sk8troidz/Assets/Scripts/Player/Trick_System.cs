@@ -101,7 +101,6 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     }
     IEnumerator Trick(int n)
     {
-        Debug.Log(multiplier + " is the multiplier");
         
         while ((Input.GetButton("Fire2") || trick_btn.isDown) && PlayerMovement.trick_mode_activated == true && slider.value != slider.maxValue)
         {
@@ -130,7 +129,6 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     }
     IEnumerator RailTrick()
     {
-        Debug.Log(multiplier + " is the multiplier");
         while (((Input.GetButton("Fire2") || trick_btn.isDown) && railgrinding.progress >= 0 && railgrinding.progress <= 1) && railgrinding.onRail)
         {
             slider.value += (Time.deltaTime * speed / 200f) * (multiplier);

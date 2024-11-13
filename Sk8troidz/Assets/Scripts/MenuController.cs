@@ -44,7 +44,6 @@ public class MenuController : MonoBehaviourPunCallbacks
         if (PlayerPrefs.HasKey("nickname"))
         {
             input_field.text = PlayerPrefs.GetString("nickname");
-            Debug.Log(input_field.text);
         }
         //DontDestroyOnLoad(this.gameObject);
 
