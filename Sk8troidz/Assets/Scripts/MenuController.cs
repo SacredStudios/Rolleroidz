@@ -45,9 +45,13 @@ public class MenuController : MonoBehaviourPunCallbacks
         {
             input_field.text = PlayerPrefs.GetString("nickname");
         }
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
         //DontDestroyOnLoad(this.gameObject);
 
     }
+   
     public override void OnConnectedToMaster()
     {
         PhotonNetwork.JoinLobby(TypedLobby.Default);

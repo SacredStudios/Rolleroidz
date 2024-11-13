@@ -32,4 +32,12 @@ public class GameManager : MonoBehaviourPunCallbacks
         Debug.Log("Failed to join random room, creating a new room.");
         PhotonNetwork.CreateRoom(null);
     }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            PhotonNetwork.LocalPlayer.LeaveCurrentTeam();
+            PhotonNetwork.LeaveRoom();
+            PhotonNetwork.LoadLevel("StartingScene");
+        }
+    }
 }
