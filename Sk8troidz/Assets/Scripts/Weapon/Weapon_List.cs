@@ -60,7 +60,6 @@ public class Weapon_List : MonoBehaviour
     {
         curr_weapon = weapon;
         sk8troid_menu.GetComponent<Clothes_Dummy>().ChangeWeapon(weapon);
-        Debug.Log(curr_weapon.name);
         weapon_name.GetComponent<Text>().text = weapon.weapon_name;
         description.GetComponent<Text>().text = weapon.weapon_description;
         damage_slider.GetComponent<Slider>().value = weapon.damage;

@@ -14,7 +14,6 @@ public class PlayControlsSettings : MonoBehaviour
         }
         else
         {
-            Debug.Log(slider.value);
             slider.value = PlayerPrefs.GetFloat("mouse_sensitivity");
         }
     }

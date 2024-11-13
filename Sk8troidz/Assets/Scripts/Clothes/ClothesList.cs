@@ -77,7 +77,6 @@ public class ClothesList : MonoBehaviour
                     
                     if(clothing.name == name)
                     {
-                        Debug.Log(name + clothing.name);
                         ChangeClothes(clothing);
                     }
                 }
@@ -88,7 +87,6 @@ public class ClothesList : MonoBehaviour
 
                     if (clothing.name == name)
                     {
-                        Debug.Log(name + clothing.name);
                         ChangeClothes(clothing);
                     }
                 }
@@ -99,7 +97,6 @@ public class ClothesList : MonoBehaviour
 
                     if (clothing.name == name)
                     {
-                        Debug.Log(name + clothing.name);
                         ChangeClothes(clothing);
                     }
                 }
@@ -110,7 +107,6 @@ public class ClothesList : MonoBehaviour
 
                     if (clothing.name == name)
                     {
-                        Debug.Log(name + clothing.name);
                         ChangeClothes(clothing);
                     }
                 }
