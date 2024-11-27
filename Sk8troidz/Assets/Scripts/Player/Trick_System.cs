@@ -56,7 +56,7 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
        if (!list.Contains(PlayerMovement.last_collision))
         {
             list.Add(PlayerMovement.last_collision);
-            multiplier++;
+            multiplier+=0.5f;
             multiplier_duration = total_multiplier_duration;
         }
 
@@ -82,7 +82,7 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         if (!list.Contains(PlayerMovement.last_collision))
         {
             list.Add(PlayerMovement.last_collision);
-            multiplier++;
+            multiplier+=0.5f;
             multiplier_duration = total_multiplier_duration;
         }
         wh.weapon = null;
