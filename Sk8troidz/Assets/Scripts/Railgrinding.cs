@@ -144,7 +144,6 @@ public class Railgrinding : MonoBehaviour
 
     void SetRailPosition()
     {
-        Debug.Log("setting rail position");
         time_for_spline = curr_rail.length / speed;
         
         Vector3 spline_point;

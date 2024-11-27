@@ -1944,6 +1944,8 @@ MonoBehaviour:
   total_multiplier_duration: 5
   multiplier_duration: 0
   multiplier: 0
+  list: []
+  duration_slider: {fileID: 0}
 --- !u!114 &7789752532816426779
 MonoBehaviour:
   m_ObjectHideFlags: 0
