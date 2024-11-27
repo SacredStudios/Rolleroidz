@@ -1947,7 +1947,7 @@ MonoBehaviour:
   railgrinding: {fileID: 8496117777071962040}
   total_multiplier_duration: 10
   multiplier_duration: 0
-  multiplier: 0
+  multiplier: 0.5
   list: []
   duration_slider: {fileID: 4633097683469870734}
 --- !u!114 &7789752532816426779

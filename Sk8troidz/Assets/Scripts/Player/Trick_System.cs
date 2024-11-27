@@ -28,7 +28,7 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     [SerializeField] float total_multiplier_duration = 5f;
     [SerializeField] float multiplier_duration = 0;
-    [SerializeField] float multiplier = 0;
+    [SerializeField] float multiplier = 0.5f;
     [SerializeField] List<GameObject> list;
     [SerializeField] Slider duration_slider;
 
@@ -49,7 +49,7 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         if (multiplier_duration <= 0) 
         {
             multiplier_duration = total_multiplier_duration;
-            multiplier = 1;
+            multiplier = 0.5f;
             list.Clear();
             StartCoroutine(StartCountdown());
         }
@@ -75,7 +75,7 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         if (multiplier_duration <= 0)
         {
             multiplier_duration = total_multiplier_duration;
-            multiplier = 1;
+            multiplier = 0.5f;
             list.Clear();
             StartCoroutine(StartCountdown());
         }
