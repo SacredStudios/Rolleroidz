@@ -61,6 +61,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
     [SerializeField] AudioSource landing_sound;
     public bool onRail;
     [SerializeField] public static GameObject last_collision;
+    [SerializeField] Trick_System ts;
     void Start()
     {
         maxSpeedBase = maxSpeed;
@@ -143,7 +144,6 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
                 {
                     if (!trick_mode_activated && time_airborne > 1.5f)
                     {
-                        Trick_System ts = trick.GetComponent<Trick_System>();
                         ts.Start_Trick_System();
                         trick_mode_activated = true;
                         Debug.Log("trick");

@@ -34,13 +34,13 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     void Start()
     {
-
         wh = player.GetComponent<Weapon_Handler>();
         sb = player.GetComponent<Super_Bar>();
         Cursor.lockState = CursorLockMode.Locked;
         list = new List<GameObject>();
 
     }
+    
     
     public void Start_Trick_System()
     {
@@ -56,8 +56,7 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
        if (!list.Contains(PlayerMovement.last_collision))
         {
             list.Add(PlayerMovement.last_collision);
-            multiplier+=0.5f;
-            multiplier_duration = total_multiplier_duration;
+            Add_To_Multiplier();
         }
 
         wh.weapon = null;
@@ -65,6 +64,15 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         animator.SetLayerWeight(2, 0);
         animator.SetBool("trickModeActivated", true);
         StartCoroutine(Trick(4));
+    }
+    public void Add_To_Multiplier()
+    {
+        multiplier += 0.5f;
+        multiplier_duration = total_multiplier_duration;
+        if (multiplier_duration <= 0)
+        {
+            //StartCoroutine(StartCountdown());
+        }
     }
 
     public void Start_Rail_Trick_System()
@@ -82,8 +90,7 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         if (!list.Contains(PlayerMovement.last_collision))
         {
             list.Add(PlayerMovement.last_collision);
-            multiplier+=0.5f;
-            multiplier_duration = total_multiplier_duration;
+            Add_To_Multiplier();
         }
         wh.weapon = null;
         crosshair.SetActive(false);

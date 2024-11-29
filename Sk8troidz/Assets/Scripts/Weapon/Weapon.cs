@@ -52,6 +52,7 @@ public class Weapon : ScriptableObject
         }
         else
         {
+            player.GetComponentInChildren<Trick_System>().Add_To_Multiplier();
             player_photon.AddScore((dead_player.GetComponent<Team_Handler>().GetScore() / 2) + 2);
         }
         //pv.RPC("PrintKO", RpcTarget.All, player_photon.NickName, dead_player_photon.NickName); 
