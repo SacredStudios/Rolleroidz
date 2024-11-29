@@ -158,6 +158,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     {
        if(PhotonNetwork.IsMasterClient)
         {
+            Debug.Log("Somebody died lol");
                 team1count = 0;
                 team2count = 0;
                 foreach (Player player in PhotonNetwork.PlayerList)
