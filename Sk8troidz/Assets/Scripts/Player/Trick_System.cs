@@ -67,12 +67,13 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     }
     public void Add_To_Multiplier()
     {
-        multiplier += 0.5f;
-        multiplier_duration = total_multiplier_duration;
         if (multiplier_duration <= 0)
         {
-            //StartCoroutine(StartCountdown());
+            StartCoroutine(StartCountdown());
         }
+        multiplier += 0.5f;
+        multiplier_duration = total_multiplier_duration;
+        
     }
 
     public void Start_Rail_Trick_System()
