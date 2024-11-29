@@ -69,6 +69,7 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         if (multiplier_duration <= 0)
         {
+            multiplier_duration = total_multiplier_duration;
             StartCoroutine(StartCountdown());
         }
         multiplier += 0.5f;
