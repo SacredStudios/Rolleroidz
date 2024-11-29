@@ -35,7 +35,6 @@ public class Respawn : MonoBehaviour
     public void Death(int id)
     {
         //test if AI leaves if masterclient leaves
-        Debug.Log("player died");
         
         currLoc = player.transform.position;
         death_anim.transform.position = currLoc;
