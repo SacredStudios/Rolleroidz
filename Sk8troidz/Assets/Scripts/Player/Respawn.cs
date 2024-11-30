@@ -113,7 +113,10 @@ public class Respawn : MonoBehaviour
     {
         if (RespawnCircle.activeSelf)
         {
-            Cursor.lockState = CursorLockMode.Locked;
+            if (Application.platform == RuntimePlatform.WebGLPlayer)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+            }
             collider.enabled = true;
             vcam.GetComponent<CinemachineVirtualCamera>().Follow = regular_cam.transform;
             player.transform.position = RespawnCircle.transform.position + new Vector3(0, 10f, 0);

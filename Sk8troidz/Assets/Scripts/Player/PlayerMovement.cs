@@ -64,6 +64,11 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
     [SerializeField] Trick_System ts;
     void Start()
     {
+        if (Application.platform == RuntimePlatform.WebGLPlayer)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Debug.Log("Hiding mouse");
+        }
         maxSpeedBase = maxSpeed;
         targetRot = transform.eulerAngles.z;
         wh = this.gameObject.GetComponent<Weapon_Handler>();

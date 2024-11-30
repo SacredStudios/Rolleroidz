@@ -35,8 +35,7 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     void Start()
     {
         wh = player.GetComponent<Weapon_Handler>();
-        sb = player.GetComponent<Super_Bar>();
-        Cursor.lockState = CursorLockMode.Locked;
+        sb = player.GetComponent<Super_Bar>();      
         list = new List<GameObject>();
 
     }
