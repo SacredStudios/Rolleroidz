@@ -4,12 +4,12 @@ using System.Collections.Generic;
 public class Black_Hole : MonoBehaviour
 {
     [Header("Black Hole Settings")]
-    public float pullForce = 10000f; // The strength of the pull
+    public float basePullForce = 1000f; // The base strength of the pull
     public float pullRadius = 10000f; // The radius within which objects are pulled
     public float updateInterval = 0.5f; // Time interval to check for new objects (in seconds)
 
     private List<Rigidbody> targets; // List to store all Rigidbody components of tagged objects
-    private float nextUpdateTime = 5f; // Timer to control update frequency
+    private float nextUpdateTime = 0f; // Timer to control update frequency
 
     void Start()
     {
@@ -39,7 +39,9 @@ public class Black_Hole : MonoBehaviour
 
                 if (distance <= pullRadius)
                 {
-                    rb.AddForce(direction * pullForce * (1f / Mathf.Max(distance, 1f)), ForceMode.Acceleration);
+                    // Calculate pull strength using inverse square law
+                    float pullStrength = 200 * basePullForce / Mathf.Pow(distance, 2);
+                    rb.AddForce(direction * pullStrength, ForceMode.Acceleration);
                 }
             }
         }
