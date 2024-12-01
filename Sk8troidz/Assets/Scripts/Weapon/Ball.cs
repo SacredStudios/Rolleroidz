@@ -8,7 +8,6 @@ using Photon.Pun.UtilityScripts;
 
 public class Ball : MonoBehaviour
 {
-    private const string PlayerTag = "Player";
     public static GameObject[] players;
     List<GameObject> playerList;
     int num_bounces = 0;
@@ -35,7 +34,7 @@ public class Ball : MonoBehaviour
         Invoke("Explode", 3f);
         if (players == null || players.Length == 0)
         {
-            GameObject[] human_players = GameObject.FindGameObjectsWithTag(PlayerTag);
+            GameObject[] human_players = GameObject.FindGameObjectsWithTag("Player");
             GameObject[] ai_players = GameObject.FindGameObjectsWithTag("AI_Player");           
             players = human_players.Concat(ai_players).ToArray();
 

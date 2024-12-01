@@ -29,7 +29,7 @@ MonoBehaviour:
   sound: {fileID: 8300000, guid: 99a6b9166b9af444bb362d74a7be445b, type: 3}
   weight: 4.5
   player: {fileID: 0}
-  super: {fileID: 11400000, guid: 54a5d182a223340ef8b0766b3b4cfb7e, type: 2}
+  super: {fileID: 11400000, guid: 9c02b1e2616b34f6bb17280d63f87474, type: 2}
   instance: {fileID: 7160205516692060138, guid: 929a1113d8692482db9742165a93342a, type: 3}
   shake: 6
   coin: {fileID: 5812255397824587399, guid: db03c3afb90494e0f99eee91135a83e3, type: 3}
