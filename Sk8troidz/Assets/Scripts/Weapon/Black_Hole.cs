@@ -8,12 +8,14 @@ public class Black_Hole : MonoBehaviour
     public float pullRadius = 10000f; // The radius within which objects are pulled
     public float updateInterval = 0.5f; // Time interval to check for new objects (in seconds)
 
-    private List<Rigidbody> targets; // List to store all Rigidbody components of tagged objects
+    private List<Rigidbody> human_targets;
+    private List<Rigidbody> ai_targets;
     private float nextUpdateTime = 0f; // Timer to control update frequency
 
     void Start()
     {
-        targets = new List<Rigidbody>();
+        human_targets = new List<Rigidbody>();
+        ai_targets = new List<Rigidbody>();
     }
 
     void Update()
@@ -30,7 +32,7 @@ public class Black_Hole : MonoBehaviour
 
     void FixedUpdate()
     {
-        foreach (Rigidbody rb in targets)
+        foreach (Rigidbody rb in human_targets)
         {
             if (rb != null)
             {
@@ -45,6 +47,21 @@ public class Black_Hole : MonoBehaviour
                 }
             }
         }
+        foreach (Rigidbody rb in ai_targets)
+        {
+            if (rb != null)
+            {
+                Vector3 direction = (transform.position - rb.position).normalized;
+                float distance = Vector3.Distance(transform.position, rb.position);
+
+                if (distance <= pullRadius)
+                {
+                    // Calculate pull strength using inverse square law
+                    float pullStrength = 20 * basePullForce / Mathf.Pow(distance, 2);
+                    rb.AddForce(direction * pullStrength, ForceMode.Acceleration);
+                }
+            }
+        }
     }
 
     private void CheckForNewObjects()
@@ -52,21 +69,24 @@ public class Black_Hole : MonoBehaviour
         // Find all objects with the tags "Player" and "AI_Player"
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         GameObject[] aiPlayers = GameObject.FindGameObjectsWithTag("AI_Player");
-
-        AddRigidbodies(players);
-        AddRigidbodies(aiPlayers);
-    }
-
-    private void AddRigidbodies(GameObject[] objects)
-    {
-        foreach (GameObject obj in objects)
+        foreach (GameObject obj in players)
         {
             Rigidbody rb = obj.GetComponent<Rigidbody>();
-            if (rb != null && !targets.Contains(rb))
+            if (rb != null && !human_targets.Contains(rb))
             {
-                targets.Add(rb); // Add only if it’s not already in the list
+                human_targets.Add(rb);
             }
         }
+        foreach (GameObject obj in aiPlayers)
+        {
+            Rigidbody rb = obj.GetComponent<Rigidbody>();
+            if (rb != null && !ai_targets.Contains(rb))
+            {
+                ai_targets.Add(rb);
+            }
+        }
+
+
     }
 
     private void OnDrawGizmosSelected()
