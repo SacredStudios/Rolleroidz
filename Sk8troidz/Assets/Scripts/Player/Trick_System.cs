@@ -181,7 +181,7 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         }
         duration_slider.value = multiplier_duration;
         multiplier_duration = 0;
-        multiplier = 0;
+        multiplier = 0.5f;
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
