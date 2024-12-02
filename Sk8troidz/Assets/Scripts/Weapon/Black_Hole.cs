@@ -14,11 +14,15 @@ public class Black_Hole : MonoBehaviour
     private float nextUpdateTime = 0f; // Timer to control update frequency
     public PhotonView pv;
     public GameObject player;
+    Weapon temp;
 
     void Start()
     {
         targets = new List<GameObject>();
         CheckForNewObjects();
+        Invoke("Explode", 30f);
+        temp = player.GetComponent<Weapon_Handler>().weapon;
+        player.GetComponent<Weapon_Handler>().weapon = null;
     }
 
     void Update()
@@ -28,10 +32,14 @@ public class Black_Hole : MonoBehaviour
         {
             nextUpdateTime = Time.time + updateInterval;
 
-            CheckForNewObjects();
+            //CheckForNewObjects();
 
 
         }
+    }
+    public void Explode()
+    {
+
     }
 
     void FixedUpdate()
