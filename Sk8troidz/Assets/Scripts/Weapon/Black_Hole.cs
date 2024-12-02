@@ -12,10 +12,13 @@ public class Black_Hole : MonoBehaviour
     public static GameObject[] players;
     private List<GameObject> targets;
     private float nextUpdateTime = 0f; // Timer to control update frequency
+    public PhotonView pv;
+    public GameObject player;
 
     void Start()
     {
         targets = new List<GameObject>();
+        CheckForNewObjects();
     }
 
     void Update()
@@ -25,8 +28,9 @@ public class Black_Hole : MonoBehaviour
         {
             nextUpdateTime = Time.time + updateInterval;
 
-            // Check for newly instantiated objects
             CheckForNewObjects();
+
+
         }
     }
 
@@ -58,17 +62,18 @@ public class Black_Hole : MonoBehaviour
             targets.AddRange(GameObject.FindGameObjectsWithTag("Player"));
             targets.AddRange(GameObject.FindGameObjectsWithTag("AI_Player"));
 
-            targets.RemoveAll(player =>
+            targets.RemoveAll(curr_player =>
             {
-                PhotonView photonView = player.GetComponent<PhotonView>();
+                PhotonView photonView = curr_player.GetComponent<PhotonView>();
                 if (photonView == null) return true;
 
                 Photon.Realtime.Player owner = photonView.Owner;
                 Photon.Realtime.Player localPlayer = PhotonNetwork.LocalPlayer;
 
                 if (owner == null || localPlayer == null) return false;
-
-                return weapon.player.GetComponent<Team_Handler>().GetTeam() == player.GetComponent<Team_Handler>().GetTeam();
+                Debug.Log(curr_player.GetComponent<Team_Handler>().GetTeam());
+                Debug.Log(player.GetComponent<Team_Handler>().GetTeam());                
+                return player.GetComponent<Team_Handler>().GetTeam() == curr_player.GetComponent<Team_Handler>().GetTeam();
             });
 
 

@@ -29348,9 +29348,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4660667521552140074, guid: e78f31135e9574f9d8a157cd13c5e526, type: 3}
+      propertyPath: sceneViewId
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8310508579531212555, guid: e78f31135e9574f9d8a157cd13c5e526, type: 3}
       propertyPath: m_Name
       value: Black_Hole
+      objectReference: {fileID: 0}
+    - target: {fileID: 8310508579531212555, guid: e78f31135e9574f9d8a157cd13c5e526, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

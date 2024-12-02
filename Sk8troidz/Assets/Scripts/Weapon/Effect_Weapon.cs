@@ -8,7 +8,9 @@ public GameObject effect;
 public override void Shoot(GameObject parent, GameObject particle_pos, GameObject explosion_pos)
     {
         GameObject clone = PhotonNetwork.Instantiate(effect.name, parent.transform.position, Quaternion.identity);
-        clone.transform.parent = parent.transform;
+        clone.transform.parent = player.transform;
+        clone.GetComponent<Black_Hole>().pv = this.pv;
+        clone.GetComponent<Black_Hole>().player = this.player;
     }
     
 }
