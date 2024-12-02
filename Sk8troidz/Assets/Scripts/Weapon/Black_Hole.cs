@@ -14,29 +14,38 @@ public class Black_Hole : MonoBehaviour
     private float nextUpdateTime = 0f; // Timer to control update frequency
     public PhotonView pv;
     public GameObject player;
-    Weapon temp;
+    private Weapon temp;
+    private Weapon_Handler weaponHandler;
+
+    public GameObject deathEffect; // Assign this in the inspector
 
     void Start()
     {
         targets = new List<GameObject>();
         CheckForNewObjects();
-        Invoke("Explode", 30f);
-        temp = player.GetComponent<Weapon_Handler>().weapon;
-        player.GetComponent<Weapon_Handler>().weapon = null;
+
+        // Save the current weapon and disable shooting
+        weaponHandler = player.GetComponent<Weapon_Handler>();
+        temp = weaponHandler.weapon;
+        weaponHandler.weapon = null;
+
+        // Activate black hole for 30 seconds
+        Invoke(nameof(Explode), 10f);
     }
 
     void Update()
     {
-        player.GetComponent<Weapon_Handler>().weapon = null;
-        
-    }
-    public void Explode()
-    {
-
+        // Periodically check for new objects
+        if (Time.time >= nextUpdateTime)
+        {
+            nextUpdateTime = Time.time + updateInterval;
+            CheckForNewObjects();
+        }
     }
 
     void FixedUpdate()
     {
+        // Apply pull force to all valid targets
         foreach (GameObject obj in targets)
         {
             Rigidbody rb = obj.GetComponent<Rigidbody>();
@@ -54,33 +63,64 @@ public class Black_Hole : MonoBehaviour
             }
         }
 
+        // Check for collisions with the black hole's pull area
+        ApplyBlackHoleEffects();
+    }
+
+    private void ApplyBlackHoleEffects()
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 3);
+        foreach (Collider hit in hitColliders)
+        {
+            if (targets.Contains(hit.gameObject))
+            {
+                Player_Health ph = hit.GetComponent<Player_Health>();
+                if (ph != null && ph.current_health > 0)
+                {
+                    if (ph.current_health - 100 <= 0)
+                    {
+                        // Instantiate death effect and handle death logic
+                        // PhotonNetwork.Instantiate(deathEffect.name, hit.transform.position, Quaternion.identity);
+                        Debug.Log("someone got zucced");
+                        Transform oldPos = hit.transform;
+                        hit.transform.position = new Vector3(9999, 9999, 9999);
+
+                        temp.SpawnCoin(hit.gameObject, hit.transform.position);
+                    }
+                    ph.Remove_Health(100);
+                }
+            }
+        }
     }
 
     private void CheckForNewObjects()
     {
-        
-        
-            targets.AddRange(GameObject.FindGameObjectsWithTag("Player"));
-            targets.AddRange(GameObject.FindGameObjectsWithTag("AI_Player"));
+        // Find and filter targets
+        targets.AddRange(GameObject.FindGameObjectsWithTag("Player"));
+        targets.AddRange(GameObject.FindGameObjectsWithTag("AI_Player"));
 
-            targets.RemoveAll(curr_player =>
-            {
-                PhotonView photonView = curr_player.GetComponent<PhotonView>();
-                if (photonView == null) return true;
+        targets.RemoveAll(currPlayer =>
+        {
+            PhotonView photonView = currPlayer.GetComponent<PhotonView>();
+            if (photonView == null) return true;
 
-                Photon.Realtime.Player owner = photonView.Owner;
-                Photon.Realtime.Player localPlayer = PhotonNetwork.LocalPlayer;
+            Photon.Realtime.Player owner = photonView.Owner;
+            Photon.Realtime.Player localPlayer = PhotonNetwork.LocalPlayer;
 
-                if (owner == null || localPlayer == null) return false;
-                Debug.Log(curr_player.GetComponent<Team_Handler>().GetTeam());
-                Debug.Log(player.GetComponent<Team_Handler>().GetTeam());                
-                return player.GetComponent<Team_Handler>().GetTeam() == curr_player.GetComponent<Team_Handler>().GetTeam();
-            });
+            if (owner == null || localPlayer == null) return false;
 
-
-        }
-
-
+            // Exclude players on the same team
+            return player.GetComponent<Team_Handler>().GetTeam() == currPlayer.GetComponent<Team_Handler>().GetTeam();
+        });
     }
 
-   
+    public void Explode()
+    {
+        // Restore weapon functionality after the black hole is deactivated
+        weaponHandler.weapon = temp;
+
+        // Optionally add an explosion effect here
+        Debug.Log("Black Hole effect ended.");
+        Destroy(gameObject); // Destroy the black hole object
+    }
+}

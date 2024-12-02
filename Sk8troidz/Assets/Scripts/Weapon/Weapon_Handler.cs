@@ -83,12 +83,15 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
     }
     public void FireCheck() //Check if you even are allowed to shoot yet
     {
-        if (shoot_delay >= weapon.weapon_delay && weapon.attack_cost <= cooldown.value && pv.IsMine)
+        if (weapon != null)
         {
-            cooldown.value -= weapon.attack_cost;
-            shoot_delay = 0;
-            Shoot_Weapon();
-            
+            if (shoot_delay >= weapon.weapon_delay && weapon.attack_cost <= cooldown.value && pv.IsMine)
+            {
+                cooldown.value -= weapon.attack_cost;
+                shoot_delay = 0;
+                Shoot_Weapon();
+
+            }
         }
     }
 
