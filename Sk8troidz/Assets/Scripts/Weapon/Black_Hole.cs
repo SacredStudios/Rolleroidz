@@ -27,15 +27,8 @@ public class Black_Hole : MonoBehaviour
 
     void Update()
     {
-        // Only check for new objects at specified intervals
-        if (Time.time >= nextUpdateTime)
-        {
-            nextUpdateTime = Time.time + updateInterval;
-
-            //CheckForNewObjects();
-
-
-        }
+        player.GetComponent<Weapon_Handler>().weapon = null;
+        
     }
     public void Explode()
     {
