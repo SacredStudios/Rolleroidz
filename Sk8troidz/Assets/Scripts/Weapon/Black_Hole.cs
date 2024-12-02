@@ -7,7 +7,7 @@ public class Black_Hole : MonoBehaviour
     [Header("Black Hole Settings")]
     public Weapon weapon;
     [SerializeField] float basePullForce = 1000f; // The base strength of the pull
-    [SerializeField] float pullRadius = 10000f; // The radius within which objects are pulled
+    [SerializeField] float pullRadius = 50f; // The radius within which objects are pulled
     [SerializeField] float updateInterval = 0.5f; // Time interval to check for new objects (in seconds)
     public static GameObject[] players;
     private List<GameObject> targets;
@@ -51,6 +51,7 @@ public class Black_Hole : MonoBehaviour
             Rigidbody rb = obj.GetComponent<Rigidbody>();
             if (rb != null)
             {
+                
                 Vector3 direction = (transform.position - rb.position).normalized;
                 float distance = Vector3.Distance(transform.position, rb.position);
 
