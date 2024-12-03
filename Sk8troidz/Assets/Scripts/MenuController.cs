@@ -141,7 +141,7 @@ public class MenuController : MonoBehaviourPunCallbacks
     }
     public void LoadTutorial()
     {
-        Invoke("OpenTutorial", 1f);
+        Invoke("OpenTutorial", 0.5f);
     }
     public void OpenTutorial()
     {

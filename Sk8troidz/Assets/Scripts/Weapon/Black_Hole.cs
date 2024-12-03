@@ -29,9 +29,11 @@ public class Black_Hole : MonoBehaviour
     private float elapsedTime = 0f; // Timer for growth and shrinking animations
 
     [SerializeField] GameObject explosion;
+    [SerializeField] AudioSource sound;
 
     void Start()
     {
+        sound.Play();
         targets = new List<GameObject>();
         CheckForNewObjects();
 
@@ -93,7 +95,7 @@ public class Black_Hole : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (isGrowing || isShrinking) return; // Skip pull logic during growth/shrink animations
+        if (isGrowing || isShrinking) return;
 
         // Apply pull force to all valid targets
         foreach (GameObject obj in targets)
