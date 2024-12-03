@@ -32,8 +32,8 @@ Transform:
   m_GameObject: {fileID: 8310508579531212555}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 19.7, y: 6, z: -14.3}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: 0, y: 0, z: -3}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -127,9 +127,10 @@ MonoBehaviour:
   weapon: {fileID: 0}
   basePullForce: 1000
   pullRadius: 10000
-  pulseSpeed: 1
+  pulseSpeed: 20
   pulseAmplitude: 5
   updateInterval: 0.5
+  offset: {x: -1.5, y: 0, z: 0}
   deathEffect: {fileID: 0}
   pv: {fileID: 0}
   player: {fileID: 0}

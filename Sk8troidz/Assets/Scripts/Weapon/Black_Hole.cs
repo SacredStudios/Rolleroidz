@@ -8,9 +8,10 @@ public class Black_Hole : MonoBehaviour
     public Weapon weapon;
     [SerializeField] float basePullForce = 1000f; // The base strength of the pull
     [SerializeField] float pullRadius = 50f; // The radius within which objects are pulled
-    [SerializeField] float pulseSpeed = 1f; // Speed of pulsating effect
+    [SerializeField] float pulseSpeed = 5f; // Speed of pulsating effect
     [SerializeField] float pulseAmplitude = 0.5f; // Amplitude of the pulsating effect
     [SerializeField] float updateInterval = 0.5f; // Time interval to check for new objects (in seconds)
+    [SerializeField] Vector3 offset;
     public GameObject deathEffect; // Assign this in the inspector
 
     public PhotonView pv;
@@ -21,6 +22,7 @@ public class Black_Hole : MonoBehaviour
     private Vector3 originalScale; // Original scale of the black hole
     private List<GameObject> targets;
     private float nextUpdateTime;
+
 
     void Start()
     {
@@ -37,6 +39,7 @@ public class Black_Hole : MonoBehaviour
 
         // Save the original scale
         originalScale = transform.localScale;
+        transform.position += offset;
     }
 
     void Update()
@@ -49,7 +52,7 @@ public class Black_Hole : MonoBehaviour
         }
 
         // Pulsating effect: dynamically change the scale of the black hole
-        float scaleModifier = Mathf.Lerp(1, 1.5f, (Mathf.Sin(Time.time * pulseSpeed) + 1) / 2);
+        float scaleModifier = Mathf.Lerp(1, 1.2f, (Mathf.Sin(Time.time * pulseSpeed) + 1) / 2);
         transform.localScale = originalScale * scaleModifier;
 
     }
