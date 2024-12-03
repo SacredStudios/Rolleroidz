@@ -22,7 +22,7 @@ MonoBehaviour:
   knockback: 1000
   offset: {x: 0, y: 0, z: 0}
   pv: {fileID: 0}
-  range: 100
+  range: 150
   max_ammo: 0
   ammo: 0
   isSuper: 0

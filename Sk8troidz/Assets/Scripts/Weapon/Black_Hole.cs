@@ -8,16 +8,19 @@ public class Black_Hole : MonoBehaviour
     public Weapon weapon;
     [SerializeField] float basePullForce = 1000f; // The base strength of the pull
     [SerializeField] float pullRadius = 50f; // The radius within which objects are pulled
+    [SerializeField] float pulseSpeed = 1f; // Speed of pulsating effect
+    [SerializeField] float pulseAmplitude = 0.5f; // Amplitude of the pulsating effect
     [SerializeField] float updateInterval = 0.5f; // Time interval to check for new objects (in seconds)
-    public static GameObject[] players;
-    private List<GameObject> targets;
-    private float nextUpdateTime = 0f; // Timer to control update frequency
+    public GameObject deathEffect; // Assign this in the inspector
+
     public PhotonView pv;
     public GameObject player;
     private Weapon temp;
     private Weapon_Handler weaponHandler;
 
-    public GameObject deathEffect; // Assign this in the inspector
+    private Vector3 originalScale; // Original scale of the black hole
+    private List<GameObject> targets;
+    private float nextUpdateTime;
 
     void Start()
     {
@@ -29,8 +32,11 @@ public class Black_Hole : MonoBehaviour
         temp = weaponHandler.weapon;
         weaponHandler.weapon = null;
 
-        // Activate black hole for 30 seconds
+        // Activate black hole for 10 seconds
         Invoke(nameof(Explode), 10f);
+
+        // Save the original scale
+        originalScale = transform.localScale;
     }
 
     void Update()
@@ -41,6 +47,11 @@ public class Black_Hole : MonoBehaviour
             nextUpdateTime = Time.time + updateInterval;
             CheckForNewObjects();
         }
+
+        // Pulsating effect: dynamically change the scale of the black hole
+        float scaleModifier = Mathf.Lerp(1, 1.5f, (Mathf.Sin(Time.time * pulseSpeed) + 1) / 2);
+        transform.localScale = originalScale * scaleModifier;
+
     }
 
     void FixedUpdate()
@@ -51,13 +62,12 @@ public class Black_Hole : MonoBehaviour
             Rigidbody rb = obj.GetComponent<Rigidbody>();
             if (rb != null)
             {
-                
                 Vector3 direction = (transform.position - rb.position).normalized;
                 float distance = Vector3.Distance(transform.position, rb.position);
 
                 if (distance <= pullRadius)
                 {
-                    // Calculate pull strength using inverse square law
+                    // Apply pull force
                     float pullStrength = 2 * basePullForce / Mathf.Pow(distance, 2);
                     rb.AddForce(direction * pullStrength, ForceMode.Acceleration);
                 }
@@ -70,7 +80,7 @@ public class Black_Hole : MonoBehaviour
 
     private void ApplyBlackHoleEffects()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 3);
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, pullRadius);
         foreach (Collider hit in hitColliders)
         {
             if (targets.Contains(hit.gameObject))
@@ -80,10 +90,8 @@ public class Black_Hole : MonoBehaviour
                 {
                     if (ph.current_health - 100 <= 0)
                     {
-                        // Instantiate death effect and handle death logic
-                        // PhotonNetwork.Instantiate(deathEffect.name, hit.transform.position, Quaternion.identity);
-                        Debug.Log("someone got zucced");
-                        Transform oldPos = hit.transform;
+                        // Handle player death
+                        PhotonNetwork.Instantiate(deathEffect.name, hit.transform.position, Quaternion.identity);
                         hit.transform.position = new Vector3(9999, 9999, 9999);
 
                         temp.SpawnCoin(hit.gameObject, hit.transform.position);
@@ -122,6 +130,6 @@ public class Black_Hole : MonoBehaviour
 
         // Optionally add an explosion effect here
         Debug.Log("Black Hole effect ended.");
-        Destroy(gameObject); // Destroy the black hole object
+        PhotonNetwork.Destroy(gameObject); // Destroy the black hole object
     }
 }

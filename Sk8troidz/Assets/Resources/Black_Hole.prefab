@@ -127,10 +127,12 @@ MonoBehaviour:
   weapon: {fileID: 0}
   basePullForce: 1000
   pullRadius: 10000
+  pulseSpeed: 1
+  pulseAmplitude: 5
   updateInterval: 0.5
+  deathEffect: {fileID: 0}
   pv: {fileID: 0}
   player: {fileID: 0}
-  deathEffect: {fileID: 0}
 --- !u!114 &6597192339282273246
 MonoBehaviour:
   m_ObjectHideFlags: 0
