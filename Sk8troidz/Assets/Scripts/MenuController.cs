@@ -65,7 +65,7 @@ public class MenuController : MonoBehaviourPunCallbacks
         
     }
 
-    void Transition()
+    public void Transition()
     {
         if (transition != null)
         {
@@ -140,6 +140,10 @@ public class MenuController : MonoBehaviourPunCallbacks
         PhotonNetwork.LoadLevel("DebugRoom");
     }
     public void LoadTutorial()
+    {
+        Invoke("OpenTutorial", 1f);
+    }
+    public void OpenTutorial()
     {
         PhotonNetwork.LoadLevel("TutorialRoom");
     }
