@@ -112,7 +112,7 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         
         while ((Input.GetButton("Fire2") || trick_btn.isDown) && PlayerMovement.trick_mode_activated == true && slider.value != slider.maxValue)
         {
-            slider.value += (Time.deltaTime * speed) * (multiplier + 1);
+            slider.value += (Time.deltaTime * speed) * (multiplier + 0.5f);
             yield return null;
         }
         // player.GetComponent<Animator>().enabled = false;
@@ -139,7 +139,7 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         while (((Input.GetButton("Fire2") || trick_btn.isDown) && railgrinding.progress >= 0 && railgrinding.progress <= 1) && railgrinding.onRail)
         {
-            slider.value += (Time.deltaTime * speed / 200f) * (multiplier * 3 + 1);
+            slider.value += (Time.deltaTime * speed / 200f) * (multiplier * 3 + 0.5f);
             yield return null;
         }
         animator.SetBool("trickModeActivated", false);       
