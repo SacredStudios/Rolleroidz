@@ -15172,6 +15172,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chat Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 7612891781296284976, guid: 18dee4af8aba76b4987346a56bd436be, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

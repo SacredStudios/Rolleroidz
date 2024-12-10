@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using Photon.Chat;
 using Photon.Pun;
 using ExitGames.Client.Photon;
@@ -7,6 +8,10 @@ public class Chat_Manager : MonoBehaviour, IChatClientListener
 {
     ChatClient chatClient;
     [SerializeField] GameObject chatPanel;
+    string currChat;
+    [SerializeField] InputField inputfield;
+    [SerializeField] Text chatDisplay;
+
 
     public void DebugReturn(DebugLevel level, string message)
     {
@@ -31,7 +36,14 @@ public class Chat_Manager : MonoBehaviour, IChatClientListener
 
     public void OnGetMessages(string channelName, string[] senders, object[] messages)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("getting msgs");
+        string msgs = "";
+        for (int i = 0; i < senders.Length; i++)
+        {
+            msgs = string.Format("{0}: {1}", senders[i], messages[i]);
+            chatDisplay.text += "\n "+ msgs;
+            Debug.Log(msgs);
+        }
     }
 
     public void OnPrivateMessage(string sender, object message, string channelName)
@@ -46,7 +58,6 @@ public class Chat_Manager : MonoBehaviour, IChatClientListener
 
     public void OnSubscribed(string[] channels, bool[] results)
     {
-        Debug.Log("is this running");
         chatPanel.SetActive(true);
     }
 
@@ -84,6 +95,17 @@ public class Chat_Manager : MonoBehaviour, IChatClientListener
         }
         
 
+    }
+    public void SubmitChat()
+    {
+        //Add logic for private chat here
+        chatClient.PublishMessage("RegionChannel", currChat);
+        inputfield.text = "";
+        currChat = "";
+    }
+    public void TypeChatOnValueChange(string value)
+    {
+        currChat = value;
     }
 
     // Update is called once per frame
