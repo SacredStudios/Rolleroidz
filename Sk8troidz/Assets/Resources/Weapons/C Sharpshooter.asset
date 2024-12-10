@@ -18,7 +18,7 @@ MonoBehaviour:
     high range and damage. It's like a sniper, but even better. Don't ask how...
   weapon_delay: 1.5
   damage: 100
-  attack_cost: 100
+  attack_cost: 95
   knockback: 1000
   offset: {x: 0, y: 0, z: 0}
   pv: {fileID: 0}
