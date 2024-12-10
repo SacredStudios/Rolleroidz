@@ -6,25 +6,27 @@ using ExitGames.Client.Photon;
 public class Chat_Manager : MonoBehaviour, IChatClientListener
 {
     ChatClient chatClient;
+    [SerializeField] GameObject chatPanel;
 
     public void DebugReturn(DebugLevel level, string message)
     {
-        throw new System.NotImplementedException();
+   
     }
 
     public void OnChatStateChange(ChatState state)
     {
-        throw new System.NotImplementedException();
+     //   throw new System.NotImplementedException();
     }
 
     public void OnConnected()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("connected to chat!");
+        chatClient.Subscribe(new string[] { "RegionChannel" });
     }
 
     public void OnDisconnected()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public void OnGetMessages(string channelName, string[] senders, object[] messages)
@@ -44,7 +46,8 @@ public class Chat_Manager : MonoBehaviour, IChatClientListener
 
     public void OnSubscribed(string[] channels, bool[] results)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("is this running");
+        chatPanel.SetActive(true);
     }
 
     public void OnUnsubscribed(string[] channels)
@@ -61,16 +64,36 @@ public class Chat_Manager : MonoBehaviour, IChatClientListener
     {
         throw new System.NotImplementedException();
     }
-    [SerializeField] string userId;
     void Start()
     {
+        Debug.Log("AppIdChat: " + PhotonNetwork.PhotonServerSettings.AppSettings.AppIdChat);
         chatClient = new ChatClient(this);
-        chatClient.Connect(PhotonNetwork.PhotonServerSettings.AppSettings.AppIdChat, PhotonNetwork.AppVersion, new AuthenticationValues(PhotonNetwork.NickName));
+        bool connectionResult = chatClient.Connect(
+            PhotonNetwork.PhotonServerSettings.AppSettings.AppIdChat,
+            PhotonNetwork.AppVersion,
+            new AuthenticationValues(PhotonNetwork.NickName)
+        );
+
+        if (connectionResult)
+        {
+            Debug.Log("ChatClient is attempting to connect...");
+        }
+        else
+        {
+            Debug.LogError("ChatClient failed to initiate connection. Check AppIdChat or network settings.");
+        }
+        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        chatClient.Service();
+        if (chatClient != null)
+        {
+            chatClient.Service();
+         //   Debug.Log("ChatClient State: " + chatClient.State);
+        }
     }
+
 }
