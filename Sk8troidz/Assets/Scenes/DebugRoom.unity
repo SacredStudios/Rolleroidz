@@ -20311,6 +20311,10 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 0.77254903
       objectReference: {fileID: 0}
+    - target: {fileID: 7580031726400563096, guid: 18dee4af8aba76b4987346a56bd436be, type: 3}
+      propertyPath: m_CharacterLimit
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7612891781296284976, guid: 18dee4af8aba76b4987346a56bd436be, type: 3}
       propertyPath: m_Name
       value: Chat Manager
