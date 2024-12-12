@@ -1352,7 +1352,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 1618717873}
   slider_other: {fileID: 3093740187458600171}
-  increment: 1
+  increment: 2
   game_ongoing: 1
   max_value: 100
   ph: {fileID: 7812810418213220350}

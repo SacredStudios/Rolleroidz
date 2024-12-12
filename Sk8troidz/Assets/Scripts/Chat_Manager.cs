@@ -101,23 +101,26 @@ public class Chat_Manager : MonoBehaviour, IChatClientListener
     public void SubmitChat()
     {
         //Add logic for private chat here
-        if (PhotonNetwork.LocalPlayer.GetPhotonTeam() != null)
+        if (currChat != "")
         {
-            if (PhotonNetwork.LocalPlayer.GetPhotonTeam().Code == 1)
+            if (PhotonNetwork.LocalPlayer.GetPhotonTeam() != null)
             {
-                chatClient.PublishMessage("RegionChannel", "<color=red>" + PhotonNetwork.NickName + ": " + currChat + "</color>");
+                if (PhotonNetwork.LocalPlayer.GetPhotonTeam().Code == 1)
+                {
+                    chatClient.PublishMessage("RegionChannel", "<color=red>" + PhotonNetwork.NickName + ": " + currChat + "</color>");
+                }
+                else
+                {
+                    chatClient.PublishMessage("RegionChannel", "<color=#BA13FF>" + PhotonNetwork.NickName + ": " + currChat + "</color>");
+                }
             }
             else
             {
-                chatClient.PublishMessage("RegionChannel", "<color=#BA13FF>" + PhotonNetwork.NickName + ": " + currChat + "</color>");
+                chatClient.PublishMessage("RegionChannel", PhotonNetwork.NickName + ": " + currChat);
             }
-        }
-        else
-        {
-            chatClient.PublishMessage("RegionChannel", PhotonNetwork.NickName + ": " + currChat);
-        }
             inputfield.text = "";
             currChat = "";
+        }
         
     }
     public void TypeChatOnValueChange(string value)
