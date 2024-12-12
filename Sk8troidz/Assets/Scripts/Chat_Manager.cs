@@ -3,11 +3,13 @@ using UnityEngine.UI;
 using Photon.Chat;
 using Photon.Pun;
 using ExitGames.Client.Photon;
+using Photon.Pun.UtilityScripts;
 
 public class Chat_Manager : MonoBehaviour, IChatClientListener
 {
     ChatClient chatClient;
     [SerializeField] GameObject chatPanel;
+    [SerializeField] GameObject chatIcon;
     string currChat;
     [SerializeField] InputField inputfield;
     [SerializeField] Text chatDisplay;
@@ -41,7 +43,7 @@ public class Chat_Manager : MonoBehaviour, IChatClientListener
         for (int i = 0; i < senders.Length; i++)
         {
             msgs = string.Format("{0}: {1}", senders[i], messages[i]);
-            chatDisplay.text += "\n "+ msgs;
+            chatDisplay.text += "\n "+ messages[i];
             Debug.Log(msgs);
         }
     }
@@ -99,7 +101,14 @@ public class Chat_Manager : MonoBehaviour, IChatClientListener
     public void SubmitChat()
     {
         //Add logic for private chat here
-        chatClient.PublishMessage("RegionChannel", currChat);
+        if (PhotonNetwork.LocalPlayer.GetPhotonTeam().Code == 1)
+        {
+            chatClient.PublishMessage("RegionChannel", "<color=red>" + PhotonNetwork.NickName + ": " + currChat + "</color>");
+        }
+        else
+        {
+            chatClient.PublishMessage("RegionChannel", "<color=#BA13FF>" + PhotonNetwork.NickName + ": " + currChat + "</color>");
+        }
         inputfield.text = "";
         currChat = "";
     }
@@ -108,12 +117,25 @@ public class Chat_Manager : MonoBehaviour, IChatClientListener
         currChat = value;
     }
 
-    // Update is called once per frame
+    public void OpenChat()
+    {
+        chatPanel.SetActive(true);
+        chatIcon.SetActive(false);
+    }
+    public void CloseChat()
+    {
+        chatPanel.SetActive(false);
+        chatIcon.SetActive(true);
+    }
     void Update()
     {
         if (chatClient != null)
         {
             chatClient.Service();
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                SubmitChat();
+            }
          //   Debug.Log("ChatClient State: " + chatClient.State);
         }
     }
