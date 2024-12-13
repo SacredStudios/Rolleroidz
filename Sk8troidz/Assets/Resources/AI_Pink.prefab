@@ -17615,6 +17615,7 @@ MonoBehaviour:
   sound: {fileID: 0}
   agent: {fileID: 360661135566408208}
   laser_loc: {fileID: 6426038363471481738}
+  chat_manager: {fileID: 0}
 --- !u!195 &360661135566408208
 NavMeshAgent:
   m_ObjectHideFlags: 0

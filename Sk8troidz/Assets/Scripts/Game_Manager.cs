@@ -336,7 +336,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
             if (count % 2 == 0)
             {
                 GameObject ai_player = PhotonNetwork.Instantiate(AIPlayer2.name, position, Quaternion.identity, 0);
-                ai_player.GetComponentInChildren<Weapon_Handler>().weapon.chat_manager = chatManager.GetComponent<Chat_Manager>();
+                ai_player.GetComponentInChildren<AI_Weapon_Handler>().chat_manager = chatManager.GetComponent<Chat_Manager>();
                 List<Vector3> points = respawn_points.GetComponent<RespawnPoints>().respawn_points; //respawn locations
                 ai_player.GetComponent<Respawn>().respawn_points = points;
                 ai_player.transform.position = points[Random.Range(0, points.Count)];
@@ -345,7 +345,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
             else
             {
                 GameObject ai_player = PhotonNetwork.Instantiate(AIPlayer.name, position, Quaternion.identity, 0);
-                ai_player.GetComponentInChildren<Weapon_Handler>().weapon.chat_manager = chatManager.GetComponent<Chat_Manager>();
+                ai_player.GetComponentInChildren<AI_Weapon_Handler>().chat_manager = chatManager.GetComponent<Chat_Manager>();
                 List<Vector3> points = respawn_points.GetComponent<RespawnPoints>().respawn_points; //respawn locations
                 ai_player.GetComponent<Respawn>().respawn_points = points;
                 ai_player.transform.position = points[Random.Range(0, points.Count)];

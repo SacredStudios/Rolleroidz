@@ -28,6 +28,7 @@ public class AI_Weapon_Handler : MonoBehaviour
     [SerializeField] NavMeshAgent agent;
     [SerializeField] GameObject laser_loc;
     public static int index;
+    public Chat_Manager chat_manager;
 
     void Start()
     {
@@ -45,6 +46,7 @@ public class AI_Weapon_Handler : MonoBehaviour
             weapon.player = this.gameObject;
             weapon.super.player = weapon.player;
             agent.stoppingDistance = Random.Range(10f, 20f);
+            weapon.chat_manager = this.chat_manager;
 
         }
     }
