@@ -79,7 +79,6 @@ public class Chat_Manager : MonoBehaviour, IChatClientListener
     }
     void Start()
     {
-        Debug.Log("AppIdChat: " + PhotonNetwork.PhotonServerSettings.AppSettings.AppIdChat);
         chatClient = new ChatClient(this);
         bool connectionResult = chatClient.Connect(
             PhotonNetwork.PhotonServerSettings.AppSettings.AppIdChat,
@@ -123,6 +122,11 @@ public class Chat_Manager : MonoBehaviour, IChatClientListener
         }
         
     }
+    public void SendStatMessage(string msg)
+    {
+        chatClient.PublishMessage("RegionChannel", msg);
+    }
+    
     public void TypeChatOnValueChange(string value)
     {
         currChat = value;

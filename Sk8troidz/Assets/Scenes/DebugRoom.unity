@@ -28418,6 +28418,7 @@ MonoBehaviour:
   AIPlayer: {fileID: 6426038364015529101, guid: e733034ad18bd4a3f919eda69c77bf95, type: 3}
   AIPlayer2: {fileID: 6426038364015529101, guid: bcffdd31feef94bd38b654931871e958, type: 3}
   start_early: {fileID: 2012876687}
+  chatManager: {fileID: 1489084951}
 --- !u!114 &2026277107
 MonoBehaviour:
   m_ObjectHideFlags: 0

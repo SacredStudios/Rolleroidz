@@ -56,9 +56,13 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         Invoke("CheckForPlayersOnTime", 30f);
         //PhotonNetwork.LocalPlayer.JoinTeam((byte)Random.Range(1, 3));
     }
-    
+    [SerializeField] Chat_Manager chatManager;
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            chatManager.SendStatMessage(newPlayer.NickName);
+        }
         foreach (Player player in PhotonNetwork.PlayerList)
         {
             player.SetScore(0);
