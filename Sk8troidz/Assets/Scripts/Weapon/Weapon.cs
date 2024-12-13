@@ -5,6 +5,7 @@ using UnityEngine;
 using Photon.Pun;
 using UnityEngine.UI;
 using Photon.Pun.UtilityScripts;
+using TMPro.Examples;
 
 
 public class Weapon : ScriptableObject
@@ -43,7 +44,8 @@ public class Weapon : ScriptableObject
 
     public void SpawnCoin(GameObject dead_player, Vector3 pos) //change the name of this
     {
-        chat_manager.SendStatMessage("somebody died");
+        Debug.Log(dead_player);
+        chat_manager.SendStatMessage(GetName(player) + " KO'd " + GetName(dead_player));
         Photon.Realtime.Player player_photon = player.GetComponent<PhotonView>().Owner;
         Photon.Realtime.Player dead_player_photon = dead_player.GetComponent<PhotonView>().Owner;
         if (player.tag == "AI_Player")
@@ -57,6 +59,17 @@ public class Weapon : ScriptableObject
             player_photon.AddScore((dead_player.GetComponent<Team_Handler>().GetScore() / 2) + 2);
         }
         //pv.RPC("PrintKO", RpcTarget.All, player_photon.NickName, dead_player_photon.NickName); 
+    }
+    private string GetName(GameObject player)
+    {
+        if (player.tag == "AI_Player")
+        {
+            return "AI_Player";
+        }
+        else
+        {
+            return player.GetComponent<PhotonView>().Owner.NickName;
+        }
     }
     [PunRPC] void PrintKO(string player, string dead_player)
     {

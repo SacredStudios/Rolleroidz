@@ -93,7 +93,10 @@ public class AI_Movement : MonoBehaviour
                 {
                     Vector3 targetDirection = Target.transform.position - transform.position;
                     targetDirection.y = 0;
-                    transform.rotation = Quaternion.LookRotation(targetDirection);
+                    if (Quaternion.LookRotation(targetDirection) != Quaternion.identity)
+                    {
+                        transform.rotation = Quaternion.LookRotation(targetDirection);
+                    }
                 }
             }
         }
