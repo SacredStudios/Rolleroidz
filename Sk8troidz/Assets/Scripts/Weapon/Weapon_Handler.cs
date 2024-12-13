@@ -41,6 +41,7 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
             {
 
                 weapon = weapon.super;
+                weapon.player = this.gameObject;
                 
 
                 if (!super_ammo.activeSelf)
