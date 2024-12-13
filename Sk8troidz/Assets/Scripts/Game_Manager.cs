@@ -61,7 +61,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            chatManager.SendStatMessage(newPlayer.NickName);
+            chatManager.SendStatMessage(newPlayer.NickName + " entered the room.");
         }
         foreach (Player player in PhotonNetwork.PlayerList)
         {
@@ -369,7 +369,8 @@ public class Game_Manager : MonoBehaviourPunCallbacks
             new_player = PhotonNetwork.Instantiate(player_prefab.name, position, Quaternion.identity, 0);
             List<Vector3> points = respawn_points.GetComponent<RespawnPoints>().respawn_points; //respawn locations
             new_player.GetComponent<Respawn>().respawn_points = points;
-            new_player.GetComponentInChildren<Weapon_Handler>().weapon = my_weapon;         
+            new_player.GetComponentInChildren<Weapon_Handler>().weapon = my_weapon;
+            new_player.transform.position = points[Random.Range(0, points.Count)];
         }
         Debug.Log(new_player.GetComponentInChildren<Camera>());
         AI_LookAt.cam = new_player.GetComponentInChildren<Camera>();
