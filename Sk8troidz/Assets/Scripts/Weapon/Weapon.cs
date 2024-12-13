@@ -35,7 +35,7 @@ public class Weapon : ScriptableObject
     public GameObject coin;
     public float min_distance = 2.5f;
     public GameObject death_effect;
-    public GameObject text_manager;
+    public Chat_Manager chat_manager;
 
 
 
@@ -43,6 +43,7 @@ public class Weapon : ScriptableObject
 
     public void SpawnCoin(GameObject dead_player, Vector3 pos) //change the name of this
     {
+        chat_manager.SendStatMessage("somebody died");
         Photon.Realtime.Player player_photon = player.GetComponent<PhotonView>().Owner;
         Photon.Realtime.Player dead_player_photon = dead_player.GetComponent<PhotonView>().Owner;
         if (player.tag == "AI_Player")

@@ -162,7 +162,6 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     {
        if(PhotonNetwork.IsMasterClient)
         {
-            Debug.Log("Somebody died lol");
                 team1count = 0;
                 team2count = 0;
                 foreach (Player player in PhotonNetwork.PlayerList)
@@ -333,9 +332,11 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         {
             Debug.Log(count);
             count++;
+            //A lot of redundant code here
             if (count % 2 == 0)
             {
                 GameObject ai_player = PhotonNetwork.Instantiate(AIPlayer2.name, position, Quaternion.identity, 0);
+                ai_player.GetComponentInChildren<Weapon_Handler>().weapon.chat_manager = chatManager.GetComponent<Chat_Manager>();
                 List<Vector3> points = respawn_points.GetComponent<RespawnPoints>().respawn_points; //respawn locations
                 ai_player.GetComponent<Respawn>().respawn_points = points;
                 ai_player.transform.position = points[Random.Range(0, points.Count)];
@@ -344,6 +345,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
             else
             {
                 GameObject ai_player = PhotonNetwork.Instantiate(AIPlayer.name, position, Quaternion.identity, 0);
+                ai_player.GetComponentInChildren<Weapon_Handler>().weapon.chat_manager = chatManager.GetComponent<Chat_Manager>();
                 List<Vector3> points = respawn_points.GetComponent<RespawnPoints>().respawn_points; //respawn locations
                 ai_player.GetComponent<Respawn>().respawn_points = points;
                 ai_player.transform.position = points[Random.Range(0, points.Count)];
@@ -370,6 +372,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
             List<Vector3> points = respawn_points.GetComponent<RespawnPoints>().respawn_points; //respawn locations
             new_player.GetComponent<Respawn>().respawn_points = points;
             new_player.GetComponentInChildren<Weapon_Handler>().weapon = my_weapon;
+            new_player.GetComponentInChildren<Weapon_Handler>().weapon.chat_manager = chatManager.GetComponent<Chat_Manager>();
             new_player.transform.position = points[Random.Range(0, points.Count)];
         }
         Debug.Log(new_player.GetComponentInChildren<Camera>());
