@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using Photon.Chat;
 using Photon.Pun;
 using ExitGames.Client.Photon;
@@ -12,7 +13,7 @@ public class Chat_Manager : MonoBehaviour, IChatClientListener
     [SerializeField] GameObject chatIcon;
     string currChat;
     [SerializeField] InputField inputfield;
-    [SerializeField] Text chatDisplay;
+    [SerializeField] TMP_Text chatDisplay;
 
 
     public void DebugReturn(DebugLevel level, string message)
