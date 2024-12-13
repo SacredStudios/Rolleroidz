@@ -11,6 +11,7 @@ TagManager:
   - Rail
   - AI_Player
   - AI_Head
+  - AI_Assets
   layers:
   - Default
   - TransparentFX

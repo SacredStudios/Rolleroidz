@@ -13563,7 +13563,7 @@ GameObject:
   - component: {fileID: 254198442585384076}
   m_Layer: 0
   m_Name: AI_Pink
-  m_TagString: Untagged
+  m_TagString: AI_Assets
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -1,4 +1,4 @@
-
+﻿
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +12,7 @@ public class Weapon : ScriptableObject
 {
     public Texture icon;
     public string weapon_name;
-    [TextArea(15,20)]
+    [TextArea(15, 20)]
     public string weapon_description;
     public float weapon_delay;
     public float damage;
@@ -45,7 +45,7 @@ public class Weapon : ScriptableObject
     public void SpawnCoin(GameObject dead_player, Vector3 pos) //change the name of this
     {
         Debug.Log(dead_player);
-        chat_manager.SendStatMessage(GetName(player) + " KO'd " + GetName(dead_player));
+        chat_manager.SendStatMessage(GetName(player) + " 🔫 " + GetName(dead_player));
         Photon.Realtime.Player player_photon = player.GetComponent<PhotonView>().Owner;
         Photon.Realtime.Player dead_player_photon = dead_player.GetComponent<PhotonView>().Owner;
         if (player.tag == "AI_Player")
@@ -62,7 +62,7 @@ public class Weapon : ScriptableObject
     }
     private string GetName(GameObject player)
     {
-        if (player.tag == "AI_Player")
+        if (player.tag == "AI_Player" || player.tag == "AI_Head" || player.tag == "AI_Assets")
         {
             return "AI_Player";
         }
