@@ -24,9 +24,10 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
     [SerializeField] GameObject increment_parent;
     [SerializeField] PhotonView pv;
     public AudioSource sound;
+    private KeyCode shootKey;
 
 
- 
+
     public bool isOverTrickBtn; //checks if mouse is hovering over a trick btn
     Super_Bar sb;
 
@@ -70,7 +71,7 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
             {
                 shoot_delay += Time.deltaTime;
             }
-            if (Input.GetButton("Fire1") || btn.isDown)
+            if (Input.GetKey(shootKey) || btn.isDown)
             {
                 FireCheck();
             }    
@@ -193,6 +194,7 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
                 weapon.super.player = weapon.player;
                 pv.RPC("SetWeapon", RpcTarget.Others, weapon.name, pv.ViewID);
                 GetComponent<PlayerMovement>().maxSpeedBase -= weapon.weight;
+                shootKey = (KeyCode)PlayerPrefs.GetInt("ShootKey", (int)KeyCode.Q);
             }
            
         }
