@@ -53,11 +53,15 @@ public class MenuController : MonoBehaviourPunCallbacks
         string RightKeyPref = "RightKey";
         string UpKeyPref = "UpKey";
         string DownKeyPref = "DownKey";
+        string ShootKeyPref = "ShootKey";
+        string JumpKeyPref = "JumpKey";
+
 
         if (!PlayerPrefs.HasKey(LeftKeyPref)) PlayerPrefs.SetInt(LeftKeyPref, (int)KeyCode.A);
         if (!PlayerPrefs.HasKey(RightKeyPref)) PlayerPrefs.SetInt(RightKeyPref, (int)KeyCode.D);
         if (!PlayerPrefs.HasKey(UpKeyPref)) PlayerPrefs.SetInt(UpKeyPref, (int)KeyCode.W);
         if (!PlayerPrefs.HasKey(DownKeyPref)) PlayerPrefs.SetInt(DownKeyPref, (int)KeyCode.S);
+        if (!PlayerPrefs.HasKey(JumpKeyPref)) PlayerPrefs.SetInt(JumpKeyPref, (int)KeyCode.Space);
 
         PlayerPrefs.Save();
     }

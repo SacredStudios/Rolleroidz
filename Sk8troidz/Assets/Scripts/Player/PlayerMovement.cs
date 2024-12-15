@@ -67,6 +67,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
     private KeyCode rightKey;
     private KeyCode upKey;
     private KeyCode downKey;
+    private KeyCode jumpKey;
     void Start()
     {
         if (Application.platform == RuntimePlatform.WebGLPlayer)
@@ -90,6 +91,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
             rightKey = (KeyCode)PlayerPrefs.GetInt("RightKey", (int)KeyCode.D);
             upKey = (KeyCode)PlayerPrefs.GetInt("UpKey", (int)KeyCode.W);
             downKey = (KeyCode)PlayerPrefs.GetInt("DownKey", (int)KeyCode.S);
+            jumpKey = (KeyCode)PlayerPrefs.GetInt("JumpKey", (int)KeyCode.Space);
         }
         
         sensitivity = PlayerPrefs.GetFloat("mouse_sensitivity");
@@ -173,7 +175,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
                 {
                     RotateWCamera();
                 }
-                if (Input.GetButtonDown("Jump"))
+                if (Input.GetKeyDown(jumpKey))
                 {
                     Jump();
                 }

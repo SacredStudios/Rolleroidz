@@ -1,21 +1,31 @@
 using UnityEngine;
 using UnityEngine.UI;
+
 public class Remap_Keys : MonoBehaviour
 {
     [SerializeField] private InputField leftInput;
     [SerializeField] private InputField rightInput;
     [SerializeField] private InputField upInput;
     [SerializeField] private InputField downInput;
+    [SerializeField] private InputField jumpInput;
+    [SerializeField] private InputField shootInput;
+    [SerializeField] private InputField trickInput;
 
     private KeyCode leftKey;
     private KeyCode rightKey;
     private KeyCode upKey;
     private KeyCode downKey;
+    private KeyCode jumpKey;
+    private KeyCode shootKey;
+    private KeyCode trickKey;
 
     private const string LeftKeyPref = "LeftKey";
     private const string RightKeyPref = "RightKey";
     private const string UpKeyPref = "UpKey";
     private const string DownKeyPref = "DownKey";
+    private const string JumpKeyPref = "JumpKey";
+    private const string ShootKeyPref = "ShootKey";
+    private const string TrickKeyPref = "TrickKey";
 
     void Start()
     {
@@ -24,54 +34,107 @@ public class Remap_Keys : MonoBehaviour
         rightKey = (KeyCode)PlayerPrefs.GetInt(RightKeyPref, (int)KeyCode.D);
         upKey = (KeyCode)PlayerPrefs.GetInt(UpKeyPref, (int)KeyCode.W);
         downKey = (KeyCode)PlayerPrefs.GetInt(DownKeyPref, (int)KeyCode.S);
+        jumpKey = (KeyCode)PlayerPrefs.GetInt(JumpKeyPref, (int)KeyCode.Space);
+        shootKey = (KeyCode)PlayerPrefs.GetInt(ShootKeyPref, (int)KeyCode.Q);
+        trickKey = (KeyCode)PlayerPrefs.GetInt(TrickKeyPref, (int)KeyCode.T);
 
-        // Set InputFields to current key values
-        leftInput.text = string.IsNullOrEmpty(leftKey.ToString()) ? KeyCode.A.ToString() : leftKey.ToString();
-        rightInput.text = string.IsNullOrEmpty(rightKey.ToString()) ? KeyCode.D.ToString() : rightKey.ToString();
-        upInput.text = string.IsNullOrEmpty(upKey.ToString()) ? KeyCode.W.ToString() : upKey.ToString();
-        downInput.text = string.IsNullOrEmpty(downKey.ToString()) ? KeyCode.S.ToString() : downKey.ToString();
-
+        // Set InputFields to current key values or defaults
+        leftInput.text = leftKey.ToString();
+        rightInput.text = rightKey.ToString();
+        upInput.text = upKey.ToString();
+        downInput.text = downKey.ToString();
+        jumpInput.text = jumpKey.ToString();
+        shootInput.text = shootKey.ToString();
+        trickInput.text = trickKey.ToString();
 
         // Add listeners for InputFields
-        leftInput.onEndEdit.AddListener(delegate { UpdateKey(LeftKeyPref, ref leftKey, leftInput.text); });
-        rightInput.onEndEdit.AddListener(delegate { UpdateKey(RightKeyPref, ref rightKey, rightInput.text); });
-        upInput.onEndEdit.AddListener(delegate { UpdateKey(UpKeyPref, ref upKey, upInput.text); });
-        downInput.onEndEdit.AddListener(delegate { UpdateKey(DownKeyPref, ref downKey, downInput.text); });
+        leftInput.onValueChanged.AddListener(delegate { UpdateKey(leftInput, LeftKeyPref, ref leftKey, leftInput.text); });
+        rightInput.onValueChanged.AddListener(delegate { UpdateKey(rightInput, RightKeyPref, ref rightKey, rightInput.text); });
+        upInput.onValueChanged.AddListener(delegate { UpdateKey(upInput, UpKeyPref, ref upKey, upInput.text); });
+        downInput.onValueChanged.AddListener(delegate { UpdateKey(downInput, DownKeyPref, ref downKey, downInput.text); });
+        jumpInput.onValueChanged.AddListener(delegate { UpdateKey(jumpInput, JumpKeyPref, ref jumpKey, jumpInput.text); });
+        shootInput.onValueChanged.AddListener(delegate { UpdateKey(shootInput, ShootKeyPref, ref shootKey, shootInput.text); });
+        trickInput.onValueChanged.AddListener(delegate { UpdateKey(trickInput, TrickKeyPref, ref trickKey, trickInput.text); });
+        //Setting input field as "Space" if pref is set to space bar/
+        //Otherwise this function is not needed as the values are set automatically on load
+        SetInputFieldText(leftInput, leftKey);
+        SetInputFieldText(rightInput, rightKey);
+        SetInputFieldText(upInput, upKey);
+        SetInputFieldText(downInput, downKey);
+        SetInputFieldText(jumpInput, jumpKey);
+        SetInputFieldText(shootInput, shootKey);
+        SetInputFieldText(trickInput, trickKey);
+
     }
 
-    private void UpdateKey(string prefKey, ref KeyCode keyToUpdate, string newKey)
+    private void UpdateKey(InputField inputField, string prefKey, ref KeyCode keyToUpdate, string newKey)
     {
-        if (System.Enum.TryParse(newKey, true, out KeyCode parsedKey))
+       
+        // Check if the user entered a single space
+        if (inputField.text == " ")
+
         {
-            keyToUpdate = parsedKey;
-            PlayerPrefs.SetInt(prefKey, (int)keyToUpdate); // Save to PlayerPrefs
-            PlayerPrefs.Save(); // Persist changes
-            Debug.Log($"{prefKey} updated to {keyToUpdate}");
+            Debug.Log("spacing out");
+            inputField.characterLimit = 5; // Set the character limit to 5 for "Space"
+            keyToUpdate = KeyCode.Space;
+            inputField.text = "Space";
+            PlayerPrefs.SetInt(prefKey, (int)keyToUpdate);
+            PlayerPrefs.Save();
+            Debug.Log($"{prefKey} updated to Space");
+        }
+        else {
+            inputField.characterLimit = 1;
+            if (inputField.text.Length < 5 && inputField.text.Length > 1) 
+            {
+              inputField.text = "";
+            }
+            if (System.Enum.TryParse(newKey, true, out KeyCode parsedKey))
+            {
+                keyToUpdate = parsedKey;
+                PlayerPrefs.SetInt(prefKey, (int)keyToUpdate);
+                PlayerPrefs.Save();
+                Debug.Log($"{prefKey} updated to {keyToUpdate}");
+            }
+            else
+            {
+                // Set to default if invalid
+                KeyCode defaultKey = GetDefaultKey(prefKey);
+                keyToUpdate = defaultKey;
+                PlayerPrefs.SetInt(prefKey, (int)defaultKey);
+                PlayerPrefs.Save();
+                Debug.LogWarning($"Invalid key entered! {prefKey} reset to default: {defaultKey}");
+            }
+        }
+    }
+
+    private KeyCode GetDefaultKey(string prefKey)
+    {
+        return prefKey switch
+        {
+            "LeftKey" => KeyCode.A,
+            "RightKey" => KeyCode.D,
+            "UpKey" => KeyCode.W,
+            "DownKey" => KeyCode.S,
+            "JumpKey" => KeyCode.Space,
+            "ShootKey" => KeyCode.Q,
+            "TrickKey" => KeyCode.T,
+            _ => KeyCode.None // Default for unknown actions
+        };
+    }
+
+    private void SetInputFieldText(InputField inputField, KeyCode keyCode)
+    {
+        if (keyCode == KeyCode.Space)
+        {
+            
+            inputField.characterLimit = 5; // Adjust character limit for "Space"
+            inputField.text = "Space";
         }
         else
         {
-            Debug.LogWarning("Invalid key entered!");
+            inputField.text = keyCode.ToString();
+            inputField.characterLimit = 1; // Default character limit for other keys
         }
     }
 
-    void Update()
-    {
-        // Example: Detect remapped keys during gameplay
-        if (Input.GetKeyDown(leftKey))
-        {
-            Debug.Log("Left key pressed!");
-        }
-        if (Input.GetKeyDown(rightKey))
-        {
-            Debug.Log("Right key pressed!");
-        }
-        if (Input.GetKeyDown(upKey))
-        {
-            Debug.Log("Up key pressed!");
-        }
-        if (Input.GetKeyDown(downKey))
-        {
-            Debug.Log("Down key pressed!");
-        }
-    }
 }
