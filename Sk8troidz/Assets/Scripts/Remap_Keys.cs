@@ -26,10 +26,11 @@ public class Remap_Keys : MonoBehaviour
         downKey = (KeyCode)PlayerPrefs.GetInt(DownKeyPref, (int)KeyCode.S);
 
         // Set InputFields to current key values
-        leftInput.text = leftKey.ToString();
-        rightInput.text = rightKey.ToString();
-        upInput.text = upKey.ToString();
-        downInput.text = downKey.ToString();
+        leftInput.text = string.IsNullOrEmpty(leftKey.ToString()) ? KeyCode.A.ToString() : leftKey.ToString();
+        rightInput.text = string.IsNullOrEmpty(rightKey.ToString()) ? KeyCode.D.ToString() : rightKey.ToString();
+        upInput.text = string.IsNullOrEmpty(upKey.ToString()) ? KeyCode.W.ToString() : upKey.ToString();
+        downInput.text = string.IsNullOrEmpty(downKey.ToString()) ? KeyCode.S.ToString() : downKey.ToString();
+
 
         // Add listeners for InputFields
         leftInput.onEndEdit.AddListener(delegate { UpdateKey(LeftKeyPref, ref leftKey, leftInput.text); });
