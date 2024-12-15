@@ -48,8 +48,18 @@ public class MenuController : MonoBehaviourPunCallbacks
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
-        //DontDestroyOnLoad(this.gameObject);
+        //Default controls WASD
+        string LeftKeyPref = "LeftKey";
+        string RightKeyPref = "RightKey";
+        string UpKeyPref = "UpKey";
+        string DownKeyPref = "DownKey";
 
+        if (!PlayerPrefs.HasKey(LeftKeyPref)) PlayerPrefs.SetInt(LeftKeyPref, (int)KeyCode.A);
+        if (!PlayerPrefs.HasKey(RightKeyPref)) PlayerPrefs.SetInt(RightKeyPref, (int)KeyCode.D);
+        if (!PlayerPrefs.HasKey(UpKeyPref)) PlayerPrefs.SetInt(UpKeyPref, (int)KeyCode.W);
+        if (!PlayerPrefs.HasKey(DownKeyPref)) PlayerPrefs.SetInt(DownKeyPref, (int)KeyCode.S);
+
+        PlayerPrefs.Save();
     }
    
     public override void OnConnectedToMaster()

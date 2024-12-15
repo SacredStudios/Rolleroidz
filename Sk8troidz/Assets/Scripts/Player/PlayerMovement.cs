@@ -62,6 +62,11 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
     public bool onRail;
     [SerializeField] public static GameObject last_collision;
     [SerializeField] Trick_System ts;
+
+    private KeyCode leftKey;
+    private KeyCode rightKey;
+    private KeyCode upKey;
+    private KeyCode downKey;
     void Start()
     {
         if (Application.platform == RuntimePlatform.WebGLPlayer)
@@ -79,7 +84,13 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
             vcam.SetActive(false);
             this.gameObject.GetComponent<PlayerMovement>().enabled = false;
         }
-        
+        else
+        {
+            leftKey = (KeyCode)PlayerPrefs.GetInt("LeftKey", (int)KeyCode.A);
+            rightKey = (KeyCode)PlayerPrefs.GetInt("RightKey", (int)KeyCode.D);
+            upKey = (KeyCode)PlayerPrefs.GetInt("UpKey", (int)KeyCode.W);
+            downKey = (KeyCode)PlayerPrefs.GetInt("DownKey", (int)KeyCode.S);
+        }
         
         sensitivity = PlayerPrefs.GetFloat("mouse_sensitivity");
     }
@@ -196,9 +207,22 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
         
         if (Ragdoll.is_Ragdoll == false && !boostMode && !onRail)
         {
-            input.x = Input.GetAxis("Horizontal");           
-            input.z = Input.GetAxis("Vertical");
-            if(joy.Horizontal != 0 && joy.Vertical != 0)
+            if (Input.GetKey(leftKey))
+                input.x = -1; // Move left
+            else if (Input.GetKey(rightKey))
+                input.x = 1;  // Move right
+            else
+                input.x = 0;  // No horizontal movement
+
+            // Handle vertical movement
+            if (Input.GetKey(upKey))
+                input.z = 1;  // Move forward
+            else if (Input.GetKey(downKey))
+                input.z = -1; // Move backward
+            else
+                input.z = 0;
+
+            if (joy.Horizontal != 0 && joy.Vertical != 0)
             {
                 input.x = joy.Horizontal;
                 input.z = joy.Vertical;
