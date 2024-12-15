@@ -20303,6 +20303,10 @@ PrefabInstance:
       propertyPath: m_FontData.m_FontSize
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 3477321913678648013, guid: 18dee4af8aba76b4987346a56bd436be, type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3895919729594591374, guid: 18dee4af8aba76b4987346a56bd436be, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 3.5
