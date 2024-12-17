@@ -3,6 +3,7 @@ using UnityEngine;
 public class HideStartMenu : MonoBehaviour
 {
     [SerializeField] GameObject menu;
+    [SerializeField] GameObject rolleroidMenu;
     static bool hideMenu = false;
     void Start()
     {
@@ -10,6 +11,7 @@ public class HideStartMenu : MonoBehaviour
         if (hideMenu)
         {
             menu.SetActive(false);
+            rolleroidMenu.GetComponent<MenuSk8troid>().Spin_Enabled();
         }
         hideMenu = true;
     }
