@@ -27,6 +27,7 @@ public class AI_Railgrinding : MonoBehaviour
     public AI_Movement movement;
     [SerializeField] NavMeshAgent agent;
     bool dir;
+    [SerializeField] Player_Health ph;
 
     void FixedUpdate()
     {
@@ -39,7 +40,7 @@ public class AI_Railgrinding : MonoBehaviour
     void MoveAlongRail()
     {
 
-        if (curr_rail != null && onRail == true)
+        if (curr_rail != null && onRail == true && ph.current_health > 0)
         {
             animator.SetFloat("animSpeedCap", 0);
             progress = elapsed_time / time_for_spline;

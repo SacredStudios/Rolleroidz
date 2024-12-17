@@ -28,6 +28,7 @@ public class Railgrinding : MonoBehaviour
     [SerializeField] GameObject crosshair;
     [SerializeField] GameObject sparks;
     [SerializeField] PhotonView pv;
+    [SerializeField] Player_Health ph;
 
     private KeyCode jumpKey;
     private KeyCode trickKey;
@@ -69,7 +70,7 @@ public class Railgrinding : MonoBehaviour
     void MoveAlongRail()
     {
         
-        if (curr_rail != null && onRail == true)
+        if (curr_rail != null && onRail == true && ph.current_health > 0)
         {
             animator.SetFloat("animSpeedCap", 0);
             if (Input.GetKeyDown(jumpKey))
