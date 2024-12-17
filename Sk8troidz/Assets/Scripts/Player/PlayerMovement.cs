@@ -68,6 +68,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
     private KeyCode upKey;
     private KeyCode downKey;
     private KeyCode jumpKey;
+    private KeyCode trickKey;
     void Start()
     {
         if (Application.platform == RuntimePlatform.WebGLPlayer)
@@ -92,6 +93,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
             upKey = (KeyCode)PlayerPrefs.GetInt("UpKey", (int)KeyCode.W);
             downKey = (KeyCode)PlayerPrefs.GetInt("DownKey", (int)KeyCode.S);
             jumpKey = (KeyCode)PlayerPrefs.GetInt("JumpKey", (int)KeyCode.Space);
+            trickKey = (KeyCode)PlayerPrefs.GetInt("TrickKey", (int)KeyCode.T);
         }
         
         sensitivity = PlayerPrefs.GetFloat("mouse_sensitivity");
@@ -148,7 +150,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
     private void Update()
     {
         if (pv.IsMine) {
-            if ((Input.GetButton("Fire2") || taunt_btn.isDown) && !onRail)
+            if ((Input.GetKey(trickKey) || taunt_btn.isDown) && !onRail)
             {
                 if (canJump)
                 {

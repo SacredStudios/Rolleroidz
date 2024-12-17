@@ -28,6 +28,10 @@ public class Railgrinding : MonoBehaviour
     [SerializeField] GameObject crosshair;
     [SerializeField] GameObject sparks;
     [SerializeField] PhotonView pv;
+
+    private KeyCode jumpKey;
+    private KeyCode trickKey;
+
     bool dir;
     public void JumpOffRail()
     {
@@ -54,7 +58,7 @@ public class Railgrinding : MonoBehaviour
     {
         if (onRail == true)
         {
-            if (Input.GetButtonDown("Jump"))
+            if (Input.GetKeyDown(jumpKey))
             {
                 JumpOffRail();
  
@@ -68,12 +72,12 @@ public class Railgrinding : MonoBehaviour
         if (curr_rail != null && onRail == true)
         {
             animator.SetFloat("animSpeedCap", 0);
-            if (Input.GetButtonDown("Jump"))
+            if (Input.GetKeyDown(jumpKey))
             {
                 JumpOffRail();
                 return;
             }
-            if (taunt_btn.isDown || Input.GetButton("Fire2"))
+            if (taunt_btn.isDown || Input.GetKey(trickKey))
             {
                 ts.Start_Rail_Trick_System();
             }
@@ -87,7 +91,7 @@ public class Railgrinding : MonoBehaviour
 
             float deltaTime = Time.deltaTime;
 
-            if (Input.GetButton("Fire2"))
+            if (Input.GetKey(trickKey))
             {
                 deltaTime *= 2f;
             }
@@ -169,5 +173,10 @@ public class Railgrinding : MonoBehaviour
     private void Start()
     {
         pm = GetComponent<PlayerMovement>();
+        if (pv.IsMine)
+        {
+            jumpKey = (KeyCode)PlayerPrefs.GetInt("JumpKey", (int)KeyCode.Space);
+            trickKey = (KeyCode)PlayerPrefs.GetInt("TrickKey", (int)KeyCode.T);
+        }
     }
 }

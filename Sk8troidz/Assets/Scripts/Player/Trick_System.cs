@@ -31,13 +31,13 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     [SerializeField] float multiplier = 0.5f;
     [SerializeField] List<GameObject> list;
     [SerializeField] Slider duration_slider;
-
+    private KeyCode trickKey;
     void Start()
     {
         wh = player.GetComponent<Weapon_Handler>();
         sb = player.GetComponent<Super_Bar>();      
         list = new List<GameObject>();
-
+        trickKey = (KeyCode)PlayerPrefs.GetInt("TrickKey", (int)KeyCode.T);
     }
     
     
@@ -110,7 +110,7 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     IEnumerator Trick(int n)
     {
         
-        while ((Input.GetButton("Fire2") || trick_btn.isDown) && PlayerMovement.trick_mode_activated == true && slider.value != slider.maxValue)
+        while ((Input.GetKey(trickKey) || trick_btn.isDown) && PlayerMovement.trick_mode_activated == true && slider.value != slider.maxValue)
         {
             slider.value += (Time.deltaTime * speed) * (multiplier + 0.5f);
             yield return null;
@@ -124,7 +124,7 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             sb.ChangeAmount(100);
             crosshair.SetActive(true);
         }
-        else if (!(Input.GetButton("Fire2") || trick_btn.isDown))
+        else if (!(Input.GetKey(trickKey) || trick_btn.isDown))
         {
             crosshair.SetActive(true);
         }
@@ -137,7 +137,7 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     }
     IEnumerator RailTrick()
     {
-        while (((Input.GetButton("Fire2") || trick_btn.isDown) && railgrinding.progress >= 0 && railgrinding.progress <= 1) && railgrinding.onRail)
+        while (((Input.GetKey(trickKey) || trick_btn.isDown) && railgrinding.progress >= 0 && railgrinding.progress <= 1) && railgrinding.onRail)
         {
             slider.value += (Time.deltaTime * speed / 200f) * (multiplier * 3 + 0.5f);
             yield return null;
@@ -153,7 +153,7 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         {
             yield return null;
         }
-        else if (!(Input.GetButton("Fire2") || trick_btn.isDown) || (Input.GetButton("Jump") || jump_btn.isDown))
+        else if (!(Input.GetKey(trickKey) || trick_btn.isDown) || (Input.GetButton("Jump") || jump_btn.isDown))
         {
             railgrinding.onRail = false;
             railgrinding.progress = 0;
