@@ -2640,7 +2640,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8883766866366520986, guid: 75d7d5311f7703a488bf706b3c0eacf3, type: 3}
       propertyPath: m_Text
-      value: "Hey! \nRun with the arrow keys, (WASD)"
+      value: "Hey! \nRun with WASD (Change controls in Settings)"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
