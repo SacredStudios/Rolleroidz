@@ -16,20 +16,18 @@ public class Respawn_Circle : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject() ) // Check if left mouse button is held down and not over a UI element
+        if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject() )
         {
             Ray ray = RespawnCam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit))
             {
-                // Update the position of the circle while the mouse button is held
                 transform.position = hit.point - new Vector3(0, -10, 0);
             }
         }
         if (this.gameObject.transform.position.y > 50)
         {
-            Debug.Log("outta bounds");
             transform.position = new Vector3(transform.position.x, 50, transform.position.z);
         }
     }
