@@ -18241,6 +18241,7 @@ GameObject:
   - component: {fileID: 1367121914}
   - component: {fileID: 1367121913}
   - component: {fileID: 1367121912}
+  - component: {fileID: 1367121915}
   m_Layer: 5
   m_Name: Go Home
   m_TagString: Untagged
@@ -18362,6 +18363,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1367121910}
   m_CullTransparentMesh: 1
+--- !u!114 &1367121915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367121910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee5f2f9b18fef24191b237d02aeb58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonRect: {fileID: 0}
+  hoverScale: {x: 1.1, y: 1.1, z: 1}
+  transitionSpeed: 10
 --- !u!1 &1369175683
 GameObject:
   m_ObjectHideFlags: 0
@@ -25329,6 +25345,7 @@ GameObject:
   - component: {fileID: 1840861561}
   - component: {fileID: 1840861560}
   - component: {fileID: 1840861563}
+  - component: {fileID: 1840861564}
   m_Layer: 5
   m_Name: Back_Btn
   m_TagString: Untagged
@@ -25465,6 +25482,21 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1.14, y: -3.94}
   m_UseGraphicAlpha: 1
+--- !u!114 &1840861564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840861558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee5f2f9b18fef24191b237d02aeb58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonRect: {fileID: 0}
+  hoverScale: {x: 1.1, y: 1.1, z: 1}
+  transitionSpeed: 10
 --- !u!1001 &1841102582
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28444,6 +28476,7 @@ GameObject:
   - component: {fileID: 2012876690}
   - component: {fileID: 2012876689}
   - component: {fileID: 2012876692}
+  - component: {fileID: 2012876693}
   m_Layer: 5
   m_Name: Start(Temp)
   m_TagString: Untagged
@@ -28580,6 +28613,21 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 5.91, y: -6.09}
   m_UseGraphicAlpha: 1
+--- !u!114 &2012876693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2012876687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee5f2f9b18fef24191b237d02aeb58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonRect: {fileID: 0}
+  hoverScale: {x: 1.1, y: 1.1, z: 1}
+  transitionSpeed: 10
 --- !u!1 &2026277103
 GameObject:
   m_ObjectHideFlags: 0
