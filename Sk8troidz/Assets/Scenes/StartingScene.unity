@@ -460,6 +460,7 @@ GameObject:
   - component: {fileID: 42085464}
   - component: {fileID: 42085463}
   - component: {fileID: 42085466}
+  - component: {fileID: 42085467}
   m_Layer: 5
   m_Name: ClothesBtn
   m_TagString: Untagged
@@ -596,6 +597,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clothing: {fileID: 0}
   list: {fileID: 0}
+--- !u!114 &42085467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 42085460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee5f2f9b18fef24191b237d02aeb58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonRect: {fileID: 0}
+  hoverScale: {x: 1.1, y: 1.1, z: 1}
+  transitionSpeed: 10
 --- !u!1 &47155183
 GameObject:
   m_ObjectHideFlags: 0
@@ -1507,6 +1523,7 @@ GameObject:
   - component: {fileID: 117126348}
   - component: {fileID: 117126350}
   - component: {fileID: 117126349}
+  - component: {fileID: 117126351}
   m_Layer: 5
   m_Name: XImage
   m_TagString: Untagged
@@ -1568,6 +1585,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 117126347}
   m_CullTransparentMesh: 1
+--- !u!114 &117126351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 117126347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee5f2f9b18fef24191b237d02aeb58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonRect: {fileID: 0}
+  hoverScale: {x: 1.1, y: 1.1, z: 1}
+  transitionSpeed: 10
 --- !u!1 &129016901
 GameObject:
   m_ObjectHideFlags: 0
@@ -11446,6 +11478,7 @@ GameObject:
   - component: {fileID: 1389558948}
   - component: {fileID: 1389558947}
   - component: {fileID: 1389558946}
+  - component: {fileID: 1389558950}
   m_Layer: 5
   m_Name: ClothesBtn
   m_TagString: Untagged
@@ -11582,6 +11615,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1389558944}
   m_CullTransparentMesh: 1
+--- !u!114 &1389558950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389558944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee5f2f9b18fef24191b237d02aeb58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonRect: {fileID: 0}
+  hoverScale: {x: 1.1, y: 1.1, z: 1}
+  transitionSpeed: 10
 --- !u!1 &1390647682
 GameObject:
   m_ObjectHideFlags: 0
@@ -12669,6 +12717,7 @@ GameObject:
   - component: {fileID: 1489820239}
   - component: {fileID: 1489820238}
   - component: {fileID: 1489820237}
+  - component: {fileID: 1489820241}
   m_Layer: 5
   m_Name: ClothesBtn
   m_TagString: Untagged
@@ -12805,6 +12854,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1489820235}
   m_CullTransparentMesh: 1
+--- !u!114 &1489820241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489820235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee5f2f9b18fef24191b237d02aeb58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonRect: {fileID: 0}
+  hoverScale: {x: 1.1, y: 1.1, z: 1}
+  transitionSpeed: 10
 --- !u!1 &1500034022
 GameObject:
   m_ObjectHideFlags: 0
@@ -14632,6 +14696,7 @@ GameObject:
   - component: {fileID: 1667020217}
   - component: {fileID: 1667020216}
   - component: {fileID: 1667020215}
+  - component: {fileID: 1667020219}
   m_Layer: 5
   m_Name: ClothesBtn
   m_TagString: Untagged
@@ -14768,6 +14833,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1667020213}
   m_CullTransparentMesh: 1
+--- !u!114 &1667020219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1667020213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee5f2f9b18fef24191b237d02aeb58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonRect: {fileID: 0}
+  hoverScale: {x: 1.1, y: 1.1, z: 1}
+  transitionSpeed: 10
 --- !u!1 &1676137528
 GameObject:
   m_ObjectHideFlags: 0
