@@ -5983,7 +5983,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonRect: {fileID: 0}
-  hoverScale: {x: 1.3, y: 1.3, z: 1}
+  hoverScale: {x: 1.1, y: 1.1, z: 1}
   transitionSpeed: 10
 --- !u!1 &637316113
 GameObject:
@@ -12454,7 +12454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonRect: {fileID: 0}
-  hoverScale: {x: 1.3, y: 1.3, z: 1}
+  hoverScale: {x: 1.1, y: 1.1, z: 1}
   transitionSpeed: 10
 --- !u!1 &1474215851
 GameObject:
@@ -17911,7 +17911,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2090156494
 RectTransform:
   m_ObjectHideFlags: 0
