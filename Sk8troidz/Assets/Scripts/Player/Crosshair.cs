@@ -25,7 +25,7 @@ public class Crosshair : MonoBehaviour
         }
 
         // Ensure pivot and anchors are centered
-        crosshairRectTransform.pivot = new Vector2(0.5f, 0.5f);
+        crosshairRectTransform.pivot = new Vector2(0.5f, 0f);
         crosshairRectTransform.anchoredPosition = Vector2.zero;
     }
 
