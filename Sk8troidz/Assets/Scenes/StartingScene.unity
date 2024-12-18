@@ -4357,6 +4357,7 @@ GameObject:
   - component: {fileID: 455751159}
   - component: {fileID: 455751158}
   - component: {fileID: 455751162}
+  - component: {fileID: 455751163}
   m_Layer: 5
   m_Name: MyWeapons_Btn
   m_TagString: Untagged
@@ -4507,6 +4508,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 662011423}
+--- !u!114 &455751163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455751156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee5f2f9b18fef24191b237d02aeb58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonRect: {fileID: 455751157}
+  hoverScale: {x: 1.1, y: 1.1, z: 1}
+  transitionSpeed: 10
 --- !u!1 &472307987
 GameObject:
   m_ObjectHideFlags: 0
@@ -5170,6 +5186,7 @@ GameObject:
   - component: {fileID: 561768285}
   - component: {fileID: 561768284}
   - component: {fileID: 561768283}
+  - component: {fileID: 561768287}
   m_Layer: 5
   m_Name: PlayOnline_Btn
   m_TagString: Untagged
@@ -5319,6 +5336,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 561768281}
   m_CullTransparentMesh: 1
+--- !u!114 &561768287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561768281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee5f2f9b18fef24191b237d02aeb58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonRect: {fileID: 561768282}
+  hoverScale: {x: 1.1, y: 1.1, z: 1}
+  transitionSpeed: 10
 --- !u!1 &575121814
 GameObject:
   m_ObjectHideFlags: 0
@@ -6435,6 +6467,7 @@ GameObject:
   - component: {fileID: 701555809}
   - component: {fileID: 701555808}
   - component: {fileID: 701555812}
+  - component: {fileID: 701555813}
   m_Layer: 5
   m_Name: Settings_Btn
   m_TagString: Untagged
@@ -6585,6 +6618,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 1568759546}
+--- !u!114 &701555813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701555806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee5f2f9b18fef24191b237d02aeb58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonRect: {fileID: 701555807}
+  hoverScale: {x: 1.1, y: 1.1, z: 1}
+  transitionSpeed: 10
 --- !u!1 &736630131
 GameObject:
   m_ObjectHideFlags: 0
@@ -7583,6 +7631,7 @@ GameObject:
   - component: {fileID: 921119049}
   - component: {fileID: 921119048}
   - component: {fileID: 921119052}
+  - component: {fileID: 921119053}
   m_Layer: 5
   m_Name: MyClothes_Btn
   m_TagString: Untagged
@@ -7733,6 +7782,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 2138011855}
+--- !u!114 &921119053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 921119046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee5f2f9b18fef24191b237d02aeb58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonRect: {fileID: 921119047}
+  hoverScale: {x: 1.1, y: 1.1, z: 1}
+  transitionSpeed: 10
 --- !u!1 &926722093
 GameObject:
   m_ObjectHideFlags: 0
@@ -9292,6 +9356,7 @@ GameObject:
   - component: {fileID: 1155535454}
   - component: {fileID: 1155535453}
   - component: {fileID: 1155535452}
+  - component: {fileID: 1155535456}
   m_Layer: 5
   m_Name: StartBtn
   m_TagString: Untagged
@@ -9440,6 +9505,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1155535450}
   m_CullTransparentMesh: 1
+--- !u!114 &1155535456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1155535450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee5f2f9b18fef24191b237d02aeb58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonRect: {fileID: 1155535451}
+  hoverScale: {x: 1.1, y: 1.1, z: 1}
+  transitionSpeed: 10
 --- !u!1 &1168415215
 GameObject:
   m_ObjectHideFlags: 0
@@ -17226,6 +17306,7 @@ GameObject:
   - component: {fileID: 2055273728}
   - component: {fileID: 2055273727}
   - component: {fileID: 2055273726}
+  - component: {fileID: 2055273731}
   m_Layer: 5
   m_Name: Tutorial_Btn
   m_TagString: Untagged
@@ -17387,6 +17468,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2055273724}
   m_CullTransparentMesh: 1
+--- !u!114 &2055273731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2055273724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee5f2f9b18fef24191b237d02aeb58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonRect: {fileID: 2055273725}
+  hoverScale: {x: 1.1, y: 1.1, z: 1}
+  transitionSpeed: 10
 --- !u!1001 &2061655615
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17623,7 +17719,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2090156494
 RectTransform:
   m_ObjectHideFlags: 0
