@@ -139,7 +139,7 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         while (((Input.GetKey(trickKey) || trick_btn.isDown) && railgrinding.progress >= 0 && railgrinding.progress <= 1) && railgrinding.onRail)
         {
-            slider.value += (Time.deltaTime * speed / 200f) * (multiplier * 3 + 0.5f);
+            slider.value += (Time.deltaTime * speed / 200f) * (multiplier * 1.5f + 0.3f);
             yield return null;
         }
         animator.SetBool("trickModeActivated", false);       
