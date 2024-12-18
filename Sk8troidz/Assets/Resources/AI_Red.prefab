@@ -14682,9 +14682,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pv: {fileID: 8999722921355035029}
   cam: {fileID: 0}
-  player: {fileID: 3660938799943817007}
-  multiplier: 0.0038
-  rotationOffset: {x: 0, y: 0, z: 0}
+  gunBarrel: {fileID: 0}
+  maxDistance: 100
 --- !u!1001 &3556923669807240487
 PrefabInstance:
   m_ObjectHideFlags: 0
