@@ -1523,7 +1523,6 @@ GameObject:
   - component: {fileID: 117126348}
   - component: {fileID: 117126350}
   - component: {fileID: 117126349}
-  - component: {fileID: 117126351}
   m_Layer: 5
   m_Name: XImage
   m_TagString: Untagged
@@ -1585,21 +1584,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 117126347}
   m_CullTransparentMesh: 1
---- !u!114 &117126351
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 117126347}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bee5f2f9b18fef24191b237d02aeb58e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttonRect: {fileID: 0}
-  hoverScale: {x: 1.1, y: 1.1, z: 1}
-  transitionSpeed: 10
 --- !u!1 &129016901
 GameObject:
   m_ObjectHideFlags: 0
@@ -5864,6 +5848,7 @@ GameObject:
   - component: {fileID: 636234458}
   - component: {fileID: 636234457}
   - component: {fileID: 636234456}
+  - component: {fileID: 636234459}
   m_Layer: 5
   m_Name: Exit
   m_TagString: Untagged
@@ -5985,6 +5970,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 636234454}
   m_CullTransparentMesh: 1
+--- !u!114 &636234459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 636234454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee5f2f9b18fef24191b237d02aeb58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonRect: {fileID: 0}
+  hoverScale: {x: 1.3, y: 1.3, z: 1}
+  transitionSpeed: 10
 --- !u!1 &637316113
 GameObject:
   m_ObjectHideFlags: 0
@@ -12319,6 +12319,7 @@ GameObject:
   - component: {fileID: 1468093009}
   - component: {fileID: 1468093008}
   - component: {fileID: 1468093007}
+  - component: {fileID: 1468093010}
   m_Layer: 5
   m_Name: Exit (1)
   m_TagString: Untagged
@@ -12440,6 +12441,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1468093005}
   m_CullTransparentMesh: 1
+--- !u!114 &1468093010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1468093005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee5f2f9b18fef24191b237d02aeb58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonRect: {fileID: 0}
+  hoverScale: {x: 1.3, y: 1.3, z: 1}
+  transitionSpeed: 10
 --- !u!1 &1474215851
 GameObject:
   m_ObjectHideFlags: 0
@@ -15259,6 +15275,7 @@ GameObject:
   - component: {fileID: 1780116288}
   - component: {fileID: 1780116287}
   - component: {fileID: 1780116286}
+  - component: {fileID: 1780116289}
   m_Layer: 5
   m_Name: Exit
   m_TagString: Untagged
@@ -15380,6 +15397,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1780116284}
   m_CullTransparentMesh: 1
+--- !u!114 &1780116289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1780116284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee5f2f9b18fef24191b237d02aeb58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonRect: {fileID: 0}
+  hoverScale: {x: 1.1, y: 1.1, z: 1}
+  transitionSpeed: 10
 --- !u!1 &1787497675
 GameObject:
   m_ObjectHideFlags: 0
@@ -17012,6 +17044,7 @@ GameObject:
   - component: {fileID: 2000430151}
   - component: {fileID: 2000430150}
   - component: {fileID: 2000430153}
+  - component: {fileID: 2000430154}
   m_Layer: 5
   m_Name: WeaponBtn
   m_TagString: Untagged
@@ -17147,6 +17180,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 0}
   list: {fileID: 0}
+--- !u!114 &2000430154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2000430148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee5f2f9b18fef24191b237d02aeb58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonRect: {fileID: 0}
+  hoverScale: {x: 1.1, y: 1.1, z: 1}
+  transitionSpeed: 10
 --- !u!1 &2022377466
 GameObject:
   m_ObjectHideFlags: 0

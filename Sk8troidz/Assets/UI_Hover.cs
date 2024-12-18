@@ -10,16 +10,17 @@ public class UI_Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     private Vector3 originalScale; // Original scale of the button
 
-    private void Start()
+    private void OnEnable()
     {
         // Get the RectTransform if not already assigned
         if (buttonRect == null)
         {
             buttonRect = GetComponent<RectTransform>();
         }
-
+        originalScale = new Vector3(1, 1, 1);
+        buttonRect.localScale = originalScale;
         // Store the original scale
-        originalScale = buttonRect.localScale;
+        
     }
 
     public void OnPointerEnter(PointerEventData eventData)
