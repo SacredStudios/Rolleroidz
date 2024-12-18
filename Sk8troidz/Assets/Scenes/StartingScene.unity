@@ -3072,6 +3072,7 @@ GameObject:
   - component: {fileID: 306645362}
   - component: {fileID: 306645361}
   - component: {fileID: 306645360}
+  - component: {fileID: 306645363}
   m_Layer: 5
   m_Name: Shoes_Btn
   m_TagString: Untagged
@@ -3229,6 +3230,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 306645358}
   m_CullTransparentMesh: 1
+--- !u!114 &306645363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 306645358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee5f2f9b18fef24191b237d02aeb58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonRect: {fileID: 0}
+  hoverScale: {x: 1.1, y: 1.1, z: 1}
+  transitionSpeed: 10
 --- !u!1 &329347504
 GameObject:
   m_ObjectHideFlags: 0
@@ -4743,6 +4759,7 @@ GameObject:
   - component: {fileID: 526926050}
   - component: {fileID: 526926049}
   - component: {fileID: 526926048}
+  - component: {fileID: 526926051}
   m_Layer: 5
   m_Name: Top_Btn
   m_TagString: Untagged
@@ -4900,6 +4917,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 526926046}
   m_CullTransparentMesh: 1
+--- !u!114 &526926051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 526926046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee5f2f9b18fef24191b237d02aeb58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonRect: {fileID: 0}
+  hoverScale: {x: 1.1, y: 1.1, z: 1}
+  transitionSpeed: 10
 --- !u!1 &530500518
 GameObject:
   m_ObjectHideFlags: 0
@@ -11642,6 +11674,7 @@ GameObject:
   - component: {fileID: 1390647686}
   - component: {fileID: 1390647685}
   - component: {fileID: 1390647684}
+  - component: {fileID: 1390647687}
   m_Layer: 5
   m_Name: Pants_Btn
   m_TagString: Untagged
@@ -11799,6 +11832,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1390647682}
   m_CullTransparentMesh: 1
+--- !u!114 &1390647687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1390647682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee5f2f9b18fef24191b237d02aeb58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonRect: {fileID: 0}
+  hoverScale: {x: 1.1, y: 1.1, z: 1}
+  transitionSpeed: 10
 --- !u!1 &1410756666 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8408713545548184827, guid: a6476ea02cc0c40daa369662ce82aaf1, type: 3}
@@ -13261,6 +13309,7 @@ GameObject:
   - component: {fileID: 1556424430}
   - component: {fileID: 1556424429}
   - component: {fileID: 1556424428}
+  - component: {fileID: 1556424431}
   m_Layer: 5
   m_Name: Shirt_Btn
   m_TagString: Untagged
@@ -13418,6 +13467,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1556424426}
   m_CullTransparentMesh: 1
+--- !u!114 &1556424431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556424426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee5f2f9b18fef24191b237d02aeb58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonRect: {fileID: 0}
+  hoverScale: {x: 1.1, y: 1.1, z: 1}
+  transitionSpeed: 10
 --- !u!1 &1560282707
 GameObject:
   m_ObjectHideFlags: 0
