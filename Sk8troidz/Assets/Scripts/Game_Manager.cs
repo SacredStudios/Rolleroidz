@@ -330,7 +330,6 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         Debug.Log(team1count + "+" + team2count);
         while (count < min_room_size- PhotonNetwork.PlayerList.Length)
         {
-            Debug.Log(count);
             count++;
             //A lot of redundant code here
             if (count % 2 == 0)
