@@ -27,7 +27,7 @@ public class RangedWeapon : Weapon
 
         if (Physics.Raycast(distance, min_distance))
         {
-            Debug.Log("too short");
+            //fix this by shooting from center of player
         }
         else
         {
