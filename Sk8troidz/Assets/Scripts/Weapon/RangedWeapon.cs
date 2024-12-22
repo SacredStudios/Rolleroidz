@@ -27,7 +27,7 @@ public class RangedWeapon : Weapon
 
         if (Physics.Raycast(distance, min_distance))
         {
-            //fix this by shooting from center of player
+            //TODO: fix this by shooting from center of player
         }
         else
         {
