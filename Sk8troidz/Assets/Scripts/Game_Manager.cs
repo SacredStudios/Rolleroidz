@@ -268,7 +268,6 @@ public class Game_Manager : MonoBehaviourPunCallbacks
             new_player.GetComponentInChildren<Camera>().transform.parent = null;
             new_player.SetActive(false);
         }
-        Debug.Log(winningteam + " + " +PhotonNetwork.LocalPlayer.GetPhotonTeam().Code);
         if(PhotonNetwork.LocalPlayer.GetPhotonTeam().Code == winningteam)
         {
             Invoke("WinScreen", 1f);
@@ -284,14 +283,12 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         lobby_cam.SetActive(true);
         gameover_screen.SetActive(true);
         gameover_text.text =" YOU WIN";
-        Debug.Log("You Win");
     }
     void LoseScreen()
     {
         lobby_cam.SetActive(true);
         gameover_screen.SetActive(true);
         gameover_text.text = " YOU LOSE";
-        Debug.Log("You Lose");
     }
     public void BackToStart()
     {
@@ -301,14 +298,8 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         
     }
     public override void OnLeftRoom()
-    {
-        
-
-        Debug.Log(PhotonNetwork.LocalPlayer.GetPhotonTeam());
-        
-        PhotonNetwork.LoadLevel("StartingScene");
-        
-        
+    {        
+        PhotonNetwork.LoadLevel("StartingScene");        
     }
     void PropChange()
     {
@@ -327,7 +318,6 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     void SpawnAIPlayers()
     {
         ai_players = new List<GameObject>();
-        Debug.Log(team1count + "+" + team2count);
         while (count < min_room_size- PhotonNetwork.PlayerList.Length)
         {
             count++;
@@ -374,7 +364,6 @@ public class Game_Manager : MonoBehaviourPunCallbacks
             new_player.GetComponentInChildren<Weapon_Handler>().weapon.chat_manager = chatManager.GetComponent<Chat_Manager>();
             new_player.transform.position = points[Random.Range(0, points.Count)];
         }
-        Debug.Log(new_player.GetComponentInChildren<Camera>());
         AI_LookAt.cam = new_player.GetComponentInChildren<Camera>();
         AI_LookAt.pv = new_player.GetComponent<PhotonView>();
 

@@ -93,7 +93,6 @@ public class Remap_Keys : MonoBehaviour
                 keyToUpdate = parsedKey;
                 PlayerPrefs.SetInt(prefKey, (int)keyToUpdate);
                 PlayerPrefs.Save();
-                Debug.Log($"{prefKey} updated to {keyToUpdate}");
             }
             else
             {
@@ -102,7 +101,6 @@ public class Remap_Keys : MonoBehaviour
                 keyToUpdate = defaultKey;
                 PlayerPrefs.SetInt(prefKey, (int)defaultKey);
                 PlayerPrefs.Save();
-                Debug.LogWarning($"Invalid key entered! {prefKey} reset to default: {defaultKey}");
             }
         }
     }
