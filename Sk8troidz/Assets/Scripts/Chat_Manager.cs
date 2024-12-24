@@ -39,7 +39,6 @@ public class Chat_Manager : MonoBehaviour, IChatClientListener
 
     public void OnGetMessages(string channelName, string[] senders, object[] messages)
     {
-        Debug.Log("getting msgs");
         string msgs = "";
         for (int i = 0; i < senders.Length; i++)
         {
