@@ -232,7 +232,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 67.98624}
+  m_AnchoredPosition: {x: 0, y: 72}
   m_SizeDelta: {x: 312.124, y: 45.273}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &11852651
@@ -10363,7 +10363,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -65.01378}
+  m_AnchoredPosition: {x: 0, y: -54}
   m_SizeDelta: {x: 459.297, y: 54.236}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1246471962
@@ -10544,8 +10544,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: c723e8c8147ce4f12a4927d0d46fab98, type: 3}
-    m_FontSize: 112
+    m_Font: {fileID: 12800000, guid: 2a0b53ffbbcba4045898582ac221b488, type: 3}
+    m_FontSize: 78
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 8
@@ -10556,7 +10556,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Change Username
+  m_Text: CHANGE USERNAME
 --- !u!222 &1291533668
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15864,8 +15864,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: c723e8c8147ce4f12a4927d0d46fab98, type: 3}
-    m_FontSize: 112
+    m_Font: {fileID: 12800000, guid: 2a0b53ffbbcba4045898582ac221b488, type: 3}
+    m_FontSize: 78
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -15876,7 +15876,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Mouse Sensitivity
+  m_Text: MOUSE SENSITIVITY
 --- !u!222 &1855875636
 CanvasRenderer:
   m_ObjectHideFlags: 0
