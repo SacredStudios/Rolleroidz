@@ -9,6 +9,7 @@ public class Super_Bar : MonoBehaviourPunCallbacks
     [SerializeField] PhotonView pv;
     [SerializeField] GameObject player;
     [SerializeField] GameObject super_particles;
+    [SerializeField] GameObject trick_system;
     public void ChangeAmount(float new_amount)
     {
         if (player.tag == "Player")
@@ -23,6 +24,7 @@ public class Super_Bar : MonoBehaviourPunCallbacks
         if(slider.value >= 100)
         {
             super_particles.SetActive(true);
+            player.GetComponent<Trick_System>().multiplier = 0.5f;
         }
         else
         {
