@@ -16954,6 +16954,7 @@ MonoBehaviour:
   pv: {fileID: 8999722921355035029}
   player: {fileID: 3660938799943817007}
   super_particles: {fileID: 2910454547312733115}
+  trick_system: {fileID: 0}
 --- !u!114 &1749259301292266425
 MonoBehaviour:
   m_ObjectHideFlags: 0
