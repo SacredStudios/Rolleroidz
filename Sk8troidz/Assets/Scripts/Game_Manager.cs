@@ -191,7 +191,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
                             
                             team2count += player.GetComponent<AI_Handler>().score;
                         }
-                        Debug.Log(team1count + "+" + team2count);
+                      //  Debug.Log(team1count + "+" + team2count);
                     }
                 }
 
