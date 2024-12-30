@@ -81,7 +81,7 @@ public class Scores : MonoBehaviourPunCallbacks
         int scoreChange = newScore - lastScore;
         lastScore = newScore;
         teamText.text = "" + newScore;
-        if (scoreChange != 0)
+        if (scoreChange > 0)
         {
             if (coroutine != null)
             {
@@ -91,6 +91,7 @@ public class Scores : MonoBehaviourPunCallbacks
             }
             coroutine = StartCoroutine(AnimateTextChange(teamText, scoreChange));
         }
+        
     }
 
     IEnumerator AnimateTextChange(Text text, int scoreChange)
