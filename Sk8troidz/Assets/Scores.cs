@@ -17,46 +17,51 @@ public class Scores : MonoBehaviourPunCallbacks
     private void Start()
     {
         ai_players = GameObject.FindGameObjectsWithTag("AI_Player");
+        SyncScore();
     }
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
     {
-        if (PhotonNetwork.IsMasterClient)
-        {
-            team1count = 0;
-            team2count = 0;
-            foreach (Player player in PhotonNetwork.PlayerList)
+        SyncScore();
+    }
+    void SyncScore()
+    {
+         if (PhotonNetwork.IsMasterClient)
+         {
+                    team1count = 0;
+                    team2count = 0;
+                    foreach (Player player in PhotonNetwork.PlayerList)
+                    {
+                        if (player.GetPhotonTeam() != null)
+                        {
+                            if (player.GetPhotonTeam().Code == 1)
+                            {
+                                team1count += player.GetScore();
+                            }
+                            else
+         {
+            team2count += player.GetScore();
+         }
+                        }
+                    }
+                    if (ai_players != null)
+         {
+            foreach (GameObject player in ai_players)
             {
-                if (player.GetPhotonTeam() != null)
+                if (player.GetComponent<Team_Handler>().GetTeam() == 1)
                 {
-                    if (player.GetPhotonTeam().Code == 1)
-                    {
-                        team1count += player.GetScore();
-                    }
-                    else
-                    {
-                        team2count += player.GetScore();
-                    }
+
+                    team1count += player.GetComponent<AI_Handler>().score;
                 }
-            }
-            if (ai_players != null)
-            {
-                foreach (GameObject player in ai_players)
+                if (player.GetComponent<Team_Handler>().GetTeam() == 2)
                 {
-                    if (player.GetComponent<Team_Handler>().GetTeam() == 1)
-                    {
 
-                        team1count += player.GetComponent<AI_Handler>().score;
-                    }
-                    if (player.GetComponent<Team_Handler>().GetTeam() == 2)
-                    {
-
-                        team2count += player.GetComponent<AI_Handler>().score;
-                    }
-
+                    team2count += player.GetComponent<AI_Handler>().score;
                 }
+
             }
-            red_team.text = "" + team1count;
-            pink_team.text = "" + team2count;
-        }
+         }
+        red_team.text = "" + team1count;
+        pink_team.text = "" + team2count;
+       }
     }
 }
