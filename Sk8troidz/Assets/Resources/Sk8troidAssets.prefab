@@ -2557,7 +2557,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 18.94, y: 4.86}
+  m_EffectDistance: {x: 18.94, y: 21.77}
   m_UseGraphicAlpha: 1
 --- !u!114 &8893982950812378561
 MonoBehaviour:
@@ -13450,6 +13450,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6449519210017637069}
+  - component: {fileID: 8927105548173916326}
   m_Layer: 0
   m_Name: Scores
   m_TagString: Untagged
@@ -13479,6 +13480,20 @@ RectTransform:
   m_AnchoredPosition: {x: 149, y: 72}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8927105548173916326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4846697760841823008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbc0e74fdabfc436da600b5e672db5bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  red_team: {fileID: 5897228853166540328}
+  pink_team: {fileID: 7545846465685757926}
 --- !u!1 &5157634687137320113
 GameObject:
   m_ObjectHideFlags: 0
@@ -14629,7 +14644,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 18.94, y: 4.86}
+  m_EffectDistance: {x: 18.94, y: 21.77}
   m_UseGraphicAlpha: 1
 --- !u!114 &5714272222085915503
 MonoBehaviour:
