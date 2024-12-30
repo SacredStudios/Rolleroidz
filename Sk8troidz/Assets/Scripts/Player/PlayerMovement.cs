@@ -157,7 +157,6 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
                     taunt_mode_activated = true;
                     animator.speed = 1f;
                     animator.SetFloat("Bend", 0f);
-                    Debug.Log("taunting");
                     crosshair.SetActive(false);
                 }
                 else

@@ -172,11 +172,7 @@ public class Black_Hole : MonoBehaviour
 
     public void Explode()
     {
-        // Restore weapon functionality after the black hole is deactivated
         weaponHandler.weapon = temp;
-
-        // Optionally add an explosion effect here
-        Debug.Log("Black Hole effect ended.");
         PhotonNetwork.Destroy(gameObject); // Destroy the black hole object
     }
 }
