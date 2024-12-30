@@ -56,9 +56,9 @@ public class ClothesManager : MonoBehaviourPunCallbacks
             else
             {
                 Clothing top = cl.all_tops[Random.Range(0, 3)];
-                Clothing shirt = cl.all_shirts[Random.Range(0, 2)];
-                Clothing pants = cl.def_pants;
-                Clothing shoes = cl.def_shoes;
+                Clothing shirt = cl.all_shirts[Random.Range(0, 4)];
+                Clothing pants = cl.all_pants[Random.Range(0, 3)];
+                Clothing shoes = cl.all_shoes[Random.Range(0, 3)];
                 top_obj.GetComponent<MeshFilter>().mesh = top.mesh;
                 shirt_obj.GetComponent<SkinnedMeshRenderer>().sharedMesh = shirt.mesh;
                 pants_obj.GetComponent<SkinnedMeshRenderer>().sharedMesh = pants.mesh;
@@ -82,10 +82,6 @@ public class ClothesManager : MonoBehaviourPunCallbacks
 
     }
 
-void Add_AI_Clothes() {  
-   
-
-    }
 [PunRPC] void SetTop(string currname, int viewID)
     {
         GameObject player = PhotonView.Find(viewID).gameObject;
