@@ -2533,7 +2533,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 12800000, guid: 385dce3fc9f7d434cb640e4d4d497263, type: 3}
     m_FontSize: 293
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 300
@@ -14620,7 +14620,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 12800000, guid: 385dce3fc9f7d434cb640e4d4d497263, type: 3}
     m_FontSize: 293
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 300
@@ -17363,7 +17363,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8341497289750416907, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: m_Value
-      value: 80
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8345991720814722451, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: m_TagString
