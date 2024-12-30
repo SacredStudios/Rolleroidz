@@ -27,16 +27,16 @@ public class Scores : MonoBehaviourPunCallbacks
     private void Start()
     {
         ai_players = GameObject.FindGameObjectsWithTag("AI_Player");
-        SyncScore();
-        initialSize = red_team.fontSize;
+        SyncScore(false);
+        initialSize = 293;
     }
 
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
     {
-        SyncScore();
+        SyncScore(true);
     }
 
-    void SyncScore()
+    void SyncScore(bool canAnimate)
     {
         if (PhotonNetwork.IsMasterClient)
         {
@@ -70,9 +70,15 @@ public class Scores : MonoBehaviourPunCallbacks
                     }
                 }
             }
-
-            UpdateScoreUI(red_team, ref lastTeam1Score, team1count, ref redTeamCoroutine);
-            UpdateScoreUI(pink_team, ref lastTeam2Score, team2count, ref pinkTeamCoroutine);
+            if (canAnimate) {
+                UpdateScoreUI(red_team, ref lastTeam1Score, team1count, ref redTeamCoroutine);
+                UpdateScoreUI(pink_team, ref lastTeam2Score, team2count, ref pinkTeamCoroutine);
+            }
+            else
+            {
+                red_team.text = "" + team1count;
+                pink_team.text = "" + team2count;
+            }
         }
     }
 
