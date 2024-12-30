@@ -28,7 +28,7 @@ MonoBehaviour:
   ammo: 0
   isSuper: 0
   sound: {fileID: 0}
-  weight: 3
+  weight: 3.5
   player: {fileID: 0}
   super: {fileID: 11400000, guid: 54a5d182a223340ef8b0766b3b4cfb7e, type: 2}
   instance: {fileID: 1697766647219394255, guid: 9771ad165f30c4bca94a742a4cce7f08, type: 3}
@@ -36,6 +36,7 @@ MonoBehaviour:
   coin: {fileID: 5812255397824587399, guid: db03c3afb90494e0f99eee91135a83e3, type: 3}
   min_distance: 2.5
   death_effect: {fileID: 0}
+  chat_manager: {fileID: 0}
   ball: {fileID: 2963263930969083303, guid: 21a973ee901cd444b941d38ae00fcabe, type: 3}
   particle_explosion: {fileID: 367450934941629301, guid: 317d7bcf65d7646de804cb49b0796ff9, type: 3}
   radius: 3
