@@ -19,40 +19,75 @@ public class ClothesManager : MonoBehaviourPunCallbacks
     [SerializeField] GameObject sleeveR_obj;
 
     [SerializeField] PhotonView pv;
-
+    public static int count = 0;
+    GameObject clothes_list;
 
 
     void Start()
     {
+        clothes_list = GameObject.Find("ClothesList");
         if (pv.IsMine)
         {
-            GameObject list = GameObject.Find("ClothesList");
-            ClothesList cl = list.GetComponent<ClothesList>();
-            top_obj.GetComponent<MeshFilter>().mesh = cl.curr_top.mesh;
-            shirt_obj.GetComponent<SkinnedMeshRenderer>().sharedMesh = cl.curr_shirt.mesh;
-            pants_obj.GetComponent<SkinnedMeshRenderer>().sharedMesh = cl.curr_pants.mesh;
-            shoes_obj.GetComponent<SkinnedMeshRenderer>().sharedMesh = cl.curr_shoes.mesh;
-            sleeveL_obj.GetComponent<SkinnedMeshRenderer>().sharedMesh = cl.curr_shirt.sleeveL_mesh;
-            sleeveR_obj.GetComponent<SkinnedMeshRenderer>().sharedMesh = cl.curr_shirt.sleeveR_mesh;
+            ClothesList cl = clothes_list.GetComponent<ClothesList>();
+            if (this.gameObject.tag == "Player")
+            {
+                
+                top_obj.GetComponent<MeshFilter>().mesh = cl.curr_top.mesh;
+                shirt_obj.GetComponent<SkinnedMeshRenderer>().sharedMesh = cl.curr_shirt.mesh;
+                pants_obj.GetComponent<SkinnedMeshRenderer>().sharedMesh = cl.curr_pants.mesh;
+                shoes_obj.GetComponent<SkinnedMeshRenderer>().sharedMesh = cl.curr_shoes.mesh;
+                sleeveL_obj.GetComponent<SkinnedMeshRenderer>().sharedMesh = cl.curr_shirt.sleeveL_mesh;
+                sleeveR_obj.GetComponent<SkinnedMeshRenderer>().sharedMesh = cl.curr_shirt.sleeveR_mesh;
 
-            top_obj.GetComponent<Renderer>().material = cl.curr_top.material;
-            shirt_obj.GetComponent<Renderer>().material = cl.curr_shirt.material;
-            pants_obj.GetComponent<Renderer>().material = cl.curr_pants.material;
-            shoes_obj.GetComponent<Renderer>().material = cl.curr_shoes.material;
-            sleeveL_obj.GetComponent<Renderer>().material = cl.curr_shirt.sleeveL_mat;
-            sleeveR_obj.GetComponent<Renderer>().material = cl.curr_shirt.sleeveR_mat;
+                top_obj.GetComponent<Renderer>().material = cl.curr_top.material;
+                shirt_obj.GetComponent<Renderer>().material = cl.curr_shirt.material;
+                pants_obj.GetComponent<Renderer>().material = cl.curr_pants.material;
+                shoes_obj.GetComponent<Renderer>().material = cl.curr_shoes.material;
+                sleeveL_obj.GetComponent<Renderer>().material = cl.curr_shirt.sleeveL_mat;
+                sleeveR_obj.GetComponent<Renderer>().material = cl.curr_shirt.sleeveR_mat;
 
-            pv.RPC("SetTop", RpcTarget.Others, cl.curr_top.name, pv.ViewID);
-            pv.RPC("SetShirt", RpcTarget.Others, cl.curr_shirt.name, pv.ViewID);
-            pv.RPC("SetPants", RpcTarget.Others, cl.curr_pants.name, pv.ViewID);
-            pv.RPC("SetShoes", RpcTarget.Others, cl.curr_shoes.name, pv.ViewID);
-            //change to other
-            //shoes_obj.GetComponent<SkinnedMeshRenderer>().sharedMesh = cl.curr_shoes.mesh;
+                pv.RPC("SetTop", RpcTarget.Others, cl.curr_top.name, pv.ViewID);
+                pv.RPC("SetShirt", RpcTarget.Others, cl.curr_shirt.name, pv.ViewID);
+                pv.RPC("SetPants", RpcTarget.Others, cl.curr_pants.name, pv.ViewID);
+                pv.RPC("SetShoes", RpcTarget.Others, cl.curr_shoes.name, pv.ViewID);
+                //change to other
+                //shoes_obj.GetComponent<SkinnedMeshRenderer>().sharedMesh = cl.curr_shoes.mesh;
+            }
+            else
+            {
+                Clothing top = cl.all_tops[Random.Range(0, 3)];
+                Clothing shirt = cl.all_shirts[Random.Range(0, 2)];
+                Clothing pants = cl.def_pants;
+                Clothing shoes = cl.def_shoes;
+                top_obj.GetComponent<MeshFilter>().mesh = top.mesh;
+                shirt_obj.GetComponent<SkinnedMeshRenderer>().sharedMesh = shirt.mesh;
+                pants_obj.GetComponent<SkinnedMeshRenderer>().sharedMesh = pants.mesh;
+                shoes_obj.GetComponent<SkinnedMeshRenderer>().sharedMesh = shoes.mesh;
+                sleeveL_obj.GetComponent<SkinnedMeshRenderer>().sharedMesh = shirt.sleeveL_mesh;
+                sleeveR_obj.GetComponent<SkinnedMeshRenderer>().sharedMesh = shirt.sleeveR_mesh;
+
+                top_obj.GetComponent<Renderer>().material = top.material;
+                shirt_obj.GetComponent<Renderer>().material = shirt.material;
+                pants_obj.GetComponent<Renderer>().material = pants.material;
+                shoes_obj.GetComponent<Renderer>().material = shoes.material;
+                sleeveL_obj.GetComponent<Renderer>().material = shirt.sleeveL_mat;
+                sleeveR_obj.GetComponent<Renderer>().material = shirt.sleeveR_mat;
+
+                pv.RPC("SetTop", RpcTarget.Others, top.name, pv.ViewID);
+                pv.RPC("SetShirt", RpcTarget.Others, shirt.name, pv.ViewID);
+                pv.RPC("SetPants", RpcTarget.Others, pants.name, pv.ViewID);
+                pv.RPC("SetShoes", RpcTarget.Others, shoes.name, pv.ViewID);
+            }
         }
+
     }
-    [PunRPC] void SetTop(string currname, int viewID)
+
+void Add_AI_Clothes() {  
+   
+
+    }
+[PunRPC] void SetTop(string currname, int viewID)
     {
-        GameObject clothes_list = GameObject.Find("ClothesList");
         GameObject player = PhotonView.Find(viewID).gameObject;
         GameObject top = player.GetComponent<ClothesManager>().top_obj;
         Debug.Log(PhotonView.Find(viewID).Owner.NickName);
