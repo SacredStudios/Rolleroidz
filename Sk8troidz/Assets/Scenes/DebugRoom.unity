@@ -8259,7 +8259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cacbf43c999e74efa97376c6a9729bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textComponents: []
+  uiElements: []
   jumpHeight: 30
   durationBetweenJumps: 0.5
   cycleDelay: 1
@@ -14008,7 +14008,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cacbf43c999e74efa97376c6a9729bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textComponents: []
+  uiElements: []
   jumpHeight: 30
   durationBetweenJumps: 0.5
   cycleDelay: 1
@@ -19883,7 +19883,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cacbf43c999e74efa97376c6a9729bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textComponents: []
+  uiElements: []
   jumpHeight: 30
   durationBetweenJumps: 0.5
   cycleDelay: 1
@@ -28585,10 +28585,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cacbf43c999e74efa97376c6a9729bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textComponents:
-  - {fileID: 656380082}
-  - {fileID: 1094711101}
-  - {fileID: 1454826688}
+  uiElements:
+  - {fileID: 656380078}
+  - {fileID: 1094711097}
+  - {fileID: 1454826684}
   jumpHeight: 20
   durationBetweenJumps: 0.5
   cycleDelay: 2

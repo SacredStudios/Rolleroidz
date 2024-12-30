@@ -42,10 +42,6 @@ public class WordJumper : MonoBehaviour
         float time = 0;
         while (time < durationBetweenJumps)
         {
-            if (uiElements.Length == 0)
-            {
-                break;
-            }
             float t = time / durationBetweenJumps;
             element.position = Vector3.Lerp(startPos, endPos, jumpCurve.Evaluate(t));
             // Squash and Stretch
