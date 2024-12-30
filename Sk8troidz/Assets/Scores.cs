@@ -19,10 +19,16 @@ public class Scores : MonoBehaviourPunCallbacks
     private int lastTeam1Score = 0;
     private int lastTeam2Score = 0;
 
+    // Store reference to currently running coroutines to properly manage them
+    private Coroutine redTeamCoroutine;
+    private Coroutine pinkTeamCoroutine;
+    float initialSize;
+
     private void Start()
     {
         ai_players = GameObject.FindGameObjectsWithTag("AI_Player");
         SyncScore();
+        initialSize = red_team.fontSize;
     }
 
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
@@ -65,29 +71,36 @@ public class Scores : MonoBehaviourPunCallbacks
                 }
             }
 
-            UpdateScoreUI(red_team, ref lastTeam1Score, team1count);
-            UpdateScoreUI(pink_team, ref lastTeam2Score, team2count);
+            UpdateScoreUI(red_team, ref lastTeam1Score, team1count, ref redTeamCoroutine);
+            UpdateScoreUI(pink_team, ref lastTeam2Score, team2count, ref pinkTeamCoroutine);
         }
     }
 
-    void UpdateScoreUI(Text teamText, ref int lastScore, int newScore)
+    void UpdateScoreUI(Text teamText, ref int lastScore, int newScore, ref Coroutine coroutine)
     {
         int scoreChange = newScore - lastScore;
         lastScore = newScore;
         teamText.text = "" + newScore;
         if (scoreChange != 0)
         {
-            StartCoroutine(AnimateTextChange(teamText, scoreChange));
+            if (coroutine != null)
+            {
+                StopCoroutine(coroutine);
+                // Reset font size to default after stopping coroutine to ensure consistency
+                teamText.fontSize = (int)initialSize; // Adjust this to your actual default font size
+            }
+            coroutine = StartCoroutine(AnimateTextChange(teamText, scoreChange));
         }
     }
 
     IEnumerator AnimateTextChange(Text text, int scoreChange)
     {
-        float initialSize = text.fontSize;
-        float maxSize = initialSize + Mathf.Min(20, Mathf.Abs(scoreChange)); // Change 20 to your max desired growth size
-        float duration = 0.5f; // Duration of the growth and return animation
+        text.fontSize = (int)initialSize;
+        
+        float maxSize = initialSize + 200; // Limit growth
+        float duration = 0.25f; // Animation duration
 
-        // Scale up
+        // Scale up animation
         float timer = 0;
         while (timer < duration)
         {
@@ -97,7 +110,7 @@ public class Scores : MonoBehaviourPunCallbacks
         }
         text.fontSize = (int)maxSize;
 
-        // Scale down
+        // Scale down animation
         timer = 0;
         while (timer < duration)
         {
