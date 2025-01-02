@@ -14,8 +14,8 @@ public class RangedWeapon : Weapon
     public override void Shoot(GameObject parent, GameObject particle_pos, GameObject explosion_pos)
     {
         //  Debug.DrawRay(parent.transform.position, particle_pos.transform.up * range, Color.green); //chage this to capsulecast
-        
-        
+
+
 
         float radius = 0.5f;
         Ray ray = new Ray(parent.transform.position, particle_pos.transform.up); //-new Vector3(radius, 0, 0), 
@@ -34,7 +34,7 @@ public class RangedWeapon : Weapon
 
             if (Physics.SphereCast(ray, radius, out hit, range)) //Target Acquired
             {
-                
+
 
                 if (hit.distance <= range)
                 {
@@ -48,7 +48,7 @@ public class RangedWeapon : Weapon
                         {
                             if (ph.current_health > 0)
                             {
-    
+
                                 if (ph.current_health - damage <= 0)
                                 {
                                     PhotonNetwork.Instantiate(death_effect.name, hit.point, Quaternion.identity);
@@ -66,9 +66,8 @@ public class RangedWeapon : Weapon
                         }
                         else
                         {
+
                         }
-                        //call function from individual joints
-                        // Debug.Log(hit.collider.gameObject.GetComponent<PhotonView>().Owner.GetPhotonTeam() + "+" + pv.Owner.GetPhotonTeam());
 
                     }
                     else if ((hit.collider.tag == "AI_Head" || hit.collider.tag == "Player_Head") && hit.collider.GetComponentInParent<Team_Handler>().GetTeam() != player.GetComponent<Team_Handler>().GetTeam())
@@ -93,8 +92,9 @@ public class RangedWeapon : Weapon
                         }
                         else
                         {
+                            Debug.Log("too short");
                         }
-                        //Debug.Log("HeadShot");
+
 
                     }
                 }
@@ -102,10 +102,5 @@ public class RangedWeapon : Weapon
         }
 
     }
-    
+
 }
-
-
-
-        
-       
