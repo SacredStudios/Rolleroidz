@@ -16615,7 +16615,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1513577829, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: jumpStrength
-      value: 3300
+      value: 3400
       objectReference: {fileID: 0}
     - target: {fileID: 1513577829, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: landing_sound
