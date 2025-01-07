@@ -8,16 +8,21 @@ public class WordJumper : MonoBehaviour
     public float jumpHeight = 30f;
     public float durationBetweenJumps = 0.5f;
     public float cycleDelay = 1.0f; // Delay between each full cycle
-    private Vector3[] originalPositions;
     public AnimationCurve jumpCurve;
+
+    // Instead of storing Vector3 for world positions, store Vector2 for anchored positions
+    private Vector2[] originalAnchoredPositions;
 
     void Start()
     {
-        originalPositions = new Vector3[uiElements.Length];
+        originalAnchoredPositions = new Vector2[uiElements.Length];
         for (int i = 0; i < uiElements.Length; i++)
         {
-            originalPositions[i] = uiElements[i].transform.position;
+            // Store each UI element's anchored position
+            originalAnchoredPositions[i] = uiElements[i].anchoredPosition;
         }
+
+        // Start animating
         StartCoroutine(AnimateWords());
     }
 
@@ -27,6 +32,11 @@ public class WordJumper : MonoBehaviour
         {
             for (int i = 0; i < uiElements.Length; i++)
             {
+                // In case the array was cleared or changed
+                if (uiElements.Length == 0)
+                    yield break;
+
+                // Animate the element
                 StartCoroutine(JumpElement(uiElements[i], i));
                 yield return new WaitForSeconds(durationBetweenJumps);
             }
@@ -36,25 +46,36 @@ public class WordJumper : MonoBehaviour
 
     IEnumerator JumpElement(RectTransform element, int index)
     {
-        Vector3 startPos = originalPositions[index];
-        Vector3 endPos = new Vector3(startPos.x, startPos.y + jumpHeight, startPos.z);
+        Vector2 startPos = originalAnchoredPositions[index];
+        Vector2 endPos = new Vector2(startPos.x, startPos.y + jumpHeight);
 
         float time = 0;
         while (time < durationBetweenJumps)
         {
+            // In case the array was cleared or changed mid-animation
             if (uiElements.Length == 0)
-            {
-                break;
-            }
+                yield break;
+
             float t = time / durationBetweenJumps;
-            element.position = Vector3.Lerp(startPos, endPos, jumpCurve.Evaluate(t));
-            // Squash and Stretch
-            element.localScale = new Vector3(1.0f - jumpCurve.Evaluate(t) * 0.15f, 1.0f + jumpCurve.Evaluate(t) * 0.15f, 1.0f);
+            // Use the AnimationCurve for smooth motion
+            float curveValue = jumpCurve.Evaluate(t);
+
+            // Animate the anchoredPosition instead of transform.position
+            element.anchoredPosition = Vector2.Lerp(startPos, endPos, curveValue);
+
+            // Squash and stretch
+            element.localScale = new Vector3(
+                1.0f - curveValue * 0.15f,
+                1.0f + curveValue * 0.15f,
+                1.0f
+            );
+
             time += Time.deltaTime;
             yield return null;
         }
-        // Reset position and scale
-        element.position = startPos;
+
+        // Reset anchoredPosition and scale
+        element.anchoredPosition = startPos;
         element.localScale = Vector3.one;
     }
 }
