@@ -9962,7 +9962,7 @@ GameObject:
   - component: {fileID: 781780420}
   - component: {fileID: 781780419}
   m_Layer: 0
-  m_Name: Spline (1)
+  m_Name: Spline_Short
   m_TagString: Rail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
