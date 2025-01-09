@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Hoop Shot
   m_EditorClassIdentifier: 
   icon: {fileID: 2800000, guid: 39042d64398874c7fbe2a79fb37efd30, type: 3}
-  weapon_name: Hoop Shot
+  weapon_name: HOOP SHOT
   weapon_description: Dunk on your enemies with the Hoop Shot! This bad boy shoots
     exploding basketballs that target the nearest enemy.  (Must be 7 foot tall to
     use)

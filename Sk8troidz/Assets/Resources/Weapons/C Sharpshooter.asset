@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: C Sharpshooter
   m_EditorClassIdentifier: 
   icon: {fileID: 2800000, guid: 329531b5033e043c9a18007a3d15caff, type: 3}
-  weapon_name: C SharpShooter
+  weapon_name: C SHARPSHOOTER
   weapon_description: While it's delay is long, this deadly instrument has a extremely
     high range and damage. It's like a sniper, but even better. Don't ask how...
   weapon_delay: 1.5
