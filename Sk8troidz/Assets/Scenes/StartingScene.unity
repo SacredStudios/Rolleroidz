@@ -11384,8 +11384,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1376333650}
   - component: {fileID: 1376333652}
-  - component: {fileID: 1376333651}
   - component: {fileID: 1376333653}
+  - component: {fileID: 1376333654}
   m_Layer: 5
   m_Name: Logo(ExceptEye)
   m_TagString: Untagged
@@ -11412,33 +11412,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 86}
   m_SizeDelta: {x: 800, y: 449.36}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1376333651
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1376333649}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.8160377, g: 0.96815866, b: 1, a: 0.70980394}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 016cbe9f3a18f4248a80e1d64b340d55, type: 3}
-  m_UVRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
 --- !u!222 &1376333652
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11462,6 +11435,36 @@ MonoBehaviour:
   m_EffectColor: {r: 0.20754719, g: 0.20754719, b: 0.20754719, a: 0.12941177}
   m_EffectDistance: {x: 0, y: -8.15}
   m_UseGraphicAlpha: 1
+--- !u!114 &1376333654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1376333649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.80784315}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 016cbe9f3a18f4248a80e1d64b340d55, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &1380813095
 GameObject:
   m_ObjectHideFlags: 0
@@ -15342,6 +15345,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1711959053}
+  - component: {fileID: 1711959054}
   m_Layer: 5
   m_Name: Logo
   m_TagString: Untagged
@@ -15369,6 +15373,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 8}
   m_SizeDelta: {x: 800, y: 449.36}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1711959054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711959052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4f0fa0e00e6f40c6b625bd41d1bfca6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  logoImage: {fileID: 1376333654}
+  animationDuration: 1
+  minStepDelay: 0.01
+  maxStepDelay: 0.04
+  minFillIncrement: 0.1
+  maxFillIncrement: 0.2
 --- !u!114 &1713927002
 MonoBehaviour:
   m_ObjectHideFlags: 0
