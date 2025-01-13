@@ -29394,7 +29394,7 @@ MonoBehaviour:
   pv: {fileID: 2026277108}
   team1count: 0
   team2count: 0
-  win_score: 20
+  win_score: 5
   new_player: {fileID: 0}
   weapon_selector: {fileID: 1852051407}
   gameover_screen: {fileID: 666204322}
@@ -30839,7 +30839,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1535470037687726831, guid: a16db0dfc13e24fca83c7d2306be8419, type: 3}
       propertyPath: respawn_points.Array.data[0].y
-      value: -2
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 1535470037687726831, guid: a16db0dfc13e24fca83c7d2306be8419, type: 3}
       propertyPath: respawn_points.Array.data[0].z

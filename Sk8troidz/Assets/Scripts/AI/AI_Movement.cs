@@ -19,18 +19,21 @@ public class AI_Movement : MonoBehaviour
     float currSpeed = 0;
     public enum State
     {
-        Searching, Railgrinding, Tricking, Boosting
+        Searching, Railgrinding, Tricking, Boosting, Over
     }
     public State current_state;
 
     Vector3 lastPos;
     void OnEnable()
     {
-        current_state = State.Searching;
-        StartCoroutine(Follow_Target());
-        StartCoroutine(BendAndRotate());
-        agent = GetComponent<NavMeshAgent>();
-        StartCoroutine(Find_Target());
+        if (current_state != State.Over)
+        {
+            current_state = State.Searching;
+            StartCoroutine(Follow_Target());
+            StartCoroutine(BendAndRotate());
+            agent = GetComponent<NavMeshAgent>();
+            StartCoroutine(Find_Target());
+        }
     }
     IEnumerator Find_Target()
     {

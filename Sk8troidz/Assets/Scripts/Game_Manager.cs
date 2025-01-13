@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 //using UnityEngine.SceneManagement;
 using Photon.Pun;
 using Photon.Realtime;
@@ -256,7 +257,17 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     {
         if(PhotonNetwork.IsMasterClient)
         {
-            PhotonNetwork.DestroyAll();
+            foreach (GameObject player in ai_players)
+            {
+                player.GetComponentInChildren<AI_Weapon_Handler>().enabled = false;
+                player.GetComponentInChildren<AI_Movement>().enabled = false;
+                player.GetComponentInChildren<AI_Railgrinding>().enabled = false;
+                player.GetComponentInChildren<AI_LookAt>().enabled = false;
+                player.GetComponentInChildren<AgentLinkMover>().enabled = false;
+                player.GetComponentInChildren<NavMeshAgent>().enabled = false;
+                player.GetComponentInParent<Respawn>().enabled = false;
+
+            }
         }
             Cursor.lockState = CursorLockMode.None;
         if (new_player.GetComponentInChildren<PlayerMovement>() != null)
@@ -313,8 +324,29 @@ public class Game_Manager : MonoBehaviourPunCallbacks
             new_player.GetComponentInChildren<Player_Health>().enabled = false;
             new_player.GetComponentInChildren<Camera>().enabled = false;
             new_player.GetComponentInChildren<Canvas>().enabled = false;
+            Rigidbody rb = new_player.GetComponentInChildren<Rigidbody>();
+            rb.constraints = RigidbodyConstraints.FreezeAll;
             new_player.transform.Rotate(0f, 180f, 0f, Space.Self);
+            if (PhotonNetwork.IsMasterClient)
+            {
+                Debug.Log(ai_players.Count);
+                foreach (GameObject player in ai_players)
+                {
+                    player.GetComponentInChildren<AI_Weapon_Handler>().enabled = false;
+                    player.GetComponentInChildren<AI_Movement>().current_state = AI_Movement.State.Over;
+                    player.GetComponentInChildren<AI_Railgrinding>().enabled = false;
+                    player.GetComponentInChildren<AI_LookAt>().enabled = false;
+                    player.GetComponentInChildren<AgentLinkMover>().enabled = false;
+                    player.GetComponentInChildren<NavMeshAgent>().enabled = false;
+                    player.GetComponentInParent<Respawn>().enabled = false;
+                    rb = player.GetComponent<Rigidbody>();
+                    rb.constraints = RigidbodyConstraints.FreezeAll;
+                    player.transform.position = points[0];
+                    new_player.transform.Rotate(0f, 180f, 0f, Space.Self);
+                }
+            }
         }
+        
 
     }
     public void BackToStart()
