@@ -1087,7 +1087,7 @@ Transform:
   m_GameObject: {fileID: 108241213}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15, y: -7.71, z: -72.5}
+  m_LocalPosition: {x: 15, y: -7.71, z: -91.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19757,7 +19757,7 @@ Transform:
   m_GameObject: {fileID: 1446285351}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -85.8, y: -9.4, z: -86.6}
+  m_LocalPosition: {x: 15.3, y: -7.3, z: -79.7}
   m_LocalScale: {x: 4.2792, y: 4.2792, z: 4.2792}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -30831,19 +30831,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1535470037687726831, guid: a16db0dfc13e24fca83c7d2306be8419, type: 3}
       propertyPath: respawn_points.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1535470037687726831, guid: a16db0dfc13e24fca83c7d2306be8419, type: 3}
       propertyPath: respawn_points.Array.data[0].x
-      value: -50
+      value: 15.3
       objectReference: {fileID: 0}
     - target: {fileID: 1535470037687726831, guid: a16db0dfc13e24fca83c7d2306be8419, type: 3}
       propertyPath: respawn_points.Array.data[0].y
-      value: 2.79
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 1535470037687726831, guid: a16db0dfc13e24fca83c7d2306be8419, type: 3}
       propertyPath: respawn_points.Array.data[0].z
-      value: -113
+      value: -79.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535470037687726831, guid: a16db0dfc13e24fca83c7d2306be8419, type: 3}
+      propertyPath: respawn_points.Array.data[1].x
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 1535470037687726831, guid: a16db0dfc13e24fca83c7d2306be8419, type: 3}
       propertyPath: respawn_points.Array.data[1].z
@@ -30851,19 +30855,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1535470037687726831, guid: a16db0dfc13e24fca83c7d2306be8419, type: 3}
       propertyPath: respawn_points.Array.data[2].x
-      value: -88
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 1535470037687726831, guid: a16db0dfc13e24fca83c7d2306be8419, type: 3}
       propertyPath: respawn_points.Array.data[2].y
-      value: 1
+      value: 2.79
       objectReference: {fileID: 0}
     - target: {fileID: 1535470037687726831, guid: a16db0dfc13e24fca83c7d2306be8419, type: 3}
       propertyPath: respawn_points.Array.data[2].z
-      value: -49
+      value: -113
       objectReference: {fileID: 0}
     - target: {fileID: 1535470037687726831, guid: a16db0dfc13e24fca83c7d2306be8419, type: 3}
       propertyPath: respawn_points.Array.data[3].x
-      value: -26
+      value: -88
       objectReference: {fileID: 0}
     - target: {fileID: 1535470037687726831, guid: a16db0dfc13e24fca83c7d2306be8419, type: 3}
       propertyPath: respawn_points.Array.data[3].y
@@ -30871,23 +30875,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1535470037687726831, guid: a16db0dfc13e24fca83c7d2306be8419, type: 3}
       propertyPath: respawn_points.Array.data[3].z
-      value: -17
+      value: -49
       objectReference: {fileID: 0}
     - target: {fileID: 1535470037687726831, guid: a16db0dfc13e24fca83c7d2306be8419, type: 3}
       propertyPath: respawn_points.Array.data[4].x
-      value: 26
+      value: -26
       objectReference: {fileID: 0}
     - target: {fileID: 1535470037687726831, guid: a16db0dfc13e24fca83c7d2306be8419, type: 3}
       propertyPath: respawn_points.Array.data[4].y
-      value: -2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1535470037687726831, guid: a16db0dfc13e24fca83c7d2306be8419, type: 3}
       propertyPath: respawn_points.Array.data[4].z
-      value: -5.4
+      value: -17
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535470037687726831, guid: a16db0dfc13e24fca83c7d2306be8419, type: 3}
+      propertyPath: respawn_points.Array.data[5].x
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535470037687726831, guid: a16db0dfc13e24fca83c7d2306be8419, type: 3}
+      propertyPath: respawn_points.Array.data[5].y
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 1535470037687726831, guid: a16db0dfc13e24fca83c7d2306be8419, type: 3}
       propertyPath: respawn_points.Array.data[5].z
-      value: 50
+      value: -5.4
       objectReference: {fileID: 0}
     - target: {fileID: 1535470037687726831, guid: a16db0dfc13e24fca83c7d2306be8419, type: 3}
       propertyPath: respawn_points.Array.data[6].z

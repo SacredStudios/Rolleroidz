@@ -298,8 +298,24 @@ public class Game_Manager : MonoBehaviourPunCallbacks
 
     void EndPlayers()
     {
-        List<Vector3> points = respawn_points.GetComponent<RespawnPoints>().respawn_points;
-        new_player = PhotonNetwork.Instantiate(player_prefab.name, points[0], Quaternion.identity, 0);
+        List<Player> players = new List<Player>(PhotonNetwork.PlayerList);
+        int index = players.IndexOf(PhotonNetwork.LocalPlayer);
+        Debug.Log(index + " is the index");
+        if (pv.IsMine)
+        {
+            if (new_player != null)
+            {
+                PhotonNetwork.Destroy(new_player);
+            }
+            List<Vector3> points = respawn_points.GetComponent<RespawnPoints>().respawn_points;
+            new_player = PhotonNetwork.Instantiate(player_prefab.name, points[0], Quaternion.identity, 0);
+            new_player.GetComponentInChildren<PlayerMovement>().enabled = false;
+            new_player.GetComponentInChildren<Player_Health>().enabled = false;
+            new_player.GetComponentInChildren<Camera>().enabled = false;
+            new_player.GetComponentInChildren<Canvas>().enabled = false;
+            new_player.transform.Rotate(0f, 180f, 0f, Space.Self);
+        }
+
     }
     public void BackToStart()
     {
@@ -374,7 +390,6 @@ public class Game_Manager : MonoBehaviourPunCallbacks
             new_player.GetComponentInChildren<Weapon_Handler>().weapon = my_weapon;
             new_player.GetComponentInChildren<Weapon_Handler>().weapon.chat_manager = chatManager.GetComponent<Chat_Manager>();
             new_player.transform.position = points[Random.Range(0, points.Count)];
-            players.Add(new_player.transform.GetChild(0).gameObject);
         }
         AI_LookAt.cam = new_player.GetComponentInChildren<Camera>();
         AI_LookAt.pv = new_player.GetComponent<PhotonView>();
