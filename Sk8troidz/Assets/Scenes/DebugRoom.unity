@@ -1018,7 +1018,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &108241214
 AudioListener:
   m_ObjectHideFlags: 0
@@ -8487,7 +8487,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &666204323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29404,6 +29404,8 @@ MonoBehaviour:
   AIPlayer: {fileID: 6426038364015529101, guid: e733034ad18bd4a3f919eda69c77bf95, type: 3}
   AIPlayer2: {fileID: 6426038364015529101, guid: bcffdd31feef94bd38b654931871e958, type: 3}
   start_early: {fileID: 2012876687}
+  end_screen: {fileID: 666204322}
+  end_cam: {fileID: 108241213}
   chatManager: {fileID: 1489084951}
 --- !u!114 &2026277107
 MonoBehaviour:
@@ -30188,7 +30190,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2106420983
 MonoBehaviour:
   m_ObjectHideFlags: 0

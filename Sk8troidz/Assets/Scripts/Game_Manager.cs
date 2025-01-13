@@ -33,11 +33,14 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     public Weapon my_weapon;
     GameObject weapon_list;
     List<GameObject> ai_players;
+    List<GameObject> players;
 
     int count = 0;
     [SerializeField] GameObject AIPlayer;
     [SerializeField] GameObject AIPlayer2;
     [SerializeField] GameObject start_early;
+    [SerializeField] GameObject end_screen;
+    [SerializeField] GameObject end_cam;
     private void Awake()
     {
         PhotonNetwork.AutomaticallySyncScene = false;
@@ -280,15 +283,23 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     }
     void WinScreen()
     {
-        lobby_cam.SetActive(true);
+        end_cam.SetActive(true);
         gameover_screen.SetActive(true);
-        gameover_text.text =" YOU WIN";
+        gameover_text.text = " YOU WIN";
+        EndPlayers();
     }
     void LoseScreen()
     {
-        lobby_cam.SetActive(true);
+        end_cam.SetActive(true);
         gameover_screen.SetActive(true);
         gameover_text.text = " YOU LOSE";
+        EndPlayers();
+    }
+
+    void EndPlayers()
+    {
+        List<Vector3> points = respawn_points.GetComponent<RespawnPoints>().respawn_points;
+        new_player = PhotonNetwork.Instantiate(player_prefab.name, points[0], Quaternion.identity, 0);
     }
     public void BackToStart()
     {
@@ -363,6 +374,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
             new_player.GetComponentInChildren<Weapon_Handler>().weapon = my_weapon;
             new_player.GetComponentInChildren<Weapon_Handler>().weapon.chat_manager = chatManager.GetComponent<Chat_Manager>();
             new_player.transform.position = points[Random.Range(0, points.Count)];
+            players.Add(new_player.transform.GetChild(0).gameObject);
         }
         AI_LookAt.cam = new_player.GetComponentInChildren<Camera>();
         AI_LookAt.pv = new_player.GetComponent<PhotonView>();
