@@ -1011,7 +1011,6 @@ GameObject:
   m_Component:
   - component: {fileID: 108241216}
   - component: {fileID: 108241215}
-  - component: {fileID: 108241214}
   m_Layer: 0
   m_Name: EndScreenCamera
   m_TagString: Untagged
@@ -1019,14 +1018,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!81 &108241214
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 108241213}
-  m_Enabled: 1
 --- !u!20 &108241215
 Camera:
   m_ObjectHideFlags: 0
@@ -31157,9 +31148,9 @@ SceneRoots:
   - {fileID: 1489084948}
   - {fileID: 239742455}
   - {fileID: 2026277104}
-  - {fileID: 108241216}
   - {fileID: 519956503}
   - {fileID: 2106420986}
+  - {fileID: 108241216}
   - {fileID: 666204326}
   - {fileID: 7689452385888473520}
   - {fileID: 1685719237}

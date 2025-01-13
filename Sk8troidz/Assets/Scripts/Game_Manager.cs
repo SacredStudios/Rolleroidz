@@ -284,11 +284,11 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         }
         if(PhotonNetwork.LocalPlayer.GetPhotonTeam().Code == winningteam)
         {
-            Invoke("WinScreen", 1f);
+            Invoke("WinScreen", 3f);
         }
         else
         {
-            Invoke("LoseScreen", 1f);
+            Invoke("LoseScreen", 3f);
         }
         
     }
@@ -325,8 +325,8 @@ public class Game_Manager : MonoBehaviourPunCallbacks
             new_player.GetComponentInChildren<Camera>().enabled = false;
             new_player.GetComponentInChildren<Canvas>().enabled = false;
             Rigidbody rb = new_player.GetComponentInChildren<Rigidbody>();
-            rb.constraints = RigidbodyConstraints.FreezeAll;
             new_player.transform.Rotate(0f, 180f, 0f, Space.Self);
+            rb.constraints = RigidbodyConstraints.FreezeAll;
             if (PhotonNetwork.IsMasterClient)
             {
                 Debug.Log(ai_players.Count);
