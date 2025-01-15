@@ -298,63 +298,114 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         end_cam.SetActive(true);
         gameover_screen.SetActive(true);
         gameover_text.text = " YOU WIN";
+        if (new_player != null)
+        {
+            PhotonNetwork.Destroy(new_player);
+            if (check)
+            {
+                StartCoroutine(MoveForward());
+                check = false;
+            }
+        }
         EndPlayers();
     }
+    bool check = true; //for some reason the coroutine keeps getting called twice
     void LoseScreen()
     {
         end_cam.SetActive(true);
         gameover_screen.SetActive(true);
         gameover_text.text = " YOU LOSE";
+        if (new_player != null)
+        {
+            PhotonNetwork.Destroy(new_player);
+            if (check)
+            {
+                StartCoroutine(MoveForward());
+                check = false;
+            }
+        }
         EndPlayers();
     }
+    float moveDistance = 5f;
+    float moveDuration = 2f;
+    private IEnumerator MoveForward()
+    {
+        // Calculate the start and forward positions
+        Vector3 startPos = end_cam.transform.position;
+        Vector3 forwardPos = startPos + end_cam.transform.forward * moveDistance;
+
+        yield return StartCoroutine(MoveOverTime(startPos, forwardPos, moveDuration));
+    }
+
+
+    private IEnumerator MoveOverTime(Vector3 fromPos, Vector3 toPos, float duration)
+    {
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / duration);
+            float smoothT = t * t * (3f - 2f * t);
+            end_cam.transform.position = Vector3.Lerp(toPos, fromPos, smoothT);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            yield return null;
+        }
+        end_cam.transform.position = fromPos;
+    }
+
+
 
     void EndPlayers()
     {
+
         Respawn.isOver = true;
         LookAtCamera.cam = end_cam.GetComponent<Camera>();
         AI_LookAt.cam = end_cam.GetComponent<Camera>();
         List<Player> players = new List<Player>(PhotonNetwork.PlayerList);
         int index = players.IndexOf(PhotonNetwork.LocalPlayer);
+
         if (pv.IsMine)
         {
-            if (new_player != null)
-            {
-                PhotonNetwork.Destroy(new_player);
-            }
-            List<Vector3> points = respawn_points.GetComponent<RespawnPoints>().respawn_points;
-            new_player = PhotonNetwork.Instantiate(player_prefab.name, points[0] + new Vector3((index) * 5f, -2f, 3.8f), Quaternion.Euler(0, 180, 0), 0);
-            new_player.GetComponentInChildren<PlayerMovement>().enabled = false;
-            new_player.GetComponentInChildren<Player_Health>().enabled = false;
-            new_player.GetComponentInChildren<Camera>().enabled = false;
-            new_player.GetComponentInChildren<Canvas>().enabled = false;
-            Respawn.isOver = true;
-            Rigidbody rb = new_player.GetComponentInChildren<Rigidbody>();
-            new_player.transform.Rotate(0f, 0f, 0f, Space.Self);
-            rb.constraints = RigidbodyConstraints.FreezeAll;
-            if (PhotonNetwork.IsMasterClient)
-            {
-                Debug.Log(ai_players.Count);
-                foreach (GameObject player in ai_players)
+
+                List<Vector3> points = respawn_points.GetComponent<RespawnPoints>().respawn_points;
+                new_player = PhotonNetwork.Instantiate(player_prefab.name, points[0] + new Vector3((index) * 5f, -2f, 3.8f), Quaternion.Euler(0, 180, 0), 0);
+                new_player.GetComponentInChildren<PlayerMovement>().enabled = false;
+                new_player.GetComponentInChildren<Player_Health>().enabled = false;
+                new_player.GetComponentInChildren<Camera>().enabled = false;
+                new_player.GetComponentInChildren<Canvas>().enabled = false;
+                Respawn.isOver = true;
+                Rigidbody rb = new_player.GetComponentInChildren<Rigidbody>();
+                new_player.transform.Rotate(0f, 0f, 0f, Space.Self);
+                rb.constraints = RigidbodyConstraints.FreezeAll;
+                index = PhotonNetwork.PlayerList.Length;
+                if (PhotonNetwork.IsMasterClient)
                 {
-                    index++;
-                    Respawn.isOver = true;
-                    player.GetComponentInChildren<AI_Weapon_Handler>().enabled = false;
-                    player.GetComponentInChildren<AI_Movement>().enabled = false;
-                    player.GetComponentInChildren<AI_Railgrinding>().enabled = false;
-                    player.GetComponentInChildren<AgentLinkMover>().enabled = false;
-                    player.GetComponentInChildren<NavMeshAgent>().enabled = false;
-                    Animator animator = player.GetComponentInChildren<Animator>();
-                    animator.SetFloat("animSpeedCap", 0f);
-                    animator.SetFloat("IsJumping", 0f);
-                    animator.SetLayerWeight(3, 0f);
-                    animator.SetLayerWeight(2, 0f);
-                    rb = player.GetComponent<Rigidbody>();
-                    rb.constraints = RigidbodyConstraints.FreezeAll;
-                    player.transform.position = points[0] + new Vector3((index) * 5f, -6f, 0);
-                    player.transform.rotation = Quaternion.Euler(0, 180, 0);
+                    Debug.Log(ai_players.Count);
+                    foreach (GameObject player in ai_players)
+                    {
+                        
+                        Respawn.isOver = true;
+                        player.GetComponentInChildren<AI_Weapon_Handler>().enabled = false;
+                        player.GetComponentInChildren<AI_Movement>().enabled = false;
+                        player.GetComponentInChildren<AI_Railgrinding>().enabled = false;
+                        player.GetComponentInChildren<AgentLinkMover>().enabled = false;
+                        player.GetComponentInChildren<NavMeshAgent>().enabled = false;
+                        Animator animator = player.GetComponentInChildren<Animator>();
+                        animator.SetFloat("animSpeedCap", 0f);
+                        animator.SetFloat("IsJumping", 0f);
+                        animator.SetLayerWeight(3, 0f);
+                        animator.SetLayerWeight(2, 0f);
+                        rb = player.GetComponent<Rigidbody>();
+                        rb.constraints = RigidbodyConstraints.FreezeAll;
+                        player.transform.position = points[0] + new Vector3((index) * 5f, -6f, 0);
+                        player.transform.rotation = Quaternion.Euler(0, 180, 0);
+                        index++;
                     //new_player.transform.Rotate((index - 1) * 10f, 180f, 0f, );
                 }
-            }
+                }
+            
         }
         
 
