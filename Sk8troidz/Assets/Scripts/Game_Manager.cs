@@ -55,6 +55,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     }
     private void Start()
     {
+        Respawn.isOver = false;
         my_weapon = weapon_list.GetComponent<Weapon_List>().curr_weapon;
         pv.Owner.SetScore(0);
         Invoke("CheckForPlayersOnTime", 30f);
@@ -262,7 +263,6 @@ public class Game_Manager : MonoBehaviourPunCallbacks
                 player.GetComponentInChildren<AI_Weapon_Handler>().enabled = false;
                 player.GetComponentInChildren<AI_Movement>().enabled = false;
                 player.GetComponentInChildren<AI_Railgrinding>().enabled = false;
-                player.GetComponentInChildren<AI_LookAt>().enabled = false;
                 player.GetComponentInChildren<AgentLinkMover>().enabled = false;
                 player.GetComponentInChildren<NavMeshAgent>().enabled = false;
                 player.GetComponentInParent<Respawn>().enabled = false;
@@ -294,6 +294,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     }
     void WinScreen()
     {
+        
         end_cam.SetActive(true);
         gameover_screen.SetActive(true);
         gameover_text.text = " YOU WIN";
@@ -309,9 +310,10 @@ public class Game_Manager : MonoBehaviourPunCallbacks
 
     void EndPlayers()
     {
+        LookAtCamera.cam = end_cam.GetComponent<Camera>();
+        AI_LookAt.cam = end_cam.GetComponent<Camera>();
         List<Player> players = new List<Player>(PhotonNetwork.PlayerList);
         int index = players.IndexOf(PhotonNetwork.LocalPlayer);
-        Debug.Log(index + " is the index");
         if (pv.IsMine)
         {
             if (new_player != null)
@@ -319,32 +321,36 @@ public class Game_Manager : MonoBehaviourPunCallbacks
                 PhotonNetwork.Destroy(new_player);
             }
             List<Vector3> points = respawn_points.GetComponent<RespawnPoints>().respawn_points;
-            new_player = PhotonNetwork.Instantiate(player_prefab.name, points[0], Quaternion.identity, 0);
+            new_player = PhotonNetwork.Instantiate(player_prefab.name, points[0] + new Vector3((index) * 5f, -2f, 3.8f), Quaternion.Euler(0, 180, 0), 0);
             new_player.GetComponentInChildren<PlayerMovement>().enabled = false;
             new_player.GetComponentInChildren<Player_Health>().enabled = false;
             new_player.GetComponentInChildren<Camera>().enabled = false;
             new_player.GetComponentInChildren<Canvas>().enabled = false;
             Respawn.isOver = true;
             Rigidbody rb = new_player.GetComponentInChildren<Rigidbody>();
-            new_player.transform.Rotate(0f, 180f, 0f, Space.Self);
+            new_player.transform.Rotate(0f, 0f, 0f, Space.Self);
             rb.constraints = RigidbodyConstraints.FreezeAll;
             if (PhotonNetwork.IsMasterClient)
             {
                 Debug.Log(ai_players.Count);
                 foreach (GameObject player in ai_players)
                 {
+                    index++;
                     Respawn.isOver = true;
                     player.GetComponentInChildren<AI_Weapon_Handler>().enabled = false;
                     player.GetComponentInChildren<AI_Movement>().enabled = false;
                     player.GetComponentInChildren<AI_Railgrinding>().enabled = false;
-                    player.GetComponentInChildren<AI_LookAt>().enabled = false;
                     player.GetComponentInChildren<AgentLinkMover>().enabled = false;
                     player.GetComponentInChildren<NavMeshAgent>().enabled = false;
-                    player.GetComponentInChildren<Animator>().SetFloat("animSpeedCap", 0f);
+                    Animator animator = player.GetComponentInChildren<Animator>();
+                    animator.SetFloat("animSpeedCap", 0f);
+                    animator.SetFloat("IsJumping", 0f);
+                    animator.SetLayerWeight(3, 0f);
                     rb = player.GetComponent<Rigidbody>();
                     rb.constraints = RigidbodyConstraints.FreezeAll;
-                    player.transform.position = points[0];
-                    new_player.transform.Rotate(0f, 180f, 0f, Space.Self);
+                    player.transform.position = points[0] + new Vector3((index) * 5f, -6f, 0);
+                    player.transform.rotation = Quaternion.Euler(0, 180, 0);
+                    //new_player.transform.Rotate((index - 1) * 10f, 180f, 0f, );
                 }
             }
         }
