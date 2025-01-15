@@ -310,6 +310,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
 
     void EndPlayers()
     {
+        Respawn.isOver = true;
         LookAtCamera.cam = end_cam.GetComponent<Camera>();
         AI_LookAt.cam = end_cam.GetComponent<Camera>();
         List<Player> players = new List<Player>(PhotonNetwork.PlayerList);
@@ -346,6 +347,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
                     animator.SetFloat("animSpeedCap", 0f);
                     animator.SetFloat("IsJumping", 0f);
                     animator.SetLayerWeight(3, 0f);
+                    animator.SetLayerWeight(2, 0f);
                     rb = player.GetComponent<Rigidbody>();
                     rb.constraints = RigidbodyConstraints.FreezeAll;
                     player.transform.position = points[0] + new Vector3((index) * 5f, -6f, 0);

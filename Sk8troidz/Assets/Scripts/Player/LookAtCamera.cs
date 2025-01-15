@@ -18,7 +18,7 @@ public class LookAtCamera : MonoBehaviourPunCallbacks
 
     void Start()
     {
-        if(pv.IsMine)
+        if(pv.IsMine && !Respawn.isOver)
         {
             player_name.text = PhotonNetwork.NickName;
 
