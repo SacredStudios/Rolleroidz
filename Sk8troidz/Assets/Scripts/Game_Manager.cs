@@ -356,6 +356,44 @@ public class Game_Manager : MonoBehaviourPunCallbacks
             yield return null;
         }
         end_cam.transform.position = fromPos;
+        yield return new WaitForSeconds(2f);
+        yield return StartCoroutine(FocusOnTarget());
+    }
+    Vector3 offset = new Vector3(0, 0, -5f);
+
+    private IEnumerator FocusOnTarget()
+    {
+        Transform focusTarget = new_player.transform.GetChild(7);
+        // Record where the camera starts
+        Vector3 startPos = end_cam.transform.position;
+
+        // Calculate the final position (offset from the target's position)
+        Vector3 endPos = focusTarget.position + offset;
+
+        // Calculate the final rotation by looking from the end position towards the target
+
+        float elapsed = 0f;
+
+        while (elapsed < moveDuration)
+        {
+            Debug.Log("is this running");
+            elapsed += Time.deltaTime;
+
+            // Normalized time from 0 to 1
+            float t = Mathf.Clamp01(elapsed / moveDuration);
+
+            // Optional: Use a simple ease-in/ease-out curve
+            float smoothT = t * t * (3f - 2f * t);
+
+            // Move smoothly
+            end_cam.transform.position = Vector3.Lerp(startPos, endPos, smoothT);
+
+
+            yield return null;
+        }
+
+        // Ensure final position/rotation is exact
+        end_cam.transform.position = endPos;
     }
 
 
