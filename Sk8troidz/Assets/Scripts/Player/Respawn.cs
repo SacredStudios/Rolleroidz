@@ -28,6 +28,8 @@ public class Respawn : MonoBehaviour
     [SerializeField] GameObject regular_cam;
     [SerializeField] GameObject respawn_btn;
     [SerializeField] GameObject trick_system;
+
+    public static bool isOver = false;
     private void Start()
     {
         respawn_cam = GameObject.Find("RespawnCam");
@@ -81,33 +83,35 @@ public class Respawn : MonoBehaviour
   
     void Respawn_Screen()
     {
-        Invoke("Respawn_Player", 10f);
-        
-        player.GetComponent<Player_Health>().Add_Health(1000);
-        
-        //player.GetComponent<PlayerMovement>().enabled = true;
-        collider.enabled = true;
-        //player.SetActive(true);
-        if (player.tag == "Player")
+        if (!isOver)
         {
-            cam.enabled = true;
-            vcam.GetComponent<CinemachineVirtualCamera>().Follow = respawn_cam.transform;
-            respawn_btn.SetActive(true);
-            RespawnCircle.SetActive(true);
+            Invoke("Respawn_Player", 10f);
 
-            //player.transform.position = GetFarthestPoint(currLoc);
-            if (pv.Owner.GetScore() < 0)
+            player.GetComponent<Player_Health>().Add_Health(1000);
+
+            //player.GetComponent<PlayerMovement>().enabled = true;
+            collider.enabled = true;
+            //player.SetActive(true);
+            if (player.tag == "Player")
             {
-                pv.Owner.SetScore(0);
+                cam.enabled = true;
+                vcam.GetComponent<CinemachineVirtualCamera>().Follow = respawn_cam.transform;
+                respawn_btn.SetActive(true);
+                RespawnCircle.SetActive(true);
+
+                //player.transform.position = GetFarthestPoint(currLoc);
+                if (pv.Owner.GetScore() < 0)
+                {
+                    pv.Owner.SetScore(0);
+                }
+            }
+            else
+            {
+                player.GetComponent<AI_Movement>().enabled = true;
+                player.transform.position = respawn_points[Random.Range(0, respawn_points.Count)];
+                player.GetComponent<NavMeshAgent>().enabled = true;
             }
         }
-        else
-        {     
-            player.GetComponent<AI_Movement>().enabled = true;
-            player.transform.position = respawn_points[Random.Range(0, respawn_points.Count)];
-            player.GetComponent<NavMeshAgent>().enabled = true;
-        }
-
     }
     public void Respawn_Player()
     {

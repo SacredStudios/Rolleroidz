@@ -39,6 +39,13 @@ public class AI_Movement : MonoBehaviour
     {
         while (enabled)
         {
+            if (Respawn.isOver)
+            {
+                transform.Rotate(0f, 180f, 0f, Space.Self);
+                current_state = State.Over;
+                animator.SetFloat("animSpeedCap", 0f);
+                yield return null;
+            }
             Target = null;
             float closestDistanceSqr = Mathf.Infinity;
             Vector3 currentPlayerPosition = this.transform.position;
@@ -68,41 +75,52 @@ public class AI_Movement : MonoBehaviour
     private void Update()
     {
         
+        
 
-        if (current_state == State.Searching)
-        {
-            if (Physics.Raycast(jump_pos.transform.position, Vector3.down, rayCastLength))
+            if (current_state == State.Searching)
             {
-                animator.SetFloat("IsJumping", 0f);
-                //offground_sound.Play();
-            }
-            else
-            {
-                animator.SetFloat("IsJumping", 1f);
-            }
-            currSpeed = (transform.position - lastPos).magnitude;
-            lastPos = transform.position;
-            if (currSpeed < 0.1)
-            {
-                animator.SetFloat("animSpeedCap", 0f);
-            }
-            else
-            {
-                animator.SetFloat("animSpeedCap", 1f);
-            }
-            if (Target != null && agent.isOnNavMesh)
-            {
-                if (agent.remainingDistance <= 10)
+
+                if (Physics.Raycast(jump_pos.transform.position, Vector3.down, rayCastLength))
                 {
-                    Vector3 targetDirection = Target.transform.position - transform.position;
-                    targetDirection.y = 0;
-                    if (Quaternion.LookRotation(targetDirection) != Quaternion.identity)
+                    animator.SetFloat("IsJumping", 0f);
+                    //offground_sound.Play();
+                }
+                else
+                {
+                    animator.SetFloat("IsJumping", 1f);
+                }
+                currSpeed = (transform.position - lastPos).magnitude;
+                lastPos = transform.position;
+                if (currSpeed < 0.1)
+                {
+                    animator.SetFloat("animSpeedCap", 0f);
+                }
+                else
+                {
+                    animator.SetFloat("animSpeedCap", 1f);
+                }
+                if (Target != null && agent.isOnNavMesh)
+                {
+                    if (agent.remainingDistance <= 10)
                     {
-                        transform.rotation = Quaternion.LookRotation(targetDirection);
+                        Vector3 targetDirection = Target.transform.position - transform.position;
+                        targetDirection.y = 0;
+                        if (Quaternion.LookRotation(targetDirection) != Quaternion.identity)
+                        {
+                            transform.rotation = Quaternion.LookRotation(targetDirection);
+                        }
                     }
                 }
             }
+        if (Respawn.isOver)
+        {
+            transform.Rotate(0f, 180f, 0f, Space.Self);
+            animator.SetFloat("animSpeedCap", 0f);
+            current_state = State.Over;
+            agent.enabled = false;
+
         }
+
     }
     IEnumerator BendAndRotate()
     {

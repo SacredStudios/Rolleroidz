@@ -284,11 +284,11 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         }
         if(PhotonNetwork.LocalPlayer.GetPhotonTeam().Code == winningteam)
         {
-            Invoke("WinScreen", 3f);
+            Invoke("WinScreen", 0.5f);
         }
         else
         {
-            Invoke("LoseScreen", 3f);
+            Invoke("LoseScreen", 0.5f);
         }
         
     }
@@ -324,6 +324,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
             new_player.GetComponentInChildren<Player_Health>().enabled = false;
             new_player.GetComponentInChildren<Camera>().enabled = false;
             new_player.GetComponentInChildren<Canvas>().enabled = false;
+            Respawn.isOver = true;
             Rigidbody rb = new_player.GetComponentInChildren<Rigidbody>();
             new_player.transform.Rotate(0f, 180f, 0f, Space.Self);
             rb.constraints = RigidbodyConstraints.FreezeAll;
@@ -332,13 +333,14 @@ public class Game_Manager : MonoBehaviourPunCallbacks
                 Debug.Log(ai_players.Count);
                 foreach (GameObject player in ai_players)
                 {
+                    Respawn.isOver = true;
                     player.GetComponentInChildren<AI_Weapon_Handler>().enabled = false;
-                    player.GetComponentInChildren<AI_Movement>().current_state = AI_Movement.State.Over;
+                    player.GetComponentInChildren<AI_Movement>().enabled = false;
                     player.GetComponentInChildren<AI_Railgrinding>().enabled = false;
                     player.GetComponentInChildren<AI_LookAt>().enabled = false;
                     player.GetComponentInChildren<AgentLinkMover>().enabled = false;
                     player.GetComponentInChildren<NavMeshAgent>().enabled = false;
-                    player.GetComponentInParent<Respawn>().enabled = false;
+                    player.GetComponentInChildren<Animator>().SetFloat("animSpeedCap", 0f);
                     rb = player.GetComponent<Rigidbody>();
                     rb.constraints = RigidbodyConstraints.FreezeAll;
                     player.transform.position = points[0];
