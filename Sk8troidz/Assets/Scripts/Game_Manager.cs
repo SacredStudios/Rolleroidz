@@ -256,8 +256,13 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     [PunRPC]
     public void GameOver(int winningteam)
     {
-        if(PhotonNetwork.IsMasterClient)
+        if (new_player != null)
         {
+            PhotonNetwork.Destroy(new_player);
+        }
+        if (PhotonNetwork.IsMasterClient)
+        {
+
             foreach (GameObject player in ai_players)
             {
                 player.GetComponentInChildren<AI_Weapon_Handler>().enabled = false;
@@ -298,16 +303,15 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         end_cam.SetActive(true);
         gameover_screen.SetActive(true);
         gameover_text.text = " YOU WIN";
-        if (new_player != null)
-        {
-            PhotonNetwork.Destroy(new_player);
+        
             if (check)
             {
                 StartCoroutine(MoveForward());
                 check = false;
+                EndPlayers();
             }
-        }
-        EndPlayers();
+        
+        
     }
     bool check = true; //for some reason the coroutine keeps getting called twice
     void LoseScreen()
@@ -315,16 +319,15 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         end_cam.SetActive(true);
         gameover_screen.SetActive(true);
         gameover_text.text = " YOU LOSE";
-        if (new_player != null)
-        {
-            PhotonNetwork.Destroy(new_player);
+        
             if (check)
             {
                 StartCoroutine(MoveForward());
+                EndPlayers();
                 check = false;
             }
-        }
-        EndPlayers();
+        
+        
     }
     float moveDistance = 5f;
     float moveDuration = 2f;
