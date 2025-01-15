@@ -258,7 +258,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     {
         if (new_player != null)
         {
-            PhotonNetwork.Destroy(new_player);
+            new_player.SetActive(false);
         }
         if (PhotonNetwork.IsMasterClient)
         {
@@ -289,11 +289,11 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         }
         if(PhotonNetwork.LocalPlayer.GetPhotonTeam().Code == winningteam)
         {
-            Invoke("WinScreen", 0.5f);
+            Invoke("WinScreen", 1f);
         }
         else
         {
-            Invoke("LoseScreen", 0.5f);
+            Invoke("LoseScreen", 1f);
         }
         
     }
