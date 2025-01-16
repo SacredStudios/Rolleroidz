@@ -97,10 +97,79 @@ public class RangedWeapon : Weapon
 
 
                     }
+
                 }
             }
+            else if (Physics.SphereCast(ray, radius * 2, out hit, range)) //Target Acquired
+            {
+
+
+                if (hit.distance <= range)
+                {
+                    //  Debug.Log(hit.collider.GetComponent<PhotonView>().Owner.GetPhotonTeam() + " + " + PhotonNetwork.LocalPlayer.GetPhotonTeam());
+                    PhotonNetwork.Instantiate(impact_explosion.name, hit.point, Quaternion.identity);
+                    Debug.Log("is this running");
+                    //"if()" is a good name of a book
+                    if ((hit.collider.tag == "AI_Player" || hit.collider.tag == "Player") && hit.collider.GetComponent<Team_Handler>().GetTeam() != player.GetComponent<Team_Handler>().GetTeam())
+                    {
+                        Player_Health ph = hit.collider.GetComponent<Player_Health>();
+                        if (ph != null)
+                        {
+                            if (ph.current_health > 0)
+                            {
+
+                                if (ph.current_health - damage / 2 <= 0)
+                                {
+                                    PhotonNetwork.Instantiate(death_effect.name, hit.point, Quaternion.identity);
+                                    Transform oldpos = hit.collider.transform;
+                                    hit.collider.transform.position = new Vector3(9999, 9999, 9999);
+                                    SpawnCoin(hit.transform.gameObject, hit.point);
+                                    //ph.PlayerLastHit(pv.ViewID); //base this off of the gameObject, not ID
+                                    parent.GetComponentInParent<Super_Bar>().ChangeAmount(35);
+
+
+                                }
+                                ph.Remove_Health(damage / 2);
+                            }
+
+                        }
+                        else
+                        {
+
+                        }
+
+                    }
+                    else if ((hit.collider.tag == "AI_Head" || hit.collider.tag == "Player_Head") && hit.collider.GetComponentInParent<Team_Handler>().GetTeam() != player.GetComponent<Team_Handler>().GetTeam())
+                    {
+                        Player_Health ph = hit.collider.GetComponentInParent<Player_Health>();
+                        if (ph != null)
+                        {
+                            if (ph.current_health > 0)
+                            {
+                                if (ph.current_health - (damage / 2) <= 0)
+                                {
+                                    PhotonNetwork.Instantiate(death_effect.name, hit.point, Quaternion.identity);
+                                    Transform oldpos = hit.collider.transform;
+                                    hit.collider.transform.position = new Vector3(9999, 9999, 9999);
+                                    SpawnCoin(hit.transform.parent.gameObject, hit.point);
+                                    //ph.PlayerLastHit(pv.ViewID);
+                                    parent.GetComponentInParent<Super_Bar>().ChangeAmount(35);
+
+                                }
+                                ph.Remove_Health(damage / 2);
+                            }
+                        }
+                        else
+                        {
+                            Debug.Log("too short");
+                        }
+
+
+                    }
+
+                }
+
+            }
         }
-
     }
-
 }

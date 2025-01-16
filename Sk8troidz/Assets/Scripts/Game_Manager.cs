@@ -256,10 +256,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     [PunRPC]
     public void GameOver(int winningteam)
     {
-        if (new_player != null)
-        {
-            new_player.SetActive(false);
-        }
+        new_player.SetActive(false);
         if (PhotonNetwork.IsMasterClient)
         {
 
@@ -285,7 +282,6 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         else
         {
             new_player.GetComponentInChildren<Camera>().transform.parent = null;
-            new_player.SetActive(false);
         }
         if(PhotonNetwork.LocalPlayer.GetPhotonTeam().Code == winningteam)
         {
@@ -323,8 +319,9 @@ public class Game_Manager : MonoBehaviourPunCallbacks
             if (check)
             {
                 StartCoroutine(MoveForward());
-                EndPlayers();
                 check = false;
+                EndPlayers();
+                
             }
         
         
@@ -412,6 +409,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
 
                 List<Vector3> points = respawn_points.GetComponent<RespawnPoints>().respawn_points;
                 new_player = PhotonNetwork.Instantiate(player_prefab.name, points[0] + new Vector3((index) * 5f, -2f, 3.8f), Quaternion.Euler(0, 180, 0), 0);
+                new_player.SetActive(true);
                 new_player.GetComponentInChildren<PlayerMovement>().enabled = false;
                 new_player.GetComponentInChildren<Player_Health>().enabled = false;
                 new_player.GetComponentInChildren<Camera>().enabled = false;
