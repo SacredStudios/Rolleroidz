@@ -26,6 +26,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     [SerializeField] int team2count;
     [SerializeField] int win_score = 15;
     [SerializeField] GameObject new_player;
+    [SerializeField] GameObject end_player;
     [SerializeField] GameObject weapon_selector;
 
     [SerializeField] GameObject gameover_screen;
@@ -256,7 +257,6 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     [PunRPC]
     public void GameOver(int winningteam)
     {
-        new_player.SetActive(false);
         if (PhotonNetwork.IsMasterClient)
         {
 
@@ -283,7 +283,8 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         {
             new_player.GetComponentInChildren<Camera>().transform.parent = null;
         }
-        if(PhotonNetwork.LocalPlayer.GetPhotonTeam().Code == winningteam)
+        new_player.SetActive(false);
+        if (PhotonNetwork.LocalPlayer.GetPhotonTeam().Code == winningteam)
         {
             Invoke("WinScreen", 1f);
         }
@@ -360,7 +361,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
 
     private IEnumerator FocusOnTarget()
     {
-        Transform focusTarget = new_player.transform.GetChild(7);
+        Transform focusTarget = end_player.transform.GetChild(7);
         // Record where the camera starts
         Vector3 startPos = end_cam.transform.position;
 
@@ -408,15 +409,16 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         {
 
                 List<Vector3> points = respawn_points.GetComponent<RespawnPoints>().respawn_points;
-                new_player = PhotonNetwork.Instantiate(player_prefab.name, points[0] + new Vector3((index) * 5f, -2f, 3.8f), Quaternion.Euler(0, 180, 0), 0);
-                new_player.SetActive(true);
-                new_player.GetComponentInChildren<PlayerMovement>().enabled = false;
-                new_player.GetComponentInChildren<Player_Health>().enabled = false;
-                new_player.GetComponentInChildren<Camera>().enabled = false;
-                new_player.GetComponentInChildren<Canvas>().enabled = false;
+                new_player.SetActive(false);
+                end_player = PhotonNetwork.Instantiate(player_prefab.name, points[0] + new Vector3((index) * 5f, -2f, 3.8f), Quaternion.Euler(0, 180, 0), 0);
+                
+                end_player.GetComponentInChildren<PlayerMovement>().enabled = false;
+                end_player.GetComponentInChildren<Player_Health>().enabled = false;
+                end_player.GetComponentInChildren<Camera>().enabled = false;
+                end_player.GetComponentInChildren<Canvas>().enabled = false;
                 Respawn.isOver = true;
                 Rigidbody rb = new_player.GetComponentInChildren<Rigidbody>();
-                new_player.transform.Rotate(0f, 0f, 0f, Space.Self);
+                end_player.transform.Rotate(0f, 0f, 0f, Space.Self);
                 rb.constraints = RigidbodyConstraints.FreezeAll;
                 index = PhotonNetwork.PlayerList.Length;
                 if (PhotonNetwork.IsMasterClient)
