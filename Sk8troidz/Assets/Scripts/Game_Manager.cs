@@ -451,6 +451,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     }
     public void BackToStart()
     {
+        Respawn.isOver = false;
         PhotonNetwork.LocalPlayer.LeaveCurrentTeam();
         StartCoroutine(LeaveTeam());
         
