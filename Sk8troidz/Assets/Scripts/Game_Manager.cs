@@ -212,6 +212,8 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         
         base.OnPlayerPropertiesUpdate(targetPlayer, changedProps);
     }
+    int whoWon = 1;
+    bool win = false; //checks if local player won or not
     void DoubleCheck()
     {
         //pv.RPC("GetTeams", RpcTarget.All, tm.GetTeamMembersCount(1), tm.GetTeamMembersCount(2));
@@ -226,6 +228,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
             }
             else
             {
+
                 team2count += player.GetScore();
             }
         }
@@ -249,6 +252,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         }
         else if (team2count >= win_score)
         {
+            whoWon = 2;
             pv.RPC("GameOver", RpcTarget.All, 2);
         }
     }
@@ -267,7 +271,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
                 player.GetComponentInChildren<AI_Railgrinding>().enabled = false;
                 player.GetComponentInChildren<AgentLinkMover>().enabled = false;
                 player.GetComponentInChildren<NavMeshAgent>().enabled = false;
-                player.GetComponentInParent<Respawn>().enabled = false;
+                player.GetComponentInParent<Respawn>().enabled = false;           
 
             }
         }
@@ -300,7 +304,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         end_cam.SetActive(true);
         gameover_screen.SetActive(true);
         gameover_text.text = " YOU WIN";
-        
+        win = true;
             if (check)
             {
                 StartCoroutine(MoveForward());
@@ -411,7 +415,16 @@ public class Game_Manager : MonoBehaviourPunCallbacks
                 List<Vector3> points = respawn_points.GetComponent<RespawnPoints>().respawn_points;
                 new_player.SetActive(false);
                 end_player = PhotonNetwork.Instantiate(player_prefab.name, points[0] + new Vector3((index) * 5f, -2f, 3.8f), Quaternion.Euler(0, 180, 0), 0);
-                
+                Animator local_animator = end_player.GetComponentInChildren<Animator>();
+                if (win)
+                {
+                    local_animator.SetInteger("Win", 1);
+                }
+                else
+                {
+                    local_animator.SetInteger("Win", -1);
+                }
+
                 end_player.GetComponentInChildren<PlayerMovement>().enabled = false;
                 end_player.GetComponentInChildren<Player_Health>().enabled = false;
                 end_player.GetComponentInChildren<Camera>().enabled = false;
@@ -438,7 +451,15 @@ public class Game_Manager : MonoBehaviourPunCallbacks
                         animator.SetFloat("IsJumping", 0f);
                         animator.SetLayerWeight(3, 0f);
                         animator.SetLayerWeight(2, 0f);
-                        rb = player.GetComponent<Rigidbody>();
+                        if (player.GetComponentInChildren<AI_Handler>().team == whoWon)
+                        {
+                            animator.SetInteger("Win", 1);
+                        }
+                        else
+                        {
+                            animator.SetInteger("Win", -1);
+                        }
+                    rb = player.GetComponent<Rigidbody>();
                         rb.constraints = RigidbodyConstraints.FreezeAll;
                         player.transform.position = points[0] + new Vector3((index) * 5f, -6f, 0);
                         player.transform.rotation = Quaternion.Euler(0, 180, 0);
