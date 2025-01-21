@@ -451,6 +451,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
                         animator.SetFloat("IsJumping", 0f);
                         animator.SetLayerWeight(3, 0f);
                         animator.SetLayerWeight(2, 0f);
+                        animator.SetLayerWeight(1, 0f);
                         if (player.GetComponentInChildren<AI_Handler>().team == whoWon)
                         {
                             animator.SetInteger("Win", 1);
