@@ -44,7 +44,6 @@ public class Weapon : ScriptableObject
 
     public void SpawnCoin(GameObject dead_player, Vector3 pos) //change the name of this
     {
-        Debug.Log(dead_player);
         if (chat_manager != null)
         {
             chat_manager.SendStatMessage(GetName(player) + " \U00011121 " + GetName(dead_player));
@@ -74,11 +73,5 @@ public class Weapon : ScriptableObject
             return player.GetComponent<PhotonView>().Owner.NickName;
         }
     }
-    [PunRPC] void PrintKO(string player, string dead_player)
-    {
-        Debug.Log(player + " KO'd " + dead_player);
-    }
-   
-
 
 }
