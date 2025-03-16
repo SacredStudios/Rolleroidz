@@ -83,6 +83,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
         {
             playerCam_gameObject.SetActive(false);
             player_ui.SetActive(false);
+            crosshair.SetActive(false);
             vcam.SetActive(false);
             this.gameObject.GetComponent<PlayerMovement>().enabled = false;
         }
