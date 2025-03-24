@@ -166,7 +166,6 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
                     {
                         ts.Start_Trick_System();
                         trick_mode_activated = true;
-                        Debug.Log("trick");
                     }
                 }
 
