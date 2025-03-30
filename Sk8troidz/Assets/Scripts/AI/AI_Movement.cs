@@ -160,7 +160,7 @@ public class AI_Movement : MonoBehaviour
     }
 
     IEnumerator Follow_Target()
-    {     
+    {
         List<GameObject> human_players = new List<GameObject>(GameObject.FindGameObjectsWithTag("Player"));
         List<GameObject> ai_players = new List<GameObject>(GameObject.FindGameObjectsWithTag("AI_Player"));
         playerList = human_players.Concat(ai_players).ToList(); ;
@@ -175,7 +175,7 @@ public class AI_Movement : MonoBehaviour
             if (owner == null || localPlayer == null) return false;
             return GetComponent<Team_Handler>().GetTeam() == player.GetComponent<Team_Handler>().GetTeam();
         });
-        if (playerList.Count < 1)
+        if (human_players.Count < 1)
         {
             yield return new WaitForSeconds(update_speed);
             yield return Follow_Target();
