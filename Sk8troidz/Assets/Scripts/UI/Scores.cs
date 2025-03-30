@@ -38,8 +38,7 @@ public class Scores : MonoBehaviourPunCallbacks
 
     void SyncScore(bool canAnimate)
     {
-        if (PhotonNetwork.IsMasterClient)
-        {
+        
             team1count = 0;
             team2count = 0;
             foreach (Player player in PhotonNetwork.PlayerList)
@@ -79,7 +78,7 @@ public class Scores : MonoBehaviourPunCallbacks
                 red_team.text = "" + team1count;
                 pink_team.text = "" + team2count;
             }
-        }
+        
     }
 
     void UpdateScoreUI(Text teamText, ref int lastScore, int newScore, ref Coroutine coroutine)

@@ -46,7 +46,7 @@ public class Weapon : ScriptableObject
     {
         if (chat_manager != null)
         {
-            chat_manager.SendStatMessage(GetName(player) + " \U00011121 " + GetName(dead_player));
+            chat_manager.SendStatMessage(GetName(player) + " \U0001F923 " + GetName(dead_player));
         }
         Photon.Realtime.Player player_photon = player.GetComponent<PhotonView>().Owner;
         Photon.Realtime.Player dead_player_photon = dead_player.GetComponent<PhotonView>().Owner;
