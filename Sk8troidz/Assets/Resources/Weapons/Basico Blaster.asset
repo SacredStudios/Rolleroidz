@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2b305abf6b06f94db6cb13c15b13191, type: 3}
   m_Name: Basico Blaster
   m_EditorClassIdentifier: 
-  icon: {fileID: 2800000, guid: 1bd4378afc440594fac6e00e793026c0, type: 3}
+  icon: {fileID: 2800000, guid: 0edf8c4f1d1a04831a645aaad6e7c487, type: 3}
   weapon_name: BASICO BLASTER
   weapon_description: This weapon is fast and free baybee. And it's the only free
     one in the final game.
