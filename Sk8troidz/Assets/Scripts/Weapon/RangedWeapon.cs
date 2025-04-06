@@ -17,13 +17,13 @@ public class RangedWeapon : Weapon
 
 
 
-        float radius = 0.7f;
+        float radius = 0.3f;
         Ray ray = new Ray(parent.transform.position, particle_pos.transform.up); //-new Vector3(radius, 0, 0), 
         RaycastHit hit = new RaycastHit();
         PhotonNetwork.Instantiate(particle_trail.name, particle_pos.transform.position, particle_pos.transform.rotation);
         Instantiate(particle_explosion, explosion_pos.transform.position, particle_pos.transform.rotation);
 
-        Ray distance = new Ray(player.transform.position, particle_pos.transform.up);
+        Ray distance = new Ray(player.transform.position+new Vector3(radius/2, 0, 0), particle_pos.transform.up);
 
         if (Physics.Raycast(distance, min_distance))
         {

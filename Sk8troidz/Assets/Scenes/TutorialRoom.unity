@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 489ad9df074764a87b695b4bd7e69920, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -181,7 +181,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b9690bb020b214034978b9cb564706b2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -289,7 +289,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 1494717698fe74935b69c2852ae08d56, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -489,7 +489,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 1494717698fe74935b69c2852ae08d56, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1375,7 +1375,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b9690bb020b214034978b9cb564706b2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1497,6 +1497,34 @@ PrefabInstance:
       propertyPath: m_Text
       value: Try holding "T" to trick on the rail. Be sure to let go before you reach
         the end!
+      objectReference: {fileID: 0}
+    - target: {fileID: 8748765527607836951, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8748765527607836951, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8748765527607836951, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8748765527607836951, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8776642728051074840, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_EffectColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8776642728051074840, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_EffectColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8776642728051074840, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_EffectColor.r
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9016860579201604732, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
       propertyPath: tm
@@ -1822,6 +1850,34 @@ PrefabInstance:
       propertyPath: m_Text
       value: Shoot using the "Q" or "E" key.
       objectReference: {fileID: 0}
+    - target: {fileID: 8748765527607836951, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8748765527607836951, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8748765527607836951, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8748765527607836951, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8776642728051074840, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_EffectColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8776642728051074840, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_EffectColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8776642728051074840, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_EffectColor.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9016860579201604732, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
       propertyPath: tm
       value: 
@@ -2046,6 +2102,34 @@ PrefabInstance:
       propertyPath: m_Text
       value: You can also trick if you are airborne!
       objectReference: {fileID: 0}
+    - target: {fileID: 8748765527607836951, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8748765527607836951, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8748765527607836951, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8748765527607836951, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8776642728051074840, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_EffectColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8776642728051074840, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_EffectColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8776642728051074840, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_EffectColor.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9016860579201604732, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
       propertyPath: tm
       value: 
@@ -2123,7 +2207,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 1494717698fe74935b69c2852ae08d56, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2590,6 +2674,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: DialogTrigger1
       objectReference: {fileID: 0}
+    - target: {fileID: 4069829729102640264, guid: 75d7d5311f7703a488bf706b3c0eacf3, type: 3}
+      propertyPath: m_EffectColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4069829729102640264, guid: 75d7d5311f7703a488bf706b3c0eacf3, type: 3}
+      propertyPath: m_EffectColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4069829729102640264, guid: 75d7d5311f7703a488bf706b3c0eacf3, type: 3}
+      propertyPath: m_EffectColor.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4265913578922379576, guid: 75d7d5311f7703a488bf706b3c0eacf3, type: 3}
       propertyPath: m_UiScaleMode
       value: 1
@@ -2598,6 +2694,10 @@ PrefabInstance:
       propertyPath: tm
       value: 
       objectReference: {fileID: 770778841}
+    - target: {fileID: 6037159838089017706, guid: 75d7d5311f7703a488bf706b3c0eacf3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7467834547058079875, guid: 75d7d5311f7703a488bf706b3c0eacf3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2641,6 +2741,22 @@ PrefabInstance:
     - target: {fileID: 8883766866366520986, guid: 75d7d5311f7703a488bf706b3c0eacf3, type: 3}
       propertyPath: m_Text
       value: "Hey! \nRun with WASD (Change controls in Settings)"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8883766866366520986, guid: 75d7d5311f7703a488bf706b3c0eacf3, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8883766866366520986, guid: 75d7d5311f7703a488bf706b3c0eacf3, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8883766866366520986, guid: 75d7d5311f7703a488bf706b3c0eacf3, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8883766866366520986, guid: 75d7d5311f7703a488bf706b3c0eacf3, type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2704,6 +2820,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4740398727069198356, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7666056725268992662, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -2715,6 +2835,34 @@ PrefabInstance:
     - target: {fileID: 8379869421196537700, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
       propertyPath: m_UiScaleMode
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8748765527607836951, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8748765527607836951, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8748765527607836951, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8748765527607836951, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8776642728051074840, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_EffectColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8776642728051074840, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_EffectColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8776642728051074840, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
+      propertyPath: m_EffectColor.r
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9016860579201604732, guid: 1d6aa8d2c6c19d34aa1bd419111c48e9, type: 3}
       propertyPath: tm
