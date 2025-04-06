@@ -434,8 +434,6 @@ public class Game_Manager : MonoBehaviourPunCallbacks
                 end_player.transform.Rotate(0f, 0f, 0f, Space.Self);
                 rb.constraints = RigidbodyConstraints.FreezeAll;
                 index = PhotonNetwork.PlayerList.Length;
-                if (PhotonNetwork.IsMasterClient)
-                {
                     Debug.Log(ai_players.Count);
                     foreach (GameObject player in ai_players)
                     {
@@ -467,7 +465,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
                         index++;
                     //new_player.transform.Rotate((index - 1) * 10f, 180f, 0f, );
                 }
-                }
+                
             
         }
         
