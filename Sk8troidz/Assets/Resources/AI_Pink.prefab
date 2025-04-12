@@ -15859,7 +15859,7 @@ PrefabInstance:
       objectReference: {fileID: 13400000, guid: 672b4a1140900e64bb11308f34eff410, type: 2}
     - target: {fileID: 150819664, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 602664690, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: m_Enabled
@@ -16144,6 +16144,10 @@ PrefabInstance:
     - target: {fileID: 1914013954531982064, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -5.3448877
+      objectReference: {fileID: 0}
+    - target: {fileID: 1965424083503852722, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1965424083503852722, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: m_TagString
