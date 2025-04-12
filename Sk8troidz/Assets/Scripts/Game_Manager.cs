@@ -403,70 +403,77 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     void EndPlayers()
     {
         Respawn.isOver = true;
+
+        // Set cameras for end screen
         LookAtCamera.cam = end_cam.GetComponent<Camera>();
         AI_LookAt.cam = end_cam.GetComponent<Camera>();
+
         List<Player> players = new List<Player>(PhotonNetwork.PlayerList);
         int index = players.IndexOf(PhotonNetwork.LocalPlayer);
 
-        // Removed the pv.IsMine check so that this code runs on every client
+        // Use room-owned instantiation so disconnected players persist
         List<Vector3> points = respawn_points.GetComponent<RespawnPoints>().respawn_points;
         new_player.SetActive(false);
-        end_player = PhotonNetwork.Instantiate(player_prefab.name, points[0] + new Vector3(index * 5f, -2f, 3.8f), Quaternion.Euler(0, 180, 0), 0);
 
-        Animator local_animator = end_player.GetComponentInChildren<Animator>();
-        if (win)
+        // MasterClient should instantiate the end players using room ownership
+        if (PhotonNetwork.IsMasterClient)
         {
-            local_animator.SetInteger("Win", 1);
+            GameObject persistent_end_player = PhotonNetwork.InstantiateRoomObject(
+                player_prefab.name,
+                points[0] + new Vector3(index * 5f, -2f, 3.8f),
+                Quaternion.Euler(0, 180, 0)
+            );
+
+            Animator local_animator = persistent_end_player.GetComponentInChildren<Animator>();
+            local_animator.SetInteger("Win", win ? 1 : -1);
+
+            // Disable gameplay components
+            persistent_end_player.GetComponentInChildren<PlayerMovement>().enabled = false;
+            persistent_end_player.GetComponentInChildren<Player_Health>().enabled = false;
+            Camera cam = persistent_end_player.GetComponentInChildren<Camera>();
+            if (cam) cam.enabled = false;
+            Canvas canvas = persistent_end_player.GetComponentInChildren<Canvas>();
+            if (canvas) canvas.enabled = false;
+
+            // Freeze movement
+            Rigidbody rb = new_player.GetComponentInChildren<Rigidbody>();
+            persistent_end_player.transform.Rotate(0f, 0f, 0f, Space.Self);
+            rb.constraints = RigidbodyConstraints.FreezeAll;
         }
-        else
-        {
-            local_animator.SetInteger("Win", -1);
-        }
 
-        // Disable unnecessary components on the end_player
-        end_player.GetComponentInChildren<PlayerMovement>().enabled = false;
-        end_player.GetComponentInChildren<Player_Health>().enabled = false;
-        end_player.GetComponentInChildren<Camera>().enabled = false;
-        end_player.GetComponentInChildren<Canvas>().enabled = false;
-        Respawn.isOver = true;
-
-        // Freeze the original player’s rigidbody so it doesn’t move
-        Rigidbody rb = new_player.GetComponentInChildren<Rigidbody>();
-        end_player.transform.Rotate(0f, 0f, 0f, Space.Self);
-        rb.constraints = RigidbodyConstraints.FreezeAll;
-
-        // Update index and adjust AI players
+        // Reset index to avoid conflict when placing AI
         index = PhotonNetwork.PlayerList.Length;
+
+        // Disable AI movement and play win/loss animation
         Debug.Log(ai_players.Count);
         foreach (GameObject player in ai_players)
         {
             Respawn.isOver = true;
+
             player.GetComponentInChildren<AI_Weapon_Handler>().enabled = false;
             player.GetComponentInChildren<AI_Movement>().enabled = false;
             player.GetComponentInChildren<AI_Railgrinding>().enabled = false;
             player.GetComponentInChildren<AgentLinkMover>().enabled = false;
             player.GetComponentInChildren<NavMeshAgent>().enabled = false;
+
             Animator animator = player.GetComponentInChildren<Animator>();
             animator.SetFloat("animSpeedCap", 0f);
             animator.SetFloat("IsJumping", 0f);
             animator.SetLayerWeight(3, 0f);
             animator.SetLayerWeight(2, 0f);
             animator.SetLayerWeight(1, 0f);
-            if (player.GetComponentInChildren<AI_Handler>().team == whoWon)
-            {
-                animator.SetInteger("Win", 1);
-            }
-            else
-            {
-                animator.SetInteger("Win", -1);
-            }
-            rb = player.GetComponent<Rigidbody>();
+
+            animator.SetInteger("Win", player.GetComponentInChildren<AI_Handler>().team == whoWon ? 1 : -1);
+
+            Rigidbody rb = player.GetComponent<Rigidbody>();
             rb.constraints = RigidbodyConstraints.FreezeAll;
+
             player.transform.position = points[0] + new Vector3(index * 5f, -6f, 0);
             player.transform.rotation = Quaternion.Euler(0, 180, 0);
             index++;
         }
     }
+
 
     public void BackToStart()
     {
