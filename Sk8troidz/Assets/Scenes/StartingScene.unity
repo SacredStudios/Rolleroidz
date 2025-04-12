@@ -3263,8 +3263,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 90}
+  m_AnchoredPosition: {x: 42.0593, y: 3.8396}
+  m_SizeDelta: {x: 92.9183, y: 48.099}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &329347506
 MonoBehaviour:
@@ -3286,7 +3286,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 3dd95958c9c194b4b9980bfdbb4adcda, type: 3}
+  m_Texture: {fileID: 2800000, guid: 4b858d72ebf964c819a75a6e74688eaf, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -15506,7 +15506,7 @@ RectTransform:
   m_GameObject: {fileID: 1711959052}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1768, y: 1.1768, z: 1.1768}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1376333650}
@@ -15514,7 +15514,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 8}
+  m_AnchoredPosition: {x: -0, y: -1}
   m_SizeDelta: {x: 800, y: 449.36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1711959054

@@ -26,7 +26,7 @@ public class RangedWeapon : Weapon
         Instantiate(particle_explosion, explosion_pos.transform.position, particle_pos.transform.rotation);
 
         // Set up the main ray from the player's position along the particle's forward/up direction.
-        float radius = 0.3f;
+        float radius = 0.7f;
         Ray ray = new Ray(parent.transform.position + new Vector3(radius / 2f, 0, 0), particle_pos.transform.up);
 
         // Check if the shot should be blocked very close to the player (optional logic)
