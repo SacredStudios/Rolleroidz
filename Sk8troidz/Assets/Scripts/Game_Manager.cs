@@ -1,135 +1,145 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
-//using UnityEngine.SceneManagement;
 using Photon.Pun;
 using Photon.Realtime;
 using Photon.Pun.UtilityScripts;
 
 public class Game_Manager : MonoBehaviourPunCallbacks
 {
+    // --------------------------------------------------
+    // Public / Serialized fields
+    // --------------------------------------------------
     public GameObject player_prefab;
-    Vector3 position;
-    [SerializeField] GameObject respawn_points;
-    
-    [SerializeField] int min_room_size;
-    [SerializeField] GameObject lobby;
-  
-    [SerializeField] GameObject lobby_cam;
-    [SerializeField] PhotonTeamsManager tm;
-    [SerializeField] Text list;
-    [SerializeField] PhotonView pv;
-    bool game_ongoing = false;
-    [SerializeField] int team1count;
-    [SerializeField] int team2count;
+    public GameObject respawn_points;
+    public GameObject lobby;
+    public GameObject lobby_cam;
+    public GameObject start_early;
+    public GameObject gameover_screen;
+    public GameObject end_screen;
+    public GameObject end_cam;
+    public GameObject AIPlayer;
+    public GameObject AIPlayer2;
+    public Chat_Manager chatManager;
+    public Text list;
+    public Text gameover_text;
+    public Text countdown;
+
+    [SerializeField] int min_room_size = 2;
     [SerializeField] int win_score = 15;
-    [SerializeField] GameObject new_player;
-    [SerializeField] GameObject end_player;
-    [SerializeField] GameObject weapon_selector;
 
-    [SerializeField] GameObject gameover_screen;
-    [SerializeField] Text gameover_text;
-    [SerializeField] GameObject countdown;
-    public Weapon my_weapon;
-    GameObject weapon_list;
-    List<GameObject> ai_players;
-    List<GameObject> players;
+    // --------------------------------------------------
+    // Private fields
+    // --------------------------------------------------
+    private bool game_ongoing = false;
+    private bool check = true; // used to avoid double-calls in Win/Lose screen
+    private bool win = false;
+    private int team1count = 0;
+    private int team2count = 0;
+    private int whoWon = 1;
+    private int count = 0; // used for AI count
+    private PhotonView pv;
+    private Weapon my_weapon;
 
-    int count = 0;
-    [SerializeField] GameObject AIPlayer;
-    [SerializeField] GameObject AIPlayer2;
-    [SerializeField] GameObject start_early;
-    [SerializeField] GameObject end_screen;
-    [SerializeField] GameObject end_cam;
-    private void Awake()
+    // References
+    private GameObject new_player;         // The regular gameplay player
+    private GameObject weapon_list;        // The stored weapon list
+    private List<GameObject> ai_players;   // For AI
+
+    // We’ll store the local "end-game" player here for the focus script
+    private GameObject localEndPlayer;
+
+    // For the camera move
+    private float moveDistance = 5f;
+    private float moveDuration = 2f;
+
+    void Awake()
     {
         PhotonNetwork.AutomaticallySyncScene = false;
-        weapon_list = GameObject.Find("WeaponList"); //I know gameobject.find is bad. Do you have any better ideas?
-        countdown.SetActive(false);
+        pv = GetComponent<PhotonView>();
+        weapon_list = GameObject.Find("WeaponList");
+        countdown.gameObject.SetActive(false);
+
+        // Only the MasterClient sees the "start early" button
         if (!PhotonNetwork.IsMasterClient)
         {
             start_early.SetActive(false);
         }
-
     }
-    private void Start()
+
+    void Start()
     {
         Respawn.isOver = false;
-        my_weapon = weapon_list.GetComponent<Weapon_List>().curr_weapon;
         pv.Owner.SetScore(0);
+        // Cache your chosen weapon from the weapon list
+        my_weapon = weapon_list.GetComponent<Weapon_List>().curr_weapon;
+
+        // In 30 seconds, check if enough players joined
         Invoke("CheckForPlayersOnTime", 30f);
-        //PhotonNetwork.LocalPlayer.JoinTeam((byte)Random.Range(1, 3));
     }
-    [SerializeField] Chat_Manager chatManager;
+
+    // --------------------------------------------------
+    // Player Connect / Disconnect
+    // --------------------------------------------------
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         if (PhotonNetwork.IsMasterClient)
         {
             chatManager.SendStatMessage(newPlayer.NickName + " entered the room.");
         }
-        foreach (Player player in PhotonNetwork.PlayerList)
+
+        // Reset everyone's score
+        foreach (Player p in PhotonNetwork.PlayerList)
         {
-            player.SetScore(0);
+            p.SetScore(0);
         }
+
         base.OnPlayerEnteredRoom(newPlayer);
-        PropChange();
-        if (PhotonNetwork.CurrentRoom.PlayerCount >= min_room_size && PhotonNetwork.IsMasterClient) //why do we need this ->newPlayer == PhotonNetwork.LocalPlayer &&
+        PropChange(); // refresh the player list
+
+        // If we have enough people, start the game
+        if (PhotonNetwork.CurrentRoom.PlayerCount >= min_room_size && PhotonNetwork.IsMasterClient)
         {
             StartCoroutine(CheckForPlayers());
         }
     }
-    public override void OnPlayerLeftRoom(Player newPlayer)
+
+    public override void OnPlayerLeftRoom(Player otherPlayer)
     {
-        base.OnPlayerEnteredRoom(newPlayer);
-        PropChange();
+        base.OnPlayerLeftRoom(otherPlayer);
+        PropChange(); // refresh the player list
     }
-    IEnumerator SwitchTeams()
+
+    // --------------------------------------------------
+    // Start / Check For Players
+    // --------------------------------------------------
+    IEnumerator CheckForPlayers()
     {
-        
-        yield return new WaitUntil(() => PhotonNetwork.IsConnectedAndReady);
-        foreach (Player player in PhotonNetwork.PlayerList)
+        // Make sure there's at least min_room_size or skip for debugging
+        yield return new WaitUntil(() =>
+            PhotonNetwork.CurrentRoom.PlayerCount >= min_room_size
+        /* or debugging: || 1 == 1 */
+        );
+
+        game_ongoing = true;
+
+        // Show countdown on every client
+        pv.RPC("Start_Countdown", RpcTarget.All);
+
+        // Master spawns enough AI to fill up
+        if (PhotonNetwork.IsMasterClient)
         {
-            //sometimes the player is still on the same team as last game, so this is a check to
-            //set it to null
-            player.LeaveCurrentTeam();
-            yield return new WaitUntil(() => player.GetPhotonTeam() == null);
-            if (++count % 2 == 0)
-            {
-                player.JoinTeam(1);
-            }
-            else
-            {
-                player.JoinTeam(2);
-            }
-            yield return new WaitUntil(() => player.GetPhotonTeam() != null);
+            SpawnAIPlayers();
         }
 
-        yield return new WaitForSeconds(5);
-        pv.RPC("SpawnPlayer", RpcTarget.All);
-
-
-    }
-   
-    IEnumerator LeaveTeam()
-    {
-        yield return new WaitUntil(() => PhotonNetwork.LocalPlayer.GetPhotonTeam() == null);
-        PhotonNetwork.LeaveRoom();
-
-    }
-    IEnumerator CheckForPlayers() //Checks if teams have been assigned correctly before starting game
-    {
-        yield return new WaitUntil(() => PhotonNetwork.CurrentRoom.PlayerCount >= min_room_size || 1==1); //delete this part in official builds
-        game_ongoing = true;
-        pv.RPC("Start_Countdown", RpcTarget.All);
-        SpawnAIPlayers();
-        yield return new WaitForSeconds(5); //test to see if this can be a shorter time
+        // Wait 5 seconds for countdown to finish
+        yield return new WaitForSeconds(5f);
         SpawnPlayers();
-        
     }
 
-    //Checks for players after 30 second timer is up
+    // Called after 30 second timer (if master hasn't pressed early start)
     public void CheckForPlayersOnTime()
     {
         if (start_early.activeSelf)
@@ -138,428 +148,457 @@ public class Game_Manager : MonoBehaviourPunCallbacks
             StartCoroutine(CheckForPlayers());
         }
     }
-    //Checks for players after button is pressed
+
+    // Called if the Master presses the “start early” button
     public void CheckForPlayersDebug()
     {
         start_early.SetActive(false);
         StartCoroutine(CheckForPlayers());
     }
-    [PunRPC] public void Start_Countdown()
+
+    [PunRPC]
+    public void Start_Countdown()
     {
-        countdown.SetActive(true);
-        StartCoroutine(Countdown(5));
+        countdown.gameObject.SetActive(true);
+        StartCoroutine(CountdownCo(5));
     }
-    IEnumerator Countdown(int n)
+
+    IEnumerator CountdownCo(int n)
     {
         while (n > 0)
         {
-            countdown.GetComponent<Text>().text = n.ToString();
-            yield return new WaitForSeconds(1);
+            countdown.text = n.ToString();
+            yield return new WaitForSeconds(1f);
             n--;
         }
-
+        countdown.gameObject.SetActive(false);
     }
-    private void Update()
+
+    // --------------------------------------------------
+    // Spawning
+    // --------------------------------------------------
+    public void SpawnPlayers()
     {
-        
+        // We do a short “SwitchTeams” routine
+        StartCoroutine(SwitchTeams());
     }
 
-    public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
+    IEnumerator SwitchTeams()
     {
-       if(PhotonNetwork.IsMasterClient)
-        {
-                team1count = 0;
-                team2count = 0;
-                foreach (Player player in PhotonNetwork.PlayerList)
-                {
-                    if(player.GetPhotonTeam() != null) {
-                        if (player.GetPhotonTeam().Code == 1)
-                        {
-                            team1count += player.GetScore();
-                        }
-                        else
-                        {
-                            team2count += player.GetScore();
-                        }
-                    }
-                }
-                if (ai_players != null)
-                {
-                    foreach (GameObject player in ai_players)
-                    {
-                        if (player.GetComponent<Team_Handler>().GetTeam() == 1)
-                        {
-                        
-                            team1count += player.GetComponent<AI_Handler>().score;
-                        }
-                        if (player.GetComponent<Team_Handler>().GetTeam() == 2)
-                        {
-                            
-                            team2count += player.GetComponent<AI_Handler>().score;
-                        }
-                      //  Debug.Log(team1count + "+" + team2count);
-                    }
-                }
+        // Assign teams (1,2) in a simple alternating way
+        yield return new WaitUntil(() => PhotonNetwork.IsConnectedAndReady);
 
-                if (team1count >= win_score || team2count >= win_score)
-                    {
-                        Invoke("DoubleCheck", 3f);
-                    }
-               
+        // If Master wants to do a forced shuffle, etc.
+        int localCount = 0;
+        foreach (Player p in PhotonNetwork.PlayerList)
+        {
+            p.LeaveCurrentTeam();
+            yield return new WaitUntil(() => p.GetPhotonTeam() == null);
+
+            localCount++;
+            byte assignedTeam = (localCount % 2 == 0) ? (byte)1 : (byte)2;
+            p.JoinTeam(assignedTeam);
+            yield return new WaitUntil(() => p.GetPhotonTeam() != null);
         }
 
-        PropChange();
-        
-        base.OnPlayerPropertiesUpdate(targetPlayer, changedProps);
+        yield return new WaitForSeconds(1f);
+        pv.RPC("SpawnPlayer", RpcTarget.All);
     }
-    int whoWon = 1;
-    bool win = false; //checks if local player won or not
-    void DoubleCheck()
+
+    void SpawnAIPlayers()
     {
-        //pv.RPC("GetTeams", RpcTarget.All, tm.GetTeamMembersCount(1), tm.GetTeamMembersCount(2));
-        //TODO: Add AI_players
-        team1count = 0;
-        team2count = 0;
-        foreach (Player player in PhotonNetwork.PlayerList)
-        {
-            if (player.GetPhotonTeam().Code == 1)
-            {
-                team1count += player.GetScore();
-            }
-            else
-            {
+        ai_players = new List<GameObject>();
 
-                team2count += player.GetScore();
-            }
-        }
-        if (ai_players != null)
+        // The total we want is min_room_size, so fill up with AI
+        while (count < min_room_size - PhotonNetwork.PlayerList.Length)
         {
-            foreach (GameObject player in ai_players)
-            {
-                if (player.GetComponent<Team_Handler>().GetTeam() == 1)
-                {
-                    team1count += player.GetComponentInChildren<AI_Handler>().score;
-                }
-                else
-                {
-                    team2count += player.GetComponentInChildren<AI_Handler>().score;
-                }
-            }
-        }
-        if (team1count >= win_score)
-        {
-            pv.RPC("GameOver", RpcTarget.All, 1);
-        }
-        else if (team2count >= win_score)
-        {
-            whoWon = 2;
-            pv.RPC("GameOver", RpcTarget.All, 2);
+            count++;
+            Vector3 position = Vector3.zero;
+
+            // Alternate AI prefab just for variety
+            GameObject ai = (count % 2 == 0)
+                ? PhotonNetwork.Instantiate(AIPlayer2.name, position, Quaternion.identity, 0)
+                : PhotonNetwork.Instantiate(AIPlayer.name, position, Quaternion.identity, 0);
+
+            // Set references
+            ai.GetComponentInChildren<AI_Weapon_Handler>().chat_manager = chatManager;
+            ai.GetComponent<Respawn>().respawn_points
+                = respawn_points.GetComponent<RespawnPoints>().respawn_points;
+
+            // Place them at random spawn
+            List<Vector3> points = respawn_points.GetComponent<RespawnPoints>().respawn_points;
+            ai.transform.position = points[Random.Range(0, points.Count)];
+
+            // The *actual* controlling “player” for AI is child(0)
+            ai_players.Add(ai.transform.GetChild(0).gameObject);
         }
     }
 
-    
     [PunRPC]
-    public void GameOver(int winningteam)
+    public void SpawnPlayer()
     {
         if (PhotonNetwork.IsMasterClient)
         {
+            // Once game is started, lock the room
+            PhotonNetwork.CurrentRoom.IsOpen = false;
+        }
 
-            foreach (GameObject player in ai_players)
+        // Hide UI 
+        lobby_cam.SetActive(false);
+        lobby.SetActive(false);
+
+        // If local player's “new_player” isn’t already set
+        if (new_player == null)
+        {
+            Vector3 position = transform.position;
+            new_player = PhotonNetwork.Instantiate(
+                player_prefab.name,
+                position,
+                Quaternion.identity,
+                0
+            );
+
+            // Assign random spawn from the respawn list
+            List<Vector3> points = respawn_points.GetComponent<RespawnPoints>().respawn_points;
+            new_player.transform.position = points[Random.Range(0, points.Count)];
+
+            // Attach references
+            new_player.GetComponent<Respawn>().respawn_points
+                = respawn_points.GetComponent<RespawnPoints>().respawn_points;
+
+            new_player.GetComponentInChildren<Weapon_Handler>().weapon = my_weapon;
+            new_player.GetComponentInChildren<Weapon_Handler>().weapon.chat_manager
+                = chatManager;
+        }
+
+        // Let AI look at your local camera (so they face you)
+        AI_LookAt.cam = new_player.GetComponentInChildren<Camera>();
+        AI_LookAt.pv = new_player.GetComponent<PhotonView>();
+    }
+
+    // --------------------------------------------------
+    // Scoring / Properties
+    // --------------------------------------------------
+    public override void OnPlayerPropertiesUpdate(
+        Player targetPlayer,
+        ExitGames.Client.Photon.Hashtable changedProps
+    )
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            // Recalc scoreboard
+            team1count = 0;
+            team2count = 0;
+
+            // Sum up player scores
+            foreach (Player p in PhotonNetwork.PlayerList)
             {
-                player.GetComponentInChildren<AI_Weapon_Handler>().enabled = false;
-                player.GetComponentInChildren<AI_Movement>().enabled = false;
-                player.GetComponentInChildren<AI_Railgrinding>().enabled = false;
-                player.GetComponentInChildren<AgentLinkMover>().enabled = false;
-                player.GetComponentInChildren<NavMeshAgent>().enabled = false;
-                player.GetComponentInParent<Respawn>().enabled = false;           
+                if (p.GetPhotonTeam() != null)
+                {
+                    if (p.GetPhotonTeam().Code == 1) team1count += p.GetScore();
+                    else team2count += p.GetScore();
+                }
+            }
 
+            // Sum up AI players
+            if (ai_players != null)
+            {
+                foreach (GameObject ai in ai_players)
+                {
+                    int aiTeam = ai.GetComponent<Team_Handler>().GetTeam();
+                    int aiScore = ai.GetComponent<AI_Handler>().score;
+
+                    if (aiTeam == 1) team1count += aiScore;
+                    else team2count += aiScore;
+                }
+            }
+
+            // Check for a winner
+            if (team1count >= win_score || team2count >= win_score)
+            {
+                Invoke(nameof(DoubleCheck), 3f);
             }
         }
-            Cursor.lockState = CursorLockMode.None;
-        if (new_player.GetComponentInChildren<PlayerMovement>() != null)
+
+        PropChange();
+        base.OnPlayerPropertiesUpdate(targetPlayer, changedProps);
+    }
+
+    void DoubleCheck()
+    {
+        // Double-check which team actually has the lead
+        team1count = 0;
+        team2count = 0;
+
+        foreach (Player p in PhotonNetwork.PlayerList)
         {
-            new_player.GetComponentInChildren<PlayerMovement>().enabled = false;
-            new_player.GetComponentInChildren<Weapon_Handler>().enabled = false;
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            if (p.GetPhotonTeam().Code == 1) team1count += p.GetScore();
+            else team2count += p.GetScore();
+        }
+
+        if (ai_players != null)
+        {
+            foreach (GameObject ai in ai_players)
+            {
+                int aiTeam = ai.GetComponentInChildren<Team_Handler>().GetTeam();
+                int aiScore = ai.GetComponentInChildren<AI_Handler>().score;
+
+                if (aiTeam == 1) team1count += aiScore;
+                else team2count += aiScore;
+            }
+        }
+
+        if (team1count >= win_score) pv.RPC("GameOver", RpcTarget.All, 1);
+        else if (team2count >= win_score) pv.RPC("GameOver", RpcTarget.All, 2);
+    }
+
+    [PunRPC]
+    public void GameOver(int winningteam)
+    {
+        whoWon = winningteam; // store it
+
+        // Hide normal movement
+        if (new_player != null)
+        {
+            if (new_player.GetComponentInChildren<PlayerMovement>())
+            {
+                new_player.GetComponentInChildren<PlayerMovement>().enabled = false;
+                new_player.GetComponentInChildren<Weapon_Handler>().enabled = false;
+            }
+            else
+            {
+                // Possibly your camera was detached?
+                Camera c = new_player.GetComponentInChildren<Camera>();
+                if (c) c.transform.parent = null;
+            }
+            new_player.SetActive(false);
+        }
+
+        // For AI, MasterClient disables them
+        if (PhotonNetwork.IsMasterClient && ai_players != null)
+        {
+            foreach (GameObject ai in ai_players)
+            {
+                ai.GetComponentInChildren<AI_Weapon_Handler>().enabled = false;
+                ai.GetComponentInChildren<AI_Movement>().enabled = false;
+                ai.GetComponentInChildren<AI_Railgrinding>().enabled = false;
+                ai.GetComponentInChildren<AgentLinkMover>().enabled = false;
+                ai.GetComponentInChildren<NavMeshAgent>().enabled = false;
+                ai.GetComponentInParent<Respawn>().enabled = false;
+            }
+        }
+
+        // Show end‐game UI
+        end_cam.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        gameover_screen.SetActive(true);
+
+        // Determine if local player is on the winning team
+        int localTeam = PhotonNetwork.LocalPlayer.GetPhotonTeam().Code;
+        if (localTeam == whoWon)
+        {
+            gameover_text.text = "YOU WIN";
+            win = true;
         }
         else
         {
-            new_player.GetComponentInChildren<Camera>().transform.parent = null;
+            gameover_text.text = "YOU LOSE";
+            win = false;
         }
-        new_player.SetActive(false);
-        if (PhotonNetwork.LocalPlayer.GetPhotonTeam().Code == winningteam)
+
+        // Actually spawn the local “end player” + freeze AI
+        if (check)
         {
-            Invoke("WinScreen", 1f);
+            check = false;
+            EndPlayers();        // This spawns the local end‐game avatar
+            StartCoroutine(MoveForward()); // This starts the camera motion
         }
-        else
-        {
-            Invoke("LoseScreen", 1f);
-        }
-        
-    }
-    void WinScreen()
-    {
-        
-        end_cam.SetActive(true);
-        gameover_screen.SetActive(true);
-        gameover_text.text = " YOU WIN";
-        win = true;
-            if (check)
-            {
-                StartCoroutine(MoveForward());
-                check = false;
-                EndPlayers();
-            }
-        
-        
-    }
-    bool check = true; //for some reason the coroutine keeps getting called twice
-    void LoseScreen()
-    {
-        end_cam.SetActive(true);
-        gameover_screen.SetActive(true);
-        gameover_text.text = " YOU LOSE";
-        
-            if (check)
-            {
-                StartCoroutine(MoveForward());
-                check = false;
-                EndPlayers();
-                
-            }
-        
-        
-    }
-    float moveDistance = 5f;
-    float moveDuration = 2f;
-    private IEnumerator MoveForward()
-    {
-        // Calculate the start and forward positions
-        Vector3 startPos = end_cam.transform.position;
-        Vector3 forwardPos = startPos + end_cam.transform.forward * moveDistance;
-
-        yield return StartCoroutine(MoveOverTime(startPos, forwardPos, moveDuration));
     }
 
-
-    private IEnumerator MoveOverTime(Vector3 fromPos, Vector3 toPos, float duration)
-    {
-        float elapsed = 0f;
-
-        while (elapsed < duration)
-        {
-            elapsed += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsed / duration);
-            float smoothT = t * t * (3f - 2f * t);
-            end_cam.transform.position = Vector3.Lerp(toPos, fromPos, smoothT);
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-            yield return null;
-        }
-        end_cam.transform.position = fromPos;
-        yield return new WaitForSeconds(2f);
-        yield return StartCoroutine(FocusOnTarget());
-    }
-    Vector3 offset = new Vector3(0, 0, -5f);
-
-    private IEnumerator FocusOnTarget()
-    {
-        Transform focusTarget = end_player.transform.GetChild(7);
-        // Record where the camera starts
-        Vector3 startPos = end_cam.transform.position;
-
-        // Calculate the final position (offset from the target's position)
-        Vector3 endPos = focusTarget.position + offset;
-
-        // Calculate the final rotation by looking from the end position towards the target
-
-        float elapsed = 0f;
-
-        while (elapsed < moveDuration)
-        {
-            Debug.Log("is this running");
-            elapsed += Time.deltaTime;
-
-            // Normalized time from 0 to 1
-            float t = Mathf.Clamp01(elapsed / moveDuration);
-
-            // Optional: Use a simple ease-in/ease-out curve
-            float smoothT = t * t * (3f - 2f * t);
-
-            // Move smoothly
-            end_cam.transform.position = Vector3.Lerp(startPos, endPos, smoothT);
-
-
-            yield return null;
-        }
-
-        // Ensure final position/rotation is exact
-        end_cam.transform.position = endPos;
-    }
-
-
-
+    // --------------------------------------------------
+    // End Game Logic
+    // --------------------------------------------------
     void EndPlayers()
     {
         Respawn.isOver = true;
 
-        // Set cameras for end screen
+        // Let the camera references be for end_cam
         LookAtCamera.cam = end_cam.GetComponent<Camera>();
         AI_LookAt.cam = end_cam.GetComponent<Camera>();
 
+        // Find out local player's index so we can position them in a line
         List<Player> players = new List<Player>(PhotonNetwork.PlayerList);
         int index = players.IndexOf(PhotonNetwork.LocalPlayer);
 
-        // Use room-owned instantiation so disconnected players persist
+        // Grab the spawn points for end
         List<Vector3> points = respawn_points.GetComponent<RespawnPoints>().respawn_points;
-        new_player.SetActive(false);
+        if (points.Count == 0) points.Add(Vector3.zero);
 
-        // MasterClient should instantiate the end players using room ownership
-        if (PhotonNetwork.IsMasterClient)
+        // Everyone spawns their own end‐avatar
+        Vector3 spawnPos = points[0] + new Vector3(index * 5f, -2f, 3.8f);
+        GameObject persistent_end_player = PhotonNetwork.Instantiate(
+            player_prefab.name,
+            spawnPos,
+            Quaternion.Euler(0, 180, 0)
+        );
+
+        // Store reference so we can do FocusOnTarget
+        localEndPlayer = persistent_end_player;
+
+        // Win or lose animation
+        int localTeam = PhotonNetwork.LocalPlayer.GetPhotonTeam().Code;
+        Animator localAnimator = persistent_end_player.GetComponentInChildren<Animator>();
+        localAnimator.SetInteger("Win", (localTeam == whoWon) ? 1 : -1);
+
+        // Turn off normal movement scripts
+        var pm = persistent_end_player.GetComponentInChildren<PlayerMovement>();
+        if (pm) pm.enabled = false;
+
+        var ph = persistent_end_player.GetComponentInChildren<Player_Health>();
+        if (ph) ph.enabled = false;
+
+        var wh = persistent_end_player.GetComponentInChildren<Weapon_Handler>();
+        if (wh) wh.enabled = false;
+
+        // Turn off its camera and UI so it won't conflict with end_cam
+        var ownCam = persistent_end_player.GetComponentInChildren<Camera>();
+        if (ownCam) ownCam.enabled = false;
+
+        var ownCanvas = persistent_end_player.GetComponentInChildren<Canvas>();
+        if (ownCanvas) ownCanvas.enabled = false;
+
+        // Freeze it in place
+        Rigidbody rb = persistent_end_player.GetComponentInChildren<Rigidbody>();
+        if (rb) rb.constraints = RigidbodyConstraints.FreezeAll;
+
+        // Master moves the AI into position and locks them
+        if (PhotonNetwork.IsMasterClient && ai_players != null)
         {
-            GameObject persistent_end_player = PhotonNetwork.InstantiateRoomObject(
-                player_prefab.name,
-                points[0] + new Vector3(index * 5f, -2f, 3.8f),
-                Quaternion.Euler(0, 180, 0)
-            );
+            int aiIndex = PhotonNetwork.PlayerList.Length;
+            foreach (GameObject aiObj in ai_players)
+            {
+                // Freeze AI
+                Rigidbody aiRb = aiObj.GetComponentInChildren<Rigidbody>();
+                if (aiRb) aiRb.constraints = RigidbodyConstraints.FreezeAll;
 
-            Animator local_animator = persistent_end_player.GetComponentInChildren<Animator>();
-            local_animator.SetInteger("Win", win ? 1 : -1);
+                // Win or lose animation
+                int aiTeam = aiObj.GetComponent<Team_Handler>().GetTeam();
+                Animator aiAnim = aiObj.GetComponentInChildren<Animator>();
+                aiAnim.SetInteger("Win", (aiTeam == whoWon) ? 1 : -1);
 
-            // Disable gameplay components
-            persistent_end_player.GetComponentInChildren<PlayerMovement>().enabled = false;
-            persistent_end_player.GetComponentInChildren<Player_Health>().enabled = false;
-            Camera cam = persistent_end_player.GetComponentInChildren<Camera>();
-            if (cam) cam.enabled = false;
-            Canvas canvas = persistent_end_player.GetComponentInChildren<Canvas>();
-            if (canvas) canvas.enabled = false;
+                // Position them in a row
+                Vector3 aiPos = points[0] + new Vector3(aiIndex * 5f, -6f, 0f);
+                aiObj.transform.position = aiPos;
+                aiObj.transform.rotation = Quaternion.Euler(0, 180, 0);
 
-            // Freeze movement
-            Rigidbody rb = new_player.GetComponentInChildren<Rigidbody>();
-            persistent_end_player.transform.Rotate(0f, 0f, 0f, Space.Self);
-            rb.constraints = RigidbodyConstraints.FreezeAll;
-        }
-
-        // Reset index to avoid conflict when placing AI
-        index = PhotonNetwork.PlayerList.Length;
-
-        // Disable AI movement and play win/loss animation
-        Debug.Log(ai_players.Count);
-        foreach (GameObject player in ai_players)
-        {
-            Respawn.isOver = true;
-
-            player.GetComponentInChildren<AI_Weapon_Handler>().enabled = false;
-            player.GetComponentInChildren<AI_Movement>().enabled = false;
-            player.GetComponentInChildren<AI_Railgrinding>().enabled = false;
-            player.GetComponentInChildren<AgentLinkMover>().enabled = false;
-            player.GetComponentInChildren<NavMeshAgent>().enabled = false;
-
-            Animator animator = player.GetComponentInChildren<Animator>();
-            animator.SetFloat("animSpeedCap", 0f);
-            animator.SetFloat("IsJumping", 0f);
-            animator.SetLayerWeight(3, 0f);
-            animator.SetLayerWeight(2, 0f);
-            animator.SetLayerWeight(1, 0f);
-
-            animator.SetInteger("Win", player.GetComponentInChildren<AI_Handler>().team == whoWon ? 1 : -1);
-
-            Rigidbody rb = player.GetComponent<Rigidbody>();
-            rb.constraints = RigidbodyConstraints.FreezeAll;
-
-            player.transform.position = points[0] + new Vector3(index * 5f, -6f, 0);
-            player.transform.rotation = Quaternion.Euler(0, 180, 0);
-            index++;
+                aiIndex++;
+            }
         }
     }
 
+    // --------------------------------------------------
+    // Camera Move / Focus
+    // --------------------------------------------------
+    // Example coroutine to “pan forward” and then do final focus
+    private IEnumerator MoveForward()
+    {
+        // Example forward pan
+        Vector3 startPos = end_cam.transform.position;
+        Vector3 forwardPos = startPos + end_cam.transform.forward * moveDistance;
 
+        yield return StartCoroutine(MoveOverTime(startPos, forwardPos, moveDuration));
+
+        // Wait a second or two, then focus on the end player
+        yield return new WaitForSeconds(2f);
+        yield return StartCoroutine(FocusOnTarget());
+    }
+
+    private IEnumerator MoveOverTime(Vector3 fromPos, Vector3 toPos, float duration)
+    {
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / duration);
+            // a simple ease in/out
+            float smoothT = t * t * (3f - 2f * t);
+
+            end_cam.transform.position = Vector3.Lerp(fromPos, toPos, smoothT);
+            yield return null;
+        }
+        // ensure final
+        end_cam.transform.position = toPos;
+    }
+
+    private IEnumerator FocusOnTarget()
+    {
+        // if we don’t have a local end player, bail
+        if (localEndPlayer == null)
+            yield break;
+
+        // Suppose child(7) is your “head” or “focus” transform
+        Transform focusTarget = localEndPlayer.transform;
+        // If you need a particular child, do:
+        // Transform focusTarget = localEndPlayer.transform.GetChild(7);
+
+        // We’ll do a nice little move from camera’s current pos
+        // to behind the focusTarget + an offset
+        Vector3 offset = new Vector3(0, 0, -5f);
+        Vector3 startPos = end_cam.transform.position;
+        Vector3 endPos = focusTarget.position + offset;
+
+        float elapsed = 0f;
+        while (elapsed < moveDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / moveDuration);
+            float smoothT = t * t * (3f - 2f * t);
+
+            end_cam.transform.position = Vector3.Lerp(startPos, endPos, smoothT);
+
+            // If you want the camera to lookAt the character,
+            // do something like:
+            end_cam.transform.LookAt(focusTarget);
+
+            yield return null;
+        }
+
+        end_cam.transform.position = endPos;
+        end_cam.transform.LookAt(focusTarget);
+    }
+
+    // --------------------------------------------------
+    // Leaving the Room
+    // --------------------------------------------------
     public void BackToStart()
     {
         Respawn.isOver = false;
         PhotonNetwork.LocalPlayer.LeaveCurrentTeam();
         StartCoroutine(LeaveTeam());
-        
-        
     }
+
+    IEnumerator LeaveTeam()
+    {
+        yield return new WaitUntil(() => PhotonNetwork.LocalPlayer.GetPhotonTeam() == null);
+        PhotonNetwork.LeaveRoom();
+    }
+
     public override void OnLeftRoom()
-    {        
-        PhotonNetwork.LoadLevel("StartingScene");        
+    {
+        PhotonNetwork.LoadLevel("StartingScene");
     }
+
+    // --------------------------------------------------
+    // Helper
+    // --------------------------------------------------
     void PropChange()
     {
+        // update a simple Text listing players
         list.text = "";
         foreach (Player player in PhotonNetwork.PlayerList)
         {
-            list.text += player.NickName + "\n";           
+            list.text += player.NickName + "\n";
         }
     }
-
-    public void SpawnPlayers()
-    {
-        StartCoroutine(SwitchTeams());
-        
-    }
-    void SpawnAIPlayers()
-    {
-        ai_players = new List<GameObject>();
-        while (count < min_room_size- PhotonNetwork.PlayerList.Length)
-        {
-            count++;
-            //A lot of redundant code here
-            if (count % 2 == 0)
-            {
-                GameObject ai_player = PhotonNetwork.Instantiate(AIPlayer2.name, position, Quaternion.identity, 0);
-                ai_player.GetComponentInChildren<AI_Weapon_Handler>().chat_manager = chatManager.GetComponent<Chat_Manager>();
-                List<Vector3> points = respawn_points.GetComponent<RespawnPoints>().respawn_points; //respawn locations
-                ai_player.GetComponent<Respawn>().respawn_points = points;
-                ai_player.transform.position = points[Random.Range(0, points.Count)];
-                ai_players.Add(ai_player.transform.GetChild(0).gameObject);
-            }
-            else
-            {
-                GameObject ai_player = PhotonNetwork.Instantiate(AIPlayer.name, position, Quaternion.identity, 0);
-                ai_player.GetComponentInChildren<AI_Weapon_Handler>().chat_manager = chatManager.GetComponent<Chat_Manager>();
-                List<Vector3> points = respawn_points.GetComponent<RespawnPoints>().respawn_points; //respawn locations
-                ai_player.GetComponent<Respawn>().respawn_points = points;
-                ai_player.transform.position = points[Random.Range(0, points.Count)];
-                ai_players.Add(ai_player.transform.GetChild(0).gameObject);
-            }
-        }
-        //Debug.Log(ai_players[0] + "+" + ai_players[1] + "+" + ai_players[2]);
-    }
-    [PunRPC]
-    public void SpawnPlayer()
-    {
-       
-        
-        if (PhotonNetwork.IsMasterClient)
-        {
-            PhotonNetwork.CurrentRoom.IsOpen = false;
-        }
-        position = transform.position;
-        lobby_cam.SetActive(false);
-        lobby.SetActive(false);
-        if (new_player == null)
-        {
-            new_player = PhotonNetwork.Instantiate(player_prefab.name, position, Quaternion.identity, 0);
-            List<Vector3> points = respawn_points.GetComponent<RespawnPoints>().respawn_points; //respawn locations
-            new_player.GetComponent<Respawn>().respawn_points = points;
-            new_player.GetComponentInChildren<Weapon_Handler>().weapon = my_weapon;
-            new_player.GetComponentInChildren<Weapon_Handler>().weapon.chat_manager = chatManager.GetComponent<Chat_Manager>();
-            new_player.transform.position = points[Random.Range(0, points.Count)];
-        }
-        AI_LookAt.cam = new_player.GetComponentInChildren<Camera>();
-        AI_LookAt.pv = new_player.GetComponent<PhotonView>();
-
-
-
-
-    }
-   
-
-    }
-
-
-
+}
