@@ -262,20 +262,19 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     public void GameOver(int winningteam)
     {
         whoWon = winningteam;
-        if (PhotonNetwork.IsMasterClient)
+        
+
+        foreach (GameObject player in ai_players)
         {
+            player.GetComponentInChildren<AI_Weapon_Handler>().enabled = false;
+            player.GetComponentInChildren<AI_Movement>().enabled = false;
+            player.GetComponentInChildren<AI_Railgrinding>().enabled = false;
+            player.GetComponentInChildren<AgentLinkMover>().enabled = false;
+            player.GetComponentInChildren<NavMeshAgent>().enabled = false;
+            player.GetComponentInParent<Respawn>().enabled = false;           
 
-            foreach (GameObject player in ai_players)
-            {
-                player.GetComponentInChildren<AI_Weapon_Handler>().enabled = false;
-                player.GetComponentInChildren<AI_Movement>().enabled = false;
-                player.GetComponentInChildren<AI_Railgrinding>().enabled = false;
-                player.GetComponentInChildren<AgentLinkMover>().enabled = false;
-                player.GetComponentInChildren<NavMeshAgent>().enabled = false;
-                player.GetComponentInParent<Respawn>().enabled = false;           
-
-            }
         }
+        
             Cursor.lockState = CursorLockMode.None;
         if (new_player.GetComponentInChildren<PlayerMovement>() != null)
         {
