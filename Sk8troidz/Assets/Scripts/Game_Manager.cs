@@ -261,6 +261,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     [PunRPC]
     public void GameOver(int winningteam)
     {
+        whoWon = winningteam;
         if (PhotonNetwork.IsMasterClient)
         {
 
