@@ -10893,16 +10893,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1294325433}
-  m_LocalRotation: {x: -0.11323356, y: -0.69798154, z: 0.69798154, w: 0.11323356}
+  m_LocalRotation: {x: -0.0057287044, y: -0.7070836, z: 0.7070836, w: 0.0057287044}
   m_LocalPosition: {x: 0, y: 0, z: 1}
-  m_LocalScale: {x: 1.5099099, y: 0.97470886, z: 0.97470886}
+  m_LocalScale: {x: 0.76254976, y: 0.49225718, z: 0.49225718}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 108.42999, y: 90, z: 270}
+  m_LocalEulerAnglesHint: {x: 90.92801, y: 90, z: 270}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -3.07, y: 2.96}
+  m_AnchoredPosition: {x: -2.99, y: 3.64}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1297550662
@@ -11531,7 +11531,7 @@ GameObject:
   - component: {fileID: 1376333653}
   - component: {fileID: 1376333654}
   m_Layer: 5
-  m_Name: Logo(ExceptEye)
+  m_Name: LogoImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11544,16 +11544,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1376333649}
-  m_LocalRotation: {x: -0, y: -0, z: 0.056200072, w: 0.9984196}
+  m_LocalRotation: {x: -0, y: -0, z: 0.007144871, w: 0.9999745}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.4596, y: 1.4596, z: 1.4596}
+  m_LocalScale: {x: 0.81447136, y: 0.81447136, z: 0.81447136}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1711959053}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 6.443}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.819}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 86}
+  m_AnchoredPosition: {x: 0, y: 90}
   m_SizeDelta: {x: 800, y: 449.36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1376333652
@@ -11592,14 +11592,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.80784315}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.972549}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 016cbe9f3a18f4248a80e1d64b340d55, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 603ce19d0519ab441bddfebeb5ca2bb7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12251,7 +12251,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4618330463220366, guid: 009815310d9b5e24780e2d552cea2b29, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.8
+      value: 6.1
       objectReference: {fileID: 0}
     - target: {fileID: 4618330463220366, guid: 009815310d9b5e24780e2d552cea2b29, type: 3}
       propertyPath: m_LocalPosition.z
