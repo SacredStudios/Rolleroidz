@@ -448,11 +448,10 @@ public class Game_Manager : MonoBehaviourPunCallbacks
         if (ownCanvas) ownCanvas.enabled = false;
         if (rb) rb.constraints = RigidbodyConstraints.FreezeAll;
 
-        // --- CRUCIAL FIX: point 'end_player' to our newly spawned avatar ---
         end_player = persistent_end_player;
 
         // MasterClient also lines up and freezes the AI end screen:
-        if (PhotonNetwork.IsMasterClient && ai_players != null)
+        if (ai_players != null)
         {
             int aiIndex = PhotonNetwork.PlayerList.Length;
             foreach (GameObject aiObj in ai_players)
