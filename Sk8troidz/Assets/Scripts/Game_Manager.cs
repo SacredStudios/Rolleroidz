@@ -7,6 +7,7 @@ using UnityEngine.AI;
 using Photon.Pun;
 using Photon.Realtime;
 using Photon.Pun.UtilityScripts;
+using System;
 
 public class Game_Manager : MonoBehaviourPunCallbacks
 {
@@ -401,80 +402,117 @@ public class Game_Manager : MonoBehaviourPunCallbacks
     }
 
 
-
+    /* ------------------------------------------------------------ */
     void EndPlayers()
     {
-        // Stop respawning, hide the main player
+        //-----------------------------------------------------------
+        // 1. Local-player clean-up (unchanged)
+        //-----------------------------------------------------------
         Respawn.isOver = true;
-        if (new_player != null)
-            new_player.SetActive(false);
+        if (new_player) new_player.SetActive(false);
 
-        // Use the end camera
-        LookAtCamera.cam = end_cam.GetComponent<Camera>();
-        AI_LookAt.cam = end_cam.GetComponent<Camera>();
+        LookAtCamera.cam = AI_LookAt.cam = end_cam.GetComponent<Camera>();
 
-        // Identify local player's position in the room list
-        List<Player> players = new List<Player>(PhotonNetwork.PlayerList);
-        int index = players.IndexOf(PhotonNetwork.LocalPlayer);
+        // spawn an end-screen avatar just for *this* client
+        int index = new List<Player>(PhotonNetwork.PlayerList)
+                        .IndexOf(PhotonNetwork.LocalPlayer);
 
-        // Grab spawn points for the end screen
-        List<Vector3> points = respawn_points.GetComponent<RespawnPoints>().respawn_points;
+        Vector3 basePos = respawn_points.GetComponent<RespawnPoints>()
+                         .respawn_points[0];
 
-        // --- Everyone spawns their own end‐game avatar ---
-        Vector3 spawnPosition = points[0] + new Vector3(index * 5f, -2f, 3.8f);
-        GameObject persistent_end_player = PhotonNetwork.Instantiate(
-            player_prefab.name,
-            spawnPosition,
-            Quaternion.Euler(0, 180, 0)
-        );
+        Vector3 spawnPos = basePos + new Vector3(index * 5f, -2f, 3.8f);
 
-        // Determine local win/lose status and set animations
-        int localTeam = PhotonNetwork.LocalPlayer.GetPhotonTeam().Code;
-        Animator localAnimator = persistent_end_player.GetComponentInChildren<Animator>();
-        localAnimator.SetInteger("Win", (localTeam == whoWon) ? 1 : -1);
+        end_player = PhotonNetwork.Instantiate(
+                        player_prefab.name,
+                        spawnPos,
+                        Quaternion.Euler(0, 180, 0));
 
-        // Disable normal gameplay scripts
-        PlayerMovement pm = persistent_end_player.GetComponentInChildren<PlayerMovement>();
-        Player_Health ph = persistent_end_player.GetComponentInChildren<Player_Health>();
-        Weapon_Handler wh = persistent_end_player.GetComponentInChildren<Weapon_Handler>();
-        Camera ownCam = persistent_end_player.GetComponentInChildren<Camera>();
-        Canvas ownCanvas = persistent_end_player.GetComponentInChildren<Canvas>();
-        Rigidbody rb = persistent_end_player.GetComponentInChildren<Rigidbody>();
+        int myTeam = PhotonNetwork.LocalPlayer.GetPhotonTeam().Code;
+        end_player.GetComponentInChildren<Animator>()
+                  .SetInteger("Win", (myTeam == whoWon) ? 1 : -1);
+
+        DisableGameplayOn(end_player);
+
+        //-----------------------------------------------------------
+        // 2. Tell **all** clients to freeze every AI object locally
+        //-----------------------------------------------------------
+        if (PhotonNetwork.IsMasterClient)
+        {
+            // buffered → late joiners also get the “freeze” order
+            pv.RPC(nameof(FreezeAllAIs), RpcTarget.AllBuffered, whoWon);
+        }
+    }
+
+    /* ------------------------------------------------------------ */
+    [PunRPC]
+    void FreezeAllAIs(int winningTeam, int humansInRoom, List<Vector3> anchorPts)
+    {
+        // --- Grab every AI_Movement in the scene (active or inactive) -------------
+        AI_Movement[] aiMoves =
+#if UNITY_2023_1_OR_NEWER
+            FindObjectsByType<AI_Movement>(FindObjectsSortMode.None); // includeInactive by default
+#else
+        Object.FindObjectsOfType<AI_Movement>(true);                      // legacy call, includeInactive=true
+#endif
+
+        // Stable order → consistent line-up on every peer
+        Array.Sort(aiMoves, (a, b) =>
+            a.GetComponent<PhotonView>().ViewID.CompareTo(
+            b.GetComponent<PhotonView>().ViewID));
+
+        int aiIndex = humansInRoom;
+        Vector3 basePos = anchorPts[0];
+
+        foreach (AI_Movement move in aiMoves)
+        {
+            GameObject aiObj = move.gameObject;
+            DisableGameplayOn(aiObj);
+
+            int aiTeam = aiObj.GetComponent<Team_Handler>().GetTeam();
+            aiObj.GetComponentInChildren<Animator>()
+                 .SetInteger("Win", (aiTeam == winningTeam) ? 1 : -1);
+
+            aiObj.transform.SetPositionAndRotation(
+                basePos + new Vector3(aiIndex * 5f, -6f, 0f),
+                Quaternion.Euler(0, 180, 0));
+
+            aiIndex++;
+        }
+    }
+
+
+    /* ------------------------------------------------------------ */
+    // helper – prevent double-writing the same disabling code
+    void DisableGameplayOn(GameObject go)
+    {
+        if (!go) return;
+
+        var rb = go.GetComponentInChildren<Rigidbody>();
+        var nav = go.GetComponentInChildren<UnityEngine.AI.NavMeshAgent>();
+        var link = go.GetComponentInChildren<AgentLinkMover>();
+        var rail = go.GetComponentInChildren<AI_Railgrinding>();
+        var aim = go.GetComponentInChildren<AI_Movement>();
+        var aiw = go.GetComponentInChildren<AI_Weapon_Handler>();
+
+        var pm = go.GetComponentInChildren<PlayerMovement>();
+        var ph = go.GetComponentInChildren<Player_Health>();
+        var wh = go.GetComponentInChildren<Weapon_Handler>();
+        var cam = go.GetComponentInChildren<Camera>();
+        var cvs = go.GetComponentInChildren<Canvas>();
 
         if (pm) pm.enabled = false;
         if (ph) ph.enabled = false;
         if (wh) wh.enabled = false;
-        if (ownCam) ownCam.enabled = false;
-        if (ownCanvas) ownCanvas.enabled = false;
+        if (cam) cam.enabled = false;
+        if (cvs) cvs.enabled = false;
+
+        if (aim) aim.enabled = false;
+        if (aiw) aiw.enabled = false;
+        if (nav) nav.enabled = false;
+        if (rail) rail.enabled = false;
+        if (link) link.enabled = false;
+
         if (rb) rb.constraints = RigidbodyConstraints.FreezeAll;
-
-        end_player = persistent_end_player;
-
-        // MasterClient also lines up and freezes the AI end screen:
-        if (ai_players != null)
-        {
-            int aiIndex = PhotonNetwork.PlayerList.Length;
-            foreach (GameObject aiObj in ai_players)
-            {
-                aiObj.GetComponentInChildren<AI_Weapon_Handler>().enabled = false;
-                aiObj.GetComponentInChildren<AI_Movement>().enabled = false;
-                aiObj.GetComponentInChildren<AI_Railgrinding>().enabled = false;
-                aiObj.GetComponentInChildren<AgentLinkMover>().enabled = false;
-                aiObj.GetComponentInChildren<NavMeshAgent>().enabled = false;
-
-                Rigidbody aiRb = aiObj.GetComponentInChildren<Rigidbody>();
-                if (aiRb) aiRb.constraints = RigidbodyConstraints.FreezeAll;
-
-                int aiTeam = aiObj.GetComponent<Team_Handler>().GetTeam();
-                Animator aiAnim = aiObj.GetComponentInChildren<Animator>();
-                aiAnim.SetInteger("Win", (aiTeam == whoWon) ? 1 : -1);
-
-                Vector3 aiPosition = points[0] + new Vector3(aiIndex * 5f, -6f, 0f);
-                aiObj.transform.position = aiPosition;
-                aiObj.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
-                aiIndex++;
-            }
-        }
     }
 
 
@@ -519,7 +557,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
                 ai_player.GetComponentInChildren<AI_Weapon_Handler>().chat_manager = chatManager.GetComponent<Chat_Manager>();
                 List<Vector3> points = respawn_points.GetComponent<RespawnPoints>().respawn_points; //respawn locations
                 ai_player.GetComponent<Respawn>().respawn_points = points;
-                ai_player.transform.position = points[Random.Range(0, points.Count)];
+                ai_player.transform.position = points[UnityEngine.Random.Range(0, points.Count)];
                 ai_players.Add(ai_player.transform.GetChild(0).gameObject);
             }
             else
@@ -528,7 +566,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
                 ai_player.GetComponentInChildren<AI_Weapon_Handler>().chat_manager = chatManager.GetComponent<Chat_Manager>();
                 List<Vector3> points = respawn_points.GetComponent<RespawnPoints>().respawn_points; //respawn locations
                 ai_player.GetComponent<Respawn>().respawn_points = points;
-                ai_player.transform.position = points[Random.Range(0, points.Count)];
+                ai_player.transform.position = points[UnityEngine.Random.Range(0, points.Count)];
                 ai_players.Add(ai_player.transform.GetChild(0).gameObject);
             }
         }
