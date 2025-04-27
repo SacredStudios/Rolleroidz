@@ -381,7 +381,6 @@ public class Game_Manager : MonoBehaviourPunCallbacks
 
         while (elapsed < moveDuration)
         {
-            Debug.Log("is this running");
             elapsed += Time.deltaTime;
 
             // Normalized time from 0 to 1
@@ -445,23 +444,31 @@ public class Game_Manager : MonoBehaviourPunCallbacks
 
     /* ------------------------------------------------------------ */
     [PunRPC]
-    void FreezeAllAIs(int winningTeam, int humansInRoom, List<Vector3> anchorPts)
+    /* --------------------------------------------------------- */
+    [PunRPC]                 //   <-- ONLY one argument now
+    void FreezeAllAIs(int winningTeam)
     {
-        // --- Grab every AI_Movement in the scene (active or inactive) -------------
-        AI_Movement[] aiMoves =
+        // Re-derive the data we need ---------------------------
+        int humansInRoom = PhotonNetwork.PlayerList.Length;
+        Vector3[] anchorPts = respawn_points
+                              .GetComponent<RespawnPoints>()
+                              .respawn_points.ToArray();
+
+        // Grab every AI_Movement, active or inactive -----------
 #if UNITY_2023_1_OR_NEWER
-            FindObjectsByType<AI_Movement>(FindObjectsSortMode.None); // includeInactive by default
+        AI_Movement[] aiMoves =
+            FindObjectsByType<AI_Movement>(FindObjectsSortMode.None);
 #else
-        Object.FindObjectsOfType<AI_Movement>(true);                      // legacy call, includeInactive=true
+    AI_Movement[] aiMoves = 
+        Object.FindObjectsOfType<AI_Movement>(includeInactive: true);
 #endif
 
-        // Stable order → consistent line-up on every peer
         Array.Sort(aiMoves, (a, b) =>
             a.GetComponent<PhotonView>().ViewID.CompareTo(
             b.GetComponent<PhotonView>().ViewID));
 
         int aiIndex = humansInRoom;
-        Vector3 basePos = anchorPts[0];
+        Vector3 baseP = anchorPts[0];
 
         foreach (AI_Movement move in aiMoves)
         {
@@ -473,12 +480,13 @@ public class Game_Manager : MonoBehaviourPunCallbacks
                  .SetInteger("Win", (aiTeam == winningTeam) ? 1 : -1);
 
             aiObj.transform.SetPositionAndRotation(
-                basePos + new Vector3(aiIndex * 5f, -6f, 0f),
+                baseP + new Vector3(aiIndex * 5f, -6f, 0f),
                 Quaternion.Euler(0, 180, 0));
 
             aiIndex++;
         }
     }
+
 
 
     /* ------------------------------------------------------------ */
