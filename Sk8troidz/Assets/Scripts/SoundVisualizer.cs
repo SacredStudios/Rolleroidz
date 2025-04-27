@@ -1,51 +1,80 @@
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SoundVisualizer : MonoBehaviour
 {
-    [SerializeField] AudioSource audio;
-    public float[] samples = new float[512];
-    public GameObject[] bars = new GameObject[8];
-    void Start()
+    [Header("References")]
+    [SerializeField] private AudioSource audio;      // your music / mic source
+    [SerializeField] private GameObject[] bars = new GameObject[8];
+
+    [Header("Visual settings")]
+    [Tooltip("Vertical scale factor for the bars (both modes).")]
+    [SerializeField] private float yScale = 300f;
+    [Tooltip("Smallest bar height in pixels.")]
+    [SerializeField] private float minHeight = 2f;
+
+    private readonly float[] samples = new float[512];   // FFT or output buffer
+
+    /* ------------------------------------------------------------ */
+    private void Start() => StartCoroutine(DriveBars());
+
+    /* ------------------------------------------------------------ */
+    private IEnumerator DriveBars()
     {
-        StartCoroutine(TransformRect());
-    }
-    IEnumerator TransformRect()
-    {
+        var wait = new WaitForSeconds(0.02f); // ~50 fps
+
         while (true)
         {
-            audio.GetSpectrumData(samples, 0, FFTWindow.Blackman);
+#if UNITY_WEBGL && !UNITY_EDITOR
+            /* -------------- WebGL fallback: RMS meter -------------- */
+            audio.GetOutputData(samples, 0);          // this works on WebGL
+
+            int slice = samples.Length / bars.Length;
             for (int i = 0; i < bars.Length; i++)
             {
-                RectTransform rectTransform = bars[i].GetComponent<RectTransform>();
-                rectTransform.sizeDelta = new Vector2(rectTransform.sizeDelta.x, Avg(i));
+                float sum = 0f;
+                int start = i * slice;
+                int end   = start + slice;
+
+                for (int j = start; j < end; j++)
+                    sum += samples[j] * samples[j];   // power
+
+                float rms = Mathf.Sqrt(sum / slice);  // 0-1
+                SetBarHeight(i, rms * yScale);
             }
+#else
+            /* -------- Editor / PC / mobile: original FFT path ------ */
+            audio.GetSpectrumData(samples, 0, FFTWindow.Blackman);
 
-            yield return new WaitForSeconds(0.1f);
+            int slice = samples.Length / bars.Length;
+            for (int i = 0; i < bars.Length; i++)
+            {
+                float sum = 0f;
+                int start = i * slice;
+                int end = start + slice;
+
+                for (int j = start; j < end; j++)
+                    sum += samples[j];
+
+                // your original log-scaled formula
+                float h = 50f * (-Mathf.Log(sum + 1e-8f, 2));
+                SetBarHeight(i, h);
+            }
+#endif
+            yield return wait;
         }
-        
-    } 
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
-    float Avg(int i)
+    /* ------------------------------------------------------------ */
+    private void SetBarHeight(int index, float height)
     {
+        if (index < 0 || index >= bars.Length || bars[index] == null) return;
 
-        float result = 0;
-        
-        for (int j = (512 / bars.Length) * i; j< (512.0 / bars.Length) * (i+1); j++)
-        {
-            result += samples[j];
-            
-        }
-        
+        var rt = bars[index].GetComponent<RectTransform>();
+        if (!rt) return;
 
-        return 50f*(-1*Mathf.Log(result,2));
+        rt.sizeDelta = new Vector2(rt.sizeDelta.x,
+                                   Mathf.Max(minHeight, height));
     }
 }
