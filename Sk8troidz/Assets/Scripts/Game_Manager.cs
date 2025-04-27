@@ -591,7 +591,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
             new_player.GetComponent<Respawn>().respawn_points = points;
             new_player.GetComponentInChildren<Weapon_Handler>().weapon = my_weapon;
             new_player.GetComponentInChildren<Weapon_Handler>().weapon.chat_manager = chatManager.GetComponent<Chat_Manager>();
-            new_player.transform.position = points[Random.Range(0, points.Count)];
+            new_player.transform.position = points[UnityEngine.Random.Range(0, points.Count)];
         }
         AI_LookAt.cam = new_player.GetComponentInChildren<Camera>();
         AI_LookAt.pv = new_player.GetComponent<PhotonView>();
