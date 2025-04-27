@@ -441,11 +441,7 @@ public class Game_Manager : MonoBehaviourPunCallbacks
             pv.RPC(nameof(FreezeAllAIs), RpcTarget.AllBuffered, whoWon);
         }
     }
-
-    /* ------------------------------------------------------------ */
-    [PunRPC]
-    /* --------------------------------------------------------- */
-    [PunRPC]                 //   <-- ONLY one argument now
+    [PunRPC]  
     void FreezeAllAIs(int winningTeam)
     {
         // Re-derive the data we need ---------------------------
