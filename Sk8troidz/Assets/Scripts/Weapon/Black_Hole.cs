@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(PhotonView))]
-public class BlackHole : MonoBehaviourPun
+public class Black_Hole : MonoBehaviourPun
 {
     [SerializeField] float pullRadius = 10f;
     [SerializeField] float basePullForce = 50f;
