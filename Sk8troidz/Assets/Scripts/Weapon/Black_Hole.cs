@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using Photon.Pun;
-using Photon.Realtime;
 
-[RequireComponent(typeof(PhotonView))]
 public class Black_Hole : MonoBehaviourPun
 {
     [Header("Black Hole Settings")]
+    [Tooltip("Who fired this hole?  Assign on the firing client immediately after Instantiate.")]
+    public GameObject player;
+
     public Weapon weapon;
+
     [SerializeField] private float basePullForce = 1000f;
     [SerializeField] private float pullRadius = 50f;
     [SerializeField] private float pulseSpeed = 5f;
@@ -15,153 +17,134 @@ public class Black_Hole : MonoBehaviourPun
     [SerializeField] private float growthDuration = 1f;
     [SerializeField] private float shrinkDuration = 1f;
     [SerializeField] private float updateInterval = 0.5f;
-    [SerializeField] private GameObject deathEffect;
-    [SerializeField] private GameObject explosionPrefab;
+    [SerializeField] private Vector3 offset;
+    [SerializeField] private GameObject explosion;
     [SerializeField] private AudioSource sound;
 
-    // animation state
-    private Vector3 originalScale;
-    private float elapsedTime;
-    private bool isGrowing = true;
-    private bool isShrinking;
-    private float nextUpdateTime;
-
-    // pulling state
-    private int spawnerTeam;
-    private bool affectsLocal;
-    private Rigidbody localBody;
-    private List<GameObject> targets = new List<GameObject>();
-
-    // weapon‐disable state (spawner only)
     private Weapon_Handler weaponHandler;
-    private Weapon savedWeapon;
+    private Weapon tempWeapon;
+    private Vector3 originalScale;
+    private List<GameObject> targets = new List<GameObject>();
+    private float nextUpdateTime;
+    private bool isGrowing = true;
+    private bool isShrinking = false;
+    private float elapsedTime = 0f;
 
-    /// <summary>
-    /// Call this instead of PhotonNetwork.Instantiate directly.
-    /// It spawns the hole and broadcasts the spawner’s team once (buffered).
-    /// </summary>
-    public static void Spawn(GameObject spawner, Vector3 position, Quaternion rotation)
+    void Start()
     {
-        int team = spawner.GetComponent<Team_Handler>().GetTeam();
-        GameObject hole = PhotonNetwork.Instantiate(
-            "Black_Hole", position, rotation
-        );
-        hole.GetComponent<PhotonView>()
-            .RPC(nameof(Init), RpcTarget.AllBuffered, team);
-    }
+        // 1) fallback: if nobody assigned us a player, try to find them by matching ActorNumber
+        if (player == null)
+            player = FindOwnerPlayer(photonView.OwnerActorNr);
 
-    [PunRPC]
-    private void Init(int team)
-    {
-        spawnerTeam = team;
+        if (player == null)
+            Debug.LogWarning($"Black_Hole: no player assigned or found for Actor#{photonView.OwnerActorNr}");
 
-        // find this client's own player avatar
-        foreach (var go in GameObject.FindGameObjectsWithTag("Player"))
-        {
-            var pv = go.GetComponent<PhotonView>();
-            if (pv != null && pv.IsMine)
-            {
-                localBody = go.GetComponent<Rigidbody>();
-
-                // decide if this client should be pulled
-                int myTeam = go.GetComponent<Team_Handler>().GetTeam();
-                affectsLocal = (myTeam != spawnerTeam);
-
-                // only the spawning client disables its weapon & schedules shrink
-                if (photonView.IsMine)
-                {
-                    weaponHandler = go.GetComponent<Weapon_Handler>();
-                    savedWeapon = weaponHandler.weapon;
-                    weaponHandler.weapon = null;
-
-                    Invoke(nameof(BeginShrink), 10f);
-                }
-                break;
-            }
-        }
-    }
-
-    private void Start()
-    {
-        sound?.Play();
+        // 2) record our “full” scale, then start invisible
         originalScale = transform.localScale;
         transform.localScale = Vector3.zero;
-        nextUpdateTime = Time.time + updateInterval;
-        elapsedTime = 0f;
+
+        // 3) position at the player (if we have one)
+        if (player != null)
+            transform.position = player.transform.position + offset;
+
+        // 4) spawn SFX
+        sound?.Play();
+
+        // 5) if this is our own hole, disable our shooting while it lives
+        if (photonView.IsMine && player != null)
+        {
+            weaponHandler = player.GetComponent<Weapon_Handler>();
+            tempWeapon = weaponHandler.weapon;
+            weaponHandler.weapon = null;
+        }
+
+        // 6) get our first target list and schedule the shrink
+        CheckForNewObjects();
+        if (photonView.IsMine)
+            Invoke(nameof(BeginShrink), 10f);
     }
 
-    private void Update()
+    void Update()
     {
-        // --- Growth Phase ---
-        if (isGrowing)
-        {
-            elapsedTime += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsedTime / growthDuration);
-            transform.localScale = Vector3.Lerp(Vector3.zero, originalScale, t);
-            if (t >= 1f)
-            {
-                isGrowing = false;
-                elapsedTime = 0f;
-            }
-        }
-        // --- Shrink Phase ---
-        else if (isShrinking)
-        {
-            elapsedTime += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsedTime / shrinkDuration);
-            transform.localScale = Vector3.Lerp(originalScale, Vector3.zero, t);
-            if (t >= 1f)
-                Explode();
-        }
-        // --- Pulsate Phase ---
-        else
-        {
-            float modifier = 1f +
-                pulseAmplitude * ((Mathf.Sin(Time.time * pulseSpeed) + 1f) / 2f);
-            transform.localScale = originalScale * modifier;
-        }
+        // follow the player
+        if (player != null)
+            transform.position = player.transform.position + offset;
 
-        // periodically refresh the list of valid targets
+        // refresh targets every so often
         if (Time.time >= nextUpdateTime)
         {
             nextUpdateTime = Time.time + updateInterval;
             CheckForNewObjects();
         }
+
+        // growth animation
+        if (isGrowing)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsedTime / growthDuration);
+            transform.localScale = Vector3.Lerp(Vector3.zero, originalScale, t);
+            if (t >= 1f) { isGrowing = false; elapsedTime = 0f; }
+        }
+        // shrink animation
+        else if (isShrinking)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsedTime / shrinkDuration);
+            transform.localScale = Vector3.Lerp(originalScale, Vector3.zero, t);
+            if (t >= 1f) Explode();
+        }
+        // idle pulsate
+        else
+        {
+            float m = (Mathf.Sin(Time.time * pulseSpeed) + 1f) * 0.5f;
+            transform.localScale = originalScale * Mathf.Lerp(1f, 1.2f, m);
+        }
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
-        // don’t pull until growth completes, avoid during shrink, and skip if same‐team
-        if (isGrowing || isShrinking || !affectsLocal) return;
+        if (isGrowing || isShrinking) return;
 
+        // pull physics bodies in
         foreach (var obj in targets)
         {
-            var pv = obj.GetComponent<PhotonView>();
-            // only move players you own
-            if (pv != null && !pv.IsMine) continue;
-            // only master moves AI
-            if (pv == null &&
-                obj.CompareTag("AI_Player") &&
-                !PhotonNetwork.IsMasterClient) continue;
-
             var rb = obj.GetComponent<Rigidbody>();
             if (rb == null) continue;
 
             float dist = Vector3.Distance(transform.position, rb.position);
-            if (dist > pullRadius || dist < 0.01f) continue;
+            if (dist > pullRadius) continue;
 
-            Vector3 dir = (transform.position - rb.position).normalized;
-            bool isAI = obj.CompareTag("AI_Player");
-            float force = isAI
+            var dir = (transform.position - rb.position).normalized;
+            float strength = obj.CompareTag("AI_Player")
                 ? basePullForce / (dist * dist)
                 : 20f * basePullForce / (dist * dist);
 
-            rb.AddForce(dir * force, ForceMode.Acceleration);
+            rb.AddForce(dir * strength, ForceMode.Acceleration);
         }
 
-        // only the spawner handles health/destroy effects
-        if (photonView.IsMine)
-            ApplyBlackHoleEffects();
+        // handle kill & explosion logic
+        ApplyBlackHoleEffects();
+    }
+
+    private void ApplyBlackHoleEffects()
+    {
+        var hits = Physics.OverlapSphere(transform.position, 3f);
+        foreach (var col in hits)
+        {
+            var go = col.gameObject;
+            if (!targets.Contains(go)) continue;
+
+            var ph = go.GetComponent<Player_Health>();
+            if (ph == null || ph.current_health <= 0) continue;
+
+            if (ph.current_health <= 100)
+            {
+                PhotonNetwork.Instantiate(explosion.name, go.transform.position, Quaternion.identity);
+                go.transform.position = new Vector3(9999f, 9999f, 9999f);
+                tempWeapon?.SpawnCoin(go, go.transform.position);
+            }
+            ph.Remove_Health(100);
+        }
     }
 
     private void CheckForNewObjects()
@@ -170,54 +153,37 @@ public class Black_Hole : MonoBehaviourPun
         targets.AddRange(GameObject.FindGameObjectsWithTag("Player"));
         targets.AddRange(GameObject.FindGameObjectsWithTag("AI_Player"));
 
-        // remove same‐team players
+        // drop same-team
         targets.RemoveAll(go =>
         {
-            var th = go.GetComponent<Team_Handler>();
-            return (th != null) && (th.GetTeam() == spawnerTeam);
+            var tv = go.GetComponent<Team_Handler>();
+            var myT = player?.GetComponent<Team_Handler>()?.GetTeam();
+            return tv == null
+                || (player != null && tv.GetTeam() == myT);
         });
     }
 
-    private void BeginShrink() => isShrinking = true;
+    private void BeginShrink()
+    {
+        isShrinking = true;
+        elapsedTime = 0f;
+    }
 
     private void Explode()
     {
-        // restore weapon on the spawning client
-        if (photonView.IsMine && weaponHandler != null)
-            weaponHandler.weapon = savedWeapon;
-
+        if (weaponHandler != null)
+            weaponHandler.weapon = tempWeapon;
         PhotonNetwork.Destroy(gameObject);
-
-        if (deathEffect != null)
-            Instantiate(deathEffect, transform.position, Quaternion.identity);
     }
 
-    private void ApplyBlackHoleEffects()
+    private GameObject FindOwnerPlayer(int actorNumber)
     {
-        // small overlap for “death” zone
-        var hits = Physics.OverlapSphere(transform.position, 3f);
-        foreach (var hit in hits)
+        foreach (var go in GameObject.FindGameObjectsWithTag("Player"))
         {
-            if (!targets.Contains(hit.gameObject)) continue;
-
-            var ph = hit.GetComponent<Player_Health>();
-            if (ph == null || ph.current_health <= 0) continue;
-
-            ph.Remove_Health(100);
-            if (ph.current_health <= 0)
-            {
-                // spawn explosion and coins
-                PhotonNetwork.Instantiate(
-                    explosionPrefab.name,
-                    hit.transform.position,
-                    Quaternion.identity
-                );
-                hit.transform.position = new Vector3(9999f, 9999f, 9999f);
-                savedWeapon.SpawnCoin(
-                    hit.gameObject,
-                    hit.transform.position
-                );
-            }
+            var view = go.GetComponent<PhotonView>();
+            if (view != null && view.OwnerActorNr == actorNumber)
+                return go;
         }
+        return null;
     }
 }
