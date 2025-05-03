@@ -4960,18 +4960,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dec91fc9b68ee48f08ae5dc8a0843dae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   weapon: {fileID: 0}
-  basePullForce: 1000
+  basePullForce: 2000
   pullRadius: 10000
   pulseSpeed: 20
   pulseAmplitude: 5
   growthDuration: 1
   shrinkDuration: 1
   updateInterval: 0.5
-  offset: {x: 1.5, y: 0, z: 0}
-  deathEffect: {fileID: 0}
-  pv: {fileID: 0}
-  player: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0}
   explosion: {fileID: 367450934941629301, guid: 82ef39f58ff0546b3a4122ba5a3d532a, type: 3}
   sound: {fileID: 5405327348995902248}
 --- !u!114 &6597192339282273246
