@@ -24,6 +24,8 @@ public class MenuController : MonoBehaviourPunCallbacks
     [SerializeField] Text ConnectedText;
     [SerializeField] InputField input_field;
 
+    [SerializeField] GameObject play_online_btn;
+    [SerializeField] GameObject tutorial_btn;
 
 
     public void ShowMainMenu()
@@ -36,6 +38,7 @@ public class MenuController : MonoBehaviourPunCallbacks
     }
     private void Awake()
     {
+        play_online_btn.GetComponent<Button>().interactable = false;
         PhotonNetwork.PhotonServerSettings.AppSettings.FixedRegion = "us";
         PhotonNetwork.ConnectUsingSettings();
         PhotonNetwork.NickName = "NewPlayer";
@@ -70,9 +73,11 @@ public class MenuController : MonoBehaviourPunCallbacks
    
     public override void OnConnectedToMaster()
     {
+
         PhotonNetwork.JoinLobby(TypedLobby.Default);
         ConnectedText.text = "Connected to Server!";
         ConnectedText.color = new Color(0.45f,1f,0.45f);
+        play_online_btn.GetComponent<Button>().interactable = true;
     }
     void HideStartMenu()
     {
