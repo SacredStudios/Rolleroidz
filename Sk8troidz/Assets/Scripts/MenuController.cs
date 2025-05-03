@@ -39,6 +39,7 @@ public class MenuController : MonoBehaviourPunCallbacks
     private void Awake()
     {
         play_online_btn.GetComponent<Button>().interactable = false;
+        tutorial_btn.GetComponent<Button>().interactable = false;
         PhotonNetwork.PhotonServerSettings.AppSettings.FixedRegion = "us";
         PhotonNetwork.ConnectUsingSettings();
         PhotonNetwork.NickName = "NewPlayer";
@@ -78,6 +79,7 @@ public class MenuController : MonoBehaviourPunCallbacks
         ConnectedText.text = "Connected to Server!";
         ConnectedText.color = new Color(0.45f,1f,0.45f);
         play_online_btn.GetComponent<Button>().interactable = true;
+        tutorial_btn.GetComponent<Button>().interactable = true;
     }
     void HideStartMenu()
     {
