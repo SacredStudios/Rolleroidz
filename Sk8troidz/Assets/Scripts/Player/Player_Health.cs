@@ -103,6 +103,10 @@ public class Player_Health : MonoBehaviour
     {
         for (int i = 0; i < 10; i++)
         {
+            if(ph.current_health <= 0)
+            {
+                break;
+            }
             if (ph.current_health - poison_amount <= 0)
             {
                 // now pulling it from the Weapon you passed in

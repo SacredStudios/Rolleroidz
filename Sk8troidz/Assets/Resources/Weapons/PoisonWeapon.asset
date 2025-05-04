@@ -40,3 +40,4 @@ MonoBehaviour:
   impact_explosion: {fileID: 367450934941629301, guid: ff835b73a4762094990f9ce060b80dc8, type: 3}
   _radius: 3
   _poisonRadius: 5
+  poison_amount: 5
