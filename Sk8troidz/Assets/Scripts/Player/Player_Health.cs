@@ -118,6 +118,7 @@ public class Player_Health : MonoBehaviour
                 hit.collider.transform.position = new Vector3(9999, 9999, 9999);
                 weapon.SpawnCoin(hit.transform.gameObject, hit.point);
                 parent.GetComponentInParent<Super_Bar>().ChangeAmount(35);
+                ph.Death();
                 break;
             }
 
