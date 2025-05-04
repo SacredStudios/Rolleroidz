@@ -16,7 +16,7 @@ MonoBehaviour:
   weapon_name: Spray-Pain 3000
   weapon_description: 
   weapon_delay: 0.1
-  damage: 10
+  damage: 5
   attack_cost: 20
   knockback: 0
   offset: {x: 0, y: 0, z: 0}
