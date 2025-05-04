@@ -26,7 +26,7 @@ MonoBehaviour:
   ammo: 0
   isSuper: 0
   sound: {fileID: 0}
-  weight: -5
+  weight: -10
   player: {fileID: 0}
   super: {fileID: 11400000, guid: 9c02b1e2616b34f6bb17280d63f87474, type: 2}
   instance: {fileID: 5701472752753408246, guid: b101d606d6704894ca68a9b6f9d4a12c, type: 3}
