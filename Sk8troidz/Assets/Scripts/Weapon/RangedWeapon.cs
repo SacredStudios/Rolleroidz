@@ -67,17 +67,7 @@ public class RangedWeapon : Weapon
                         {
                             if (ph.current_health > 0)
                             {
-                                if (ph.current_health - (damage * 1.5) <= 0)
-                                {
-                                    PhotonNetwork.Instantiate(death_effect.name, hit.point, Quaternion.identity);
-                                    Transform oldpos = hit.collider.transform;
-                                    hit.collider.transform.position = new Vector3(9999, 9999, 9999);
-                                    SpawnCoin(hit.transform.parent.gameObject, hit.point);
-                                    //ph.PlayerLastHit(pv.ViewID);
-                                    parent.GetComponentInParent<Super_Bar>().ChangeAmount(35);
-
-                                }
-                                ph.Remove_Health(damage * 1.5f);
+                                ApplyDamage(ph, parent, hit);
                             }
                         }
                         else
