@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-[CreateAssetMenu(fileName = "PoisonWeapon", menuName = "Scriptable Objects/PoisonWeapon")]
+[CreateAssetMenu(fileName = "PoisonWeapon", menuName = "Scripts/PoisonWeapon")]
 public class PoisonWeapon : RangedWeapon
 {
     public float _poisonRadius = 5f;
