@@ -13,6 +13,7 @@ public class Player_Health : MonoBehaviour
     [SerializeField] Slider health_bar;
     [SerializeField] Slider health_bar_other;
     [SerializeField] PhotonView pv;
+    private Coroutine _poisonRoutine;
     public int id;
 
     void Start()
@@ -84,9 +85,48 @@ public class Player_Health : MonoBehaviour
         
 
     }
+    public void StartPoison(Player_Health ph, GameObject parent, RaycastHit hit, float poison_amount, Weapon weapon)
+    {
+        if (_poisonRoutine != null)
+            StopCoroutine(_poisonRoutine);
+
+        // then start a new one and remember it
+        _poisonRoutine = StartCoroutine(ApplyPoison(ph, parent, hit, poison_amount, weapon));
+    }
+    private IEnumerator ApplyPoison(
+        Player_Health ph,
+        GameObject parent,
+        RaycastHit hit,
+        float poison_amount,
+        Weapon weapon
+    )
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            if (ph.current_health - poison_amount <= 0)
+            {
+                // now pulling it from the Weapon you passed in
+                PhotonNetwork.Instantiate(
+                  weapon.death_effect.name,
+                  hit.point,
+                  Quaternion.identity
+                );
+                hit.collider.transform.position = new Vector3(9999, 9999, 9999);
+                weapon.SpawnCoin(hit.transform.gameObject, hit.point);
+                parent.GetComponentInParent<Super_Bar>().ChangeAmount(35);
+                break;
+            }
+
+            ph.Remove_Health(poison_amount);
+            yield return new WaitForSeconds(1f);
+        }
+
+        // clear your handle
+        _poisonRoutine = null;
+    }
 
 
-    void Death()
+void Death()
     {
         Respawn rs = GetComponentInParent<Respawn>();
         rs.Death(id);
