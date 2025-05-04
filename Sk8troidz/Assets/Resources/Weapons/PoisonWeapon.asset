@@ -35,7 +35,7 @@ MonoBehaviour:
   min_distance: 2.5
   death_effect: {fileID: 0}
   chat_manager: {fileID: 0}
-  particle_trail: {fileID: 419930123319073449, guid: 3cbfc575fa6e3534c823f30cc3d17756, type: 3}
+  particle_trail: {fileID: 5350631524446803880, guid: 3cbfc575fa6e3534c823f30cc3d17756, type: 3}
   particle_explosion: {fileID: 367450934941629301, guid: ff835b73a4762094990f9ce060b80dc8, type: 3}
   impact_explosion: {fileID: 2189970838978847630, guid: 4db3b1e256a08454eba40317389ff4df, type: 3}
   _radius: 0.7
