@@ -10,13 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2e4152ace02e295458d9558ce4ebbe38, type: 3}
-  m_Name: PoisonWeapon
+  m_Name: Spray Pain
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
-  weapon_name: Spray-Pain 3000
-  weapon_description: 
+  weapon_name: SPRAY PAIN
+  weapon_description: This was a normal can of spray paint until it was infused with
+    the radioactive Demon Core. This short-range weapon increases the user's speed
+    while also inficting foes with a nasty poison-effect.
   weapon_delay: 0.1
-  damage: 5
+  damage: 3
   attack_cost: 20
   knockback: 0
   offset: {x: 0, y: 0, z: 0}

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 2800000, guid: 40dd3df4bfd4a2e4ca02177f64eb76e8, type: 3}
   weapon_name: BUNGA BLASTER
-  weapon_description: Bunga Blaster is slow but powerful. Also it has a hilarious
-    name. Bunga Blaster...
+  weapon_description: Bunga Blaster is slower than the Basico Blaster but powerful
+    and has a longer range. Also it has a hilarious name. Bunga Blaster...
   weapon_delay: 0.5
   damage: 45
   attack_cost: 41
@@ -39,3 +39,4 @@ MonoBehaviour:
   particle_trail: {fileID: 484392930733997870, guid: e83730576bd6d491294d149809c4fa60, type: 3}
   particle_explosion: {fileID: 367450934941629301, guid: ff835b73a4762094990f9ce060b80dc8, type: 3}
   impact_explosion: {fileID: 2189970838978847630, guid: 503568be5a661af4ba27514877dbb701, type: 3}
+  _radius: 0.7
