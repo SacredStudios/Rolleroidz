@@ -70,6 +70,7 @@ public class Ragdoll : MonoBehaviourPunCallbacks
     }
     public void DeactivateRagdolls()
     {
+        PlayerMovement.currentPrompt = PlayerMovement.TrickPrompt.None;
         crosshair.SetActive(true);
         GetComponent<Animator>().enabled = true;
         pm.enabled = true;

@@ -134,9 +134,13 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         else if (!(Input.GetKey(trickKey) || trick_btn.isDown))
         {
             crosshair.SetActive(true);
+            PlayerMovement.currentPrompt = PlayerMovement.TrickPrompt.Succeeded;
+            trick_text.text = "";
         }
         else
         {
+            PlayerMovement.currentPrompt = PlayerMovement.TrickPrompt.Fail;
+            trick_text.text = "<i>BUMMER</i>";
             Ragdoll rd = player.GetComponent<Ragdoll>();
             rd.ActivateRagdolls();
         }
@@ -171,6 +175,8 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         }       
         else
         {
+
+            
             railgrinding.progress = 0;
             railgrinding.onRail = false;
             Ragdoll rd = player.GetComponent<Ragdoll>();

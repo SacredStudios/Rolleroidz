@@ -13713,7 +13713,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.7783019, b: 0.8179651, a: 1}
+  m_Color: {r: 1, g: 0.7783019, b: 0.8179651, a: 0.5882353}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -15451,7 +15451,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 698043825919959315}
   m_HandleRect: {fileID: 0}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: -10
   m_MaxValue: 100
   m_WholeNumbers: 0
   m_Value: 0
@@ -17717,7 +17717,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8341497289750416907, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: m_Value
-      value: 0
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8345991720814722451, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: m_TagString

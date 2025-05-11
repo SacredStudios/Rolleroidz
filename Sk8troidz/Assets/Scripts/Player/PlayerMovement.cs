@@ -72,7 +72,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
     private KeyCode trickKey;
     [SerializeField] Text trick_text;
 
-    public enum TrickPrompt { None, Hold, LetGo }
+    public enum TrickPrompt { None, Hold, LetGo, Fail, Succeeded }
     public static TrickPrompt currentPrompt = TrickPrompt.None;
     void Start()
     {
@@ -120,6 +120,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
     }
     void Gravity()
     {
+        Debug.Log(currentPrompt);
         float acceleration = ((Mathf.Abs(rb.linearVelocity.x - last_velocity.x) + Mathf.Abs(rb.linearVelocity.y - last_velocity.y) +
         Mathf.Abs(rb.linearVelocity.z - last_velocity.z)) * acc_multiplier) / Time.deltaTime;
         last_velocity = rb.linearVelocity;
@@ -129,10 +130,20 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
             {
                 wh.weapon = wh.temp_weapon;
             }
-            trick_text.text = "";
+            if (currentPrompt == TrickPrompt.Fail)
+            {
+                Debug.Log("failed trick");
+                trick_text.text = "<i>BUMMER</i>";
+            }
+            else if (currentPrompt != TrickPrompt.LetGo)
+            {
+                trick_text.text = "";
+                currentPrompt = TrickPrompt.None;
+            }
+            
             time_airborne = 0f;
             extra_gravity = min_gravity;
-            currentPrompt = TrickPrompt.None;
+            
             canJump = true;
             maxSpeed = maxSpeedBase;
             animator.SetFloat("IsJumping", 0f);
@@ -157,7 +168,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
     private void Update()
     { //TODO: refactor this code
         if (pv.IsMine) {
-            if(time_airborne > 1.5f && !taunt_btn.isDown && currentPrompt != TrickPrompt.LetGo)
+            if(time_airborne > 1.5f && !taunt_btn.isDown && currentPrompt == TrickPrompt.None)
             {
                 currentPrompt = TrickPrompt.Hold;
                 trick_text.text = $"Hold ({(trickKey == KeyCode.None ? "T" : trickKey.ToString())})";
