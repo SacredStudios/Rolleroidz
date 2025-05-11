@@ -42,7 +42,7 @@ public class Respawn : MonoBehaviour
         death_anim.transform.position = currLoc;
         if (pv.IsMine)
         {
-            
+            PlayerMovement.currentPrompt = PlayerMovement.TrickPrompt.None;
             GameObject death_anim_clone = PhotonNetwork.Instantiate(death_anim.name, currLoc, Quaternion.identity);
             
             collider.enabled = false;

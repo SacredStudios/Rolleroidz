@@ -5,7 +5,8 @@ using UnityEngine.Animations;
 using UnityEngine.EventSystems;
 using Photon.Pun;
 using Photon.Realtime;
-
+using UnityEngine.UI;
+using WebSocketSharp;
 
 public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
 {
@@ -69,6 +70,10 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
     private KeyCode downKey;
     private KeyCode jumpKey;
     private KeyCode trickKey;
+    [SerializeField] Text trick_text;
+
+    public enum TrickPrompt { None, Hold, LetGo }
+    public static TrickPrompt currentPrompt = TrickPrompt.None;
     void Start()
     {
         if (Application.platform == RuntimePlatform.WebGLPlayer)
@@ -124,9 +129,10 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
             {
                 wh.weapon = wh.temp_weapon;
             }
-
+            trick_text.text = "";
             time_airborne = 0f;
             extra_gravity = min_gravity;
+            currentPrompt = TrickPrompt.None;
             canJump = true;
             maxSpeed = maxSpeedBase;
             animator.SetFloat("IsJumping", 0f);
@@ -149,8 +155,14 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
         rb.AddForce(0, -extra_gravity, 0);
     }
     private void Update()
-    {
+    { //TODO: refactor this code
         if (pv.IsMine) {
+            if(time_airborne > 1.5f && !taunt_btn.isDown && currentPrompt != TrickPrompt.LetGo)
+            {
+                currentPrompt = TrickPrompt.Hold;
+                trick_text.text = $"Hold ({(trickKey == KeyCode.None ? "T" : trickKey.ToString())})";
+
+            }
             if ((Input.GetKey(trickKey) || taunt_btn.isDown) && !onRail)
             {
                 if (canJump)

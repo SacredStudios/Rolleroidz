@@ -1946,6 +1946,9 @@ MonoBehaviour:
   multiplier: 0
   list: []
   duration_slider: {fileID: 0}
+  trick_text: {fileID: 0}
+  rayCastLength: 0
+  jump_pos: {fileID: 0}
 --- !u!114 &7789752532816426779
 MonoBehaviour:
   m_ObjectHideFlags: 0

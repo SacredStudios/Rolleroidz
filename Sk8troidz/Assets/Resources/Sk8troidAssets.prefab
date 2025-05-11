@@ -14631,7 +14631,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: HOLD T
+  m_Text: 
 --- !u!114 &131006270306372752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16948,6 +16948,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7361257003140502380}
     - target: {fileID: 1513577829, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+      propertyPath: trick_text
+      value: 
+      objectReference: {fileID: 2047533417874021847}
+    - target: {fileID: 1513577829, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
       propertyPath: max_gravity
       value: 10000
       objectReference: {fileID: 0}
@@ -18599,6 +18603,9 @@ MonoBehaviour:
   multiplier: 0.5
   list: []
   duration_slider: {fileID: 4633097683469870734}
+  trick_text: {fileID: 2047533417874021847}
+  rayCastLength: 15
+  jump_pos: {fileID: 4508992423428243009}
 --- !u!114 &4008135090205734450 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7976471394023720146, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
@@ -18623,6 +18630,11 @@ Transform:
 --- !u!95 &4471843123587727704 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 7431768936319595448, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
+  m_PrefabInstance: {fileID: 6426038362781840096}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4508992423428243009 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7475684423371508897, guid: 66051195ec33a1948a2f64faee531dfa, type: 3}
   m_PrefabInstance: {fileID: 6426038362781840096}
   m_PrefabAsset: {fileID: 0}
 --- !u!136 &5456136953385268333 stripped

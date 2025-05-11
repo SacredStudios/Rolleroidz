@@ -32,6 +32,9 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     [SerializeField] List<GameObject> list;
     [SerializeField] Slider duration_slider;
     private KeyCode trickKey;
+    [SerializeField] Text trick_text;
+    [SerializeField] float rayCastLength;
+    [SerializeField] GameObject jump_pos;
     void Start()
     {
         wh = player.GetComponent<Weapon_Handler>();
@@ -113,10 +116,14 @@ public class Trick_System : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         while ((Input.GetKey(trickKey) || trick_btn.isDown) && PlayerMovement.trick_mode_activated == true && slider.value != slider.maxValue)
         {
             slider.value += (Time.deltaTime * speed) * (multiplier + 0.5f);
+            if (Physics.Raycast(jump_pos.transform.position, Vector3.down, rayCastLength))
+            {
+                trick_text.text = "LET GO";
+                PlayerMovement.currentPrompt = PlayerMovement.TrickPrompt.LetGo;
+            }
             yield return null;
         }
         // player.GetComponent<Animator>().enabled = false;
-
 
         animator.SetBool("trickModeActivated", false);
         if (slider.value == slider.maxValue)
