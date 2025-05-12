@@ -6,7 +6,6 @@ using UnityEngine.EventSystems;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
-using WebSocketSharp;
 
 public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
 {
