@@ -85,7 +85,7 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
     }
     public void FireCheck() //Check if you even are allowed to shoot yet
     {
-        if (weapon != null)
+        if (weapon != null && this.gameObject.GetComponent<PlayerMovement>().enabled)
         {
             if (shoot_delay >= weapon.weapon_delay && weapon.attack_cost <= cooldown.value && pv.IsMine)
             {
