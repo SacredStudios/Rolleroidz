@@ -38,6 +38,10 @@ public class MenuController : MonoBehaviourPunCallbacks
     }
     private void Awake()
     {
+        float savedVolume = PlayerPrefs.GetFloat("masterVolume", 1f);
+
+        // 2. Apply it to the audio system and the UI
+        AudioListener.volume = savedVolume;
         play_online_btn.GetComponent<Button>().interactable = false;
         tutorial_btn.GetComponent<Button>().interactable = false;
         PhotonNetwork.PhotonServerSettings.AppSettings.FixedRegion = "us";
