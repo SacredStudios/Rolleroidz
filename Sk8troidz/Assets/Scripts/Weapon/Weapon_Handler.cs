@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine.EventSystems;
 
 public class Weapon_Handler : MonoBehaviourPunCallbacks
 {
@@ -71,7 +72,7 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
             {
                 shoot_delay += Time.deltaTime;
             }
-            if (Input.GetKey(shootKey) || btn.isDown)
+            if (Input.GetKey(shootKey) || Input.GetMouseButton(0) || btn.isDown)
             {
                 FireCheck();
             }    
@@ -82,6 +83,19 @@ public class Weapon_Handler : MonoBehaviourPunCallbacks
 
             }
         }
+    }
+    bool TypingIntoInput()
+    {
+        if (EventSystem.current == null) return false;               // no EventSystem in scene
+        var go = EventSystem.current.currentSelectedGameObject;
+        if (go == null) return false;                      // nothing focused
+
+        // Standard UI InputField
+        if (go.GetComponent<UnityEngine.UI.InputField>() != null) return true;
+        // TextMeshPro InputField
+        if (go.GetComponent<TMPro.TMP_InputField>() != null) return true;
+
+        return false;
     }
     public void FireCheck() //Check if you even are allowed to shoot yet
     {
