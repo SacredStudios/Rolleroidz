@@ -1247,7 +1247,7 @@ RectTransform:
   m_Father: {fileID: 841371997}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1397,7 +1397,7 @@ RectTransform:
   m_Father: {fileID: 1240802183}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.20689656, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -11655,7 +11655,7 @@ RectTransform:
   m_Father: {fileID: 1358988130}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -14552,7 +14552,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1568759547
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15500,8 +15500,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 992966502}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.20689656, y: 0}
+  m_AnchorMax: {x: 0.20689656, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -18013,8 +18013,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2040740004}
   - component: {fileID: 2040740007}
-  - component: {fileID: 2040740006}
   - component: {fileID: 2040740005}
+  - component: {fileID: 2040740008}
   m_Layer: 5
   m_Name: Volume
   m_TagString: Untagged
@@ -18061,20 +18061,6 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
---- !u!114 &2040740006
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2040740003}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd0fedc733887f647a4c74c39f049aee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  amount: {fileID: 309638449}
-  slider: {fileID: 2040740007}
 --- !u!114 &2040740007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18119,17 +18105,17 @@ MonoBehaviour:
   m_FillRect: {fileID: 88883480}
   m_HandleRect: {fileID: 1332361188}
   m_Direction: 0
-  m_MinValue: 0.5
-  m_MaxValue: 15
+  m_MinValue: 0
+  m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 3.5
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1952169843}
-        m_TargetAssemblyTypeName: PlayControlsSettings, Assembly-CSharp
-        m_MethodName: ChangeMouseSensitivity
-        m_Mode: 1
+      - m_Target: {fileID: 2040740008}
+        m_TargetAssemblyTypeName: Change_Volume, Assembly-CSharp
+        m_MethodName: UpdateVolume
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -18138,6 +18124,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2040740008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2040740003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b977eceada49e4bc98fab81e377bbcd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 2040740007}
 --- !u!1 &2054961029
 GameObject:
   m_ObjectHideFlags: 0
@@ -18640,7 +18639,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2090156494
 RectTransform:
   m_ObjectHideFlags: 0
