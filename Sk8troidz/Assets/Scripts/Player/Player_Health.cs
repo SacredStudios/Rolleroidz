@@ -18,14 +18,14 @@ public class Player_Health : MonoBehaviour
 
     [Header("Damage-flash settings")]
     [SerializeField] private Color flashColor = Color.red;
-    [SerializeField] float flashTime = 0.4f;
+    private float flashTime = 0.4f;
     private Renderer[] rends;
     private Color[][] originalColors;
     private Coroutine flashRoutine;
 
     [Header("Squash-Stretch settings")]
     private float squashFactor = 0.5f; //smaller squash factor = more exaggerated effect
-    [SerializeField] private float squashDuration = 0.25f;
+    private float squashDuration = 0.15f;
 
     private Vector3 originalScale;
     private Coroutine squashRoutine;
@@ -232,7 +232,9 @@ void Death()
     private void OnEnable()
     {
         originalScale = visualsRoot.localScale;
-        RestoreColors();
+        if (rends != null) {
+            RestoreColors();
+        }
         current_health = 100;
         health_bar.value = current_health;
         health_bar_other.value = current_health;
