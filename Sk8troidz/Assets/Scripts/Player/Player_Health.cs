@@ -18,14 +18,14 @@ public class Player_Health : MonoBehaviour
 
     [Header("Damage-flash settings")]
     [SerializeField] private Color flashColor = Color.red;
-    private float flashTime = 0.4f;
+    private float flashTime = 0.3f;
     private Renderer[] rends;
     private Color[][] originalColors;
     private Coroutine flashRoutine;
 
     [Header("Squash-Stretch settings")]
-    private float squashFactor = 0.5f; //smaller squash factor = more exaggerated effect
-    private float squashDuration = 0.15f;
+    private float squashFactor = 0.7f; //smaller squash factor = more exaggerated effect
+    private float squashDuration = 0.10f;
 
     private Vector3 originalScale;
     private Coroutine squashRoutine;
