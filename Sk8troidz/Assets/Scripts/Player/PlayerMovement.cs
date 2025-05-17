@@ -119,7 +119,6 @@ public class PlayerMovement : MonoBehaviourPunCallbacks //and taunting too
     }
     void Gravity()
     {
-        Debug.Log(currentPrompt);
         float acceleration = ((Mathf.Abs(rb.linearVelocity.x - last_velocity.x) + Mathf.Abs(rb.linearVelocity.y - last_velocity.y) +
         Mathf.Abs(rb.linearVelocity.z - last_velocity.z)) * acc_multiplier) / Time.deltaTime;
         last_velocity = rb.linearVelocity;

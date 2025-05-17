@@ -16,22 +16,63 @@ public class Player_Health : MonoBehaviour
     private Coroutine _poisonRoutine;
     public int id;
 
+    [Header("Damage-flash settings")]
+    [SerializeField] private Color flashColor = Color.red;
+    [SerializeField] float flashTime = 0.2f;
+    private Renderer[] rends;
+    private Color[][] originalColors;
+    private Coroutine flashRoutine;
     void Start()
     {
-        current_health = max_health;    
+        current_health = max_health;
+        rends = GetComponentsInChildren<Renderer>(includeInactive: false);
+
+        // capture true originals once
+        originalColors = new Color[rends.Length][];
+        for (int r = 0; r < rends.Length; ++r)
+        {
+            Material[] mats = rends[r].materials;   // instanced copies
+            originalColors[r] = new Color[mats.Length];
+
+            for (int m = 0; m < mats.Length; ++m)
+                if (mats[m].HasProperty("_Color"))
+                    originalColors[r][m] = mats[m].color;
+        }
     }
 
-  
+    private IEnumerator FlashRed()
+    {
+        TintRed();                               // 1) turn red
+        yield return new WaitForSeconds(flashTime);
+        RestoreColors();                        // 2) back to original
+        flashRoutine = null;                     // ready for next hit
+    }
+
+    /* ─── Helpers ─── */
+    void TintRed()
+    {
+        foreach (Renderer r in rends)
+            foreach (Material m in r.materials)
+                if (m.HasProperty("_Color"))
+                    m.color = flashColor;
+    }
+
+    void RestoreColors()
+    {
+        for (int r = 0; r < rends.Length; ++r)
+        {
+            Material[] mats = rends[r].materials;
+            for (int m = 0; m < mats.Length; ++m)
+                if (mats[m].HasProperty("_Color"))
+                    mats[m].color = originalColors[r][m];
+        }
+    }
+
     public void Remove_Health(float amount)
     {
-        if (this.gameObject.tag == "AI_Player")
-        {
-            pv.RPC("ChangeHealth", RpcTarget.All, -1 * amount);
-        }
-        else
-        {
-            pv.RPC("ChangeHealth", RpcTarget.All, -1 * amount);
-        }
+        if (flashRoutine != null) StopCoroutine(flashRoutine);
+        flashRoutine = StartCoroutine(FlashRed());
+        pv.RPC("ChangeHealth", RpcTarget.All, -1 * amount);
     }
     public void PlayerLastHit(int newId)
     {
@@ -140,6 +181,7 @@ void Death()
 
     private void OnEnable()
     {
+        RestoreColors();
         current_health = 100;
         health_bar.value = current_health;
         health_bar_other.value = current_health;
