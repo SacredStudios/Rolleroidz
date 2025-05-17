@@ -25,7 +25,7 @@ public class Player_Health : MonoBehaviour
 
     [Header("Squash-Stretch settings")]
     private float squashFactor = 0.7f; //smaller squash factor = more exaggerated effect
-    private float squashDuration = 0.10f;
+    private float squashDuration = 0.075f;
 
     private Vector3 originalScale;
     private Coroutine squashRoutine;
