@@ -18,12 +18,22 @@ public class Player_Health : MonoBehaviour
 
     [Header("Damage-flash settings")]
     [SerializeField] private Color flashColor = Color.red;
-    [SerializeField] float flashTime = 0.5f;
+    [SerializeField] float flashTime = 0.4f;
     private Renderer[] rends;
     private Color[][] originalColors;
     private Coroutine flashRoutine;
+
+    [Header("Squash-Stretch settings")]
+    private float squashFactor = 0.5f; //smaller squash factor = more exaggerated effect
+    [SerializeField] private float squashDuration = 0.25f;
+
+    private Vector3 originalScale;
+    private Coroutine squashRoutine;
+    [SerializeField] private Transform visualsRoot;
+
     void Start()
     {
+        originalScale = visualsRoot.localScale;
         current_health = max_health;
         rends = GetComponentsInChildren<Renderer>(includeInactive: false);
 
@@ -39,6 +49,44 @@ public class Player_Health : MonoBehaviour
                     originalColors[r][m] = mats[m].color;
         }
     }
+
+    private IEnumerator SquashStretch()
+    {
+        // squash Y, stretch X & Z
+        float t = 0f;
+
+        // 0 – 1   (0.9 gives a 10 % squash)
+        float yScale = squashFactor;                 // e.g. 0.9  → height 90 %
+        float xzScale = 2f - squashFactor;           // e.g. 1.1 → width 110 %
+
+        Vector3 squashed = new Vector3(
+            originalScale.x * xzScale,               // wider
+            originalScale.y * yScale,                // flatter
+            originalScale.z * xzScale);
+
+        // ▸ squash phase
+        while (t < squashDuration)
+        {
+            float k = t / squashDuration;
+            visualsRoot.localScale = Vector3.Lerp(originalScale, squashed, k);
+            t += Time.deltaTime;
+            yield return null;
+        }
+
+        // ▸ unsquash back to normal
+        t = 0f;
+        while (t < squashDuration)
+        {
+            float k = t / squashDuration;
+            visualsRoot.localScale = Vector3.Lerp(squashed, originalScale, k);
+            t += Time.deltaTime;
+            yield return null;
+        }
+
+        visualsRoot.localScale = originalScale;
+        squashRoutine = null;
+    }
+
 
     private IEnumerator FlashRed()
     {
@@ -72,6 +120,8 @@ public class Player_Health : MonoBehaviour
     {
         if (flashRoutine != null) StopCoroutine(flashRoutine);
         flashRoutine = StartCoroutine(FlashRed());
+        if (squashRoutine != null) StopCoroutine(squashRoutine);
+        squashRoutine = StartCoroutine(SquashStretch());
         pv.RPC("ChangeHealth", RpcTarget.All, -1 * amount);
     }
     public void PlayerLastHit(int newId)
@@ -181,6 +231,7 @@ void Death()
 
     private void OnEnable()
     {
+        originalScale = visualsRoot.localScale;
         RestoreColors();
         current_health = 100;
         health_bar.value = current_health;
