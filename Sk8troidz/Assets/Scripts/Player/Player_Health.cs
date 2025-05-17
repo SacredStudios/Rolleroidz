@@ -18,7 +18,7 @@ public class Player_Health : MonoBehaviour
 
     [Header("Damage-flash settings")]
     [SerializeField] private Color flashColor = Color.red;
-    [SerializeField] float flashTime = 0.2f;
+    [SerializeField] float flashTime = 0.5f;
     private Renderer[] rends;
     private Color[][] originalColors;
     private Coroutine flashRoutine;
