@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e4152ace02e295458d9558ce4ebbe38, type: 3}
+  m_Name: Spray Pain
+  m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  weapon_name: SPRAY PAIN
+  weapon_description: This was a normal can of spray paint until it was infused with
+    the radioactive Demon Core. This short-range weapon increases the user's speed
+    while also inficting foes with a nasty poison-effect.
+  weapon_delay: 0.1
+  damage: 3
+  attack_cost: 20
+  knockback: 0
+  offset: {x: 0, y: 0, z: 0}
+  pv: {fileID: 0}
+  range: 12
+  max_ammo: 0
+  ammo: 0
+  isSuper: 0
+  sound: {fileID: 0}
+  weight: -10
+  player: {fileID: 0}
+  super: {fileID: 11400000, guid: 9c02b1e2616b34f6bb17280d63f87474, type: 2}
+  instance: {fileID: 5701472752753408246, guid: b101d606d6704894ca68a9b6f9d4a12c, type: 3}
+  shake: 0
+  coin: {fileID: 0}
+  min_distance: 2.5
+  death_effect: {fileID: 2189970838978847630, guid: 4db3b1e256a08454eba40317389ff4df, type: 3}
+  chat_manager: {fileID: 0}
+  particle_trail: {fileID: 5350631524446803880, guid: 3cbfc575fa6e3534c823f30cc3d17756, type: 3}
+  particle_explosion: {fileID: 367450934941629301, guid: 317d7bcf65d7646de804cb49b0796ff9, type: 3}
+  impact_explosion: {fileID: 367450934941629301, guid: ff835b73a4762094990f9ce060b80dc8, type: 3}
+  _radius: 3
+  _poisonRadius: 5
+  poison_amount: 5

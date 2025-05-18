@@ -119,7 +119,11 @@ public class Player_Health : MonoBehaviour
 
     public void Remove_Health(float amount)
     {
-        
+        CameraShake camera_shake = GetComponent<CameraShake>();
+        if (camera_shake != null)
+        {
+            camera_shake.Shake(4f, 0.4f);
+        }
         pv.RPC("ChangeHealth", RpcTarget.All, -1 * amount);
     }
     public void PlayerLastHit(int newId)
@@ -153,6 +157,7 @@ public class Player_Health : MonoBehaviour
     }
     [PunRPC] void ChangeHealth(float amount)
     {
+        
         if (amount < 0)
         {
             dmg_sound.Play();
@@ -204,7 +209,7 @@ public class Player_Health : MonoBehaviour
             {
                 break;
             }
-            if (ph.current_health <= 0)
+            if (ph.current_health - poison_amount <= 0 && pv.IsMine)
             {
                 // now pulling it from the Weapon you passed in
                 PhotonNetwork.Instantiate(

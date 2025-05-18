@@ -11,13 +11,16 @@ public class CameraShake : MonoBehaviour
     float max_time;
     public void Shake(float magnitude, float time)
     {
-        CinemachineBasicMultiChannelPerlin c =
-            cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-        c.m_AmplitudeGain = magnitude;
+        if (cam != null)
+        {
+            CinemachineBasicMultiChannelPerlin c =
+                cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+            c.m_AmplitudeGain = magnitude;
 
-        base_magnitude = magnitude;
-        max_time = time;
-        timer = time;
+            base_magnitude = magnitude;
+            max_time = time;
+            timer = time;
+        }
     }
 
     private void Update()
