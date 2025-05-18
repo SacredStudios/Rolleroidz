@@ -119,11 +119,7 @@ public class Player_Health : MonoBehaviour
 
     public void Remove_Health(float amount)
     {
-        dmg_sound.Play();
-        if (flashRoutine != null) StopCoroutine(flashRoutine);
-        flashRoutine = StartCoroutine(FlashRed());
-        if (squashRoutine != null) StopCoroutine(squashRoutine);
-        squashRoutine = StartCoroutine(SquashStretch());
+        
         pv.RPC("ChangeHealth", RpcTarget.All, -1 * amount);
     }
     public void PlayerLastHit(int newId)
@@ -157,6 +153,14 @@ public class Player_Health : MonoBehaviour
     }
     [PunRPC] void ChangeHealth(float amount)
     {
+        if (amount < 0)
+        {
+            dmg_sound.Play();
+            if (flashRoutine != null) StopCoroutine(flashRoutine);
+            flashRoutine = StartCoroutine(FlashRed());
+            if (squashRoutine != null) StopCoroutine(squashRoutine);
+            squashRoutine = StartCoroutine(SquashStretch());
+        }
         current_health += amount;
         health_bar.value = current_health;
         health_bar_other.value = current_health;
