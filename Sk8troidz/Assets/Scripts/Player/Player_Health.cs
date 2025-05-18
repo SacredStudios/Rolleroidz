@@ -204,7 +204,7 @@ public class Player_Health : MonoBehaviour
             {
                 break;
             }
-            if (ph.current_health - poison_amount <= 0)
+            if (ph.current_health <= 0)
             {
                 // now pulling it from the Weapon you passed in
                 PhotonNetwork.Instantiate(
