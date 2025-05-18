@@ -8,6 +8,7 @@ public class Player_Health : MonoBehaviour
 {
     [SerializeField] float max_health;
     public float current_health;
+    [SerializeField] AudioSource dmg_sound;
     [SerializeField] GameObject death_effect;
     [SerializeField] GameObject parent;
     [SerializeField] Slider health_bar;
@@ -118,6 +119,7 @@ public class Player_Health : MonoBehaviour
 
     public void Remove_Health(float amount)
     {
+        dmg_sound.Play();
         if (flashRoutine != null) StopCoroutine(flashRoutine);
         flashRoutine = StartCoroutine(FlashRed());
         if (squashRoutine != null) StopCoroutine(squashRoutine);
