@@ -210,18 +210,8 @@ public class Player_Health : MonoBehaviour
                 break;
             }
             if (ph.current_health - poison_amount <= 0 && pv.IsMine)
-            {
-                // now pulling it from the Weapon you passed in
-                PhotonNetwork.Instantiate(
-                  weapon.death_effect.name,
-                  hit.point,
-                  Quaternion.identity
-                );
-                hit.collider.transform.position = new Vector3(9999, 9999, 9999);
-                weapon.SpawnCoin(hit.transform.gameObject, hit.point);
-                parent.GetComponentInParent<Super_Bar>().ChangeAmount(35);
-                ph.Death();
-                break;
+            {      
+                break; //poison can no longer kill you
             }
 
             ph.Remove_Health(poison_amount);
